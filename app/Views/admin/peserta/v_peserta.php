@@ -437,7 +437,7 @@ $ta = $db->table('tbl_ta')
                                 <input type="hidden" name="aktif[]" value="0">
                                 <input type="hidden" name="id_tingkat[]" value="0">
                                 <input type="hidden" name="status_daftar[]" value="4">
-                                <input type="hidden" name="id_ta[]" value="<?= $ta['tahun'] ?>">
+                                <input type="text" name="id_ta[]" value="<?= $ta['tahun'] ?>">
 
                             </tr>
                         <?php } ?>
