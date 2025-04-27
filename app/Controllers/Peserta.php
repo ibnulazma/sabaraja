@@ -584,7 +584,7 @@ class Peserta extends BaseController
         $nisn           = $_POST['nisn'];
         $id_tingkat     = $_POST['id_tingkat'];
         $aktif          = $_POST['aktif'];
-        $status_daftar          = $_POST['status_daftar'];
+        $status_daftar  = $_POST['status_daftar'];
 
 
         $jml_siswa = count($nisn);

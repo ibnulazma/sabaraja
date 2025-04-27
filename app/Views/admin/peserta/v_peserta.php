@@ -189,7 +189,7 @@ $ta = $db->table('tbl_ta')
 
                                 foreach ($lulusan as $key => $value) { ?>
                                     <tr>
-                                        <td><?= $no++; ?></td>
+                                        <td class="text-center"><?= $no++; ?></td>
                                         <td class="text-center"><?= $value["nis"] ?></td>
                                         <td class="text-center"><?= $value["nisn"] ?></td>
                                         <td><?= $value["nama_siswa"] ?></td>
@@ -436,7 +436,7 @@ $ta = $db->table('tbl_ta')
                                 <td><?= $data['tingkat'] ?></td>
                                 <input type="hidden" name="aktif[]" value="0">
                                 <input type="hidden" name="id_tingkat[]" value="0">
-                                <input type="hidden" name="status_daftar[]" value="5">
+                                <input type="hidden" name="status_daftar[]" value="4">
                                 <input type="hidden" name="id_ta[]" value="<?= $ta['tahun'] ?>">
 
                             </tr>
