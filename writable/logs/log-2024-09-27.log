@@ -1,0 +1,12 @@
+CRITICAL - 2024-09-27 00:04:32 --> Undefined index: maps
+#0 E:\APLIKASI\koding\sneat\app\Views\admin\peserta\v_detail_siswa.php(418): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'E:\\APLIKASI\\kod...', 418, Array)
+#1 E:\APLIKASI\koding\sneat\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sneat\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sneat\system\Common.php(1092): CodeIgniter\View\View->render('admin/peserta/v...', Array, true)
+#4 E:\APLIKASI\koding\sneat\app\Controllers\Peserta.php(160): view('admin/peserta/v...', Array)
+#5 E:\APLIKASI\koding\sneat\system\CodeIgniter.php(802): App\Controllers\Peserta->detail_siswa('3104435864')
+#6 E:\APLIKASI\koding\sneat\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peserta))
+#7 E:\APLIKASI\koding\sneat\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sneat\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sneat\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}

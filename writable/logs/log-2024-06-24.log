@@ -1,0 +1,12 @@
+CRITICAL - 2024-06-24 06:48:51 --> Undefined index: ta
+#0 C:\xampp\htdocs\siakad\app\Views\siswa\v_profile.php(110): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 110, Array)
+#1 C:\xampp\htdocs\siakad\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\siakad\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\siakad\system\Common.php(1092): CodeIgniter\View\View->render('siswa/v_profile', Array, true)
+#4 C:\xampp\htdocs\siakad\app\Controllers\Siswa.php(90): view('siswa/v_profile', Array)
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Siswa->profile()
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}

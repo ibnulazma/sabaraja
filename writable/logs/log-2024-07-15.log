@@ -1,0 +1,42 @@
+ERROR - 2024-07-15 21:25:56 --> Not unique table/alias: 'tbl_tingkat'
+CRITICAL - 2024-07-15 21:25:56 --> Not unique table/alias: 'tbl_tingkat'
+#0 C:\xampp\htdocs\siakad\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 C:\xampp\htdocs\siakad\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\siakad\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\siakad\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\siakad\app\Models\ModelSiswa.php(22): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\siakad\app\Controllers\Siswa.php(45): App\Models\ModelSiswa->DataSiswa()
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#7 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#8 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2024-07-15 21:26:13 --> Column 'nisn' in where clause is ambiguous
+CRITICAL - 2024-07-15 21:26:13 --> Column 'nisn' in where clause is ambiguous
+#0 C:\xampp\htdocs\siakad\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 C:\xampp\htdocs\siakad\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\siakad\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\siakad\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\siakad\app\Models\ModelSiswa.php(21): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\siakad\app\Controllers\Siswa.php(45): App\Models\ModelSiswa->DataSiswa()
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#7 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#8 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2024-07-15 21:30:05 --> Unknown column 'tbl_database.id_tingkat' in 'on clause'
+CRITICAL - 2024-07-15 21:30:05 --> Unknown column 'tbl_database.id_tingkat' in 'on clause'
+#0 C:\xampp\htdocs\siakad\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 C:\xampp\htdocs\siakad\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\siakad\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\siakad\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\siakad\app\Models\ModelSiswa.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\siakad\app\Controllers\Siswa.php(45): App\Models\ModelSiswa->DataSiswa()
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#7 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#8 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}

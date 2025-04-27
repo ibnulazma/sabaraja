@@ -1,0 +1,12 @@
+CRITICAL - 2024-10-17 11:00:36 --> Undefined variable: value
+#0 E:\APLIKASI\koding\sneat\app\Views\guru\nilai\nilai.php(61): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'E:\\APLIKASI\\kod...', 61, Array)
+#1 E:\APLIKASI\koding\sneat\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sneat\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sneat\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 E:\APLIKASI\koding\sneat\app\Controllers\Pendidik.php(347): view('guru/nilai/nila...', Array)
+#5 E:\APLIKASI\koding\sneat\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 E:\APLIKASI\koding\sneat\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 E:\APLIKASI\koding\sneat\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sneat\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sneat\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}

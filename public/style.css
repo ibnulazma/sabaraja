@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color:#ececec ;
+}
+
+
+.box-area {
+    width: 930px;
+    border-radius: 10px;
+   
+}
+.right-box{
+    padding: 40px 30px 40px 40px;
+}
+.kerangka{
+    
+    background-image:linear-gradient(to bottom, rgba(14, 117, 219, 0.52), rgba(185, 170, 164, 0.959)), url('foto/sekolah.jpg') ; 
+     background-repeat:no-repeat; 
+     background-size: cover;
+     position: relative;
+     /* overflow: hidden; */
+     
+}
+
+.selamat{
+   font-weight: 900;
+    margin-top: 100px;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+
+
+
+
+
+::placeholder{
+    font-size: 16px;
+}
+.left-box{
+    border-radius: 10px;
+}
+
+@media screen and (max-width:768px)
+{
+    .box-area{
+        margin: 0 10px;
+    }
+
+
+    .left-box{
+        height: 100px;
+        overflow: hidden;
+    }
+    .right-box{
+        padding: 20px;
+    }
+
+    .show-pass{
+        font-size: 10px;
+    }
+
+     .forgot{
+        font-size: 10px;
+    }
+
+    .logo{
+        position: relative;
+        margin-top: 190px;
+        width: 70px;
+        align-items: center;
+       
+    }
+
+    
+}

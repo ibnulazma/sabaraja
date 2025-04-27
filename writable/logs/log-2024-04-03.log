@@ -1,0 +1,189 @@
+CRITICAL - 2024-04-03 07:22:19 --> Undefined variable: level
+#0 C:\xampp\htdocs\siakad\app\Controllers\Auth.php(163): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 163, Array)
+#1 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Auth->cekloginadmin()
+#2 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2024-04-03 07:47:43 --> Undefined property: App\Controllers\Auth::$input
+#0 C:\xampp\htdocs\siakad\app\Controllers\Auth.php(184): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 184, Array)
+#1 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Auth->cekloginadmin()
+#2 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2024-04-03 08:10:53 --> Undefined index: foto_user
+#0 C:\xampp\htdocs\siakad\app\Controllers\Auth.php(168): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 168, Array)
+#1 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Auth->cekloginadmin()
+#2 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2024-04-03 08:13:06 --> Undefined variable: _session
+#0 C:\xampp\htdocs\siakad\app\Views\template\sidebar.php(3): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 3, Array)
+#1 C:\xampp\htdocs\siakad\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\siakad\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\siakad\system\View\View.php(432): CodeIgniter\View\View->render('template/sideba...', NULL, true)
+#4 C:\xampp\htdocs\siakad\app\Views\template\template-backend.php(17): CodeIgniter\View\View->include('template/sideba...')
+#5 C:\xampp\htdocs\siakad\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\siakad\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\siakad\system\View\View.php(230): CodeIgniter\View\View->render('template/templa...', Array, true)
+#8 C:\xampp\htdocs\siakad\system\Common.php(1092): CodeIgniter\View\View->render('admin/v_dashboa...', Array, true)
+#9 C:\xampp\htdocs\siakad\app\Controllers\Admin.php(56): view('admin/v_dashboa...', Array)
+#10 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Admin->index()
+#11 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#12 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#14 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#15 {main}
+CRITICAL - 2024-04-03 08:13:42 --> Undefined variable: _session
+#0 C:\xampp\htdocs\siakad\app\Views\template\sidebar.php(3): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 3, Array)
+#1 C:\xampp\htdocs\siakad\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\siakad\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\siakad\system\View\View.php(432): CodeIgniter\View\View->render('template/sideba...', NULL, true)
+#4 C:\xampp\htdocs\siakad\app\Views\template\template-backend.php(17): CodeIgniter\View\View->include('template/sideba...')
+#5 C:\xampp\htdocs\siakad\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\siakad\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#7 C:\xampp\htdocs\siakad\system\View\View.php(230): CodeIgniter\View\View->render('template/templa...', Array, true)
+#8 C:\xampp\htdocs\siakad\system\Common.php(1092): CodeIgniter\View\View->render('admin/v_dashboa...', Array, true)
+#9 C:\xampp\htdocs\siakad\app\Controllers\Admin.php(56): view('admin/v_dashboa...', Array)
+#10 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Admin->index()
+#11 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#12 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#13 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#14 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#15 {main}
+CRITICAL - 2024-04-03 09:52:29 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\siakad\app\Views\siswa\v_dashboard.php(25): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'C:\\xampp\\htdocs...', 25, Array)
+#1 C:\xampp\htdocs\siakad\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\siakad\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\siakad\system\Common.php(1092): CodeIgniter\View\View->render('siswa/v_dashboa...', Array, true)
+#4 C:\xampp\htdocs\siakad\app\Controllers\Siswa.php(50): view('siswa/v_dashboa...', Array)
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2024-04-03 20:44:54 --> Undefined variable: validation
+#0 C:\xampp\htdocs\siakad\app\Views\admin\barcode\index.php(51): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 51, Array)
+#1 C:\xampp\htdocs\siakad\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\siakad\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\siakad\system\Common.php(1092): CodeIgniter\View\View->render('admin/barcode/i...', Array, true)
+#4 C:\xampp\htdocs\siakad\app\Controllers\Absen.php(32): view('admin/barcode/i...', Array)
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Absen->index()
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Absen))
+#7 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2024-04-03 20:45:53 --> Undefined variable: validation
+#0 C:\xampp\htdocs\siakad\app\Views\admin\barcode\index.php(259): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 259, Array)
+#1 C:\xampp\htdocs\siakad\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\siakad\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\siakad\system\Common.php(1092): CodeIgniter\View\View->render('admin/barcode/i...', Array, true)
+#4 C:\xampp\htdocs\siakad\app\Controllers\Absen.php(32): view('admin/barcode/i...', Array)
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Absen->index()
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Absen))
+#7 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2024-04-03 23:45:53 --> Error connecting to the database: No connection could be made because the target machine actively refused it.
+
+CRITICAL - 2024-04-03 23:45:53 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+#0 C:\xampp\htdocs\siakad\system\Database\BaseConnection.php(570): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\siakad\system\Database\BaseBuilder.php(1512): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#2 C:\xampp\htdocs\siakad\app\Models\ModelPeserta.php(116): CodeIgniter\Database\BaseBuilder->countAllResults()
+#3 C:\xampp\htdocs\siakad\app\Controllers\Admin.php(42): App\Models\ModelPeserta->jumlahAktif()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Admin->index()
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2024-04-03 23:54:01 --> Invalid data at path "C:\xampp\htdocs\siakad\public\/logo.png"
+#0 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(129): Endroid\QrCode\ImageData\LogoImageData::createForLogo(Object(Endroid\QrCode\Logo\Logo))
+#1 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(117): Endroid\QrCode\Writer\PngWriter->addLogo(Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Writer\Result\PngResult))
+#2 C:\xampp\htdocs\siakad\app\Controllers\Barcode.php(39): Endroid\QrCode\Writer\PngWriter->write(Object(Endroid\QrCode\QrCode), Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Label\Label))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Barcode->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Barcode))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2024-04-03 23:54:47 --> Invalid data at path "C:\xampp\htdocs\siakad\public\/logo.png"
+#0 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(129): Endroid\QrCode\ImageData\LogoImageData::createForLogo(Object(Endroid\QrCode\Logo\Logo))
+#1 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(117): Endroid\QrCode\Writer\PngWriter->addLogo(Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Writer\Result\PngResult))
+#2 C:\xampp\htdocs\siakad\app\Controllers\Barcode.php(39): Endroid\QrCode\Writer\PngWriter->write(Object(Endroid\QrCode\QrCode), Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Label\Label))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Barcode->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Barcode))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2024-04-03 23:57:21 --> Invalid data at path "C:\xampp\htdocs\siakad\public\/qrcode/logo.png"
+#0 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(129): Endroid\QrCode\ImageData\LogoImageData::createForLogo(Object(Endroid\QrCode\Logo\Logo))
+#1 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(117): Endroid\QrCode\Writer\PngWriter->addLogo(Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Writer\Result\PngResult))
+#2 C:\xampp\htdocs\siakad\app\Controllers\Barcode.php(39): Endroid\QrCode\Writer\PngWriter->write(Object(Endroid\QrCode\QrCode), Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Label\Label))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Barcode->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Barcode))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2024-04-03 23:57:57 --> Invalid data at path "C:\xampp\htdocs\siakad\writable\/uploads/logo.png"
+#0 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(129): Endroid\QrCode\ImageData\LogoImageData::createForLogo(Object(Endroid\QrCode\Logo\Logo))
+#1 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(117): Endroid\QrCode\Writer\PngWriter->addLogo(Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Writer\Result\PngResult))
+#2 C:\xampp\htdocs\siakad\app\Controllers\Barcode.php(39): Endroid\QrCode\Writer\PngWriter->write(Object(Endroid\QrCode\QrCode), Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Label\Label))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Barcode->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Barcode))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2024-04-03 23:58:20 --> Invalid data at path "C:\xampp\htdocs\siakad\writable\\uploads\logo.png"
+#0 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(129): Endroid\QrCode\ImageData\LogoImageData::createForLogo(Object(Endroid\QrCode\Logo\Logo))
+#1 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(117): Endroid\QrCode\Writer\PngWriter->addLogo(Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Writer\Result\PngResult))
+#2 C:\xampp\htdocs\siakad\app\Controllers\Barcode.php(39): Endroid\QrCode\Writer\PngWriter->write(Object(Endroid\QrCode\QrCode), Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Label\Label))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Barcode->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Barcode))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2024-04-03 23:58:42 --> Invalid data at path "C:\xampp\htdocs\siakad\writable\uploads\logo.png"
+#0 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(129): Endroid\QrCode\ImageData\LogoImageData::createForLogo(Object(Endroid\QrCode\Logo\Logo))
+#1 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(117): Endroid\QrCode\Writer\PngWriter->addLogo(Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Writer\Result\PngResult))
+#2 C:\xampp\htdocs\siakad\app\Controllers\Barcode.php(39): Endroid\QrCode\Writer\PngWriter->write(Object(Endroid\QrCode\QrCode), Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Label\Label))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Barcode->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Barcode))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2024-04-03 23:59:40 --> Invalid data at path "C:\xampp\htdocs\siakad\writable\uploads\logo.png"
+#0 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(129): Endroid\QrCode\ImageData\LogoImageData::createForLogo(Object(Endroid\QrCode\Logo\Logo))
+#1 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(117): Endroid\QrCode\Writer\PngWriter->addLogo(Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Writer\Result\PngResult))
+#2 C:\xampp\htdocs\siakad\app\Controllers\Barcode.php(39): Endroid\QrCode\Writer\PngWriter->write(Object(Endroid\QrCode\QrCode), Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Label\Label))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Barcode->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Barcode))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2024-04-03 23:59:43 --> Invalid data at path "C:\xampp\htdocs\siakad\writable\uploads\logo.png"
+#0 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(129): Endroid\QrCode\ImageData\LogoImageData::createForLogo(Object(Endroid\QrCode\Logo\Logo))
+#1 C:\xampp\htdocs\siakad\vendor\endroid\qr-code\src\Writer\PngWriter.php(117): Endroid\QrCode\Writer\PngWriter->addLogo(Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Writer\Result\PngResult))
+#2 C:\xampp\htdocs\siakad\app\Controllers\Barcode.php(39): Endroid\QrCode\Writer\PngWriter->write(Object(Endroid\QrCode\QrCode), Object(Endroid\QrCode\Logo\Logo), Object(Endroid\QrCode\Label\Label))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Barcode->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Barcode))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}

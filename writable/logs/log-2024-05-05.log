@@ -1,0 +1,15 @@
+ERROR - 2024-05-05 06:35:43 --> Error connecting to the database: No connection could be made because the target machine actively refused it.
+
+CRITICAL - 2024-05-05 06:35:43 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+#0 C:\xampp\htdocs\siakad\system\Database\BaseConnection.php(570): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\siakad\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\siakad\app\Models\ModelAuth.php(17): CodeIgniter\Database\BaseBuilder->get()
+#3 C:\xampp\htdocs\siakad\app\Controllers\Auth.php(163): App\Models\ModelAuth->login('admin@gmail.com', 'admin123', '1')
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Auth->cekloginadmin()
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#9 {main}

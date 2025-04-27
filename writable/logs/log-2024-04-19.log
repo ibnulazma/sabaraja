@@ -1,0 +1,51 @@
+CRITICAL - 2024-04-19 19:00:04 --> Invalid file: v_daftar.php
+#0 C:\xampp\htdocs\siakad\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_daftar.php')
+#1 C:\xampp\htdocs\siakad\system\Common.php(1092): CodeIgniter\View\View->render('v_daftar', Array, true)
+#2 C:\xampp\htdocs\siakad\app\Controllers\Daftar.php(30): view('v_daftar', Array)
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Daftar->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Daftar))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2024-04-19 19:00:09 --> Invalid file: v_daftar.php
+#0 C:\xampp\htdocs\siakad\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_daftar.php')
+#1 C:\xampp\htdocs\siakad\system\Common.php(1092): CodeIgniter\View\View->render('v_daftar', Array, true)
+#2 C:\xampp\htdocs\siakad\app\Controllers\Daftar.php(30): view('v_daftar', Array)
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Daftar->index()
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Daftar))
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2024-04-19 19:00:15 --> syntax error, unexpected '}', expecting end of file
+#0 C:\xampp\htdocs\siakad\system\Router\Router.php(160): CodeIgniter\Router\Router->autoRoute('presensi')
+#1 C:\xampp\htdocs\siakad\system\CodeIgniter.php(702): CodeIgniter\Router\Router->handle('presensi')
+#2 C:\xampp\htdocs\siakad\system\CodeIgniter.php(358): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2024-04-19 19:05:43 --> Call to undefined function App\Controllers\NOW()
+#0 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Presensi->scan()
+#1 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Presensi))
+#2 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2024-04-19 19:06:19 --> Undefined property: App\Controllers\Presensi::$ModelGuru
+#0 C:\xampp\htdocs\siakad\app\Controllers\Presensi.php(26): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 26, Array)
+#1 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Presensi->index()
+#2 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Presensi))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2024-04-19 19:06:32 --> Undefined property: App\Controllers\Presensi::$ModelGuru
+#0 C:\xampp\htdocs\siakad\app\Controllers\Presensi.php(26): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 26, Array)
+#1 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Presensi->index()
+#2 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Presensi))
+#3 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}

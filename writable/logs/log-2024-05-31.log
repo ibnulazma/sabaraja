@@ -1,0 +1,11 @@
+CRITICAL - 2024-05-31 21:44:40 --> Call to undefined function nomorhp()
+#0 C:\xampp\htdocs\siakad\system\View\View.php(214): include()
+#1 C:\xampp\htdocs\siakad\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\siakad\system\Common.php(1092): CodeIgniter\View\View->render('admin/peserta/v...', Array, true)
+#3 C:\xampp\htdocs\siakad\app\Controllers\Peserta.php(167): view('admin/peserta/v...', Array)
+#4 C:\xampp\htdocs\siakad\system\CodeIgniter.php(802): App\Controllers\Peserta->detail_siswa('1234')
+#5 C:\xampp\htdocs\siakad\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peserta))
+#6 C:\xampp\htdocs\siakad\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\siakad\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\siakad\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#9 {main}
