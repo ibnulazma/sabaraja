@@ -89,16 +89,17 @@ $ta = $db->table('tbl_ta')
                         </ul>
                     </div>
                     <div class="pembelajaran border-bottom mb-4">
-                        <h5>Pembelajaran</h5>
+                        <h5>Pembelajaran <button class="ikon btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#pilihkelas">Pilih Kelas</button></li>
+                        </h5>
                         <ul style="list-style: none;">
-                            <li>Rombel : <?= $siswa['kelas'] ?></li>
+                            <li>Rombel : <?= $siswa['kelas'] ?>
                             <li>Tingkat Pendidikan: <?= $siswa['tingkat'] ?></li>
                             <li>Semester Aktif : <?= $ta['ta'] ?>/<b><?= $ta['semester'] ?></b></li>
                         </ul>
                     </div>
 
                     <div class="mapii">
-                        <h5>Tempat Tinggal</h5>
+                        <h5> Tempat Tinggal <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#alamat"><i class='bx bxs-edit-alt'></i></button> </h5>
                         <p><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?></p>
                         <p>Desa/Kel <?= $siswa['desa'] ?> Kec. <?= $siswa['nama_kecamatan'] ?></p>
                         <div id="map" style="height:500px"></div>
@@ -120,9 +121,6 @@ $ta = $db->table('tbl_ta')
                     </li>
                     <li class="nav-item">
                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile" aria-selected="false">Rekam Didik</button>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-messages" aria-controls="navs-pills-top-messages" aria-selected="false">Messages</button>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -186,11 +184,25 @@ $ta = $db->table('tbl_ta')
                                     <li class="p-0">
                                         Pendidikan :
                                         <span><?= $siswa['didik_ayah'] ?></span>
+
                                     </li>
                                     <hr>
                                     <li class="p-0">
                                         Pekerjaan :
-                                        <span><?= $siswa['kerja_ayah'] ?></span>
+                                        <?php
+                                        $hasilayah = $siswa['kerja_ayah'];
+                                        $sisap = str_replace('-', ' ', $hasilayah)
+                                        ?>
+                                        <span><?= $sisap ?></span>
+                                    </li>
+                                    <hr>
+                                    <li class="p-0">
+                                        Penghasilan :
+                                        <?php
+                                        $hasilayah = $siswa['hasil_ayah'];
+                                        $hasilna = str_replace('-', ' ', $hasilayah)
+                                        ?>
+                                        <span><?= $hasilna ?></span>
                                     </li>
                                     <hr>
                                     <li class="p-0">
@@ -224,9 +236,23 @@ $ta = $db->table('tbl_ta')
                                     <hr>
                                     <li class="p-0">
                                         Pekerjaan :
-                                        <span><?= $siswa['kerja_ibu'] ?></span>
+                                        <?php
+                                        $kerjaibu = $siswa['kerja_ibu'];
+                                        $ibukerja = str_replace('-', ' ', $kerjaibu)
+                                        ?>
+                                        <span><?= $ibukerja ?></span>
                                     </li>
                                     <hr>
+                                    <li class="p-0">
+                                        Penghasilan :
+                                        <?php
+                                        $hasilibu = $siswa['hasil_ibu'];
+                                        $ibuhasil = str_replace('-', ' ', $hasilibu)
+                                        ?>
+                                        <span><?= $ibuhasil ?></span>
+                                    </li>
+                                    <hr>
+
                                     <li class="p-0">
                                         Telepon :
                                         <span><?= $siswa['telp_ibu'] ?></span>
@@ -234,6 +260,20 @@ $ta = $db->table('tbl_ta')
                                     <hr>
                                 </ul>
                             </div>
+                        </div>
+                        <div class="row">
+                            <h5> Transportasi dan Tinggal Peserta Didik <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#tinggal"><i class='bx bxs-edit-alt'></i></button> </h5>
+                            <ul class="atribut" style="list-style:none">
+                                <li class="p-0">
+                                    Tinggal Bersama :
+                                    <span><?= $siswa['tinggal'] ?></span>
+                                </li>
+                                <hr>
+                                <li class="p-0">
+                                    Transportasi :
+                                    <span><?= $siswa['transportasi'] ?></span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="navs-pills-top-register" role="tabpanel">
@@ -319,18 +359,6 @@ $ta = $db->table('tbl_ta')
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="navs-pills-top-messages" role="tabpanel">
-                        <p>
-                            Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies cupcake gummi
-                            bears
-                            cake chocolate.
-                        </p>
-                        <p class="mb-0">
-                            Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing
-                            sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie
-                            jelly.
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -341,7 +369,66 @@ $ta = $db->table('tbl_ta')
 
 
 
+<div class="modal fade" id="alamat" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <?= form_open('peserta/edit_register/' . $siswa['nisn']) ?>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Edit Data Lainnya</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
+
+                <div class="row mb-4">
+                    <label class="col-sm-4 col-form-label" for="tempattinggal">Alamat</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="alamat" class="form-control" value="<?= $siswa['alamat'] ?>">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <label class="col-sm-4 col-form-label" for="tempattinggal">RT/RW</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="rt" class="form-control" value="<?= $siswa['rt'] ?>">
+
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" name="rw" class="form-control" value="<?= $siswa['rw'] ?>">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-sm-4">
+                        <label for="">Provinsi</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select name="prov" class="form-control" id="prov">
+                            <option value="">--Pilih Provinsi--</option>
+                            <?php foreach ($provinsi as $key => $prov) { ?>
+                                <option value="<?= $prov['id_provinsi'] ?>"><?= $prov['prov_name'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-sm-4">
+                        <label for="">Kab/Kota</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select name="kabupaten" id="kab" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <?= form_close() ?>
+    </div>
+</div>
 
 
 
@@ -352,6 +439,7 @@ $ta = $db->table('tbl_ta')
 <!-- ModalIdentitas -->
 <div class="modal fade" id="identitas" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
+        <?= form_open('peserta/edit_identitas/' . $siswa['nisn']) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Identitas</h5>
@@ -361,7 +449,7 @@ $ta = $db->table('tbl_ta')
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="basic-default-company">Nama Siswa</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="basic-default-company" placeholder="<?= $siswa['nama_siswa'] ?>" name="nama_lengkap" />
+                        <input type="text" class="form-control" id="basic-default-company" placeholder="<?= $siswa['nama_siswa'] ?>" name="nama_siswa" />
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -418,15 +506,17 @@ $ta = $db->table('tbl_ta')
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
         </div>
+        <?= form_close() ?>
     </div>
 </div>
 
 <!-- DataRegister -->
 <div class="modal fade" id="register" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
+        <?= form_open('peserta/edit_register/' . $siswa['nisn']) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Data Lainnya</h5>
@@ -434,72 +524,161 @@ $ta = $db->table('tbl_ta')
             </div>
             <div class="modal-body">
                 <div class="row mb-4">
+                    <label class="col-sm-4 col-form-label" for="tempattinggal">NIPD</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="nis" class="form-control" value="<?= $siswa['nis'] ?>">
+                    </div>
+                </div>
+                <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="tempattinggal">Tinggi badan</label>
                     <div class="col-sm-8">
-                        <input type="text" name="" id="" class="form-control" value="<?= $siswa['tinggi'] ?>">
+                        <input type="text" name="tinggi" class="form-control" value="<?= $siswa['tinggi'] ?>">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="tempattinggal">Berat Badan</label>
                     <div class="col-sm-8">
-                        <input type="text" name="" id="" class="form-control" value="<?= $siswa['berat'] ?>">
+                        <input type="text" name="berat" id="" class="form-control" value="<?= $siswa['berat'] ?>">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="tempattinggal">Lingkar Kepala</label>
                     <div class="col-sm-8">
-                        <input type="text" name="" id="" class="form-control" value="<?= $siswa['lingkar'] ?>">
+                        <input type="text" name="lingkar" id="" class="form-control" value="<?= $siswa['lingkar'] ?>">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="tempattinggal">Anak Ke</label>
                     <div class="col-sm-8">
-                        <input type="text" name="" id="" class="form-control" value="<?= $siswa['anak_ke'] ?>">
+                        <input type="text" name="anak_ke" id="" class="form-control" value="<?= $siswa['anak_ke'] ?>">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="tempattinggal">Jumlah Saudara</label>
                     <div class="col-sm-8">
-                        <input type="text" name="" id="" class="form-control" value="<?= $siswa['jml_saudara'] ?>">
+                        <input type="text" name="jml_saudara" id="" class="form-control" value="<?= $siswa['jml_saudara'] ?>">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="tempattinggal">Hobi</label>
                     <div class="col-sm-8">
-                        <input type="text" name="" id="" class="form-control" value="<?= $siswa['hobi'] ?>">
+                        <input type="text" name="hobi" id="" class="form-control" value="<?= $siswa['hobi'] ?>">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="tempattinggal">Cita-cita</label>
                     <div class="col-sm-8">
-                        <input type="text" name="" id="" class="form-control" value="<?= $siswa['cita_cita'] ?>">
+                        <input type="text" name="cita_cita" id="" class="form-control" value="<?= $siswa['cita_cita'] ?>">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="transportasi">Seri Ijazah</label>
                     <div class="col-sm-8">
-                        <input type="text" name="" class="form-control" id="" value="<?= $siswa['seri_ijazah'] ?>">
+                        <input type="text" name="seri_ijazah" class="form-control" id="" value="<?= $siswa['seri_ijazah'] ?>">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="transportasi">Telp Anak</label>
                     <div class="col-sm-8">
-                        <input type="text" name="" class="form-control" id="" value="<?= $siswa['telp_anak'] ?>">
+                        <input type="text" name="telp_anak" class="form-control" id="" value="<?= $siswa['telp_anak'] ?>">
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+        </div>
+        <?= form_close() ?>
+    </div>
+</div>
+
+
+<div class="modal fade" id="tinggal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Edit Orang Tua</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="row mb-4">
+                        <label class="col-sm-4 col-form-label" for="transportasi">Tinggal</label>
+                        <div class="col-sm-8">
+                            <select name="tinggal" id="didik" class="form-control">
+                                <?php foreach ($tinggal as $key => $row) { ?>
+                                    <?php if ($siswa['tinggal'] == $row['tinggal']) {
+                                        $select = "selected";
+                                    } else {
+                                        $select = "";
+                                    }
+                                    echo "<option value=" . $row['tinggal'] . " $select>" . $row['tinggal'] . "</option>";
+                                    ?>
+                                <?php } ?>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <label class="col-sm-4 col-form-label" for="transportasi">Pekerjaan</label>
+                        <div class="col-sm-8">
+                            <select name="kerja_ibu" id="didik" class="form-control">
+                                <?php foreach ($kerja as $key => $row) { ?>
+                                    <?php if ($siswa['kerja_ibu'] == $row['pekerjaan']) {
+                                        $select = "selected";
+                                    } else {
+                                        $select = "";
+                                    }
+                                    echo "<option value=" . $row['pekerjaan'] . " $select>" . $row['pekerjaan'] . "</option>";
+                                    ?>
+                                <?php } ?>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <label class="col-sm-4 col-form-label" for="transportasi">Penghasilan</label>
+                        <div class="col-sm-8">
+                            <select name="hasil_ibu" class="form-control">
+                                <?php foreach ($hasil as $key => $row) { ?>
+                                    <?php if ($siswa['hasil_ibu'] == $row['penghasilan']) {
+                                        $select = "selected";
+                                    } else {
+                                        $select = "";
+                                    }
+                                    echo "<option value=" . $row['penghasilan'] . " $select>" . $row['penghasilan'] . "</option>";
+                                    ?>
+                                <?php } ?>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <label class="col-sm-4 col-form-label" for="basic-default-company">Telpon</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['telp_ibu'] ?>" name="telp_ibu" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
         </div>
     </div>
 </div>
 
+
+
+
+
 <!-- ModalOrangTua -->
 <div class="modal fade" id="ortu" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
+        <?= form_open('peserta/edit_ortu/' . $siswa['nisn']) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Orang Tua</h5>
@@ -562,7 +741,7 @@ $ta = $db->table('tbl_ta')
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="transportasi">Penghasilan</label>
+                            <label class="col-sm-4 col-form-label" for="">Penghasilan</label>
                             <div class="col-sm-8">
                                 <select name="hasil_ayah" class="form-control">
                                     <?php foreach ($hasil as $key => $row) { ?>
@@ -608,7 +787,7 @@ $ta = $db->table('tbl_ta')
                         <div class="row mb-4">
                             <label class="col-sm-4 col-form-label" for="transportasi">Pendidikan</label>
                             <div class="col-sm-8">
-                                <select name="didik_ayah" id="didik" class="form-control">
+                                <select name="didik_ibu" id="didik" class="form-control">
                                     <?php foreach ($didik as $key => $row) { ?>
                                         <?php if ($siswa['didik_ibu'] == $row['pendidikan']) {
                                             $select = "selected";
@@ -643,6 +822,7 @@ $ta = $db->table('tbl_ta')
                             <label class="col-sm-4 col-form-label" for="transportasi">Penghasilan</label>
                             <div class="col-sm-8">
                                 <select name="hasil_ibu" class="form-control">
+
                                     <?php foreach ($hasil as $key => $row) { ?>
                                         <?php if ($siswa['hasil_ibu'] == $row['penghasilan']) {
                                             $select = "selected";
@@ -652,6 +832,8 @@ $ta = $db->table('tbl_ta')
                                         echo "<option value=" . $row['penghasilan'] . " $select>" . $row['penghasilan'] . "</option>";
                                         ?>
                                     <?php } ?>
+
+
 
                                 </select>
                             </div>
@@ -667,9 +849,10 @@ $ta = $db->table('tbl_ta')
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
         </div>
+        <?= form_close() ?>
     </div>
 </div>
 
@@ -689,8 +872,8 @@ $ta = $db->table('tbl_ta')
                         <div class="form-group">
                             <select name="id_kelas" class="form-control">
                                 <option value="">Pilih Kelas</option>
-                                <?php foreach ($kelas as $k) : ?>
-                                    <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?> | <?= $k['nama_guru'] ?></option>
+                                <?php foreach ($pilihkelas as $k) : ?>
+                                    <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?> | <?= $k['nama_guru'] ?> </option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -705,14 +888,6 @@ $ta = $db->table('tbl_ta')
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -779,50 +954,5 @@ $ta = $db->table('tbl_ta')
 
 
 
-
-
-<script>
-    $(document).ready(function() {
-        $("#provinsi").change(function() {
-            var id_kabupaten = $("#provinsi").val();
-            $.ajax({
-                type: 'GET',
-                url: '<?= base_url('Peserta/dataKabupaten') ?>/' + id_kabupaten,
-                success: function(html) {
-                    $("#kabupaten").html(html);
-                }
-            });
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $("#kabupaten").change(function() {
-            var id_kecamatan = $("#kabupaten").val();
-            $.ajax({
-                type: 'GET',
-                url: '<?= base_url('Peserta/dataKecamatan') ?>/' + id_kecamatan,
-                success: function(html) {
-                    $("#kecamatan").html(html);
-                }
-            });
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $("#kecamatan").change(function() {
-            var id_desa = $("#kecamatan").val();
-            $.ajax({
-                type: 'GET',
-                url: '<?= base_url('Peserta/dataDesa') ?>/' + id_desa,
-                success: function(html) {
-                    $("#desa").html(html);
-                }
-            });
-        });
-    });
-</script>
 
 <?= $this->endSection() ?>

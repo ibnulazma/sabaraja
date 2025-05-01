@@ -9,7 +9,7 @@ class ModelPenghasilan extends Model
     public function AllData()
     {
         return $this->db->table('tbl_penghasilan')
-            ->orderBy('id_penghasilan', 'ASC')
+            // ->orderBy('penghasilan', 'ASC')
             ->get()->getResultArray();
     }
     public function add($data)

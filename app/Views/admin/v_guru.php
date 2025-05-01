@@ -26,16 +26,7 @@ $ta = $db->table('tbl_ta')
                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home" aria-selected="true">Aktif</button>
             </li>
             <li class="nav-item">
-                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile" aria-selected="false">Keluar</button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-lulus" aria-controls="navs-pills-top-lulus" aria-selected="false">Lulus</button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-messages" aria-controls="navs-pills-top-messages" aria-selected="false">Verifikasi</button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-tambahsiswa" aria-controls="navs-pills-top-messages" aria-selected="false">Tambah Siswa</button>
+                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-tambahguru" aria-controls="navs-pills-top-messages" aria-selected="false">Tambah PTK</button>
             </li>
         </ul>
 
@@ -51,6 +42,7 @@ $ta = $db->table('tbl_ta')
                                 <th class="text-center">NIY</th>
                                 <th class="text-center">Nama Guru</th>
                                 <th class="text-center">Wali Kelas</th>
+                                <th class="text-center">Action</th>
 
 
                             </tr>
@@ -71,7 +63,8 @@ $ta = $db->table('tbl_ta')
                                         <?php } else { ?>
                                             <span class="badge bg-danger">Tidak</span>
                                         <?php } ?>
-
+                                    </td>
+                                    <td class="text-center"><a data-bs-toggle="modal" data-bs-target="#edit"><i class='bx bxs-edit-alt text-sm text-primary'></i></a></td>
 
 
                                 </tr>
@@ -83,96 +76,92 @@ $ta = $db->table('tbl_ta')
 
 
             </div>
-            <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="example1">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No</th>
-                                    <th class="text-center">NIS</th>
-                                    <th class="text-center">NISN</th>
-                                    <th class="text-center">Nama Siswa</th>
-                                    <th class="text-center">TTL</th>
-                                    <th class="text-center">L/P</th>
-                                    <th class="text-center">Tingkat</th>
-                                    <th class="text-center">Alasan</th>
-                                    <th class="text-center"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
-                            </tbody>
-                        </table>
+
+            <div class="tab-pane fade" id="navs-pills-top-tambahguru" role="tabpanel">
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <label for="">Nama Guru</label>
                     </div>
-
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="nama_guru">
+                    </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="navs-pills-top-lulus" role="tabpanel">
-
-            </div>
-            <div class="tab-pane fade" id="navs-pills-top-messages" role="tabpanel">
-                <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
-
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <label for="">Jenis Kelamin</label>
+                    </div>
+                    <div class="col-sm-7">
+                        <select name="kelamin" id="" class="form-control">
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="navs-pills-top-tambahsiswa" role="tabpanel">
-
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <label for="">NIY</label>
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="niy">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <label for="">Password</label>
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
+<!-- Edit Walas -->
+<?php foreach ($guru as $key => $value) { ?>
+    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> Edit Walas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label for="">Nama Guru</label>
+                        <input type="text" class="form-control" name="nama_guru" value="<?= $value['nama_guru'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Wali Kelas</label>
+                        <select name="walas" id="" class="form-control">
+                            <option value="">-Walas Atau Tidak-</option>
+                            <option value="1">Ya</option>
+                            <option value="0">Tidak</option>
+                        </select>
+                    </div>
 
-
-
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 
 
 
 
 <!-- Tambah Guru Single -->
 
-<div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <?php echo form_open_multipart('guru/add') ?>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah PTK</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="">Nama Guru</label>
-                    <input type="text" class="form-control" name="nama_guru">
-                </div>
-                <div class="form-group">
-                    <label for="">NIY</label>
-                    <input type="text" class="form-control" name="niy">
-                </div>
-                <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-                <div class="form-group">
-                    <label for="">Wali Kelas</label>
-                    <select name="walas" id="" class="form-control">
-                        <option value="">-Walas Atau Tidak-</option>
-                        <option value="1">Ya</option>
-                        <option value="0">Tidak</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary pull-left">Simpan</button>
-            </div>
-        </div>
-        <?php echo form_close() ?>
-    </div>
-</div>
 <!-- Upload Guru -->
 <div class="modal fade" id="upload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -224,24 +213,7 @@ $ta = $db->table('tbl_ta')
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="">Nama Guru</label>
-                        <input type="text" class="form-control" name="nama_guru" value="<?= $value['nama_guru'] ?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Wali Kelas</label>
-                        <select name="walas" id="" class="form-control">
-                            <option value="">-Walas Atau Tidak-</option>
-                            <option value="1">Ya</option>
-                            <option value="0">Tidak</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Nama Guru</label>
-                        <input type="text" class="form-control" name="link_wa" value="<?= $value['link_wa'] ?>">
-                    </div>
-                </div>
+
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Batal</button>

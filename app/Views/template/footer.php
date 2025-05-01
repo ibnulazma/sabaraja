@@ -88,21 +88,23 @@
     new DataTable('#example');
     new DataTable('#example1');
     new DataTable('#verifikasi');
-    new DataTable('#lulus');
-    new DataTable('#lulus2');
     new DataTable('#guru');
     new DataTable('#kelas');
     new DataTable('#rinciankelas');
+    new DataTable('#tblnilai');
+    new DataTable('#akanlulus');
+    new DataTable('#tambahanggota');
 
-    new DataTable('#tblnilai', {
+    // new DataTable('#tblnilai', {
 
-        fixedColumns: true,
-        paging: false,
-        scrollCollapse: true,
-        scrollX: true,
-        scrollY: 300
+    //     fixedColumns: true,
+    //     paging: false,
+    //     scrollCollapse: true,
+    //     searching: false,
+    //     scrollX: true,
+    //     scrollY: 300
 
-    });
+    // });
 </script>
 
 
@@ -170,6 +172,59 @@
     });
 </script>
 
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $("#prov").change(function() {
+            var id_kabupaten = $("#prov").val();
+            $.ajax({
+                type: 'GET',
+                url: '<?= base_url('Peserta/dataKabupaten') ?>/' + id_kabupaten,
+                success: function(html) {
+                    $("#kab").html(html);
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $("#kab").change(function() {
+            var id_kecamatan = $("#kab").val();
+            $.ajax({
+                type: 'GET',
+                url: '<?= base_url('Peserta/dataKecamatan') ?>/' + id_kecamatan,
+                success: function(html) {
+                    $("#kec").html(html);
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#kec").change(function() {
+            var id_desa = $("#kec").val();
+            $.ajax({
+                type: 'GET',
+                url: '<?= base_url('Peserta/dataDesa') ?>/' + id_desa,
+                success: function(html) {
+                    $("#kel").html(html);
+                }
+            });
+        });
+    });
+</script>
 
 
 </body>

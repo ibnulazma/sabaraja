@@ -19,6 +19,10 @@ $ta = $db->table('tbl_ta')
     table {
         width: 100%;
     }
+
+    tr .bg-lightblue {
+        background-color: #456784;
+    }
 </style>
 
 
@@ -43,7 +47,9 @@ $ta = $db->table('tbl_ta')
                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-lulus" aria-controls="navs-pills-top-lulus" aria-selected="false">Lulus</button>
             </li>
             <li class="nav-item">
-                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-messages" aria-controls="navs-pills-top-messages" aria-selected="false">Verifikasi</button>
+                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-messages" aria-controls="navs-pills-top-messages" aria-selected="false">Verifikasi
+                    <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-danger ms-1_5"><?= $jmlverif ?></span>
+                </button>
             </li>
             <li class="nav-item">
                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-tambahsiswa" aria-controls="navs-pills-top-messages" aria-selected="false">Tambah Siswa</button>
@@ -74,11 +80,11 @@ $ta = $db->table('tbl_ta')
 
                             foreach ($peserta as $key => $value) { ?>
                                 <tr class="<?php
-                                            $hasil = "Sudah Meninggal";
+                                            $hasil = "Sudah-Meninggal";
                                             if ($hasil == $value['kerja_ayah']) { ?>
-                                                            echo bg-lightblue
-                                                    <?php } ?>
-                                                    ">
+                                        echo table-primary
+                                    <?php } ?>">
+
                                     <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' .  $value['nisn']) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
                                     <td class="text-center"><?= $value["nis"] ?></td>
                                     <td class="text-center"><?= $value["nisn"] ?></td>
@@ -172,14 +178,17 @@ $ta = $db->table('tbl_ta')
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="lulus">
-                            <thead>
+                            <thead class="">
                                 <tr>
-                                    <th class="text-center">No</th>
+                                    <th class="text-center">#</th>
                                     <th class="text-center">NIS</th>
                                     <th class="text-center">NISN</th>
                                     <th class="text-center">Nama Siswa</th>
-                                    <th class="text-center">TTL</th>
+                                    <th class="text-center">Tempat Lahir</th>
+                                    <th class="text-center">Tanggal Lahir</th>
+                                    <th class="text-center">Nama Ibu</th>
                                     <th class="text-center">L/P</th>
+                                    <th class="text-center">Rombel Terakhir</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -189,12 +198,16 @@ $ta = $db->table('tbl_ta')
 
                                 foreach ($lulusan as $key => $value) { ?>
                                     <tr>
-                                        <td class="text-center"><?= $no++; ?></td>
+                                        <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' .  $value['nisn']) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
                                         <td class="text-center"><?= $value["nis"] ?></td>
                                         <td class="text-center"><?= $value["nisn"] ?></td>
-                                        <td><?= $value["nama_siswa"] ?></td>
-                                        <td class="text-center"><?= $value["tempat_lahir"] ?>, <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
+                                        <td class=""><?= $value["nama_siswa"] ?></td>
+                                        <td class="text-center"><?= $value["tempat_lahir"] ?></td>
+                                        <td class="text-center"><?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
+                                        <td class="text-center"><?= $value["nama_ibu"] ?></td>
                                         <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
+                                        <td class="text-center">undefined</td>
+
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -418,7 +431,7 @@ $ta = $db->table('tbl_ta')
 
             <div class="modal-body">
                 <?= form_open('peserta/lulus') ?>
-                <table class="table table-bordered" id="example">
+                <table class="table table-bordered" id="akanlulus" style="width:100%">
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="check-all"></th>
@@ -437,7 +450,7 @@ $ta = $db->table('tbl_ta')
                                 <input type="hidden" name="aktif[]" value="0">
                                 <input type="hidden" name="id_tingkat[]" value="0">
                                 <input type="hidden" name="status_daftar[]" value="4">
-                                <input type="text" name="id_ta[]" value="<?= $ta['tahun'] ?>">
+                                <input type="hidden" name="id_ta[]" value="<?= $ta['tahun'] ?>">
 
                             </tr>
                         <?php } ?>
@@ -466,13 +479,14 @@ $ta = $db->table('tbl_ta')
 
             <div class="modal-body">
                 <?= form_open('peserta/naik') ?>
-                <table class="table table-bordered" id="example">
+                <table class="table table-bordered" id="tblnilai" style="width:100%">
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="check-in"></th>
                             <th>Nama Peserta Didik</th>
                             <th>NISN</th>
                             <th>Tingkat</th>
+
                         </tr>
                     </thead>
                     <tbody>

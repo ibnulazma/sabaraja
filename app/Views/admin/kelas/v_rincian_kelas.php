@@ -63,16 +63,16 @@ $ta = $db->table('tbl_ta')
                     foreach ($datasiswa as $key => $value) { ?>
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
-                            <td class="text-center"><?= $value['nisn_siswa'] ?></td>
+                            <td class="text-center"><?= $value['nisn'] ?></td>
                             <td><?= $value['nama_siswa'] ?></td>
                             <td><?= $value['jenis_kelamin'] ?></td>
                             <td>
                                 <div class="text-center">
-                                    <a href="<?= base_url('kelas/bukuinduk/' .  $value['nisn_siswa']) ?>" target="_blank" class="btn btn-sm btn-info "><i class="bx bx-book"></i></a>
-                                    <a href="<?= base_url('kelas/halamansiswa/' .  $value['nisn_siswa']) ?>" target="_blank" class="btn btn-sm btn-success "><i class="bx bxs-file"></i> </a>
-                                    <a href="<?= base_url('kelas/biodatasiswa/' .  $value['nisn_siswa']) ?>" target="_blank" class="btn btn-sm btn-secondary "><i class="bx bx-id-card"></i> </a>
-                                    <a href="<?= base_url('kelas/labelsiswa/' .  $value['nisn_siswa']) ?>" target="_blank" class="btn btn-sm btn-dark"><i class="bx bx-purchase-tag-alt"></i> </a>
-                                    <a href="<?= base_url('kelas/hapusanggota/' . $value['nisn_siswa']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="bx bxs-trash-alt"></i></a>
+                                    <a href="<?= base_url('kelas/bukuinduk/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-info "><i class="bx bx-book"></i></a>
+                                    <a href="<?= base_url('kelas/halamansiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-success "><i class="bx bxs-file"></i> </a>
+                                    <a href="<?= base_url('kelas/biodatasiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-secondary "><i class="bx bx-id-card"></i> </a>
+                                    <a href="<?= base_url('kelas/labelsiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-dark"><i class="bx bx-purchase-tag-alt"></i> </a>
+                                    <a href="<?= base_url('kelas/hapusanggota/' . $value['nisn']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="bx bxs-trash-alt"></i></a>
                                 </div>
                             </td>
                         </tr>
@@ -107,7 +107,7 @@ $ta = $db->table('tbl_ta')
             </div>
             <?= form_open('kelas/tambahanggota/' . $kelas['id_kelas']) ?>
             <div class="modal-body">
-                <table class="table table-bordered" id="example1">
+                <table class="table table-bordered" id="tambahanggota">
                     <thead>
                         <tr>
                             <th><input type="checkbox"></th>
@@ -132,7 +132,7 @@ $ta = $db->table('tbl_ta')
                                     <td><input type="checkbox" name="nisn[]" value="<?= $value['nisn'] ?>"></td>
                                     <td><?= $value['nama_siswa'] ?></td>
                                     <td><?= $value['nisn'] ?></td>
-                                    <td><?= $value['tingkat'] ?></td>
+                                    <td></td>
                                     <td><?= $value['jenis_kelamin'] ?></td>
                                     <input type="hidden" name="id_kelas[]" value="<?= $kelas['id_kelas'] ?>">
                                     <input type="hidden" name="id_ta[]" value="<?= $ta['id_ta'] ?>">

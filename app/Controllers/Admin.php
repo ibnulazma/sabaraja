@@ -7,6 +7,7 @@ use App\Models\ModelSekolah;
 use App\Models\ModelJenjang;
 use App\Models\ModelSiswa;
 use App\Models\ModelPeserta;
+use App\Models\ModelWilayah;
 use App\Models\ModelGuru;
 use App\Models\ModelKelas;
 use App\Models\ModelSetting;
@@ -29,6 +30,7 @@ class Admin extends BaseController
         $this->ModelGuru    = new ModelGuru();
         $this->ModelKelas    = new ModelKelas();
         $this->ModelSetting = new ModelSetting();
+        $this->ModelWilayah = new ModelWilayah();
     }
 
     public function index()
@@ -44,6 +46,8 @@ class Admin extends BaseController
             'jumlahptk'         => $this->ModelGuru->jumlahGuru(),
             'grupkelas'        => $this->ModelKelas->kelas_grup(),
             // 'siswa'            => $this->ModelPeserta->verifikasi(),
+            'provinsi'      => $this->ModelWilayah->provinsi(),
+
             'jumlahkelas'      => $this->ModelKelas->jumlahkelas(),
 
             // 'pager'            => $this->ModelPeserta->pager,
@@ -145,5 +149,32 @@ class Admin extends BaseController
             'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
         ];
         return view('admin/bukuinduk', $data);
+    }
+
+    public function dataKabupaten($id_provinsi)
+    {
+
+        $data = $this->ModelWilayah->getKabupaten($id_provinsi);
+        echo '<option>--Pilih Kabupaten--</option>';
+        foreach ($data as $value) {
+
+            echo '<option value="' . $value['id_kabupaten'] . '">' . $value['city_name'] . '</option>';
+        }
+    }
+    public function dataKecamatan($id_kabupaten)
+    {
+        $data = $this->ModelWilayah->getKecamatan($id_kabupaten);
+        echo '<option>--Pilih Kecamatan--</option>';
+        foreach ($data as $value) {
+            echo '<option value="' . $value['id_kecamatan'] . '">' . $value['nama_kecamatan'] . '</option>';
+        }
+    }
+    public function dataDesa($id_kecamatan)
+    {
+        $data = $this->ModelWilayah->getDesa($id_kecamatan);
+        echo '<option>--Pilih Desa/Kelurahan--</option>';
+        foreach ($data as $value) {
+            echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>';
+        }
     }
 }

@@ -30,6 +30,26 @@ class ModelPeserta extends Model
     }
 
 
+    public function DataPeserta($nisn)
+    {
+        return $this->db->table('tbl_siswa')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            // ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
+            ->where('tbl_siswa.nisn', $nisn)
+            ->get()->getRowArray();
+    }
+
+
+
+
+
+
     // status_daftar 4
     public function lulusan()
     {
@@ -90,6 +110,12 @@ class ModelPeserta extends Model
             ->where('nisn', $data['nisn'])
             ->update($data);
     }
+    public function editortu($data)
+    {
+        $this->db->table('tbl_siswa')
+            ->where('nisn', $data['nisn'])
+            ->update($data);
+    }
     public function editalamat($data)
     {
         $this->db->table('tbl_siswa')
@@ -102,12 +128,20 @@ class ModelPeserta extends Model
             ->where('nisn', $data['nisn'])
             ->update($data);
     }
+    public function editregister($data)
+    {
+        $this->db->table('tbl_siswa')
+            ->where('nisn', $data['nisn'])
+            ->update($data);
+    }
 
     public function upload($data)
     {
         $this->db->table('tbl_siswa')
             ->insert($data);
     }
+
+
     public function kelas()
     {
         return $this->db->table('tbl_kelas')
@@ -116,31 +150,32 @@ class ModelPeserta extends Model
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_kelas.id_ta', 'left')
             ->where('tbl_ta.status', '1')
             // ->where('tbl_tingkat.id_tingkat')
-            ->orderBy('kelas', 'DESC')
+            ->orderBy('kelas', 'ASC')
             ->get()
             ->getResultArray();
     }
+
+
+
     public function cekdata($nisn)
     {
         return $this->db->table('tbl_siswa')
             ->where('nisn', $nisn)->get()->getRowArray();
     }
 
-    public function DataPeserta($nisn)
+    public function datakelas()
     {
         return $this->db->table('tbl_siswa')
-            ->join('tbl_database', 'tbl_database.nisn_siswa = tbl_siswa.nisn', 'left')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.tingkat', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_tingkat = tbl_tingkat.id_kelas', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left')
             // ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
-            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-            // ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
-            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
-            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
-            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
-            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
-            ->where('tbl_siswa.nisn', $nisn)
+            ->where('tbl_database.nisn_siswa')
+            ->where('tbl_ta.status', '1')
             ->get()->getRowArray();
     }
+
+
 
     public function Data($id_siswa)
     {
@@ -188,12 +223,11 @@ class ModelPeserta extends Model
     public function rekamdidik($nisn)
     {
         return $this->db->table('tbl_database')
-            // ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn', 'left')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas_baru', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             ->where('tbl_database.nisn_siswa', $nisn)
-            // ->where('status', '1')
             ->get()->getResultArray();
     }
 
@@ -236,6 +270,45 @@ class ModelPeserta extends Model
             ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
             ->where('tbl_siswa.nisn', $nisn)
             ->get()->getRowArray();
+    }
+    public function koreksi()
+    {
+        return $this->db->table('tbl_siswa')
+            ->where('status_daftar', '2')
+            ->countAllResults();
+    }
+
+
+
+
+    public function provinsi()
+    {
+        return $this->db->table('provinsi')
+            ->orderBy('id_provinsi', 'ASC')
+            ->get()->getResultArray();
+    }
+
+    public function getKabupaten($id_provinsi)
+    {
+        return $this->db->table('kabupaten')
+            ->where('id_provinsi', $id_provinsi)
+            ->get()
+            ->getResultArray();
+    }
+
+
+    public function getKecamatan($id_kabupaten)
+    {
+        return $this->db->table('kecamatan')
+            ->where('id_kabupaten', $id_kabupaten)
+            ->get()->getResultArray();
+    }
+
+    public function getDesa($id_kecamatan)
+    {
+        return $this->db->table('desa')
+            ->where('id_kecamatan', $id_kecamatan)
+            ->get()->getResultArray();
     }
 }
 
