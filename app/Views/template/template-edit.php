@@ -29,9 +29,10 @@
                         <div class="col-md-12">
                             <div class="nav-align-top">
                                 <ul class="nav nav-pills flex-column flex-md-row mb-4">
-                                    <li class="nav-item"><a class="nav-link <?= $submenu == 'profile' ? 'active' : '' ?>" href="<?= base_url('siswa/profile') ?>"><i class="bx bx-sm bx-user me-1_5"></i> Biodata</a></li>
-                                    <li class="nav-item"><a class="nav-link <?= $submenu == 'orangtua' ? 'active' : '' ?>" href="<?= base_url('siswa/edit_orangtua') ?>"><i class="bx bx-sm bx-user-circle me-1_5"></i> Orang Tua</a></li>
-                                    <li class="nav-item"><a class="nav-link <?= $submenu == 'rekamdidik' ? 'active' : '' ?>" href="<?= base_url('siswa/rekamdidik') ?>"><i class="bx bx-sm bx-link-alt me-1_5"></i> Rekam Didik</a></li>
+                                    <li class="nav-item"><span class="nav-link <?= $submenu == 'alamat' ? 'active' : '' ?>"><i class='bx bxs-map'></i> </i> Alamat</span></li>
+                                    <li class="nav-item"><span class="nav-link <?= $submenu == 'orangtua' ? 'active' : '' ?>"><i class='bx bx-user-circle'></i> Orang Tua </span></li>
+                                    <li class="nav-item"><span class="nav-link <?= $submenu == 'periodik' ? 'active' : '' ?>"><i class='bx bx-line-chart'></i> Periodik</span></li>
+                                    <li class="nav-item"><span class="nav-link <?= $submenu == 'registrasi' ? 'active' : '' ?>"><i class='bx bxs-id-card'></i> Registrasi</span></li>
                                 </ul>
                             </div>
                         </div>

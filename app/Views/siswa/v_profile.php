@@ -1,4 +1,4 @@
-<?= $this->extend('template/template-edit') ?>
+<?= $this->extend('template/template-biodata') ?>
 <?= $this->section('content') ?>
 
 
@@ -12,10 +12,13 @@ $ta = $db->table('tbl_ta')
 
 ?>
 
-<div class="swal" data-swal="<?= session()->getFlashdata('pesan'); ?>"></div>
 
 
-
+<style>
+    .rata_kanan {
+        float: right;
+    }
+</style>
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
@@ -46,132 +49,80 @@ $ta = $db->table('tbl_ta')
                 </div>
             </div>
             <div class="card-body pt-4">
-                <form id="formAccountSettings" method="POST" onsubmit="return false">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-4">
-                                <label for="lastName" class="form-label">Nama Lengkap</label>
-                                <input class="form-control" type="text" name="nama_siswa" id="lastName" value="<?= $siswa['nama_siswa'] ?>" readonly />
-                            </div>
-                            <div class="mb-4">
-                                <label for="email" class="form-label">Jenis Kelamin</label>
-                                <select name="" id="" class="form-select">
-                                    <option value="L" <?php if ($siswa['jenis_kelamin'] == "L") {
-                                                            echo "selected";
-                                                        } ?>>Laki-laki</option>
-                                    <option value="P" <?php if ($siswa['jenis_kelamin'] == "P") {
-                                                            echo "selected";
-                                                        } ?>>Perempuan</option>
-                                </select>
-                            </div>
-                            <div class="mb-4">
-                                <label for="organization" class="form-label">Tempat Lahir</label>
-                                <input type="text" class="form-control" id="organization" name="tempat_lahir" value="<?= $siswa['tempat_lahir'] ?>" readonly />
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="phoneNumber">Tanggal Lahir</label>
-                                <input type="text" class="form-control date" value="<?= $siswa['tanggal_lahir'] ?>" readonly>
-                            </div>
-                            <div class="mb-4">
-                                <label for="nik" class="form-label">NISN</label>
-                                <input type="text" class="form-control" id="nisn" name="nisn" value="<?= $siswa['nisn'] ?>" readonly />
-                            </div>
-                            <div class=" mb-4">
-                                <label for="nik" class="form-label">NIK</label>
-                                <input class="form-control" type="text" id="nik" name="nik" value="<?= $siswa['nik'] ?>" readonly />
-                            </div>
-                            <div class=" mb-4">
-                                <label for="no_kk" class="form-label">No Kartu Keluarga</label>
-                                <input class="form-control" type="text" id="nisn" name="no_kk" value="<?= $siswa['no_kk'] ?>" readonly />
-                            </div>
-                            <div class="mb-4">
-                                <label for="agama" class="form-label">Agama</label>
-                                <input type="text" class="form-control" id="agama" value="Islam" />
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="mb-4">
-                                <label class="form-label" for="country">Alamat</label>
-                                <input type="text" class="form-control" name="alamat" value="<?= $siswa['alamat'] ?>">
-                            </div>
 
-                            <div class="mb-4 row">
-                                <div class="col-6">
-                                    <label for="">RT</label>
-                                    <input type="text" class="form-control datartrw">
-                                </div>
-                                <div class="col-6">
-                                    <label for="">RW</label>
-                                    <input type="text" class="form-control datartrw">
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <label for="provinsi" class="form-label">Provinsi</label>
-                                <select name="provinsi" id="provinsi" class="form-select">
-                                    <option value="">Pilih Provinsi</option>
-                                    <?php foreach ($provinsi as $key => $prov) { ?>
-                                        <?php if ($siswa['provinsi'] == $prov['id_provinsi']) {
-                                            $select = "selected";
-                                        } else {
-                                            $select = "";
-                                        }
-                                        echo "<option value=" . $prov['id_provinsi'] . " $select>" . $prov['prov_name'] . "</option>";
-                                        ?>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="mb-4">
-                                <label for="kabupaten" class="form-label">Kabupaten</label>
-                                <select name="kabupaten" id="kabupaten" class="form-select">
-
-                                </select>
-
-                            </div>
-                            <div class="mb-4">
-                                <label for="kabupaten" class="form-label">Kecamatan</label>
-                                <select name="kecamatan" id="kecamatan" class="form-select">
-
-                                </select>
-
-                            </div>
-                            <div class="mb-4">
-                                <label for="kabupaten" class="form-label">Desa/Kelurahan</label>
-                                <select name="desa" id="desa" class="form-select">
-
-                                </select>
-
-                            </div>
-                            <div class="mb-4">
-                                <label for="currency" class="form-label">Kode Pos</label>
-                                <input type="number" class="form-control" name="kodepos">
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="atribut" style="list-style:none">
+                            <li class="p-0">
+                                Nama Lengkap :
+                                <span class="rata_kanan"><?= $siswa['nama_siswa'] ?></span>
+                            </li>
+                            <hr>
+                            <li class="p-0">
+                                Jenis Kelamin :
+                                <span class="rata_kanan"><?= $siswa['jenis_kelamin'] ?></span>
+                            </li>
+                            <hr>
+                            <li class="p-0">
+                                Tempat Lahir
+                                <span class="rata_kanan"><?= $siswa['tempat_lahir'] ?></span>
+                            </li>
+                            <hr>
+                            <li class="p-0">
+                                Tanggal Lahir :
+                                <span class="rata_kanan"><?= formatindo($siswa['tanggal_lahir']) ?></span>
+                            </li>
+                            <hr>
+                            <li class="p-0">
+                                NISN :
+                                <span class="rata_kanan"><?= $siswa['nisn'] ?></span>
+                            </li>
+                            <hr>
+                            <li class="p-0">
+                                NIK :
+                                <span class="rata_kanan"><?= $siswa['nik'] ?></span>
+                            </li>
+                            <hr>
+                            <li class="p-0">
+                                Nomor KK :
+                                <span class="rata_kanan"><?= $siswa['no_kk'] ?></span>
+                            </li>
+                            <hr>
+                            <li class="p-0">
+                                Agama :
+                                <span class="rata_kanan">Islam</span>
+                            </li>
+                            <hr>
+                            <li class="p-0">
+                                Kewarganegaraan :
+                                <span class="rata_kanan">Indonesia</span>
+                            </li>
+                            <hr>
+                            <li class="p-0">
+                                Kebutuhan Khusus :
+                                <span class="rata_kanan">Tidak Ada</span>
+                            </li>
+                            <hr>
+                        </ul>
                     </div>
-                    <div class="mt-6">
-                        <button type="submit" class="btn btn-primary me-3">Save changes</button>
-                        <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                    <div class="col-md-6">
+                        <ul class="atribut" style="list-style:none">
+                            <li class="p-0">
+                                Alamat Rumah
+                                <span class="rata_kanan"><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?> Desa/Kel <?= $siswa['desa'] ?> <?= $siswa['nama_kecamatan'] ?> </span>
+                            </li>
+                            <hr>
+                        </ul>
+                        <div id="map" style="height:500px"></div>
                     </div>
+                </div>
+                <div class="mt-6">
+                    <button type="submit" class="btn btn-primary me-3">Save changes</button>
+                    <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                </div>
                 </form>
             </div>
             <!-- /Account -->
-        </div>
-        <div class="card">
-            <h5 class="card-header">Delete Account</h5>
-            <div class="card-body">
-                <div class="mb-4 col-12 mb-0">
-                    <div class="alert alert-warning">
-                        <h5 class="alert-heading mb-1">Are you sure you want to delete your account?</h5>
-                        <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
-                    </div>
-                </div>
-                <form id="formAccountDeactivation" onsubmit="return false">
-                    <div class="form-check my-8 ms-2">
-                        <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
-                        <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
-                    </div>
-                    <button type="submit" class="btn btn-danger deactivate-account" disabled>Deactivate Account</button>
-                </form>
-            </div>
         </div>
     </div>
 </div>

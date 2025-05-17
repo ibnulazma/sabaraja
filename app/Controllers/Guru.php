@@ -66,7 +66,7 @@ class Guru extends BaseController
                 'nama_guru' => $this->request->getPost('nama_guru'),
                 'niy'     => $this->request->getPost('niy'),
                 'password'  => $this->request->getPost('password'),
-                'walas'  => $this->request->getPost('walas'),
+                'kelamin'  => $this->request->getPost('kelamin'),
                 'status_aktif'  => 1,
 
             );
@@ -177,13 +177,13 @@ class Guru extends BaseController
 
 
 
-    public function edit($id_guru)
+    public function editwalas($niy)
     {
         $data = [
-            'id_guru' => $id_guru,
+            'niy' => $niy,
             'nama_guru' => $this->request->getPost('nama_guru'),
             'walas' => $this->request->getPost('walas'),
-            'link_wa' => $this->request->getPost('link_wa'),
+
         ];
         $this->ModelGuru->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');

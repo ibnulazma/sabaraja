@@ -58,13 +58,16 @@ $ta = $db->table('tbl_ta')
                                     <td class="text-center"><?= $row['niy'] ?></td>
                                     <td><?= $row['nama_guru'] ?></td>
                                     <td class="text-center">
-                                        <?php if ($row['walas'] = 1) { ?>
-                                            <span class="badge bg-info">Ya</span>
-                                        <?php } else { ?>
+                                        <?php if ($row['walas'] == null) { ?>
                                             <span class="badge bg-danger">Tidak</span>
+                                        <?php } else { ?>
+                                            <span class="badge bg-info">Ya</span>
                                         <?php } ?>
                                     </td>
-                                    <td class="text-center"><a data-bs-toggle="modal" data-bs-target="#edit"><i class='bx bxs-edit-alt text-sm text-primary'></i></a></td>
+                                    <td class="text-center">
+                                        <a data-bs-toggle="modal" data-bs-target="#edit<?= $row['niy'] ?>"><i class='bx bxs-edit-alt text-sm text-primary'></i></a>
+                                        <a data-bs-toggle="modal" data-bs-target=""><i class='bx bxs-trash-alt text-sm text-danger'></i></a>
+                                    </td>
 
 
                                 </tr>
@@ -72,13 +75,12 @@ $ta = $db->table('tbl_ta')
                         </tbody>
                     </table>
                 </div>
-
-
-
             </div>
 
 
             <div class="tab-pane fade" id="navs-pills-top-tambahguru" role="tabpanel">
+                <?= form_open('guru/add') ?>
+
                 <div class="row mb-3">
                     <div class="col-sm-3">
                         <label for="">Nama Guru</label>
@@ -117,6 +119,7 @@ $ta = $db->table('tbl_ta')
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
+                <?= form_close() ?>
             </div>
         </div>
     </div>
@@ -124,9 +127,10 @@ $ta = $db->table('tbl_ta')
 
 
 <!-- Edit Walas -->
-<?php foreach ($guru as $key => $value) { ?>
-    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php foreach ($guru as $key => $row) { ?>
+    <div class="modal fade" id="edit<?= $row['niy'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
+            <?= form_open('guru/editwalas/' . $row['niy']) ?>
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"> Edit Walas</h5>
@@ -136,14 +140,25 @@ $ta = $db->table('tbl_ta')
                 <div class="modal-body">
                     <div class="form-group mb-3">
                         <label for="">Nama Guru</label>
-                        <input type="text" class="form-control" name="nama_guru" value="<?= $value['nama_guru'] ?>">
+                        <input type="text" class="form-control" name="nama_guru" value="<?= $row['nama_guru'] ?>">
                     </div>
                     <div class="form-group">
                         <label for="">Wali Kelas</label>
-                        <select name="walas" id="" class="form-control">
-                            <option value="">-Walas Atau Tidak-</option>
-                            <option value="1">Ya</option>
-                            <option value="0">Tidak</option>
+                        <select name="wlas" id="" class="form-select">
+
+                            <?php if ($row['walas'] == null) {
+                                echo  "<option value='0' selected>Tidak</option>";
+                            } else {
+                                echo  "<option value='0'>Tidak</option>";
+                            }
+
+                            if ($row['walas'] == 1) {
+                                echo  "<option value='1' selected>Ya</option>";
+                            } else {
+                                echo  "<option value='1'>Ya</option>";
+                            }
+                            ?>
+
                         </select>
                     </div>
 
@@ -153,6 +168,7 @@ $ta = $db->table('tbl_ta')
                 </div>
                 <?= form_close() ?>
             </div>
+            <?= form_close() ?>
         </div>
     </div>
 <?php } ?>
@@ -256,6 +272,26 @@ $ta = $db->table('tbl_ta')
         </div>
     </div>
 <?php } ?>
+
+
+
+
+<script src="<?= base_url() ?>/template/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const swal = $('.swal').data('swal');
+    if (swal) {
+        Swal.fire({
+            title: 'Data Berhasil',
+            text: swal,
+            icon: 'success'
+        })
+    }
+</script>
+
+
+
 
 
 <?= $this->endSection() ?>

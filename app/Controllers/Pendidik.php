@@ -63,12 +63,24 @@ class Pendidik extends BaseController
             'title' => 'SIAKAD',
             'subtitle' => 'Pendidik',
             'menu'          => 'profile',
-            'submenu'       => 'profile',
+            'submenu'       => 'pendidikan',
             'data'          => $this->ModelPendidik->DataGuru(),
-            'validation'    =>  \Config\Services::validation(),
-            'provinsi'      => $this->ModelWilayah->provinsi(),
+
         ];
         return view('guru/pendidikan', $data);
+    }
+    public function keluarga()
+    {
+
+        $data = [
+            'title' => 'SIAKAD',
+            'subtitle' => 'Pendidik',
+            'menu'          => 'profile',
+            'submenu'       => 'keluarga',
+            'data'          => $this->ModelPendidik->DataGuru(),
+
+        ];
+        return view('guru/keluarga', $data);
     }
 
     // public function jadwal()

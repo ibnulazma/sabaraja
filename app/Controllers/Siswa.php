@@ -72,11 +72,11 @@ class Siswa extends BaseController
     {
         session();
 
-        $siswa = $this->ModelSiswa->DataSiswa();
+
         $data = [
             'title'     => 'SIAKADINKA',
             'subtitle'  => ' Data Peserta Didik',
-            'menu'      => 'profile',
+            'menu'      => 'profilsiswa',
             'submenu' => 'profile',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
             'provinsi'  => $this->ModelWilayah->provinsi(),
@@ -86,11 +86,59 @@ class Siswa extends BaseController
             'didik'     => $this->ModelPendidikan->AllData(),
             'hasil'     => $this->ModelPenghasilan->AllData(),
             'validation'    =>  \Config\Services::validation(),
-            'datadidik' => $this->ModelSiswa->rekamdidik($siswa['nisn']),
-            'rekamdidik'    => $this->ModelSiswa->rekamdidik($siswa['nisn']),
+
         ];
         return view('siswa/v_profile', $data);
     }
+    public function orangtua()
+    {
+        session();
+
+
+        $data = [
+            'title'     => 'SIAKADINKA',
+            'subtitle'  => ' Data Peserta Didik',
+            'menu'      => 'profilsiswa',
+            'submenu' => 'orangtua',
+            'siswa'     => $this->ModelSiswa->DataSiswa(),
+            'provinsi'  => $this->ModelWilayah->provinsi(),
+            'tinggal'  => $this->ModelTinggal->AllData(),
+            'transportasi'  => $this->ModelTransportasi->AllData(),
+            'kerja'     => $this->ModelPekerjaan->AllData(),
+            'didik'     => $this->ModelPendidikan->AllData(),
+            'hasil'     => $this->ModelPenghasilan->AllData(),
+            'validation'    =>  \Config\Services::validation(),
+
+        ];
+        return view('siswa/orangtua', $data);
+    }
+
+
+    public function dataperiodik()
+    {
+        session();
+
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Update Profile',
+            'menu'          => 'profilsiswa',
+            'submenu'       => 'dataperiodik',
+            'nav'           => 'dataperiodik',
+            'siswa'     => $this->ModelSiswa->DataSiswa(),
+            'tinggal'       => $this->ModelTinggal->AllData(),
+            'transportasi'  => $this->ModelTransportasi->AllData(),
+
+
+        ];
+        return view('siswa/periodik', $data);
+    }
+
+
+
+
+
+
+
 
     public function edit_alamat($id_siswa)
     {
@@ -100,7 +148,7 @@ class Siswa extends BaseController
             'title'     => 'SIAKADINKA',
             'subtitle'  => 'Update Profile',
             'menu'      => 'siswa',
-            'submenu'   => 'siswa',
+            'submenu'   => 'alamat',
             'nav'       => 'alamat',
             'siswa'     => $this->ModelSiswa->SiswaEdit($id_siswa),
             'provinsi'  => $this->ModelWilayah->provinsi(),
@@ -146,7 +194,7 @@ class Siswa extends BaseController
             'subtitle'      => 'Update Profile',
             'menu'          => 'profile',
             'submenu'       => 'rekamdidik',
-            'nav'           => 'orangtua',
+            'nav'           => 'rekamdidik',
             'siswa'         => $this->ModelSiswa->DataSiswa(),
             'rekamdidik'    => $this->ModelSiswa->rekamdidik($siswa['nisn']),
 
@@ -161,7 +209,7 @@ class Siswa extends BaseController
             'title'         => 'SIAKADINKA',
             'subtitle'      => 'Update Profile',
             'menu'          => 'siswa',
-            'submenu'       => 'siswa',
+            'submenu'       => 'registrasi',
             'nav'           => 'registrasi',
             'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
             'provinsi'      => $this->ModelWilayah->provinsi(),
@@ -199,7 +247,7 @@ class Siswa extends BaseController
             'title'         => 'SIAKADINKA',
             'subtitle'      => 'Update Profile',
             'menu'          => 'siswa',
-            'submenu'       => 'siswa',
+            'submenu'       => 'periodik',
             'nav'           => 'periodik',
             'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
             'provinsi'      => $this->ModelWilayah->provinsi(),

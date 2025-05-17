@@ -40,10 +40,10 @@ class ModelPendidik extends Model
 
     public function walas($id_guru)
     {
-        return $this->db->table('tbl_database')
-            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
-            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta')
+        return $this->db->table('tbl_siswa')
+
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
             ->where('tbl_kelas.id_guru', $id_guru)
             ->where('tbl_ta.status', '1')
@@ -51,17 +51,17 @@ class ModelPendidik extends Model
             ->get()->getResultArray();
     }
 
-    public function mutasi($id_guru)
-    {
-        return $this->db->table('tbl_mutasi')
-            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_mutasi.id_siswa')
-            ->join('tbl_database', 'tbl_database.nisn = tbl_siswa.nisn')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
-            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
-            ->where('tbl_mutasi.status_mutasi', '1')
-            ->where('tbl_kelas.id_guru', $id_guru)
-            ->get()->getResultArray();
-    }
+    // public function mutasi($id_guru)
+    // {
+    //     return $this->db->table('tbl_mutasi')
+    //         ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_mutasi.id_siswa')
+    //         ->join('tbl_database', 'tbl_database.nisn = tbl_siswa.nisn')
+    //         ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
+    //         ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
+    //         ->where('tbl_mutasi.status_mutasi', '1')
+    //         ->where('tbl_kelas.id_guru', $id_guru)
+    //         ->get()->getResultArray();
+    // }
 
 
     public function Mapel($id_guru)
@@ -99,7 +99,6 @@ class ModelPendidik extends Model
     {
         return $this->db->table('tbl_nilai')
             ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_nilai.nisn', 'left')
-            ->join('tbl_database', 'tbl_database.nisn = tbl_nilai.nisn', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_nilai.id_ta', 'left')
             // ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')

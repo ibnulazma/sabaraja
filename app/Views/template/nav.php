@@ -1,3 +1,29 @@
+<?php
+$db     = \Config\Database::connect();
+$guru = $db->table('tbl_guru')
+    ->join('tbl_kelas', 'tbl_kelas.id_guru = tbl_guru.id_guru', 'left')
+    ->where('niy', session()->get('username'))
+    ->get()->getRowArray();
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
+
+
 <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
     <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
         <i class="bx bx-menu bx-sm"></i>
@@ -32,7 +58,7 @@
                     </div>
                 <?php } else if (session()->get('level') == 2) { ?>
                     <div class="avatar avatar-online">
-                        <img src="<?= base_url() ?>/template/assets/img/avatars/5.png" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="<?= base_url() ?>/template/assets/img/avatars/logo.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                 <?php } else if (session()->get('level') == 3) { ?>
                     <div class="avatar avatar-online">
@@ -47,13 +73,7 @@
                         <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
                                 <div class="avatar avatar-online">
-                                    <?php if (session()->get('level') == 1) { ?>
-                                        <img src="<?= base_url() ?>/template/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                                    <?php } else if (session()->get('level') == 2) { ?>
-                                        <img src="<?= base_url() ?>/template/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                                    <?php } else if (session()->get('level') == 3) { ?>
-                                        <img src="<?= base_url() ?>/template/assets/img/avatars/logo.png" alt class="w-px-40 h-auto rounded-circle" />
-                                    <?php } ?>
+                                    <img src="<?= base_url() ?>/template/assets/img/avatars/logo.png" alt class="w-px-40 h-auto rounded-circle" />
                                 </div>
                             </div>
                             <div class="flex-grow-1">

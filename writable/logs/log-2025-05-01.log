@@ -1042,3 +1042,262 @@ CRITICAL - 2025-05-01 12:05:07 --> Undefined variable: siswa
 #8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
 #10 {main}
+CRITICAL - 2025-05-01 18:25:38 --> Undefined index: kode_pos
+#0 E:\APLIKASI\koding\sabaraja\app\Views\admin\peserta\v_detail_siswa.php(424): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'E:\\APLIKASI\\kod...', 424, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/peserta/v...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Peserta.php(176): view('admin/peserta/v...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Peserta->detail_siswa('3120269432')
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peserta))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-01 18:45:04 --> Undefined variable: value
+#0 E:\APLIKASI\koding\sabaraja\app\Views\admin\v_guru.php(67): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'E:\\APLIKASI\\kod...', 67, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/v_guru', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Guru.php(33): view('admin/v_guru', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Guru->index()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Guru))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-01 18:50:26 --> Undefined variable: value
+#0 E:\APLIKASI\koding\sabaraja\app\Views\admin\v_guru.php(148): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'E:\\APLIKASI\\kod...', 148, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/v_guru', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Guru.php(33): view('admin/v_guru', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Guru->index()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Guru))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+ERROR - 2025-05-01 19:00:16 --> Unknown column 'tbl_database.nisn_siswa' in 'on clause'
+CRITICAL - 2025-05-01 19:00:16 --> Unknown column 'tbl_database.nisn_siswa' in 'on clause'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelSiswa.php(57): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(48): App\Models\ModelSiswa->datakelas('1234567890')
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}
+ERROR - 2025-05-01 19:03:14 --> Unknown column 'tbl_database.id_ta' in 'on clause'
+CRITICAL - 2025-05-01 19:03:14 --> Unknown column 'tbl_database.id_ta' in 'on clause'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelSiswa.php(58): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(48): App\Models\ModelSiswa->datakelas('1234567890')
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}
+CRITICAL - 2025-05-01 19:03:57 --> You must set the database table to be used with your query.
+#0 E:\APLIKASI\koding\sabaraja\system\Model.php(545): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 E:\APLIKASI\koding\sabaraja\system\Model.php(719): CodeIgniter\Model->builder()
+#2 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(89): CodeIgniter\Model->__call('rekamdidik', Array)
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->profile()
+#4 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#8 {main}
+CRITICAL - 2025-05-01 19:07:13 --> You must set the database table to be used with your query.
+#0 E:\APLIKASI\koding\sabaraja\system\Model.php(545): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 E:\APLIKASI\koding\sabaraja\system\Model.php(719): CodeIgniter\Model->builder()
+#2 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(89): CodeIgniter\Model->__call('rekamdidik', Array)
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->profile()
+#4 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#8 {main}
+CRITICAL - 2025-05-01 19:22:52 --> Trying to access array offset on value of type null
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\v_dashboard.php(47): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'E:\\APLIKASI\\kod...', 47, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/v_dashboa...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(50): view('siswa/v_dashboa...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-01 19:24:16 --> Trying to access array offset on value of type null
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\v_dashboard.php(47): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'E:\\APLIKASI\\kod...', 47, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/v_dashboa...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(50): view('siswa/v_dashboa...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-01 19:25:24 --> Undefined index: link_wa
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\v_dashboard.php(43): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'E:\\APLIKASI\\kod...', 43, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/v_dashboa...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(50): view('siswa/v_dashboa...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-01 19:25:59 --> Undefined index: 
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\v_dashboard.php(43): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'E:\\APLIKASI\\kod...', 43, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/v_dashboa...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(50): view('siswa/v_dashboa...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+ERROR - 2025-05-01 19:27:00 --> Unknown column 'tbl_kelas.id_guru' in 'on clause'
+CRITICAL - 2025-05-01 19:27:00 --> Unknown column 'tbl_kelas.id_guru' in 'on clause'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelSiswa.php(23): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(41): App\Models\ModelSiswa->DataSiswa()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}
+CRITICAL - 2025-05-01 19:28:18 --> Trying to access array offset on value of type null
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\v_dashboard.php(43): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'E:\\APLIKASI\\kod...', 43, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/v_dashboa...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(50): view('siswa/v_dashboa...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->index()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-01 19:31:45 --> You must set the database table to be used with your query.
+#0 E:\APLIKASI\koding\sabaraja\system\Model.php(545): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 E:\APLIKASI\koding\sabaraja\system\Model.php(719): CodeIgniter\Model->builder()
+#2 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(89): CodeIgniter\Model->__call('rekamdidik', Array)
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->profile()
+#4 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#8 {main}
+CRITICAL - 2025-05-01 19:32:08 --> You must set the database table to be used with your query.
+#0 E:\APLIKASI\koding\sabaraja\system\Model.php(545): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 E:\APLIKASI\koding\sabaraja\system\Model.php(719): CodeIgniter\Model->builder()
+#2 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(151): CodeIgniter\Model->__call('rekamdidik', Array)
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->rekamdidik()
+#4 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#8 {main}
+CRITICAL - 2025-05-01 19:37:01 --> You must set the database table to be used with your query.
+#0 E:\APLIKASI\koding\sabaraja\system\Model.php(545): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 E:\APLIKASI\koding\sabaraja\system\Model.php(719): CodeIgniter\Model->builder()
+#2 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(89): CodeIgniter\Model->__call('rekamdidik', Array)
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->profile()
+#4 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#8 {main}
+CRITICAL - 2025-05-01 20:17:21 --> Function name must be a string
+#0 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include()
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/orangtua', Array, true)
+#3 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(113): view('siswa/orangtua', Array)
+#4 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->orangtua()
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#9 {main}
+CRITICAL - 2025-05-01 20:30:17 --> You must set the database table to be used with your query.
+#0 E:\APLIKASI\koding\sabaraja\system\Model.php(545): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 E:\APLIKASI\koding\sabaraja\system\Model.php(719): CodeIgniter\Model->builder()
+#2 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(172): CodeIgniter\Model->__call('rekamdidik', Array)
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->rekamdidik()
+#4 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#8 {main}
+CRITICAL - 2025-05-01 20:36:05 --> Too few arguments to function App\Controllers\Siswa::periodik(), 0 passed in E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php on line 802 and exactly 1 expected
+#0 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->periodik()
+#1 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#2 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#5 {main}
+CRITICAL - 2025-05-01 20:37:01 --> Too few arguments to function App\Controllers\Siswa::periodik(), 0 passed in E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php on line 802 and exactly 1 expected
+#0 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->periodik()
+#1 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#2 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#5 {main}
+CRITICAL - 2025-05-01 20:39:43 --> Undefined variable: id_siswa
+#0 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(127): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'E:\\APLIKASI\\kod...', 127, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->dataperiodik()
+#2 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#6 {main}
+ERROR - 2025-05-01 22:06:31 --> Unknown column 'tbl_database.nisn' in 'on clause'
+CRITICAL - 2025-05-01 22:06:31 --> Unknown column 'tbl_database.nisn' in 'on clause'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelPendidik.php(51): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Pendidik.php(40): App\Models\ModelPendidik->walas(NULL)
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}
+ERROR - 2025-05-01 22:07:48 --> Unknown column 'tbl_database.id_ta' in 'on clause'
+CRITICAL - 2025-05-01 22:07:48 --> Unknown column 'tbl_database.id_ta' in 'on clause'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelPendidik.php(51): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Pendidik.php(40): App\Models\ModelPendidik->walas(NULL)
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}

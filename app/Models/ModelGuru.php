@@ -42,7 +42,7 @@ class ModelGuru extends Model
     public function edit($data)
     {
         $this->db->table('tbl_guru')
-            ->where('id_guru', $data['id_guru'])
+            ->where('niy', $data['niy'])
             ->update($data);
     }
     public function delete_data($data)

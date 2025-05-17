@@ -515,7 +515,7 @@ class Peserta extends BaseController
     public function edit_alamat($nisn)
     {
         $data = [
-            'nisn'                   => $nisn,
+            'nisn'              => $nisn,
             'alamat'            => $this->request->getPost('alamat'),
             'rt'                => $this->request->getPost('rt'),
             'rw'                => $this->request->getPost('rw'),
@@ -524,6 +524,7 @@ class Peserta extends BaseController
             'kecamatan'         => $this->request->getPost('kecamatan'),
             'desa'              => $this->request->getPost('desa'),
             'kodepos'           => $this->request->getPost('kodepos'),
+            'lokasi'           => $this->request->getPost('lokasi'),
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');

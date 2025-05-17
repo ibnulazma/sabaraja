@@ -102,6 +102,7 @@ $ta = $db->table('tbl_ta')
                         <h5> Tempat Tinggal <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#alamat"><i class='bx bxs-edit-alt'></i></button> </h5>
                         <p><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?></p>
                         <p>Desa/Kel <?= $siswa['desa'] ?> Kec. <?= $siswa['nama_kecamatan'] ?></p>
+                        <p>Titik Koordinat : <?= $siswa['lokasi'] ?></p>
                         <div id="map" style="height:500px"></div>
                     </div>
                 </div>
@@ -118,9 +119,6 @@ $ta = $db->table('tbl_ta')
                     </li>
                     <li class="nav-item">
                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-register" aria-controls="navs-pills-top-ortu" aria-selected="false">Data Lainnya</button>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile" aria-selected="false">Rekam Didik</button>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -340,25 +338,7 @@ $ta = $db->table('tbl_ta')
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
-                        <button class="btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#pilihkelas">Pilih Kelas</button>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Semester</th>
-                                    <th>Kelas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($rekamdidik as $key => $value) { ?>
-                                    <tr>
-                                        <td><?= $value['ta'] ?> <?= $value['semester'] ?></td>
-                                        <td><?= $value['kelas'] ?> <?= $value['nama_guru'] ?></td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -371,7 +351,7 @@ $ta = $db->table('tbl_ta')
 
 <div class="modal fade" id="alamat" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <?= form_open('peserta/edit_register/' . $siswa['nisn']) ?>
+        <?= form_open('peserta/edit_alamat/' . $siswa['nisn']) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Data Lainnya</h5>
@@ -417,6 +397,40 @@ $ta = $db->table('tbl_ta')
                     <div class="col-sm-8">
                         <select name="kabupaten" id="kab" class="form-control">
                         </select>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-sm-4">
+                        <label for="">Kecamatan</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select name="kecamatan" id="kec" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-sm-4">
+                        <label for="">Desa/Kel</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select name="desa" id="kel" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-sm-4">
+                        <label for="">Kode Pos</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" name="kodepos" class="form-control" value="<?= $siswa['kodepos'] ?>">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-sm-4">
+                        <label for="">Titik Koordinat</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" name="lokasi" class="form-control" value="<?= $siswa['lokasi'] ?>">
                     </div>
                 </div>
 
@@ -594,7 +608,7 @@ $ta = $db->table('tbl_ta')
     </div>
 </div>
 
-
+<!-- Tinggal -->
 <div class="modal fade" id="tinggal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

@@ -40,11 +40,7 @@ $ta = $db->table('tbl_ta')
                                     Semester Aktif: <span class="fw-bold">Ganjil</span> Tahun Ajaran <?= $ta['ta'] ?>
                                 </p>
 
-
-
-
-
-                                <a href="<?= $datakelas['link_wa'] ?>" class="btn btn-sm btn-outline-primary"> <i class='bx bxl-whatsapp'></i> Gabung Grup Kelas <?= $datakelas['kelas'] ?> </a>
+                                <a href="<?= $siswa['link_wa'] ?>" class="btn btn-sm btn-outline-success"> <i class='bx bxl-whatsapp'></i> Gabung Grup Kelas <?= $siswa['kelas'] ?> </a>
                             <?php } ?>
                         </div>
                     </div>

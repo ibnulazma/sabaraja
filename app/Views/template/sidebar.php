@@ -119,8 +119,8 @@ $user = $db->table('tbl_user')
                         <div class="text-truncate" data-i18n="Account">Pendidikan</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                <li class="menu-item <?= $submenu == 'keluarga' ? 'active' : '' ?>">
+                    <a href="<?= base_url('pendidik/keluarga') ?>" class="menu-link">
                         <div class="text-truncate" data-i18n="Notifications">Keluarga</div>
                     </a>
                 </li>
@@ -156,8 +156,13 @@ $user = $db->table('tbl_user')
         </li>
     <?php } ?>
 
+
+
+
+    <!-- SISWA -->
+
     <?php if (session()->get('level') == 3) { ?>
-        <li class="menu-item <?= $menu == 'profile' ? 'active' : '' ?> <?= $menu == 'profile' ? 'open' : '' ?> ">
+        <li class="menu-item <?= $menu == 'profilsiswa' ? 'active' : '' ?> <?= $menu == 'profilsiswa' ? 'open' : '' ?> ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-user"></i>
                 <div class="text-truncate" data-i18n="Account Settings">Profile Settings</div>
@@ -169,13 +174,13 @@ $user = $db->table('tbl_user')
                     </a>
                 </li>
                 <li class="menu-item <?= $submenu == 'orangtua' ? 'active' : '' ?>">
-                    <a href="<?= base_url('siswa/edit_orangtua') ?>" class="menu-link">
+                    <a href="<?= base_url('siswa/orangtua') ?>" class="menu-link">
                         <div class="text-truncate" data-i18n="Account">Data Orang Tua</div>
                     </a>
                 </li>
-                <li class="menu-item <?= $submenu == 'rekamdidik' ? 'active' : '' ?>">
-                    <a href="<?= base_url('siswa/rekamdidik') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Notifications">Rekam Didik</div>
+                <li class="menu-item <?= $submenu == 'dataperiodik' ? 'active' : '' ?>">
+                    <a href="<?= base_url('siswa/dataperiodik') ?>" class="menu-link">
+                        <div class="text-truncate" data-i18n="Notifications">Periodik</div>
                     </a>
                 </li>
                 <li class="menu-item">
