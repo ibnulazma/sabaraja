@@ -138,6 +138,7 @@ class Auth extends BaseController
 
     public function cekloginadmin()
     {
+
         if ($this->validate(
             [
                 'username' => [
@@ -179,6 +180,60 @@ class Auth extends BaseController
             // return redirect()->to(base_url('auth'));
         }
     }
+
+    public function kelulusan()
+    {
+        session(); {
+            $data = [
+                'title' => 'SIAKADINKA',
+                'subtitle' => 'Halaman Login',
+                'validation'    =>  \Config\Services::validation(),
+
+            ];
+
+            return view('v_loginkelulusan', $data);
+        }
+    }
+
+    public function ceklulus()
+    {
+
+        if ($this->validate(
+            [
+                'nisn_siswa' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Silahkan Masukkan NISN !!!'
+                    ]
+
+                ],
+
+            ]
+        )) {
+
+            $username   = $this->request->getPost('nisn_siswa');
+
+
+
+            $ceklulus = $this->ModelAuth->loginlulus($username);
+            if ($ceklulus) {
+
+                session()->set('nisn_siswa', $ceklulus['nisn_siswa']);
+                session()->set('level', '4');
+
+                return redirect()->to(base_url('kelulusan'));
+            } else {
+                session()->setFlashdata('error', 'NISN Tidak Ditemukan');
+                return redirect()->to(base_url('auth/kelulusan'));
+            }
+        } else {
+            $validation = \Config\Services::validation();
+            return redirect()->to('auth/kelulusan')->withInput()->with('validation', $validation);
+        }
+    }
+
+
+
 
 
 

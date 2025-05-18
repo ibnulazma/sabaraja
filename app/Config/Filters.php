@@ -11,7 +11,7 @@ use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\FilterAdmin;
 use App\Filters\FilterPendidik;
 use App\Filters\FilterPeserta;
-use App\Filters\FilterPiket;
+use App\Filters\FilterLulus;
 
 
 class Filters extends BaseConfig
@@ -29,7 +29,7 @@ class Filters extends BaseConfig
         'filteradmin'   => FilterAdmin::class,
         'filterpeserta'    => FilterPeserta::class,
         'filterpendidik'    => FilterPendidik::class,
-        'filterpiket'    => FilterPiket::class,
+        'filterlulus'    => FilterLulus::class,
     ];
 
     /**
@@ -49,6 +49,8 @@ class Filters extends BaseConfig
                     'datasiswa/*',
                     'siswa',
                     'siswa/*',
+                    'kelulusan/',
+                    'kelulusan/*',
                     '/',
                     // 
                 ]
@@ -65,6 +67,8 @@ class Filters extends BaseConfig
                     'loginsiswa/*',
                     'datasiswa',
                     'datasiswa/*',
+                    'kelulusan/',
+                    'kelulusan/*',
                     '/',
 
 
@@ -81,6 +85,20 @@ class Filters extends BaseConfig
                     'loginguru/*',
                     'datasiswa',
                     'datasiswa/*',
+                    'kelulusan/',
+                    'kelulusan/*',
+                    '/',
+
+
+                ]
+            ],
+            'filterlulus' =>
+            [
+                'except' => [
+                    'auth',
+                    'auth/*',
+                    'home',
+                    'home/*',
                     '/',
 
 
@@ -157,6 +175,15 @@ class Filters extends BaseConfig
                     'nilai',
                     'nilai/*',
 
+
+                    // '/',
+                ]
+            ],
+            'filterlulus' =>
+            [
+                'except' => [
+                    'kelulusan',
+                    'kelulusan/*',
 
                     // '/',
                 ]

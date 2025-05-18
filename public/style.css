@@ -3,6 +3,7 @@
 body{
     font-family: 'Poppins', sans-serif;
     background-color:#ececec ;
+   
 }
 
 
@@ -11,6 +12,27 @@ body{
     border-radius: 10px;
    
 }
+
+.box-area2 {
+    width: 500px;
+    border-radius: 10px;
+   
+   
+}
+
+.box-area4 {
+    width: 500px;
+    border-radius: 10px;
+    border: 0.5px solid rgb(226, 220, 220);
+   
+   
+}
+/* .box-area3 {
+    background-color: #87CEEB;
+    padding: 10px;
+    border-radius: 10px;
+   
+} */
 .right-box{
     padding: 40px 30px 40px 40px;
 }
@@ -31,11 +53,6 @@ body{
     font-size: 20px;
 }
 
-
-
-
-
-
 ::placeholder{
     font-size: 16px;
 }
@@ -47,6 +64,11 @@ body{
 {
     .box-area{
         margin: 0 10px;
+    }
+
+    .box-area2{
+        margin: 0 10px;
+        width: 400px;
     }
 
 
@@ -73,6 +95,12 @@ body{
         align-items: center;
        
     }
-
+@media screen and (min-width:375px)
+    {
+        .box-area2{
+            margin: 0 10px;
+            width: 350px;
+        }
+    }
     
 }

@@ -43,4 +43,12 @@ class ModelAuth extends Model
                 'status_aktif' => 1,
             ])->get()->getRowArray();
     }
+    public function loginlulus($username)
+    {
+        return $this->db->table('tbl_kelulusan')
+            ->where([
+                'nisn_siswa' => $username,
+                'status_lulus' => 1,
+            ])->get()->getRowArray();
+    }
 }
