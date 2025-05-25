@@ -1,0 +1,217 @@
+CRITICAL - 2025-05-24 12:22:20 --> Invalid file: siswa/edit_orangtua.php
+#0 E:\APLIKASI\koding\sabaraja\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('siswa/edit_oran...')
+#1 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/edit_oran...', Array, true)
+#2 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(183): view('siswa/edit_oran...', Array)
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->edit_orangtua('1019')
+#4 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#8 {main}
+CRITICAL - 2025-05-24 12:53:35 --> Undefined index: pekerjaan
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\update\edit_orangtua.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'E:\\APLIKASI\\kod...', 75, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/update/ed...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(183): view('siswa/update/ed...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->edit_orangtua('1019')
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+ERROR - 2025-05-24 18:47:30 --> Error connecting to the database: No connection could be made because the target machine actively refused it.
+
+CRITICAL - 2025-05-24 18:47:30 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+#0 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(570): CodeIgniter\Database\BaseConnection->initialize()
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 E:\APLIKASI\koding\sabaraja\app\Models\ModelAuth.php(34): CodeIgniter\Database\BaseBuilder->get()
+#3 E:\APLIKASI\koding\sabaraja\app\Controllers\Auth.php(53): App\Models\ModelAuth->loginsiswa('3122092203', 'Kamil@123')
+#4 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Auth->ceklogin()
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#9 {main}
+ERROR - 2025-05-24 21:02:00 --> Unknown column 'nisn' in 'field list'
+CRITICAL - 2025-05-24 21:02:00 --> Unknown column 'nisn' in 'field list'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelKelas.php(168): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Kelas.php(136): App\Models\ModelKelas->add_data(Array)
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->tambahanggota(Array)
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}
+ERROR - 2025-05-24 21:03:11 --> Unknown column 'id_kelas' in 'field list'
+CRITICAL - 2025-05-24 21:03:11 --> Unknown column 'id_kelas' in 'field list'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelKelas.php(168): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Kelas.php(136): App\Models\ModelKelas->add_data(Array)
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->tambahanggota(Array)
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}
+CRITICAL - 2025-05-24 21:04:01 --> Undefined index: tingkat
+#0 E:\APLIKASI\koding\sabaraja\app\Views\admin\kelas\v_rincian_kelas.php(124): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'E:\\APLIKASI\\kod...', 124, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/kelas/v_r...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Kelas.php(114): view('admin/kelas/v_r...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->rincian_kelas('25')
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-24 21:05:15 --> Undefined index: nisn
+#0 E:\APLIKASI\koding\sabaraja\app\Controllers\Kelas.php(125): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'E:\\APLIKASI\\kod...', 125, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->tambahanggota('25')
+#2 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#6 {main}
+CRITICAL - 2025-05-24 21:05:42 --> Undefined index: nisn_siswa
+#0 E:\APLIKASI\koding\sabaraja\app\Controllers\Kelas.php(125): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'E:\\APLIKASI\\kod...', 125, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->tambahanggota('25')
+#2 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#6 {main}
+ERROR - 2025-05-24 21:18:09 --> Unknown column 'tbl_kelas.id_kelas' in 'where clause'
+CRITICAL - 2025-05-24 21:18:09 --> Unknown column 'tbl_kelas.id_kelas' in 'where clause'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelKelas.php(95): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Kelas.php(108): App\Models\ModelKelas->datasiswa('24')
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->rincian_kelas('24')
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}
+ERROR - 2025-05-24 21:27:13 --> Unknown column 'nisn' in 'where clause'
+CRITICAL - 2025-05-24 21:27:13 --> Unknown column 'nisn' in 'where clause'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('DELETE FROM `tb...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `tb...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `tb...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(2175): CodeIgniter\Database\BaseConnection->query('DELETE FROM `tb...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelKelas.php(180): CodeIgniter\Database\BaseBuilder->delete(Array)
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Kelas.php(156): App\Models\ModelKelas->hapus(Array)
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->hapusanggota('333333')
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}
+CRITICAL - 2025-05-24 22:07:32 --> Undefined variable: siswa
+#0 E:\APLIKASI\koding\sabaraja\app\Views\admin\peserta\v_peserta.php(533): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'E:\\APLIKASI\\kod...', 533, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/peserta/v...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Peserta.php(70): view('admin/peserta/v...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Peserta->index()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peserta))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-24 22:35:46 --> Trying to access array offset on value of type null
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\update\edit_alamat.php(5): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'E:\\APLIKASI\\kod...', 5, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/update/ed...', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(162): view('siswa/update/ed...', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->edit_alamat('1980012022')
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-24 22:38:14 --> Trying to access array offset on value of type null
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\v_profile.php(30): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'E:\\APLIKASI\\kod...', 30, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/v_profile', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(91): view('siswa/v_profile', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->profile()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-24 23:02:17 --> Undefined property: App\Controllers\Pendidik::$ModelSiswa
+#0 E:\APLIKASI\koding\sabaraja\app\Controllers\Pendidik.php(196): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'E:\\APLIKASI\\kod...', 196, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->update_guru('1980012022')
+#2 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#6 {main}
+ERROR - 2025-05-24 23:04:09 --> Unknown column 'kodepos' in 'field list'
+CRITICAL - 2025-05-24 23:04:09 --> Unknown column 'kodepos' in 'field list'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('UPDATE `tbl_gur...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbl_gur...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbl_gur...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1875): CodeIgniter\Database\BaseConnection->query('UPDATE `tbl_gur...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelPendidik.php(33): CodeIgniter\Database\BaseBuilder->update(Array)
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Pendidik.php(196): App\Models\ModelPendidik->edit(Array)
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->update_guru('1980012022')
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}
+CRITICAL - 2025-05-24 23:08:40 --> Trying to access array offset on value of type null
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\orangtua.php(22): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'E:\\APLIKASI\\kod...', 22, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/orangtua', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(113): view('siswa/orangtua', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->orangtua()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+CRITICAL - 2025-05-24 23:08:46 --> Trying to access array offset on value of type null
+#0 E:\APLIKASI\koding\sabaraja\app\Views\siswa\periodik.php(22): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'E:\\APLIKASI\\kod...', 22, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\View\View.php(214): include('E:\\APLIKASI\\kod...')
+#2 E:\APLIKASI\koding\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 E:\APLIKASI\koding\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/periodik', Array, true)
+#4 E:\APLIKASI\koding\sabaraja\app\Controllers\Siswa.php(133): view('siswa/periodik', Array)
+#5 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->dataperiodik()
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#10 {main}
+ERROR - 2025-05-24 23:08:55 --> Unknown column 'tbl_database.id_kelas' in 'on clause'
+CRITICAL - 2025-05-24 23:08:55 --> Unknown column 'tbl_database.id_kelas' in 'on clause'
+#0 E:\APLIKASI\koding\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT *\nFROM `...')
+#1 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\APLIKASI\koding\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\APLIKASI\koding\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\APLIKASI\koding\sabaraja\app\Models\ModelPendidik.php(116): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\APLIKASI\koding\sabaraja\app\Controllers\Pendidik.php(515): App\Models\ModelPendidik->nilaikelas('3')
+#6 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#7 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#8 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#11 {main}

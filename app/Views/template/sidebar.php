@@ -101,7 +101,7 @@ $user = $db->table('tbl_user')
 
 
 
-    <!-- Menu Untuk Siswa -->
+    <!-- Menu Untuk Guru -->
     <?php if (session()->get('level') == 2) { ?>
         <li class="menu-item <?= $menu == 'profile' ? 'active' : '' ?> <?= $menu == 'profile' ? 'open' : '' ?> ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -122,11 +122,6 @@ $user = $db->table('tbl_user')
                 <li class="menu-item <?= $submenu == 'keluarga' ? 'active' : '' ?>">
                     <a href="<?= base_url('pendidik/keluarga') ?>" class="menu-link">
                         <div class="text-truncate" data-i18n="Notifications">Keluarga</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
-                        <div class="text-truncate" data-i18n="Connections">Connections</div>
                     </a>
                 </li>
             </ul>

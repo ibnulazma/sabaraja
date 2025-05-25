@@ -24,11 +24,27 @@
                     Hasil Kelulusan
                 </div>
                 <div class="card-body">
-                    <ul class="p-0" style="list-style: none;font-weight:900">
-                        <li>An item</li>
-                        <li>A second item</li>
-                        <li>A third item</li>
+                    <ul class="list-group list-group-flush" style="font-weight: 500;">
+                        <li class="list-group-item">
+                            Nama Lengkap :<span style="float: right;"><?= $datasiswa['nama_siswa'] ?></span>
+
+                        </li>
+                        <li class="list-group-item">
+                            TTL :<span style="float: right;"><?= $datasiswa['tempat_lahir'] ?>, <?= formatindo($datasiswa['tanggal_lahir']) ?></span>
+
+                        </li>
+                        <li class="list-group-item">
+                            Nama Orang Tua :<span style="float: right;"><?= $datasiswa['nama_ayah'] ?></span>
+                        </li>
+                        <li class="list-group-item">
+                            Dinyatakan :<span class="fw-bolder" style="float: right;text-shadow: 2px 2px rgb(75, 238, 11);">LULUS</span>
+                        </li>
                     </ul>
+                    <div class="tombol d-flex justify-content-between mt-3">
+                        <button type="button" class="btn btn-danger btn-sm"> <i class="fa-solid fa-print"></i> Print SKL</button>
+                        <button type="button" class="btn btn-info btn-sm "> <i class="fa-solid fa-print"></i> Print Transkrip</button>
+                        <button type="button" class="btn btn-warning btn-sm "> <i class="fa-solid fa-print"></i> Print E-Ijazah</button>
+                    </div>
                 </div>
             </div>
         </div>

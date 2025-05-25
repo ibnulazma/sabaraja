@@ -12,6 +12,7 @@ use App\Models\ModelGuru;
 use App\Models\ModelKelas;
 use App\Models\ModelSetting;
 use App\Models\ModelAuth;
+use App\Models\ModelLulus;
 
 use Ifsnop\Mysqldump\Mysqldump;
 
@@ -20,6 +21,8 @@ class Kelulusan extends BaseController
 
     public function __construct()
     {
+        helper('nomorhp');
+        helper('formatindo');
         helper('form');
         helper('terbilang');
 
@@ -33,12 +36,14 @@ class Kelulusan extends BaseController
         $this->ModelSetting = new ModelSetting();
         $this->ModelWilayah = new ModelWilayah();
         $this->ModelAuth = new ModelAuth();
+        $this->ModelLulus = new ModelLulus();
     }
 
     public function index()
     {
         session();
         $data = [
+            'datasiswa' => $this->ModelLulus->DataSiswa(),
             'validation'    =>  \Config\Services::validation(),
         ];
         return view('lulus/index', $data);

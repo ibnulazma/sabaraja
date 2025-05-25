@@ -500,8 +500,8 @@ class Peserta extends BaseController
             'kerja_ibu'         => $this->request->getPost('kerja_ibu'),
             'hasil_ayah'        => $this->request->getPost('hasil_ayah'),
             'hasil_ibu'         => $this->request->getPost('hasil_ibu'),
-            'telp_ayah'         => $this->request->getPost('telp_ayah'),
-            'telp_ibu'          => $this->request->getPost('telp_ibu'),
+            'telp_ayah'         => nomorhp($this->request->getPost('telp_ayah')),
+            'telp_ibu'          => nomorhp($this->request->getPost('telp_ibu')),
 
 
 

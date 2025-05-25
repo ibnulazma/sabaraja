@@ -19,6 +19,7 @@ class Pendidik extends BaseController
 
     {
         helper('gantiformat');
+        helper('nomorhp');
         helper('form');
         $this->ModelPendidik = new ModelPendidik();
         $this->ModelJadwal = new ModelJadwal();
@@ -56,28 +57,222 @@ class Pendidik extends BaseController
         ];
         return view('guru/edit_guru', $data);
     }
+
+
+    public function update_guru($niy)
+    {
+        if ($this->validate([
+            'nama_guru' => [
+                'label' => 'Nama',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'kelamin' => [
+                'label' => 'Jenis Kelamin',
+                'rules' => 'required',
+                'errors' => [
+                    'required'          => '{field} harus dipilih',
+
+                ]
+            ],
+
+            'tmpt_lahir' => [
+                'label' => 'Tempat Lahir',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+
+                ]
+            ],
+            'tgl_lahir' => [
+                'label' => 'Tanggal Lahir',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'email' => [
+                'label' => 'Email',
+                'rules' => 'required|valid_email',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+                    'valid_email' => 'harus sesuai format email'
+                ]
+            ],
+            'telp_guru' => [
+                'label' => 'Telp Guru',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'alamat_guru' => [
+                'label' => 'Alamat',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'rt_guru' => [
+                'label' => 'RT',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'rw_guru' => [
+                'label' => 'RW',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'desa_guru' => [
+                'label' => 'Desa/Kel',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+
+            'kec_guru' => [
+                'label' => 'Kecamatan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'ibu_guru' => [
+                'label' => 'Nama Ibu ',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'nik_guru' => [
+                'label' => 'NIK ',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'nuptk' => [
+                'label' => 'NUPTK ',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'status_pernikahan' => [
+                'label' => 'Status Pernikahan ',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus dipilih'
+                ]
+            ],
+
+
+        ])) {
+            $data = [
+                'niy'               => $niy,
+                'nama_guru'        => $this->request->getPost('nama_guru'),
+                'kelamin'          => $this->request->getPost('kelamin'),
+                'tmpt_lahir'       => $this->request->getPost('tmpt_lahir'),
+                'tgl_lahir'        => $this->request->getPost('tgl_lahir'),
+                'email'            => $this->request->getPost('email'),
+                'telp_guru'        => $this->request->getPost('telp_guru'),
+                'alamat_guru'      => $this->request->getPost('alamat_guru'),
+                'rt_guru'          => $this->request->getPost('rt_guru'),
+                'rw_guru'          => $this->request->getPost('rw_guru'),
+                'kec_guru'         => $this->request->getPost('kec_guru'),
+                'desa_guru'        => $this->request->getPost('desa_guru'),
+                'nik_guru'         => $this->request->getPost('nik_guru'),
+                'ibu_guru'         => $this->request->getPost('ibu_guru'),
+                'nuptk'           => $this->request->getPost('nuptk'),
+                'npwp'           => $this->request->getPost('npwp'),
+                'status_pernikahan'           => $this->request->getPost('status_pernikahan'),
+
+            ];
+            $this->ModelPendidik->edit($data);
+            session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+            return redirect()->to('pendidik/profile');
+        } else {
+            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
+            $validation =  \Config\Services::validation();
+            return redirect()->to('pendidik/profile')->withInput()->with('validation', $validation);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function pendidikan()
     {
-
+        $guru = $this->ModelPendidik->DataGuru();
         $data = [
             'title' => 'SIAKAD',
             'subtitle' => 'Pendidik',
             'menu'          => 'profile',
             'submenu'       => 'pendidikan',
             'data'          => $this->ModelPendidik->DataGuru(),
+            'datapendidikan' => $this->ModelPendidik->Datajenjang($guru['id_guru'])
 
         ];
         return view('guru/pendidikan', $data);
     }
-    public function keluarga()
+
+
+
+    public function tambahpendidikan()
     {
 
+        $data = [
+            'id_guru'           => $this->request->getPost('id_guru'),
+            'nama_sekolah'      => $this->request->getPost('nama_sekolah'),
+            'jenjang'           => $this->request->getPost('jenjang'),
+            'tahun_lulus'       => $this->request->getPost('tahun_lulus'),
+        ];
+        $this->ModelPendidik->adddidik($data);
+        session()->setFlashdata('pesan', 'Riwayat Pendidikan Berhasil Ditambah');
+        return redirect()->to('pendidik/pendidikan');
+    }
+
+    public function tambahkeluarga()
+    {
+
+        $data = [
+            'id_guru'           => $this->request->getPost('id_guru'),
+            'nama_anggota'      => $this->request->getPost('nama_anggota'),
+            'status_keluarga'           => $this->request->getPost('status_keluarga'),
+        ];
+        $this->ModelPendidik->addkeluarga($data);
+        session()->setFlashdata('pesan', 'Riwayat Pendidikan Berhasil Ditambah');
+        return redirect()->to('pendidik/keluarga');
+    }
+
+
+
+
+    public function keluarga()
+    {
+        $guru = $this->ModelPendidik->DataGuru();
         $data = [
             'title' => 'SIAKAD',
             'subtitle' => 'Pendidik',
             'menu'          => 'profile',
             'submenu'       => 'keluarga',
             'data'          => $this->ModelPendidik->DataGuru(),
+            'datakeluarga'          => $this->ModelPendidik->Datakeluarga($guru['id_guru']),
 
         ];
         return view('guru/keluarga', $data);
@@ -315,6 +510,8 @@ class Pendidik extends BaseController
                 'kab_guru'           => $this->request->getPost('kab_guru'),
                 'prov_guru'           => $this->request->getPost('prov_guru'),
                 'telp_guru'          => $this->request->getPost('telp_guru'),
+                'npwp'          => $this->request->getPost('npwp'),
+                'link_wa'          => $this->request->getPost('link_wa'),
 
 
             ];

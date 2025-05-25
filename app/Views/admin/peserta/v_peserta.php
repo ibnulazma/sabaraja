@@ -96,6 +96,7 @@ $ta = $db->table('tbl_ta')
                                     <td class="text-center"><?= $value["tingkat"] ?></td>
                                     <td class="text-center">
 
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#bukuinduk<?= $value['nisn'] ?>"> <i class='bx bxs-book bx-sm text-success'></i></i> </a>
                                         <a href="" data-bs-toggle="modal" data-bs-target="#keluar<?= $value['nisn'] ?>"> <i class='bx bx-log-out bx-sm text-danger'></i> </a>
                                     </td>
                                 </tr>
@@ -511,7 +512,177 @@ $ta = $db->table('tbl_ta')
     </div>
 </div>
 
+<!-- Buku Induk -->
+<?php foreach ($peserta as $key => $siswa) { ?>
+    <div class="modal fade" id="bukuinduk<?= $siswa['nisn'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Buku Induk</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" width="100px">
+                                <tr>
+                                    <th colspan="3" class="text-center">
+                                        Lembar Induk Siswa
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" colspan="2">Nomor Induk Siswa : <?= $siswa['nis'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" colspan="2">Nomor Induk Siswa Nasional : <?= $siswa['nisn'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3"><b>A. KETERANGAN DIRI SISWA </b></td>
+                                </tr>
+                                <tr>
+                                    <td widtd="100px">1. Nama Lengkap</td>
+                                    <td widtd="100px"><?= $siswa['nama_siswa'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>2. Jenis Kelamin</td>
+                                    <td><?= $siswa['jenis_kelamin'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>3. Tempat dan Tanggal Lahir</td>
+                                    <td><?= $siswa['tempat_lahir'] ?>, <?= formatindo(date($siswa['tanggal_lahir']))  ?></td>
+                                </tr>
+                                <tr>
+                                    <td>4. Agama</td>
+                                    <td>Islam</td>
+                                </tr>
+                                <tr>
+                                    <td>5. Kewaganegaraan</td>
+                                    <td>Indonesia</td>
+                                </tr>
+                                <tr>
+                                    <td>6. Anak Ke Berapa</td>
+                                    <td><?= $siswa['anak_ke'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>7. Jumlah Saudara Kandung</td>
+                                    <td><?= $siswa['jml_saudara'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>8. Jumlah Saudara Tiri</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>9. Anak Yatim/Piatu/yatim piatu</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>B. KONTAK </b></td>
+                                </tr>
+                                <tr>
+                                    <td>10. Alamat</td>
+                                    <td><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?> Desa/Kel. <?= $siswa['desa'] ?> Kec. <?= $siswa['kecamatan'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>11. Nomor Telepon</td>
+                                    <td><?= $siswa['telp_anak'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>12. Tinggal Bersama</td>
+                                    <td><?= $siswa['tinggal'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>13. Jarak Tempat tinggal Ke Sekolah</td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2"><b>C. DATA AYAH </b></td>
+                                </tr>
+                                <tr>
+                                    <td>14. Nama</td>
+                                    <td><?= $siswa['nama_ayah'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>15. Tahun Lahir</td>
+                                    <td><?= $siswa['tahun_ayah'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>16. NIK </td>
+                                    <td><?= $siswa['nik_ayah'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>17. Pendidikan Terakhir</td>
+                                    <td><?= $siswa['didik_ayah'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>18. Pekerjaan </td>
+                                    <td><?= $siswa['kerja_ayah'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>19. Penghasilan</td>
+                                    <td><?= $siswa['hasil_ayah'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>20. Telepon</td>
+                                    <td><?= $siswa['telp_ayah'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>D. DATA IBU </b></td>
+                                </tr>
+                                <tr>
+                                    <td>21. Nama</td>
+                                    <td><?= $siswa['nama_ibu'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>22. Tahun Lahir</td>
+                                    <td><?= $siswa['tahun_ibu'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>23. NIK </td>
+                                    <td><?= $siswa['nik_ibu'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>24. Pendidikan Terakhir</td>
+                                    <td><?= $siswa['didik_ibu'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>25. Pekerjaan </td>
+                                    <td><?= $siswa['kerja_ibu'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>26. Penghasilan</td>
+                                    <td><?= $siswa['hasil_ibu'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>27. Telepon</td>
+                                    <td><?= $siswa['telp_ibu'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>E. KESEHATAN </b></td>
+                                </tr>
+                                <tr>
+                                    <td>28. Tinggi Badan</td>
+                                    <td><?= $siswa['tinggi'] ?> cm</td>
+                                </tr>
+                                <tr>
+                                    <td>28. Berat Badan</td>
+                                    <td><?= $siswa['berat'] ?> kg</td>
+                                </tr>
+                                <tr>
+                                    <td>28. Lingkar Kepala</td>
+                                    <td><?= $siswa['lingkar'] ?> cm</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<?php } ?>
 
 
 <script src="<?= base_url() ?>/template/assets/vendor/libs/jquery/jquery.js"></script>

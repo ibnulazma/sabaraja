@@ -85,17 +85,6 @@ $ta = $db->table('tbl_ta')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <!-- ModalTambah -->
 
 <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,7 +99,7 @@ $ta = $db->table('tbl_ta')
                 <table class="table table-bordered" id="tambahanggota">
                     <thead>
                         <tr>
-                            <th><input type="checkbox"></th>
+                            <th><input type="checkbox" id="centangSemua"></th>
                             <th>Nama Siswa</th>
                             <th>NISN</th>
                             <th>Tingkat</th>
@@ -129,12 +118,12 @@ $ta = $db->table('tbl_ta')
 
                             <?php if ($kelas['id_tingkat'] == $value['id_tingkat']) { ?>
                                 <tr>
-                                    <td><input type="checkbox" name="nisn[]" value="<?= $value['nisn'] ?>"></td>
+                                    <td><input type="checkbox" name="nisn_siswa[]" value="<?= $value['nisn'] ?>" class="check-anak"></td>
                                     <td><?= $value['nama_siswa'] ?></td>
                                     <td><?= $value['nisn'] ?></td>
-                                    <td></td>
+                                    <td><?= $value['tingkat'] ?></td>
                                     <td><?= $value['jenis_kelamin'] ?></td>
-                                    <input type="hidden" name="id_kelas[]" value="<?= $kelas['id_kelas'] ?>">
+                                    <input type="hidden" name="id_kelas_baru[]" value="<?= $kelas['id_kelas'] ?>">
                                     <input type="hidden" name="id_ta[]" value="<?= $ta['id_ta'] ?>">
                                 </tr>
                             <?php } ?>
@@ -224,6 +213,19 @@ $ta = $db->table('tbl_ta')
         window.location = this.value;
     });
 </script>
+
+
+<script>
+    $(document).ready(function() { // Ketika halaman sudah siap (sudah selesai di load)
+        $("#centangSemua").click(function() { // Ketika user men-cek checkbox all
+            if ($(this).is(":checked")) // Jika checkbox all diceklis
+                $(".check-anak").prop("checked", true); // ceklis semua checkbox siswa dengan class "check-item"
+            else // Jika checkbox all tidak diceklis
+                $(".check-anak").prop("checked", false); // un-ceklis semua checkbox siswa dengan class "check-item"
+        });
+    });
+</script>
+
 
 <!-- AkhirBukuInduk -->
 

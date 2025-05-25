@@ -45,10 +45,10 @@ class ModelAuth extends Model
     }
     public function loginlulus($username)
     {
-        return $this->db->table('tbl_kelulusan')
+        return $this->db->table('tbl_siswa')
             ->where([
-                'nisn_siswa' => $username,
-                'status_lulus' => 1,
+                'nisn' => $username,
+                'status_daftar' => 4,
             ])->get()->getRowArray();
     }
 }

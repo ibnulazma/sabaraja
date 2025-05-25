@@ -106,9 +106,7 @@ class Kelas extends BaseController
             'kelas'         => $this->ModelKelas->detail($id_kelas),
             'jml_siswa'     => $this->ModelKelas->jml_siswa($id_kelas),
             'datasiswa'     => $this->ModelKelas->datasiswa($id_kelas),
-            'tidakpunya'    => $this->ModelKelas->siswablmpuna(),
-
-
+            'tidakpunya'    => $this->ModelKelas->siswablmpuna($id_kelas),
             // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
         ];
         return view('admin/kelas/v_rincian_kelas', $data);
@@ -122,15 +120,15 @@ class Kelas extends BaseController
     {
 
         $kelas = $this->ModelKelas->detail($id_kelas);
-        $nisn       = $_POST['nisn'];
-        $id_kelas   = $_POST['id_kelas'];
+        $nisn       = $_POST['nisn_siswa'];
+        $id_kelas   = $_POST['id_kelas_baru'];
         $id_ta   = $_POST['id_ta'];
 
         $jml_siswa = count($nisn);
         for ($i = 0; $i < $jml_siswa; $i++) {
             $data = array(
-                'nisn' => $nisn[$i],
-                'id_kelas' => $id_kelas[$i],
+                'nisn_siswa' => $nisn[$i],
+                'id_kelas_baru' => $id_kelas[$i],
                 'id_ta' => $id_ta[$i]
             );
             $this->ModelKelas->add_data($data);

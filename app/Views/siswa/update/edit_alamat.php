@@ -105,8 +105,12 @@
     </div>
 
 </div>
-<button type="submit" class="btn btn-primary w-100 tombolSimpan">Simpan</button>
-<?= form_open() ?>
+<div class="text-center mb-3">
+    <button type="submit" class="btn btn-primary">
+        <i class='bx  bx-arrow-to-right-stroke'></i> Lanjut
+    </button>
+</div>
+<?= form_close() ?>
 
 </div>
 

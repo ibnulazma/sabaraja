@@ -20,12 +20,32 @@ class ModelPendidik extends Model
             ->where('id_guru', $niy)
             ->get()->getRowArray();
     }
-    public function add_data($data)
+    public function add_didik($data)
     {
-        $this->db->table('tbl_nilai')
+        $this->db->table('tambah_pendidikan')
             ->where('id_nilai', $data['id_nilai'])
             ->update($data);
     }
+
+    public function adddidik($data)
+    {
+        $this->db->table('tambah_pendidikan')
+            ->insert($data);
+    }
+    public function addkeluarga($data)
+    {
+        $this->db->table('tambah_keluarga')
+            ->insert($data);
+    }
+
+    public function edit($data)
+    {
+        $this->db->table('tbl_guru')
+            ->where('niy', $data['niy'])
+            ->update($data);
+    }
+
+
 
     public function Jadwal($id_guru)
     {
@@ -34,6 +54,22 @@ class ModelPendidik extends Model
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_jadwal.id_guru', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_jadwal.id_kelas', 'left')
             ->where('tbl_jadwal.id_guru', $id_guru)
+            ->get()->getResultArray();
+    }
+
+    public function Datajenjang($id_guru)
+    {
+        return $this->db->table('tambah_pendidikan')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tambah_pendidikan.id_guru', 'left')
+            ->where('tambah_pendidikan.id_guru', $id_guru)
+            ->get()->getResultArray();
+    }
+
+    public function Datakeluarga($id_guru)
+    {
+        return $this->db->table('tambah_keluarga')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tambah_keluarga.id_guru', 'left')
+            ->where('tambah_keluarga.id_guru', $id_guru)
             ->get()->getResultArray();
     }
 

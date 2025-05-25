@@ -13,6 +13,8 @@ function nomorhp($nomorhp)
     $nomorhp = str_replace("(", "", $nomorhp);
     // bersihkan dari format yang ada titik seperti 0811.222.333.4
     $nomorhp = str_replace(".", "", $nomorhp);
+    // bersihkan dari format yang ada titik seperti 0811-222-333-4
+    $nomorhp = str_replace("-", "", $nomorhp);
 
     //cek apakah mengandung karakter + dan 0-9
     if (!preg_match('/[^+0-9]/', trim($nomorhp))) {

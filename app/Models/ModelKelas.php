@@ -79,7 +79,9 @@ class ModelKelas extends Model
     // Data Siswa berdasarkan kelas
     public function datasiswa($id_kelas)
     {
-        return $this->db->table('tbl_siswa')
+        return $this->db->table('tbl_database')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas_baru', 'left')
 
             ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
@@ -88,9 +90,7 @@ class ModelKelas extends Model
             // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas_baru')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta')
             ->orderBy('nama_siswa', 'ASC')
-            ->where('tbl_siswa.id_kelas', $id_kelas)
-            // ->where('tbl_ta.status', '1')
-            // ->where('tbl_siswa.status_daftar', '3')
+            ->where('tbl_kelas.id_kelas', $id_kelas)
             ->get()
             ->getResultArray();
     }
@@ -123,13 +123,13 @@ class ModelKelas extends Model
 
 
     // siswa yang belum dapet kelas
-    public function siswablmpuna()
+    public function siswablmpuna($id_kelas)
     {
         return $this->db->table('tbl_siswa')
-
-            // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->where('status_daftar', '3')
-            ->where('tbl_siswa.id_kelas', '0')
+            ->where('tbl_siswa.id_kelas', $id_kelas)
+            ->orderBy('nama_siswa', 'ASC')
             ->get()
             ->getResultArray();
     }

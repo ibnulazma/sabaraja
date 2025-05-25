@@ -200,7 +200,7 @@ class Auth extends BaseController
 
         if ($this->validate(
             [
-                'nisn_siswa' => [
+                'nisn' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Silahkan Masukkan NISN !!!'
@@ -211,14 +211,14 @@ class Auth extends BaseController
             ]
         )) {
 
-            $username   = $this->request->getPost('nisn_siswa');
+            $username   = $this->request->getPost('nisn');
 
 
 
             $ceklulus = $this->ModelAuth->loginlulus($username);
             if ($ceklulus) {
 
-                session()->set('nisn_siswa', $ceklulus['nisn_siswa']);
+                session()->set('nisn', $ceklulus['nisn']);
                 session()->set('level', '4');
 
                 return redirect()->to(base_url('kelulusan'));

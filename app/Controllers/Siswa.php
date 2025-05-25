@@ -180,7 +180,7 @@ class Siswa extends BaseController
             'didik'         => $this->ModelPendidikan->AllData(),
             'hasil'         => $this->ModelPenghasilan->AllData()
         ];
-        return view('siswa/edit_orangtua', $data);
+        return view('siswa/update/edit_orangtua', $data);
     }
 
 
@@ -695,6 +695,20 @@ class Siswa extends BaseController
                     'required' => '{field} harus diisi'
                 ]
             ],
+            'kerja_ayah' => [
+                'label' => 'Pekerjaan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
+            'hasil_ayah' => [
+                'label' => 'Penghasilan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi'
+                ]
+            ],
 
 
             'telp_ayah' => [
@@ -734,6 +748,14 @@ class Siswa extends BaseController
 
             'kerja_ibu' => [
                 'label' => 'Pekerjaan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+
+                ]
+            ],
+            'hasil_ibu' => [
+                'label' => 'Penghasilan',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} harus diisi',

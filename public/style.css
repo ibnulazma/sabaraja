@@ -16,6 +16,7 @@ body{
 .box-area2 {
     width: 500px;
     border-radius: 10px;
+    
    
    
 }
@@ -100,6 +101,19 @@ body{
         .box-area2{
             margin: 0 10px;
             width: 350px;
+        }
+    
+        li {
+            font-size: 10px;
+        }
+    
+        li span {
+           font-size: 10px;
+        }
+
+        .tombol button{
+          
+           font-size: 10px;
         }
     }
     

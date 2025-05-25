@@ -205,7 +205,7 @@ $ta = $db->table('tbl_ta')
                                     <hr>
                                     <li class="p-0">
                                         Telepon :
-                                        <span><?= $siswa['telp_ayah'] ?></span>
+                                        <span><?= nomorhp($siswa['telp_ayah']) ?></span>
                                     </li>
                                     <hr>
                                 </ul>
@@ -724,15 +724,17 @@ $ta = $db->table('tbl_ta')
                             <label class="col-sm-4 col-form-label" for="transportasi">Pendidikan</label>
                             <div class="col-sm-8">
                                 <select name="didik_ayah" id="didik" class="form-control">
-                                    <?php foreach ($didik as $key => $row) { ?>
-                                        <?php if ($siswa['didik_ayah'] == $row['pendidikan']) {
-                                            $select = "selected";
-                                        } else {
-                                            $select = "";
-                                        }
-                                        echo "<option value=" . $row['pendidikan'] . " $select>" . $row['pendidikan'] . "</option>";
-                                        ?>
-                                    <?php } ?>
+                                    <option value="<?= $siswa['didik_ayah'] ?>"><?= $siswa['didik_ayah'] ?></option>
+                                    <option value="Tidak Sekolah">Tidak Sekolah</option>
+                                    <option value="Tamat SD/Sesderajat">Tamat SD/Sesderajat</option>
+                                    <option value="SMP">SMP/Sederajat</option>
+                                    <option value="SMA">SMA/Sederajat</option>
+                                    <option value="D1">D1</option>
+                                    <option value="D2">D2</option>
+                                    <option value="D3">D3</option>
+                                    <option value="D4/S1">D4/S1</option>
+                                    <option value="S2">S2</option>
+                                    <option value="S3">S3</option>
 
                                 </select>
                             </div>
@@ -741,15 +743,18 @@ $ta = $db->table('tbl_ta')
                             <label class="col-sm-4 col-form-label" for="transportasi">Pekerjaan</label>
                             <div class="col-sm-8">
                                 <select name="kerja_ayah" id="didik" class="form-control">
-                                    <?php foreach ($kerja as $key => $row) { ?>
-                                        <?php if ($siswa['kerja_ayah'] == $row['pekerjaan']) {
-                                            $select = "selected";
-                                        } else {
-                                            $select = "";
-                                        }
-                                        echo "<option value=" . $row['pekerjaan'] . " $select>" . $row['pekerjaan'] . "</option>";
-                                        ?>
-                                    <?php } ?>
+                                    <option value="<?= $siswa['kerja_ayah'] ?>"><?= $siswa['kerja_ayah'] ?></option>
+                                    <option value="Tidak Bekerja">Tidak Bekerja</option>
+                                    <option value="Nelayan">Nelayan</option>
+                                    <option value="Petani">Petani</option>
+                                    <option value="Peternak">Peternak</option>
+                                    <option value="PNS/TNI/POLRI">PNS/TNI/POLRI</option>
+                                    <option value="Karyawan Swasta">Karyawan Swasta</option>
+                                    <option value="Pedagang Kecil">Pedagang Kecil</option>
+                                    <option value="Pedagang Besar">Pedagang Besar</option>
+                                    <option value="Wiraswasta">Wiraswasta</option>
+                                    <option value="Wirausaha">Wirausaha</option>
+                                    <option value="Sudah Meninggal">Sudah Meninggal</option>
 
                                 </select>
                             </div>
@@ -758,15 +763,13 @@ $ta = $db->table('tbl_ta')
                             <label class="col-sm-4 col-form-label" for="">Penghasilan</label>
                             <div class="col-sm-8">
                                 <select name="hasil_ayah" class="form-control">
-                                    <?php foreach ($hasil as $key => $row) { ?>
-                                        <?php if ($siswa['hasil_ayah'] == $row['penghasilan']) {
-                                            $select = "selected";
-                                        } else {
-                                            $select = "";
-                                        }
-                                        echo "<option value=" . $row['penghasilan'] . " $select>" . $row['penghasilan'] . "</option>";
-                                        ?>
-                                    <?php } ?>
+                                    <option value="<?= $siswa['hasil_ayah'] ?>"><?= $siswa['hasil_ayah'] ?></option>
+                                    <option value="Rp. 500.000-Rp. 1.000.000">Rp. 500.000-Rp. 1.000.000</option>
+                                    <option value="Rp. 1.000.000-Rp.1.999.999">Rp. 1.000.000-Rp.1.999.999</option>
+                                    <option value="Rp. 2.000.000-Rp. 4.999.999">Rp. 2.000.000-Rp. 4.999.999</option>
+                                    <option value="Rp. 5.000.000-Rp. 20.000.000">Rp. 5.000.000-Rp. 20.000.000</option>
+                                    <option value="> Rp. 20.000.000">> Rp. 20.000.000</option>
+                                    <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
 
                                 </select>
                             </div>
@@ -801,16 +804,18 @@ $ta = $db->table('tbl_ta')
                         <div class="row mb-4">
                             <label class="col-sm-4 col-form-label" for="transportasi">Pendidikan</label>
                             <div class="col-sm-8">
-                                <select name="didik_ibu" id="didik" class="form-control">
-                                    <?php foreach ($didik as $key => $row) { ?>
-                                        <?php if ($siswa['didik_ibu'] == $row['pendidikan']) {
-                                            $select = "selected";
-                                        } else {
-                                            $select = "";
-                                        }
-                                        echo "<option value=" . $row['pendidikan'] . " $select>" . $row['pendidikan'] . "</option>";
-                                        ?>
-                                    <?php } ?>
+                                <select class="form-control" name="didik_ibu">
+                                    <option value="<?= $siswa['didik_ibu'] ?>"><?= $siswa['didik_ibu'] ?></option>
+                                    <option value="Tidak Sekolah">Tidak Sekolah</option>
+                                    <option value="Tamat SD/Sederajat">Tamat SD/Sesderajat</option>
+                                    <option value="SMP">SMP/Sederajat</option>
+                                    <option value="SMA">SMA/Sederajat</option>
+                                    <option value="D1">D1</option>
+                                    <option value="D2">D2</option>
+                                    <option value="D3">D3</option>
+                                    <option value="D4/S1">D4/S1</option>
+                                    <option value="S2">S2</option>
+                                    <option value="S3">S3</option>
 
                                 </select>
                             </div>
@@ -818,16 +823,19 @@ $ta = $db->table('tbl_ta')
                         <div class="row mb-4">
                             <label class="col-sm-4 col-form-label" for="transportasi">Pekerjaan</label>
                             <div class="col-sm-8">
-                                <select name="kerja_ibu" id="didik" class="form-control">
-                                    <?php foreach ($kerja as $key => $row) { ?>
-                                        <?php if ($siswa['kerja_ibu'] == $row['pekerjaan']) {
-                                            $select = "selected";
-                                        } else {
-                                            $select = "";
-                                        }
-                                        echo "<option value=" . $row['pekerjaan'] . " $select>" . $row['pekerjaan'] . "</option>";
-                                        ?>
-                                    <?php } ?>
+                                <select name="kerja_ibu" class="form-control">
+                                    <option value="<?= $siswa['kerja_ibu'] ?>"><?= $siswa['kerja_ibu'] ?></option>
+                                    <option value="Tidak Bekerja">Tidak Bekerja</option>
+                                    <option value="Nelayan">Nelayan</option>
+                                    <option value="Petani">Petani</option>
+                                    <option value="Peternak">Peternak</option>
+                                    <option value="PNS/TNI/POLRI">PNS/TNI/POLRI</option>
+                                    <option value="Karyawan Swasta">Karyawan Swasta</option>
+                                    <option value="Pedagang Kecil">Pedagang Kecil</option>
+                                    <option value="Pedagang Besar">Pedagang Besar</option>
+                                    <option value="Wiraswasta">Wiraswasta</option>
+                                    <option value="Wirausaha">Wirausaha</option>
+                                    <option value="Sudah Meninggal">Sudah Meninggal</option>
 
                                 </select>
                             </div>
@@ -837,15 +845,15 @@ $ta = $db->table('tbl_ta')
                             <div class="col-sm-8">
                                 <select name="hasil_ibu" class="form-control">
 
-                                    <?php foreach ($hasil as $key => $row) { ?>
-                                        <?php if ($siswa['hasil_ibu'] == $row['penghasilan']) {
-                                            $select = "selected";
-                                        } else {
-                                            $select = "";
-                                        }
-                                        echo "<option value=" . $row['penghasilan'] . " $select>" . $row['penghasilan'] . "</option>";
-                                        ?>
-                                    <?php } ?>
+                                    <option value="<?= $siswa['hasil_ibu'] ?>"><?= $siswa['hasil_ibu'] ?></option>
+                                    <option value="< Rp.500.000">
+                                        < Rp.500.000 </option>
+                                    <option value="Rp. 500.000-Rp. 1.000.000">Rp. 500.000-Rp. 1.000.000</option>
+                                    <option value="Rp. 1.000.000-Rp.1.999.999">Rp. 1.000.000-Rp.1.999.999</option>
+                                    <option value="Rp. 2.000.000-Rp. 4.999.999">Rp. 2.000.000-Rp. 4.999.999</option>
+                                    <option value="Rp. 5.000.000-Rp. 20.000.000">Rp. 5.000.000-Rp. 20.000.000</option>
+                                    <option value="> Rp. 20.000.000">> Rp. 20.000.000</option>
+                                    <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
 
 
 

@@ -24,7 +24,7 @@
                             <td><i class="bx bxs-user"></i></td>
                             <td><?= $data['nama_siswa'] ?></td>
                             <td><?= $data['nama_ibu'] ?></td>
-                            <td><a href="https://wa.me/<?= $data['telp_ibu'] ?>"><?= $data['telp_ibu'] ?></a></td>
+                            <td><a href="https://wa.me/<?= nomorhp($data['telp_ibu']) ?>"><?= nomorhp($data['telp_ibu']) ?></a></td>
                             <td><?= $data['alamat'] ?></td>
                         </tr>
                     <?php } ?>
