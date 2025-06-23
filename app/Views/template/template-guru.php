@@ -30,7 +30,7 @@
                             <div class="nav-align-top">
                                 <ul class="nav nav-pills flex-column flex-md-row mb-4">
                                     <li class="nav-item"><a class="nav-link <?= $submenu == 'profile' ? 'active' : '' ?>" href="<?= base_url('pendidik/profile') ?>"><i class='bx bxs-user'></i> </i> Biodata</a></li>
-                                    <li class="nav-item"><a class="nav-link <?= $submenu == 'pendidikan' ? 'active' : '' ?>" href="<?= base_url('pendidik/pendidikan') ?>"><i class='bx bx-user-circle'></i> Pendidikan </a></li>
+                                    <li class="nav-item"><a class="nav-link <?= $submenu == 'pendidikan' ? 'active' : '' ?>" href="<?= base_url('pendidik/pendidikan') ?>"><i class='bx bx-user-circle'></i> Riwayat Pendidikan </a></li>
                                     <li class="nav-item"><a class="nav-link <?= $submenu == 'keluarga' ? 'active' : '' ?>" href="<?= base_url('pendidik/keluarga') ?>"><i class='bx bx-user-circle'></i> Data Keluarga </a></li>
 
                                 </ul>

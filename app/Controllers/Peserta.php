@@ -637,17 +637,19 @@ class Peserta extends BaseController
         $id_tingkat     = $_POST['id_tingkat'];
         $aktif          = $_POST['aktif'];
         $status_daftar  = $_POST['status_daftar'];
-        $id_ta  = $_POST['id_ta'];
+        $id_ta          = $_POST['id_ta'];
+        $tahun_lulus  = $_POST['tahun_lulus'];
 
 
         $jml_siswa = count($nisn);
         for ($i = 0; $i < $jml_siswa; $i++) {
             $data = array(
-                'nisn' =>       $nisn[$i],
-                'id_tingkat' => $id_tingkat[$i],
-                'aktif' =>      $aktif[$i],
-                'status_daftar' =>      $status_daftar[$i],
-                'id_ta' =>      $id_ta[$i],
+                'nisn'          => $nisn[$i],
+                'id_tingkat'    => $id_tingkat[$i],
+                'aktif'         => $aktif[$i],
+                'status_daftar' => $status_daftar[$i],
+                'id_ta'         => $id_ta[$i],
+                'tahun_lulus' =>      $tahun_lulus[$i],
             );
             $this->ModelPeserta->edit($data);
         }

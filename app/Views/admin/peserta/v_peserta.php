@@ -178,7 +178,7 @@ $ta = $db->table('tbl_ta')
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="lulus">
+                        <table class="table table-bordered" id="akanlulus">
                             <thead class="">
                                 <tr>
                                     <th class="text-center">#</th>
@@ -432,7 +432,7 @@ $ta = $db->table('tbl_ta')
 
             <div class="modal-body">
                 <?= form_open('peserta/lulus') ?>
-                <table class="table table-bordered" id="akanlulus" style="width:100%">
+                <table class="table table-bordered" id="proseslulus" style="width:100%">
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="check-all"></th>
@@ -450,8 +450,9 @@ $ta = $db->table('tbl_ta')
                                 <td><?= $data['tingkat'] ?></td>
                                 <input type="hidden" name="aktif[]" value="0">
                                 <input type="hidden" name="id_tingkat[]" value="0">
+                                <input type="hidden" name="id_ta[]" value="0">
                                 <input type="hidden" name="status_daftar[]" value="4">
-                                <input type="hidden" name="id_ta[]" value="<?= $ta['tahun'] ?>">
+                                <input type="hidden" name="tahun_lulus[]" value="<?= $ta['tahun'] ?>">
 
                             </tr>
                         <?php } ?>

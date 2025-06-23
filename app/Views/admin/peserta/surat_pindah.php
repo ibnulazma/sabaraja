@@ -283,7 +283,7 @@ $profile = $db->table('tbl_profile')
             <p class="nama">Bersama ini kami sertakan :</p>
             <ol class="lis">
                 <li>Surat Permohonan Pindah</li>
-                <li>Surat keluar Dari Dapodik</li>
+                <li>Surat kelua Dari Dapodik</li>
                 <li>Rapot Asli</li>
             </ol>
             <p class="nama">Demikian surat pindah/keluar ini kami buat agar dapat digunakan sebagaimana mestinya.</p>
@@ -312,7 +312,7 @@ $profile = $db->table('tbl_profile')
     <div class="wrapper">
         <div class="header">
 
-            <p class="perihal">Hal :<b>Permohonan keluar Peserta Didik</b></p>
+            <p class="perihal">Hal :<b>Permohonan Mutasi/Pindah Sekolah Peserta Didik</b></p>
 
             <p class="tanggal"> Tangerang, <?= formatindo($keluar['tgl_ajuan']) ?><br>
                 <span>Kepada Yth. </span><br>
@@ -368,9 +368,7 @@ $profile = $db->table('tbl_profile')
     <p class="nama">Dengan ini mengajukan permohonan pindah sekolah dari SMP INSAN KAMIL untuk diterima di <b><?= $keluar['sekolah'] ?></b> dengan alasan <?= $keluar['alasan'] ?></p>
     <p class="nama">Bersama ini kami sertakan :</p>
     <ol class="lis">
-        <li>Surat Permohonan Pindah</li>
-        <li>Surat keluar Dari Dapodik</li>
-        <li>Rapot Asli</li>
+        <li>Surat Keterangan Diterima Dari Sekolah Yang Dituju</li>
     </ol>
     <p class="nama">Demikian surat permohonan ini kami ajukan, kiranya dapat diterima di sekolah yang Bapak/ Ibu Pimpin dan atas perhatannya kami ucapakan terima kasih.</p>
     <div class="ttd">

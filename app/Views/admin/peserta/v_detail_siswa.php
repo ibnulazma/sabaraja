@@ -95,6 +95,7 @@ $ta = $db->table('tbl_ta')
                             <li>Rombel : <?= $siswa['kelas'] ?>
                             <li>Tingkat Pendidikan: <?= $siswa['tingkat'] ?></li>
                             <li>Semester Aktif : <?= $ta['ta'] ?>/<b><?= $ta['semester'] ?></b></li>
+                            <li>Link Wa :<?= $siswa['link_wa'] ?></li>
                         </ul>
                     </div>
 
@@ -205,7 +206,7 @@ $ta = $db->table('tbl_ta')
                                     <hr>
                                     <li class="p-0">
                                         Telepon :
-                                        <span><?= nomorhp($siswa['telp_ayah']) ?></span>
+                                        <span><a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $siswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $siswa['link_wa'] ?>"><?= $siswa['telp_ayah'] ?></a></span>
                                     </li>
                                     <hr>
                                 </ul>
@@ -253,7 +254,7 @@ $ta = $db->table('tbl_ta')
 
                                     <li class="p-0">
                                         Telepon :
-                                        <span><?= $siswa['telp_ibu'] ?></span>
+                                        <span><a target="_blank" href="https://wa.me/<?=$siswa['telp_ibu'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $siswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $siswa['link_wa'] ?>"><?=$siswa['telp_ibu'] ?></a></span>
                                     </li>
                                     <hr>
                                 </ul>

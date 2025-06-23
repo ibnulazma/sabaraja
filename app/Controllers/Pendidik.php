@@ -73,7 +73,7 @@ class Pendidik extends BaseController
                 'label' => 'Jenis Kelamin',
                 'rules' => 'required',
                 'errors' => [
-                    'required'          => '{field} harus dipilih',
+                    'required' => '{field} harus dipilih',
 
                 ]
             ],
@@ -193,6 +193,7 @@ class Pendidik extends BaseController
                 'nuptk'           => $this->request->getPost('nuptk'),
                 'npwp'           => $this->request->getPost('npwp'),
                 'status_pernikahan'           => $this->request->getPost('status_pernikahan'),
+                'link_wa'           => $this->request->getPost('link_wa'),
 
             ];
             $this->ModelPendidik->edit($data);
@@ -204,15 +205,6 @@ class Pendidik extends BaseController
             return redirect()->to('pendidik/profile')->withInput()->with('validation', $validation);
         }
     }
-
-
-
-
-
-
-
-
-
 
 
 

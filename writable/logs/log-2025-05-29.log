@@ -1,0 +1,8 @@
+CRITICAL - 2025-05-29 20:25:07 --> Undefined index: id_ta
+#0 E:\APLIKASI\koding\sabaraja\app\Controllers\Peserta.php(640): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'E:\\APLIKASI\\kod...', 640, Array)
+#1 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(802): App\Controllers\Peserta->lulus()
+#2 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peserta))
+#3 E:\APLIKASI\koding\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 E:\APLIKASI\koding\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 E:\APLIKASI\koding\sabaraja\system\Commands\Server\rewrite.php(43): require_once('E:\\APLIKASI\\kod...')
+#6 {main}

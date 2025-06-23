@@ -15,7 +15,7 @@
                             <label for="nama_guru">Nama Lengkap</label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control " name="nama_guru" value="<?= $data['nama_guru'] ?>">
+                            <input type="text" class="form-control " name="nama_guru" value="<?= $data['nama_guru'] ?>" required>
 
                         </div>
                     </div>

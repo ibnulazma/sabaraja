@@ -1,14 +1,18 @@
 <?= $this->extend('template/template-guru') ?>
 <?= $this->section('content') ?>
 
+<?php
 
+$db     = \Config\Database::connect();
+
+$datgur = $db->table('tbl_guru')
+    ->where('niy', session()->get('username'))
+    ->get()->getRowArray();
+
+?>
 
 
 <div class="swal" data-swal="<?= session()->getFlashdata('pesan'); ?>"></div>
-
-
-
-
 
 
 
@@ -17,8 +21,6 @@
     <div class="card">
         <div class="card-body">
             <button class="btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#pendidikan"><i class='bx bx-user-plus'></i> Tambah Riwayat Pendidikan</button>
-
-
             <div class="table-responsive mt-4">
                 <table class="table">
                     <thead>
@@ -36,12 +38,12 @@
 
                         $no = 1;
 
-                        foreach ($datapendidikan as $key => $data) { ?>
+                        foreach ($datapendidikan as $key => $row) { ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td><?= $data['nama_sekolah'] ?></td>
-                                <td><?= $data['jenjang'] ?></td>
-                                <td><?= $data['tahun_lulus'] ?></td>
+                                <td><?= $row['nama_sekolah'] ?></td>
+                                <td><?= $row['jenjang'] ?></td>
+                                <td><?= $row['tahun_lulus'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -50,6 +52,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 
@@ -66,7 +70,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <input type="hidden" value="<?= $data['id_guru'] ?>" name="id_guru">
+                <input type="text" value="<?= $datgur['id_guru'] ?>" name="id_guru">
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="tempattinggal">Nama Sekolah </label>
                     <div class="col-sm-8">
