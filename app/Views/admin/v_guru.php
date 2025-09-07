@@ -52,7 +52,7 @@ $ta = $db->table('tbl_ta')
 
                             foreach ($guru as $key => $row) { ?>
                                 <tr>
-                                    <td class="text-center"><a href=""><i class="bx bxs-user"></i></a></td>
+                                    <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#profile<?= $row['niy'] ?>"><i class="bx bxs-user"></i></a></td>
                                     <td class="text-center"><?= $row['nuptk'] ?></td>
                                     <td class="text-center"><?= $row['nik_guru'] ?></td>
                                     <td class="text-center"><?= $row['niy'] ?></td>
@@ -274,6 +274,103 @@ $ta = $db->table('tbl_ta')
 <?php } ?>
 
 
+
+
+
+<?php foreach ($guru as $key => $value) { ?>
+    <div class="modal fade" id="profile<?= $value['niy'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">BIODATA GURU</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" width="100px">
+                                <tr>
+                                    <th colspan="3" class="text-center">
+                                        Data Guru
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3"><b>A. KETERANGAN DIRI value </b></td>
+                                </tr>
+                                <tr>
+                                    <td widtd="100px">1. Nama Lengkap</td>
+                                    <td widtd="100px"><?= $value['nama_guru'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>2. Jenis Kelamin</td>
+                                    <td><?= $value['kelamin'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>3. Tempat dan Tanggal Lahir</td>
+                                    <td><?= $value['tmpt_lahir'] ?>, <?= date($value['tgl_lahir'])  ?></td>
+                                </tr>
+                                <tr>
+                                    <td>4. Agama</td>
+                                    <td>Islam</td>
+                                </tr>
+                                <tr>
+                                    <td>5. Kewaganegaraan</td>
+                                    <td>Indonesia</td>
+                                </tr>
+
+
+
+
+                                <tr>
+                                    <td colspan="2"><b>B. KONTAK </b></td>
+                                </tr>
+                                <tr>
+                                    <td>10. Alamat</td>
+                                    <td><?= $value['alamat_guru'] ?> RT <?= $value['rt_guru'] ?> RW <?= $value['rw_guru'] ?> Desa/Kel. <?= $value['desa_guru'] ?> Kec. <?= $value['kec_guru'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>11. Nomor Telepon</td>
+                                    <td><?= $value['telp_guru'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>12. Email</td>
+                                    <td><?= $value['email'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2"><b>C. DATA PRIBADI </b></td>
+                                </tr>
+                                <tr>
+                                    <td>14. NIK</td>
+                                    <td><?= $value['nik_guru'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>15. NPWP</td>
+                                    <td><?= $value['npwp'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>16. NUPTK </td>
+                                    <td><?= $value['nuptk'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>17. LINK WA</td>
+                                    <td><a href="<?= $value['link_wa'] ?>"></a><?= $value['link_wa'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>18. STATUS PERNIKAHAN </td>
+                                    <td><?= $value['status_pernikahan'] ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<?php } ?>
 
 
 <script src="<?= base_url() ?>/template/assets/vendor/libs/jquery/jquery.js"></script>

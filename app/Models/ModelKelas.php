@@ -176,7 +176,7 @@ class ModelKelas extends Model
     public function hapus($data)
     {
         $this->db->table('tbl_database')
-            ->where('nisn', $data['nisn'])
+            ->where('id_database', $data['id_database'])
             ->delete($data);
     }
 

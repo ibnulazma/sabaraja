@@ -94,6 +94,7 @@
     new DataTable('#tblnilai');
     new DataTable('#akanlulus');
     new DataTable('#tambahanggota');
+    new DataTable('#blmaktif');
 
     // new DataTable('#tblnilai', {
 

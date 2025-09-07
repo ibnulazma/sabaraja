@@ -24,7 +24,7 @@
                         <label for="inputName">Tahun Lahir</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control <?= ($validation->hasError('tahun_ayah')) ? 'is-invalid' : ''; ?>" name="tahun_ayah" value="<?= old('tahun_ayah') ?>">
+                        <input type="number" class="form-control <?= ($validation->hasError('tahun_ayah')) ? 'is-invalid' : ''; ?>" name="tahun_ayah" value="<?= old('tahun_ayah') ?>">
                         <div class="invalid-feedback">
                             <?= $validation->getError('tahun_ayah'); ?>
                         </div>
@@ -35,7 +35,7 @@
                         <label for="inputName">NIK</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control <?= ($validation->hasError('nik_ayah')) ? 'is-invalid' : ''; ?>" name="nik_ayah" value="<?= old('nik_ayah') ?>">
+                        <input type="number" class="form-control <?= ($validation->hasError('nik_ayah')) ? 'is-invalid' : ''; ?>" name="nik_ayah" value="<?= old('nik_ayah') ?>">
                         <div class="invalid-feedback">
                             <?= $validation->getError('nik_ayah'); ?>
                         </div>
@@ -49,7 +49,7 @@
                         <select name="didik_ayah" id="" class="form-control <?= ($validation->hasError('didik_ayah')) ? 'is-invalid' : ''; ?>">
                             <option value="">-- Pilih Pendidikan --</option>
                             <option value="Tidak Sekolah">Tidak Sekolah</option>
-                            <option value="Tamat SD/Sesderajat">Tamat SD/Sesderajat</option>
+                            <option value="Tamat SD/Sederajat">Tamat SD/Sederajat</option>
                             <option value="SMP">SMP/Sederajat</option>
                             <option value="SMA">SMA/Sederajat</option>
                             <option value="D1">D1</option>
@@ -114,7 +114,7 @@
                         <label for="inputName" class="col-form-label">Telepon/Hp</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" class="form-control col-sm-10" value="<?= $siswa['telp_ayah'] ?>" name="telp_ayah" value="<?= old('telp_ayah') ?>">
+                        <input type="number" class="form-control col-sm-10" value="<?= $siswa['telp_ayah'] ?>" name="telp_ayah" value="<?= old('telp_ayah') ?>">
                     </div>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                         <label for="inputName">Tahun Lahir</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control <?= ($validation->hasError('tahun_ibu')) ? 'is-invalid' : ''; ?>" name="tahun_ibu" value="<?= old('tahun_ibu') ?>">
+                        <input type="number" class="form-control <?= ($validation->hasError('tahun_ibu')) ? 'is-invalid' : ''; ?>" name="tahun_ibu" value="<?= old('tahun_ibu') ?>">
                         <div class="invalid-feedback">
                             <?= $validation->getError('tahun_ibu'); ?>
                         </div>
@@ -147,7 +147,7 @@
                         <label for="inputName">NIK</label>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control <?= ($validation->hasError('nik_ibu')) ? 'is-invalid' : ''; ?>" name="nik_ibu" value="<?= old('nik_ibu') ?>">
+                        <input type="number" class="form-control <?= ($validation->hasError('nik_ibu')) ? 'is-invalid' : ''; ?>" name="nik_ibu" value="<?= old('nik_ibu') ?>">
                         <div class="invalid-feedback">
                             <?= $validation->getError('nik_ibu'); ?>
                         </div>
@@ -161,7 +161,7 @@
                         <select name="didik_ibu" id="" class="form-control <?= ($validation->hasError('didik_ibu')) ? 'is-invalid' : ''; ?>">
                             <option value="">-- Pilih Pendidikan --</option>
                             <option value="Tidak Sekolah">Tidak Sekolah</option>
-                            <option value="Tamat SD/Sesderajat">Tamat SD/Sesderajat</option>
+                            <option value="Tamat SD/Sederajat">Tamat SD/Sederajat</option>
                             <option value="SMP">SMP/Sederajat</option>
                             <option value="SMA">SMA/Sederajat</option>
                             <option value="D1">D1</option>
@@ -226,7 +226,7 @@
                         <label for="inputName" class="col-form-label">Telepon/Hp</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" class="form-control col-sm-10" value="<?= $siswa['telp_ibu'] ?>" name="telp_ibu" value="<?= old('telp_ibu') ?>">
+                        <input type="number" class="form-control col-sm-10" value="<?= $siswa['telp_ibu'] ?>" name="telp_ibu" value="<?= old('telp_ibu') ?>">
                     </div>
                 </div>
             </div>

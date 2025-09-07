@@ -41,6 +41,9 @@ $ta = $db->table('tbl_ta')
                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home" aria-selected="true">Aktif</button>
             </li>
             <li class="nav-item">
+                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-blmaktif" aria-controls="navs-pills-top-profile" aria-selected="false">Belum Aktif</button>
+            </li>
+            <li class="nav-item">
                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile" aria-selected="false">Keluar</button>
             </li>
             <li class="nav-item">
@@ -80,12 +83,12 @@ $ta = $db->table('tbl_ta')
 
                             foreach ($peserta as $key => $value) { ?>
                                 <tr class="<?php
-                                            $hasil = "Sudah-Meninggal";
+                                            $hasil = "Sudah Meninggal";
                                             if ($hasil == $value['kerja_ayah']) { ?>
                                         echo table-primary
                                     <?php } ?>">
 
-                                    <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' .  $value['nisn']) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
+                                    <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' .  $value['id_siswa']) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
                                     <td class="text-center"><?= $value["nis"] ?></td>
                                     <td class="text-center"><?= $value["nisn"] ?></td>
                                     <td><?= $value["nama_siswa"] ?></td>
@@ -96,8 +99,8 @@ $ta = $db->table('tbl_ta')
                                     <td class="text-center"><?= $value["tingkat"] ?></td>
                                     <td class="text-center">
 
-                                        <a href="" data-bs-toggle="modal" data-bs-target="#bukuinduk<?= $value['nisn'] ?>"> <i class='bx bxs-book bx-sm text-success'></i></i> </a>
-                                        <a href="" data-bs-toggle="modal" data-bs-target="#keluar<?= $value['nisn'] ?>"> <i class='bx bx-log-out bx-sm text-danger'></i> </a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#bukuinduk<?= $value['id_siswa'] ?>"> <i class='bx bxs-book bx-sm text-success'></i></i> </a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#keluar<?= $value['id_siswa'] ?>"> <i class='bx bx-log-out bx-sm text-danger'></i> </a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -109,6 +112,44 @@ $ta = $db->table('tbl_ta')
                 <p class=" text-danger mt-3">*<i> Luluskan dahulu tingkat 9, baru Proses Naik Tingkat</i></p>
                 <button class="btn btn-danger mr-3 mt-2" data-bs-toggle="modal" data-bs-target="#lulusan">Proses Lulus Kelas 9</button>
                 <button class="btn btn-primary mr-3 mt-2" data-bs-toggle="modal" data-bs-target="#naik">Proses Naik Tingkat</button>
+            </div>
+            <div class="tab-pane fade" id="navs-pills-top-blmaktif" role="tabpanel">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="blmaktif">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">NISN</th>
+                                    <th class="text-center">Nama Siswa</th>
+                                    <th class="text-center">L/P</th>
+                                    <th class="text-center">Nama Ibu</th>
+                                    <th class="text-center">Ket</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                                $no = 1;
+
+                                foreach ($blmaktif as $key => $value) { ?>
+                                    <tr>
+                                        <td><?= $no++; ?></td>
+                                        <td class="text-center"><?= $value["nisn"] ?></td>
+                                        <td><?= $value["nama_siswa"] ?></td>
+                                        <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
+                                        <td class="text-center"><?= $value["nama_ibu"] ?></td>
+                                        <td class="text-center"><button class="btn btn-danger">Belum Aktif</button></td>
+
+
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
             <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
                 <div class="card-body">
@@ -152,7 +193,7 @@ $ta = $db->table('tbl_ta')
                                         </td>
                                         <td class="text-center">
                                             <?php if ($value['status'] == 'Mutasi') { ?>
-                                                <a href="<?= base_url('peserta/printmohon/' . $value['nisn']) ?>" class="btn rounded-pill btn-icon btn-primary"> <i class='bx bx-printer'></i></a>
+                                                <a href="<?= base_url('peserta/printmohon/' . $value['id_siswa']) ?>" class="btn rounded-pill btn-icon btn-primary"> <i class='bx bx-printer'></i></a>
                                             <?php } else { ?>
 
                                             <?php }  ?>
@@ -199,7 +240,7 @@ $ta = $db->table('tbl_ta')
 
                                 foreach ($lulusan as $key => $value) { ?>
                                     <tr>
-                                        <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' .  $value['nisn']) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
+                                        <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' .  $value['id_siswa']) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
                                         <td class="text-center"><?= $value["nis"] ?></td>
                                         <td class="text-center"><?= $value["nisn"] ?></td>
                                         <td class=""><?= $value["nama_siswa"] ?></td>
@@ -250,7 +291,7 @@ $ta = $db->table('tbl_ta')
                                             <td class="text-center"><?= $value["tingkat"] ?></td>
 
                                             <td class="text-center">
-                                                <a href="<?= base_url('peserta/detail_siswa/' .  $value['nisn']) ?>" class="btn btn-primary btn-sm"><i class='bx bx-check-square'></i> </a>
+                                                <a href="<?= base_url('peserta/detail_siswa/' .  $value['id_siswa']) ?>" class="btn btn-primary btn-sm"><i class='bx bx-check-square'></i> </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -355,9 +396,9 @@ $ta = $db->table('tbl_ta')
 <!-- Modal Keluar -->
 
 <?php foreach ($peserta as $key => $value) { ?>
-    <div class="modal fade" id="keluar<?= $value['nisn'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="keluar<?= $value['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <?= form_open('peserta/keluar/' .  $value['nisn']) ?>
+            <?= form_open('peserta/keluar/' .  $value['id_siswa']) ?>
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Proses Non Aktif</h5>
@@ -396,7 +437,7 @@ $ta = $db->table('tbl_ta')
 <?php } ?>
 
 
-
+<!-- Eksport -->
 <div class="modal fade" id="eksport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -515,7 +556,7 @@ $ta = $db->table('tbl_ta')
 
 <!-- Buku Induk -->
 <?php foreach ($peserta as $key => $siswa) { ?>
-    <div class="modal fade" id="bukuinduk<?= $siswa['nisn'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="bukuinduk<?= $siswa['id_siswa'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
 
             <div class="modal-content">

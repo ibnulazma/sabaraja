@@ -29,8 +29,19 @@ class ModelPeserta extends Model
             ->getResultArray();
     }
 
+    public function blmaktif()
+    {
+        return $this->db->table('tbl_siswa')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            ->where('status_daftar', '1')
+            ->where('aktif', '1')
+            ->get()
+            ->getResultArray();
+    }
 
-    public function DataPeserta($nisn)
+
+    public function DataPeserta($id_siswa)
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
@@ -41,7 +52,7 @@ class ModelPeserta extends Model
             ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
             ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
-            ->where('tbl_siswa.nisn', $nisn)
+            ->where('tbl_siswa.id_siswa', $id_siswa)
             ->get()->getRowArray();
     }
 
@@ -107,31 +118,31 @@ class ModelPeserta extends Model
     public function edit($data)
     {
         $this->db->table('tbl_siswa')
-            ->where('nisn', $data['nisn'])
+            ->where('id_siswa', $data['id_siswa'])
             ->update($data);
     }
     public function editortu($data)
     {
         $this->db->table('tbl_siswa')
-            ->where('nisn', $data['nisn'])
+            ->where('id_siswa', $data['id_siswa'])
             ->update($data);
     }
     public function editalamat($data)
     {
         $this->db->table('tbl_siswa')
-            ->where('nisn', $data['nisn'])
+            ->where('id_siswa', $data['id_siswa'])
             ->update($data);
     }
     public function editorangtua($data)
     {
         $this->db->table('tbl_siswa')
-            ->where('nisn', $data['nisn'])
+            ->where('id_siswa', $data['id_siswa'])
             ->update($data);
     }
     public function editregister($data)
     {
         $this->db->table('tbl_siswa')
-            ->where('nisn', $data['nisn'])
+            ->where('id_siswa', $data['id_siswa'])
             ->update($data);
     }
 

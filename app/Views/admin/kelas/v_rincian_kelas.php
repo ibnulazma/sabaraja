@@ -72,7 +72,7 @@ $ta = $db->table('tbl_ta')
                                     <a href="<?= base_url('kelas/halamansiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-success "><i class="bx bxs-file"></i> </a>
                                     <a href="<?= base_url('kelas/biodatasiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-secondary "><i class="bx bx-id-card"></i> </a>
                                     <a href="<?= base_url('kelas/labelsiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-dark"><i class="bx bx-purchase-tag-alt"></i> </a>
-                                    <a href="<?= base_url('kelas/hapusanggota/' . $value['nisn']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="bx bxs-trash-alt"></i></a>
+                                    <a href="<?= base_url('kelas/hapusanggota/' . $value['id_database']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="bx bxs-trash-alt"></i></a>
                                 </div>
                             </td>
                         </tr>

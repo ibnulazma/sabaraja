@@ -145,10 +145,10 @@ class Kelas extends BaseController
 
     //HAPUS ANGGOTA KELAS
 
-    public function hapusanggota($nisn)
+    public function hapusanggota($id_siswa)
     {
         $data = [
-            'nisn' => $nisn,
+            'id_database' => $id_siswa,
 
         ];
         $this->ModelKelas->hapus($data);
@@ -234,7 +234,7 @@ class Kelas extends BaseController
         $dompdf = new Dompdf();
         $kelas = $this->ModelKelas->detail($id_kelas);
         $data = [
-            'title'         =>   $kelas,
+            'title'         => $kelas,
             'kelas'         => $kelas,
             'datasiswa'     => $this->ModelKelas->datasiswa($id_kelas),
 
@@ -250,7 +250,15 @@ class Kelas extends BaseController
         $dompdf->stream('biodata rapot .pdf', array(
             "Attachment" => false
         ));
+        exit();
     }
+
+
+
+
+
+
+
     // Halaman Depan
     public function halaman($id_kelas)
     {
