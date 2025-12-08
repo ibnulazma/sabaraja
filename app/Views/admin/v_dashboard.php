@@ -234,49 +234,7 @@ $ta = $db->table('tbl_ta')
 </div>
 
 
-<div class="row">
-    <div class="form-group">
-        <div class="row mb-4">
-            <label class="col-sm-4 col-form-label" for="tempattinggal">Alamat</label>
-            <div class="col-sm-8">
-                <input type="text" name="alamat" class="form-control">
-            </div>
-        </div>
-        <div class="row mb-4">
-            <label class="col-sm-4 col-form-label" for="tempattinggal">RT/RW</label>
-            <div class="col-sm-4">
-                <input type="text" name="rt" class="form-control">
 
-            </div>
-            <div class="col-sm-4">
-                <input type="text" name="rw" class="form-control">
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-sm-4">
-                <label for="">Provinsi</label>
-            </div>
-            <div class="col-sm-8">
-                <select name="provinsi" class="form-control" id="provinsi">
-                    <option value="">--Pilih Provinsi--</option>
-                    <?php foreach ($provinsi as $key => $prov) { ?>
-                        <option value="<?= $prov['id_provinsi'] ?>"><?= $prov['prov_name'] ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-        </div>
-
-        <div class="row mb-4">
-            <div class="col-sm-4">
-                <label for="">Kab/Kota</label>
-            </div>
-            <div class="col-sm-8">
-                <select name="kabupaten" id="kabupaten" class="form-control">
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

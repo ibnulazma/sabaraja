@@ -21,6 +21,18 @@ $ta = $db->table('tbl_ta')
 </style>
 
 
+<div id="my_camera"></div>
+<br>
+<button onclick="take_snapshot()">Ambil Foto</button>
+
+<div id="results"></div>
+
+
+
+
+
+
+
 <div class="container-xxl flex-grow-1 container-p-y">
 
     <div class="row">
@@ -932,7 +944,7 @@ $ta = $db->table('tbl_ta')
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
 
 
 
@@ -947,7 +959,40 @@ $ta = $db->table('tbl_ta')
         })
     }
 </script>
+<script>
+    Webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
 
+    Webcam.attach('#my_camera');
+</script>
+
+<script>
+    function take_snapshot() {
+        Webcam.snap(function(data_uri) {
+            document.getElementById('results').innerHTML =
+                '<img src="' + data_uri + '"/>';
+
+            // kirim ke server
+            fetch('/profile/camera', {
+                    method: 'POST',
+                    body: new URLSearchParams({
+                        image: data_uri
+                    }),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    alert("Foto disimpan: " + res.file);
+                });
+        });
+    }
+</script>
 
 
 
