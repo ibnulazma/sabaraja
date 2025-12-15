@@ -7,6 +7,16 @@ use CodeIgniter\Model;
 class ModelKelas extends Model
 {
 
+
+
+
+
+
+
+
+
+
+
     public function AllData()
     {
         return $this->db->table('tbl_kelas')

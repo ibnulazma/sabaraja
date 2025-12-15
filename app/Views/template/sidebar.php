@@ -96,6 +96,12 @@ $user = $db->table('tbl_user')
                 <div data-i18n="Basic">Rombel</div>
             </a>
         </li>
+        <li class="menu-item <?= $menu == 'rekap' ? 'active' : '' ?>">
+            <a href="<?= base_url('rekap') ?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-folder-down-arrow"></i>
+                <div data-i18n="Basic">Pusat Unduhan</div>
+            </a>
+        </li>
 
     <?php } ?>
 

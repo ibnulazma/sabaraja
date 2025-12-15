@@ -148,7 +148,9 @@ class Filters extends BaseConfig
                     'datatables',
                     'datatables/*',
                     'presensi',
-                    'presensi/*'
+                    'presensi/*',
+                    'rekap',
+                    'rekap/*'
                 ]
             ],
 
