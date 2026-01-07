@@ -7,6 +7,8 @@ use CodeIgniter\Model;
 class ModelPeserta extends Model
 
 {
+
+
     public function aktif()
     {
         return $this->db->table('tbl_siswa')
@@ -44,10 +46,13 @@ class ModelPeserta extends Model
     public function DataPeserta($id_siswa)
     {
         return $this->db->table('tbl_siswa')
+
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
-            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
+
+            // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            // ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
@@ -55,6 +60,29 @@ class ModelPeserta extends Model
             ->where('tbl_siswa.id_siswa', $id_siswa)
             ->get()->getRowArray();
     }
+
+
+
+    public function linkwa($id_siswa)
+    {
+        return $this->db->table('tbl_siswa')
+            ->select('
+            tbl_siswa.id_siswa,
+            tbl_siswa.nama_siswa,
+            tbl_siswa.nisn,
+            tbl_kelas.kelas,
+            tbl_guru.link_wa,
+            tbl_database.id_siswa,
+            tbl_database.id_kelas,
+        ')
+            ->join('tbl_database', 'tbl_database.id_siswa = tbl_siswa.id_siswa', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
+            ->where('tbl_siswa.id_siswa', $id_siswa)
+            ->get()
+            ->getRowArray();
+    }
+
 
 
 
@@ -191,6 +219,7 @@ class ModelPeserta extends Model
     public function Data($id_siswa)
     {
         return $this->db->table('tbl_siswa')
+
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
@@ -231,16 +260,50 @@ class ModelPeserta extends Model
     }
 
 
-    public function rekamdidik($nisn)
+    public function rekamdidik($id_siswa)
+    {
+        return $this->db->table('tbl_database')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_database.id_siswa', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
+            ->where('tbl_database.id_siswa', $id_siswa)
+            ->get()->getResultArray();
+    }
+
+
+
+    // public function rekamdidik($nisn)
+    // {
+    //     $query = $this->db->table('tbl_database')
+    //         ->where('tbl_database.nisn_siswa', $nisn)
+    //         ->get();
+
+    //     dd($this->db->getLastQuery()->getQuery());
+    // }
+
+
+
+
+
+
+
+
+
+
+    public function kelas_persiswa($nisn)
     {
         return $this->db->table('tbl_database')
             ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas_baru', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             ->where('tbl_database.nisn_siswa', $nisn)
             ->get()->getResultArray();
     }
+
+
+
 
     public function detail_data($nisn)
     {

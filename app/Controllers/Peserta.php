@@ -173,8 +173,10 @@ class Peserta extends BaseController
             'siswa'         => $this->ModelPeserta->DataPeserta($id_siswa),
             'validation'    =>  \Config\Services::validation(),
             'rekamdidik'    => $this->ModelPeserta->rekamdidik($id_siswa),
+            'datasiswa'    => $this->ModelPeserta->linkwa($id_siswa),
         ];
         return view('admin/peserta/v_detail_siswa', $data);
+        // var_dump($data);
     }
 
 

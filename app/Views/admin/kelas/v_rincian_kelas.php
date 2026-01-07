@@ -127,7 +127,7 @@ $ta = $db->table('tbl_ta')
 
                             <?php if ($kelas['id_tingkat'] == $value['id_tingkat']) { ?>
                                 <tr>
-                                    <td><input type="checkbox" name="nisn_siswa[]" value="<?= $value['nisn'] ?>" class="check-anak"></td>
+                                    <td><input type="checkbox" name="id_siswa[]" value="<?= $value['id_siswa'] ?>" class="check-anak"></td>
                                     <td><?= $value['nama_siswa'] ?></td>
                                     <td><?= $value['nisn'] ?></td>
                                     <td><?= $value['nama_tingkat'] ?></td>

@@ -120,14 +120,14 @@ class Kelas extends BaseController
     {
 
         $kelas = $this->ModelKelas->detail($id_kelas);
-        $nisn       = $_POST['nisn_siswa'];
+        $id_siswa       = $_POST['id_siswa'];
         $id_kelas   = $_POST['id_kelas_baru'];
         $id_ta   = $_POST['id_ta'];
 
-        $jml_siswa = count($nisn);
+        $jml_siswa = count($id_siswa);
         for ($i = 0; $i < $jml_siswa; $i++) {
             $data = array(
-                'nisn_siswa' => $nisn[$i],
+                'id_siswa' => $id_siswa[$i],
                 'id_kelas' => $id_kelas[$i],
                 'id_ta' => $id_ta[$i]
             );

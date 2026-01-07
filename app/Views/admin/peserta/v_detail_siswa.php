@@ -99,10 +99,10 @@ $ta = $db->table('tbl_ta')
                         <h5>Pembelajaran <button class="ikon btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#pilihkelas">Pilih Kelas</button></li>
                         </h5>
                         <ul style="list-style: none;">
-                            <li>Rombel : <?= $siswa['kelas'] ?>
-                            <li>Tingkat Pendidikan: <?= $siswa['tingkat'] ?></li>
+                            <!-- <li>Rombel :  -->
+                            <li>Tingkat Pendidikan: <?= $siswa['nama_tingkat'] ?></li>
                             <li>Semester Aktif : <?= $ta['ta'] ?>/<b><?= $ta['semester'] ?></b></li>
-                            <li>Link Wa :<?= $siswa['link_wa'] ?></li>
+                            <li>Link Wa :<?= $datasiswa['kelas'] ?></li>
                         </ul>
                     </div>
 
@@ -127,6 +127,9 @@ $ta = $db->table('tbl_ta')
                     </li>
                     <li class="nav-item">
                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-register" aria-controls="navs-pills-top-ortu" aria-selected="false">Data Lainnya</button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-rekamdidik" aria-controls="navs-pills-top-ortu" aria-selected="false">Rekam Didik</button>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -213,7 +216,7 @@ $ta = $db->table('tbl_ta')
                                     <hr>
                                     <li class="p-0">
                                         Telepon :
-                                        <span><a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $siswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $siswa['link_wa'] ?>"><?= $siswa['telp_ayah'] ?></a></span>
+                                        <span><a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $siswa['telp_ayah'] ?>%20dengan%20klik%20link%20ini%20<?= $siswa['telp_ayah'] ?>"><?= $siswa['telp_ayah'] ?></a></span>
                                     </li>
                                     <hr>
                                 </ul>
@@ -261,7 +264,7 @@ $ta = $db->table('tbl_ta')
 
                                     <li class="p-0">
                                         Telepon :
-                                        <span><a target="_blank" href="https://wa.me/<?= $siswa['telp_ibu'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $siswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $siswa['link_wa'] ?>"><?= $siswa['telp_ibu'] ?></a></span>
+                                        <span><a target="_blank" href="https://wa.me/<?= $siswa['telp_ibu'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $siswa['telp_ibu'] ?>%20dengan%20klik%20link%20ini%20<?= $siswa['telp_ibu'] ?>"><?= $siswa['telp_ibu'] ?></a></span>
                                     </li>
                                     <hr>
                                 </ul>
@@ -344,6 +347,28 @@ $ta = $db->table('tbl_ta')
                                     <hr>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="navs-pills-top-rekamdidik" role="tabpanel">
+                        <div class="row">
+                            <table class="table-stripped">
+                                <thead>
+                                    <tr>
+
+                                        <th>Kelas</th>
+                                        <th>Tahun Ajaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($rekamdidik as $data) { ?>
+                                        <tr>
+                                            <td><?= $data['kelas'] ?></td>
+                                            <td><?= $data['ta'] ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
 

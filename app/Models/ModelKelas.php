@@ -85,7 +85,7 @@ class ModelKelas extends Model
     public function datasiswa($id_kelas)
     {
         return $this->db->table('tbl_database')
-            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_database.id_siswa', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
             ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
@@ -102,12 +102,12 @@ class ModelKelas extends Model
     public function datanilai($id_kelas)
     {
         return $this->db->table('tbl_nilai')
-            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_nilai.nisn')
-            ->join('tbl_database', 'tbl_database.nisn_siswa = tbl_siswa.nisn')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas_baru')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_nilai.nisn')
+            ->join('tbl_database', 'tbl_database.id_siswa = tbl_siswa.id_siswa')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
             ->orderBy('nama_siswa', 'ASC')
-            ->where('tbl_database.id_kelas_baru', $id_kelas)
+            ->where('tbl_database.id_kelas', $id_kelas)
             ->get()
             ->getResultArray();
     }
@@ -143,7 +143,7 @@ class ModelKelas extends Model
     public function jml_siswa($id_kelas)
     {
         return $this->db->table('tbl_database')
-            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_database.id_siswa', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left')
             ->where('tbl_siswa.status_daftar', '3')
@@ -200,7 +200,7 @@ class ModelKelas extends Model
     public function DataPeserta($nisn)
     {
         return $this->db->table('tbl_siswa')
-            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_database.id_siswa', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
@@ -228,9 +228,9 @@ class ModelKelas extends Model
     public function kelas_grup()
     {
         $builder = $this->db->table('tbl_database');
-        $builder->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left');
+        $builder->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_database.id_siswa', 'left');
         $builder->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left');
-        $builder->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas_baru', 'left');
+        $builder->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left');
         $builder->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left');
         $builder->select('kelas, COUNT("kelas") AS jumlah');
         $builder->select('nama_guru');
@@ -250,13 +250,13 @@ class ModelKelas extends Model
     public function halamansiswa($nisn)
     {
         return $this->db->table('tbl_database')
-            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left')
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_database.id_siswa', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas_baru', 'left')
             ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
             ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
             ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
-            ->where('tbl_siswa.nisn', $nisn)
+            ->where('tbl_siswa.id_siswa', $nisn)
             ->get()->getRowArray();
     }
 
