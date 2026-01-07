@@ -51,6 +51,7 @@ class Filters extends BaseConfig
                     'siswa/*',
                     'kelulusan/',
                     'kelulusan/*',
+
                     '/',
                     // 
                 ]
@@ -150,7 +151,9 @@ class Filters extends BaseConfig
                     'presensi',
                     'presensi/*',
                     'rekap',
-                    'rekap/*'
+                    'rekap/*',
+                    'wilayah/',
+                    'wilayah/*',
                 ]
             ],
 

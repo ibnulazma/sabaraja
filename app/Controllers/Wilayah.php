@@ -3,41 +3,34 @@
 namespace App\Controllers;
 
 use App\Models\ModelWilayah;
+use CodeIgniter\RESTful\ResourceController;
 
-
-class Wilayah extends BaseController
+class Wilayah extends ResourceController
 {
+    protected $model;
 
     public function __construct()
     {
-        helper('form');
-        $this->ModelWilayah = new ModelWilayah();
+        $this->model = new ModelWilayah();
     }
 
-
-
-    public function dataKabupaten($id_provinsi)
+    public function provinsi()
     {
-        $data = $this->ModelWilayah->getKabupaten($id_provinsi);
-        echo '<option>--Pilih Kabupaten--</option>';
-        foreach ($data as $value) {
-            echo '<option value="' . $value['id_kabupaten'] . '">' . $value['city_name'] . '</option>';
-        }
+        return $this->respond($this->model->getProvinsi());
     }
-    public function dataKecamatan($id_kabupaten)
+
+    public function kabupaten($id)
     {
-        $data = $this->ModelWilayah->getKecamatan($id_kabupaten);
-        echo '<option>--Pilih Kecamatan--</option>';
-        foreach ($data as $value) {
-            echo '<option value="' . $value['id_kecamatan'] . '">' . $value['nama_kecamatan'] . '</option>';
-        }
+        return $this->respond($this->model->getKabupaten($id));
     }
-    public function dataDesa($id_kecamatan)
+
+    public function kecamatan($id)
     {
-        $data = $this->ModelWilayah->getDesa($id_kecamatan);
-        echo '<option>--Pilih Desa/Kelurahan--</option>';
-        foreach ($data as $value) {
-            echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>';
-        }
+        return $this->respond($this->model->getKecamatan($id));
+    }
+
+    public function desa($id)
+    {
+        return $this->respond($this->model->getDesa($id));
     }
 }

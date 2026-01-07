@@ -46,7 +46,7 @@ class Admin extends BaseController
             'jumlahptk'         => $this->ModelGuru->jumlahGuru(),
             'grupkelas'        => $this->ModelKelas->kelas_grup(),
             // 'siswa'            => $this->ModelPeserta->verifikasi(),
-            'provinsi'      => $this->ModelWilayah->provinsi(),
+            // 'provinsi'      => $this->ModelWilayah->getProvinsi(),
 
             'jumlahkelas'      => $this->ModelKelas->jumlahkelas(),
 

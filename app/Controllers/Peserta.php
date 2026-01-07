@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\ModelPeserta;
 use App\Models\ModelKelas;
 use App\Models\ModelSetting;
-// use App\Models\ModelWilayah;
+use App\Models\ModelWilayah;
 use App\Models\ModelTinggal;
 use App\Models\ModelTransportasi;
 use App\Models\ModelPenghasilan;
@@ -37,7 +37,7 @@ class Peserta extends BaseController
         $this->ModelPeserta = new ModelPeserta();
         $this->ModelKelas = new ModelKelas();
         $this->ModelSetting = new ModelSetting();
-        // $this->ModelWilayah = new ModelWilayah();
+        $this->ModelWilayah = new ModelWilayah();
         $this->ModelPekerjaan = new ModelPekerjaan();
         $this->ModelTinggal = new ModelTinggal();
         $this->ModelTransportasi = new ModelTransportasi();
@@ -163,7 +163,7 @@ class Peserta extends BaseController
             'subtitle'      => 'Profil Siswa',
             'menu'          => 'peserta',
             'submenu'       => 'peserta',
-            'provinsi'      => $this->ModelPeserta->provinsi(),
+            'provinsi'      => $this->ModelWilayah->getProvinsi(),
             'tinggal'       => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'kerja'         => $this->ModelPekerjaan->AllData(),

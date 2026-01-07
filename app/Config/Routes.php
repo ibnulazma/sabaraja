@@ -34,6 +34,12 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Auth::index');
 // $routes->get('/', 'Home::index');
 // $routes->get('/', 'Datatables::index');
+$routes->group('wilayah', function ($routes) {
+    $routes->get('provinsi', 'Wilayah::provinsi');
+    $routes->get('kabupaten/(:num)', 'Wilayah::kabupaten/$1');
+    $routes->get('kecamatan/(:num)', 'Wilayah::kecamatan/$1');
+    $routes->get('desa/(:num)', 'Wilayah::desa/$1');
+});
 
 
 // $routes->get('/', 'Home::index');

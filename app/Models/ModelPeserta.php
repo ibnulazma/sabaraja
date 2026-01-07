@@ -66,19 +66,13 @@ class ModelPeserta extends Model
     public function linkwa($id_siswa)
     {
         return $this->db->table('tbl_siswa')
-            ->select('
-            tbl_siswa.id_siswa,
-            tbl_siswa.nama_siswa,
-            tbl_siswa.nisn,
-            tbl_kelas.kelas,
-            tbl_guru.link_wa,
-            tbl_database.id_siswa,
-            tbl_database.id_kelas,
-        ')
+
             ->join('tbl_database', 'tbl_database.id_siswa = tbl_siswa.id_siswa', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_kelas.id_ta', 'left')
             ->where('tbl_siswa.id_siswa', $id_siswa)
+            ->where('tbl_ta.status', '1')
             ->get()
             ->getRowArray();
     }

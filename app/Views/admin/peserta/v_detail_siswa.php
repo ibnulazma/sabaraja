@@ -23,11 +23,6 @@ $ta = $db->table('tbl_ta')
 
 
 
-
-
-
-
-
 <div class="container-xxl flex-grow-1 container-p-y">
 
     <div class="row">
@@ -99,17 +94,32 @@ $ta = $db->table('tbl_ta')
                         <h5>Pembelajaran <button class="ikon btn btn-primary btn-sm mb-4" data-bs-toggle="modal" data-bs-target="#pilihkelas">Pilih Kelas</button></li>
                         </h5>
                         <ul style="list-style: none;">
-                            <!-- <li>Rombel :  -->
+                            <li>Rombel :
+                                <?php if (!empty($datasiswa['kelas'])): ?>
+                                    <b><?= $datasiswa['kelas']; ?></b>
+                                <?php else: ?>
+                                    <b>Belum dimasukkan ke rombel</b>
+                                <?php endif; ?>
+                            </li>
                             <li>Tingkat Pendidikan: <?= $siswa['nama_tingkat'] ?></li>
                             <li>Semester Aktif : <?= $ta['ta'] ?>/<b><?= $ta['semester'] ?></b></li>
-                            <li>Link Wa :<?= $datasiswa['kelas'] ?></li>
+                            <li> Link Wa :
+                                <?php if (!empty($datasiswa['link_wa'])): ?>
+                                    <a href="<?= $datasiswa['link_wa']; ?>" target="_blank">
+                                        <i class='bx  bx-mobile'></i>
+                                    </a>
+
+                                <?php else: ?>
+                                    <b>Link WhatsApp belum tersedia</b>
+                                <?php endif; ?>
+                            </li>
                         </ul>
                     </div>
 
                     <div class="mapii">
                         <h5> Tempat Tinggal <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#alamat"><i class='bx bxs-edit-alt'></i></button> </h5>
                         <p><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?></p>
-                        <p>Desa/Kel <?= $siswa['desa'] ?> Kec. <?= $siswa['nama_kecamatan'] ?></p>
+                        <p>Desa/Kel <?= $siswa['desa'] ?> Kec. <?= $siswa['nama_kecamatan'] ?> Kab. <?= $siswa['city_name'] ?></p>
                         <p>Titik Koordinat : <?= $siswa['lokasi'] ?></p>
                         <div id="map" style="height:500px"></div>
                     </div>
@@ -216,7 +226,7 @@ $ta = $db->table('tbl_ta')
                                     <hr>
                                     <li class="p-0">
                                         Telepon :
-                                        <span><a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $siswa['telp_ayah'] ?>%20dengan%20klik%20link%20ini%20<?= $siswa['telp_ayah'] ?>"><?= $siswa['telp_ayah'] ?></a></span>
+                                        <span><a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $datasiswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $datasiswa['link_wa'] ?>"><?= $siswa['telp_ayah'] ?></a></span>
                                     </li>
                                     <hr>
                                 </ul>
@@ -351,12 +361,13 @@ $ta = $db->table('tbl_ta')
                     </div>
                     <div class="tab-pane fade" id="navs-pills-top-rekamdidik" role="tabpanel">
                         <div class="row">
-                            <table class="table-stripped">
+                            <table class="table table-stripped">
                                 <thead>
                                     <tr>
 
                                         <th>Kelas</th>
                                         <th>Tahun Ajaran</th>
+                                        <th>Semester</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -364,6 +375,7 @@ $ta = $db->table('tbl_ta')
                                         <tr>
                                             <td><?= $data['kelas'] ?></td>
                                             <td><?= $data['ta'] ?></td>
+                                            <td><?= $data['semester'] ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -384,7 +396,7 @@ $ta = $db->table('tbl_ta')
 
 <div class="modal fade" id="alamat" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <?= form_open('peserta/edit_alamat/' . $siswa['nisn']) ?>
+        <?= form_open('peserta/edit_alamat/' . $siswa['id_siswa']) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Data Lainnya</h5>
@@ -410,62 +422,54 @@ $ta = $db->table('tbl_ta')
                     </div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col-sm-4">
-                        <label for="">Provinsi</label>
-                    </div>
+                    <label class="col-sm-4 col-form-label" for="tempattinggal">Provinsi</label>
                     <div class="col-sm-8">
-                        <select name="prov" class="form-control" id="prov">
-                            <option value="">--Pilih Provinsi--</option>
-                            <?php foreach ($provinsi as $key => $prov) { ?>
-                                <option value="<?= $prov['id_provinsi'] ?>"><?= $prov['prov_name'] ?></option>
-                            <?php } ?>
+                        <select id="prov" class="form-control" name="provinsi">
+                            <option value="">-- Pilih Provinsi --</option>
                         </select>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <label class="col-sm-4 col-form-label" for="tempattinggal">Kabupaten</label>
+                    <div class="col-sm-8">
+                        <select id="kab" class="form-control" name="kabupaten">
+                            <option value="">-- Pilih Kabupaten --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <label class="col-sm-4 col-form-label" for="tempattinggal">Kecamatan</label>
+                    <div class="col-sm-8">
+                        <select id="kec" class="form-control" name="kecamatan">
+                            <option value="">-- Pilih Kecamatan --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <label class="col-sm-4 col-form-label" for="tempattinggal">Desa</label>
+                    <div class="col-sm-8">
+                        <select id="kel" class="form-control" name="desa">
+                            <option value="">-- Pilih Desa/Kelurahan --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <label class="col-sm-4 col-form-label" for="tempattinggal">Kode Pos</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="kodepos" value="<?= $siswa['kodepos'] ?>">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <label class="col-sm-4 col-form-label" for="tempattinggal">Titik Lokasi</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="lokasi" value="<?= $siswa['lokasi'] ?>">
                     </div>
                 </div>
 
-                <div class="row mb-4">
-                    <div class="col-sm-4">
-                        <label for="">Kab/Kota</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <select name="kabupaten" id="kab" class="form-control">
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-sm-4">
-                        <label for="">Kecamatan</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <select name="kecamatan" id="kec" class="form-control">
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-sm-4">
-                        <label for="">Desa/Kel</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <select name="desa" id="kel" class="form-control">
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-sm-4">
-                        <label for="">Kode Pos</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" name="kodepos" class="form-control" value="<?= $siswa['kodepos'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-sm-4">
-                        <label for="">Titik Koordinat</label>
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" name="lokasi" class="form-control" value="<?= $siswa['lokasi'] ?>">
-                    </div>
-                </div>
+
+
+
+
 
             </div>
             <div class="modal-footer">
@@ -476,11 +480,6 @@ $ta = $db->table('tbl_ta')
         <?= form_close() ?>
     </div>
 </div>
-
-
-
-
-
 
 
 <!-- ModalIdentitas -->
@@ -958,6 +957,7 @@ $ta = $db->table('tbl_ta')
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
 
 
 <script src="<?= base_url() ?>/template/assets/vendor/libs/jquery/jquery.js"></script>
@@ -1005,6 +1005,171 @@ $ta = $db->table('tbl_ta')
 </script>
 
 
+
+
+<script>
+    $(document).ready(function() {
+
+        // =========================
+        // DATA EDIT (KOSONGKAN JIKA TAMBAH)
+        // =========================
+        const siswa = {
+            prov: "<?= $siswa['id_provinsi'] ?>",
+            kab: "<?= $siswa['id_kabupaten'] ?>",
+            kec: "<?= $siswa['id_kecamatan'] ?>",
+            des: "<?= $siswa['id_desa'] ?>"
+        };
+
+        // =========================
+        // HELPER
+        // =========================
+        function setLoading(el, text = 'Loading...') {
+            $(el)
+                .prop('disabled', true)
+                .html(`<option value="">${text}</option>`);
+        }
+
+        function setDefault(el, text) {
+            $(el)
+                .prop('disabled', false)
+                .html(`<option value="">${text}</option>`);
+        }
+
+        // =========================
+        // LOAD SELECT (DENGAN CALLBACK)
+        // =========================
+        function loadSelect(url, el, valueKey, textKey, selected = '', done = null) {
+            setLoading(el);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(res) {
+                    let opt = `<option value="">-- Pilih --</option>`;
+
+                    if (res && res.length) {
+                        res.forEach(item => {
+                            const sel = selected == item[valueKey] ? 'selected' : '';
+                            opt += `<option value="${item[valueKey]}" ${sel}>${item[textKey]}</option>`;
+                        });
+                    }
+
+                    $(el)
+                        .prop('disabled', false)
+                        .html(opt);
+
+                    if (typeof done === 'function') done();
+                },
+                error: function() {
+                    setDefault(el, 'Gagal load data');
+                }
+            });
+        }
+
+        // =========================
+        // LOAD AWAL (EDIT DATA)
+        // =========================
+        loadSelect(
+            "<?= base_url('wilayah/provinsi') ?>",
+            '#prov',
+            'id_provinsi',
+            'prov_name',
+            siswa.prov,
+            function() {
+
+                if (!siswa.prov) return;
+
+                loadSelect(
+                    "<?= base_url('wilayah/kabupaten') ?>/" + siswa.prov,
+                    '#kab',
+                    'id_kabupaten',
+                    'city_name',
+                    siswa.kab,
+                    function() {
+
+                        if (!siswa.kab) return;
+
+                        loadSelect(
+                            "<?= base_url('wilayah/kecamatan') ?>/" + siswa.kab,
+                            '#kec',
+                            'id_kecamatan',
+                            'nama_kecamatan',
+                            siswa.kec,
+                            function() {
+
+                                if (!siswa.kec) return;
+
+                                loadSelect(
+                                    "<?= base_url('wilayah/desa') ?>/" + siswa.kec,
+                                    '#kel',
+                                    'id_desa',
+                                    'desa',
+                                    siswa.des
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+        // =========================
+        // EVENT USER GANTI MANUAL
+        // =========================
+        $('#prov').on('change', function() {
+            const id = this.value;
+
+            setDefault('#kab', '-- Pilih Kabupaten --');
+            setDefault('#kec', '-- Pilih Kecamatan --');
+            setDefault('#kel', '-- Pilih Desa --');
+
+            if (id) {
+                loadSelect(
+                    "<?= base_url('wilayah/kabupaten') ?>/" + id,
+                    '#kab',
+                    'id_kabupaten',
+                    'city_name'
+                );
+            }
+        });
+
+        $('#kab').on('change', function() {
+            const id = this.value;
+
+            setDefault('#kec', '-- Pilih Kecamatan --');
+            setDefault('#kel', '-- Pilih Desa --');
+
+            if (id) {
+                loadSelect(
+                    "<?= base_url('wilayah/kecamatan') ?>/" + id,
+                    '#kec',
+                    'id_kecamatan',
+                    'nama_kecamatan'
+                );
+            }
+        });
+
+        $('#kec').on('change', function() {
+            const id = this.value;
+
+            setDefault('#kel', '-- Pilih Desa --');
+
+            if (id) {
+                loadSelect(
+                    "<?= base_url('wilayah/desa') ?>/" + id,
+                    '#kel',
+                    'id_desa',
+                    'desa'
+                );
+            }
+        });
+
+    });
+</script>
 
 
 
