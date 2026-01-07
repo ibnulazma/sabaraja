@@ -12,7 +12,7 @@ class ModelPeserta extends Model
         return $this->db->table('tbl_siswa')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
-            ->where('tbl_ta.status', '1')
+            // ->where('tbl_ta.status', '1')
             ->where('aktif', '1')
             ->where('status_daftar', '3')
             ->get()

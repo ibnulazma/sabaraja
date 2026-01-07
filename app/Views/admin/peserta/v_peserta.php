@@ -96,7 +96,7 @@ $ta = $db->table('tbl_ta')
                                     <td><?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
                                     <td class=""><?= $value["nama_ibu"] ?></td>
                                     <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
-                                    <td class="text-center"><?= $value["tingkat"] ?></td>
+                                    <td class="text-center"><?= $value["nama_tingkat"] ?></td>
                                     <td class="text-center">
 
                                         <a href="" data-bs-toggle="modal" data-bs-target="#bukuinduk<?= $value['id_siswa'] ?>"> <i class='bx bxs-book bx-sm text-success'></i></i> </a>
@@ -377,7 +377,7 @@ $ta = $db->table('tbl_ta')
                                 <div class="col-sm-8">
                                     <select name="id_tingkat" id="" class="form-control">
                                         <?php foreach ($tingkat as $key => $val) { ?>
-                                            <option value="<?= $val['id_tingkat'] ?>"><?= $val['tingkat'] ?></option>
+                                            <option value="<?= $val['id_tingkat'] ?>"><?= $val['nama_tingkat'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -488,7 +488,7 @@ $ta = $db->table('tbl_ta')
                                 <td><input type="checkbox" class="check-item" name="nisn[]" value="<?= $data['nisn'] ?>"></td>
                                 <td><?= $data['nama_siswa'] ?></td>
                                 <td><?= $data['nisn'] ?></td>
-                                <td><?= $data['tingkat'] ?></td>
+                                <td><?= $data['nama_tingkat'] ?></td>
                                 <input type="hidden" name="aktif[]" value="0">
                                 <input type="hidden" name="id_tingkat[]" value="0">
                                 <input type="hidden" name="id_ta[]" value="0">
@@ -538,7 +538,7 @@ $ta = $db->table('tbl_ta')
                                 <td><input type="checkbox" class="check-semua" name="nisn[]" value="<?= $data['nisn'] ?>"></td>
                                 <td><?= $data['nama_siswa'] ?></td>
                                 <td><?= $data['nisn'] ?></td>
-                                <td><?= $data['tingkat'] ?></td>
+                                <td><?= $data['nama_tingkat'] ?></td>
                                 <input type="hidden" name="id_ta[]" value="<?= $ta['id_ta'] ?>">
                                 <input type="hidden" class="form-control" name="id_tingkat[]" value="<?= $data['id_tingkat'] + 1 ?>">
                             </tr>

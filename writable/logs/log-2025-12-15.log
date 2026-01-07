@@ -1,0 +1,38 @@
+ERROR - 2025-12-15 15:08:16 --> Column 'indo' cannot be null
+CRITICAL - 2025-12-15 15:08:16 --> Column 'indo' cannot be null
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Kelas.php(464): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->upload('25')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2025-12-15 15:09:27 --> Column 'sakit' cannot be null
+CRITICAL - 2025-12-15 15:09:27 --> Column 'sakit' cannot be null
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Kelas.php(464): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->upload('25')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2025-12-15 15:14:40 --> Undefined index: nama_siswa
+#0 C:\xampp\htdocs\sabaraja\app\Views\admin\kelas\ledger.php(81): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 81, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/kelas/led...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Kelas.php(220): view('admin/kelas/led...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Kelas->ledger('25')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Kelas))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}

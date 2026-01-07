@@ -20,7 +20,7 @@ $ta = $db->table('tbl_ta')
                         <div class="card-body">
                             <h5 class="card-title text-primary">Selamat Datang Admin! 🎉</h5>
                             <p class="mb-4">
-                                Semester Aktif: <span class="fw-bold">Ganjil</span> Tahun Ajaran <?= $ta['ta'] ?>
+                                Semester Aktif: <span class="fw-bold"><?= $ta['semester']  ?></span> Tahun Ajaran <?= $ta['ta'] ?>
                             </p>
                             <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
                         </div>
@@ -148,13 +148,12 @@ $ta = $db->table('tbl_ta')
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                                    <i class="bxr bx-biceps bx-lg text-info"></i>
                                 </div>
 
                             </div>
-                            <span class="fw-semibold d-block mb-1">Transactions</span>
-                            <h3 class="card-title mb-2">$14,857</h3>
-                            <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.14%</small>
+                            <span class="d-block mb-1">Eskul</span>
+                            <h3 class="card-title text-nowrap mb-2">7</h3>
                         </div>
                     </div>
                 </div>

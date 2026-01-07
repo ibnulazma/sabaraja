@@ -13,7 +13,16 @@ $ta = $db->table('tbl_ta')
 
 ?>
 
-<div class="swal" data-swal="<?= session()->getFlashdata('pesan'); ?>"></div>
+
+
+
+
+
+
+
+
+
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card mb-4  ">
         <div class="card-header ">
@@ -23,7 +32,7 @@ $ta = $db->table('tbl_ta')
                     <button class="btn btn-primary btn-sm" data-bs-target="#tambah" data-bs-toggle="modal">Tambah Peserta Didik</button>
                     <button class="btn btn-warning btn-sm" data-bs-target="#upload" data-bs-toggle="modal">Import Nilai</button>
                 </div>
-                <!-- <button class="btn btn-eksport btn-sm" data-bs-target="#tambah" data-bs-toggle="modal">Tambah Rombel</button> -->
+
             </div>
             <p class="text-muted mb-4">Tahun Pelajaran <b>Aktif</b> <?= $ta['ta'] ?> Semester <b> <?= $ta['semester'] ?></b></p>
 
@@ -72,7 +81,7 @@ $ta = $db->table('tbl_ta')
                                     <a href="<?= base_url('kelas/halamansiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-success "><i class="bx bxs-file"></i> </a>
                                     <a href="<?= base_url('kelas/biodatasiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-secondary "><i class="bx bx-id-card"></i> </a>
                                     <a href="<?= base_url('kelas/labelsiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-dark"><i class="bx bx-purchase-tag-alt"></i> </a>
-                                    <a href="<?= base_url('kelas/hapusanggota/' . $value['id_database']) ?>" target="_blank" class="btn btn-danger btn-sm"><i class="bx bxs-trash-alt"></i></a>
+                                    <a href="<?= base_url('kelas/hapusanggota/' . $value['id_database'] . '/' . $value['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="bx bxs-trash-alt"></i></a>
                                 </div>
                             </td>
                         </tr>
@@ -121,7 +130,7 @@ $ta = $db->table('tbl_ta')
                                     <td><input type="checkbox" name="nisn_siswa[]" value="<?= $value['nisn'] ?>" class="check-anak"></td>
                                     <td><?= $value['nama_siswa'] ?></td>
                                     <td><?= $value['nisn'] ?></td>
-                                    <td><?= $value['tingkat'] ?></td>
+                                    <td><?= $value['nama_tingkat'] ?></td>
                                     <td><?= $value['jenis_kelamin'] ?></td>
                                     <input type="hidden" name="id_kelas_baru[]" value="<?= $kelas['id_kelas'] ?>">
                                     <input type="hidden" name="id_ta[]" value="<?= $ta['id_ta'] ?>">
@@ -178,41 +187,73 @@ $ta = $db->table('tbl_ta')
 
 
 
+
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?php if (session()->getFlashdata('pesan')) : ?>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '<?= session()->getFlashdata('pesan'); ?>',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    </script>
+<?php endif; ?>
+
+
+
 
 <script>
     const $select = $('select[name="ap"]');
+
+    $("<option />", {
+        value: "",
+        text: "-- Pilih Cetak --",
+        selected: true,
+        disabled: true
+    }).appendTo($select);
+
     const opts = [{
-            'value': '<?= base_url('kelas/halaman/' . $kelas['id_kelas']) ?>',
-            'text': 'Halaman Depan Rapot'
+            value: '<?= base_url('kelas/halaman/' . $kelas['id_kelas']) ?>',
+            text: 'Halaman Depan Rapot'
         },
         {
-            'value': '<?= base_url('kelas/label/' . $kelas['id_kelas']) ?>',
-            'text': 'Label Nama'
+            value: '<?= base_url('kelas/label/' . $kelas['id_kelas']) ?>',
+            text: 'Label Nama'
         },
         {
-            'value': '<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>',
-            'text': 'Biodata Rapot',
-
+            value: '<?= base_url('kelas/print/' . $kelas['id_kelas']) ?>',
+            text: 'Biodata Rapot'
         },
         {
-            'value': '<?= base_url('kelas/ledger/' . $kelas['id_kelas']) ?>',
-            'text': 'Leger',
-
+            value: '<?= base_url('kelas/ledger/' . $kelas['id_kelas']) ?>',
+            text: 'Leger'
+        },
+        {
+            value: '<?= base_url('kelas/nilai/' . $kelas['id_kelas']) ?>',
+            text: 'Rapot P3MP'
         }
     ];
 
-    opts.forEach(function(obj) {
+    opts.forEach(obj => {
         $("<option />", {
             value: obj.value,
             text: obj.text
-        }).appendTo($select)
+        }).appendTo($select);
     });
 
     $select.on("change", function() {
-        window.location = this.value;
+        if (this.value !== "") {
+            window.location.href = this.value;
+        }
     });
+    $select.prop('selectedIndex', 0);
 </script>
+
 
 
 <script>

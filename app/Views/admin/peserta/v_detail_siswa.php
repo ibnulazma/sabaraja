@@ -21,11 +21,6 @@ $ta = $db->table('tbl_ta')
 </style>
 
 
-<div id="my_camera"></div>
-<br>
-<button onclick="take_snapshot()">Ambil Foto</button>
-
-<div id="results"></div>
 
 
 
@@ -669,16 +664,17 @@ $ta = $db->table('tbl_ta')
                         <label class="col-sm-4 col-form-label" for="transportasi">Penghasilan</label>
                         <div class="col-sm-8">
                             <select name="hasil_ibu" class="form-control">
-                                <?php foreach ($hasil as $key => $row) { ?>
-                                    <?php if ($siswa['hasil_ibu'] == $row['penghasilan']) {
-                                        $select = "selected";
-                                    } else {
-                                        $select = "";
-                                    }
-                                    echo "<option value=" . $row['penghasilan'] . " $select>" . $row['penghasilan'] . "</option>";
-                                    ?>
-                                <?php } ?>
-
+                                <?php if (is_array($hasil)) : ?>
+                                    <?php foreach ($hasil as  $row) { ?>
+                                        <?php if ($siswa['hasil_ibu'] == $row['penghasilan']) {
+                                            $select = "selected";
+                                        } else {
+                                            $select = "";
+                                        }
+                                        echo "<option value=" . $row['penghasilan'] . " $select>" . $row['penghasilan'] . "</option>";
+                                        ?>
+                                    <?php } ?>
+                                <?php endif; ?>
                             </select>
                         </div>
                     </div>
@@ -959,40 +955,9 @@ $ta = $db->table('tbl_ta')
         })
     }
 </script>
-<script>
-    Webcam.set({
-        width: 320,
-        height: 240,
-        image_format: 'jpeg',
-        jpeg_quality: 90
-    });
 
-    Webcam.attach('#my_camera');
-</script>
 
-<script>
-    function take_snapshot() {
-        Webcam.snap(function(data_uri) {
-            document.getElementById('results').innerHTML =
-                '<img src="' + data_uri + '"/>';
 
-            // kirim ke server
-            fetch('/profile/camera', {
-                    method: 'POST',
-                    body: new URLSearchParams({
-                        image: data_uri
-                    }),
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                })
-                .then(res => res.json())
-                .then(res => {
-                    alert("Foto disimpan: " + res.file);
-                });
-        });
-    }
-</script>
 
 
 

@@ -106,7 +106,7 @@ class Kelas extends BaseController
             'kelas'         => $this->ModelKelas->detail($id_kelas),
             'jml_siswa'     => $this->ModelKelas->jml_siswa($id_kelas),
             'datasiswa'     => $this->ModelKelas->datasiswa($id_kelas),
-            'tidakpunya'    => $this->ModelKelas->siswablmpuna($id_kelas),
+            'tidakpunya'    => $this->ModelKelas->siswablmpuna(),
             // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
         ];
         return view('admin/kelas/v_rincian_kelas', $data);
@@ -128,7 +128,7 @@ class Kelas extends BaseController
         for ($i = 0; $i < $jml_siswa; $i++) {
             $data = array(
                 'nisn_siswa' => $nisn[$i],
-                'id_kelas_baru' => $id_kelas[$i],
+                'id_kelas' => $id_kelas[$i],
                 'id_ta' => $id_ta[$i]
             );
             $this->ModelKelas->add_data($data);
@@ -145,15 +145,16 @@ class Kelas extends BaseController
 
     //HAPUS ANGGOTA KELAS
 
-    public function hapusanggota($id_siswa)
+    public function hapusanggota($id_siswa, $id_kelas)
     {
         $data = [
             'id_database' => $id_siswa,
+            'id_kelas' => $id_kelas
 
         ];
         $this->ModelKelas->hapus($data);
         session()->setFlashdata('pesan', 'Siswa Berhasil Di Hapus Dari Kelas !!!');
-        return redirect()->to(base_url('kelas'));
+        return redirect()->to(base_url('kelas/rincian_kelas/' . $id_kelas));
     }
 
 
@@ -357,108 +358,125 @@ class Kelas extends BaseController
 
     public function upload($id_kelas)
     {
+        $db = \Config\Database::connect();
 
-        $db     = \Config\Database::connect();
+        // Tahun aktif
         $ta = $db->table('tbl_ta')
             ->where('status', '1')
-            ->get()->getRowArray();
+            ->get()
+            ->getRowArray();
+
         $kelas = $this->ModelKelas->detail($id_kelas);
-        $validation = \Config\Services::validation();
-        $valid = $this->validate(
-            [
-                'fileimport' => [
-                    'label' => 'Input File',
-                    'rules' => 'uploaded[fileimport]|ext_in[fileimport,xls,xlsx]',
-                    'error' => [
-                        'uploaded' => '{field} wajib diisi',
-                        'ext_in' => '{field} harus ekstensi xls atau xlsx'
-                    ]
+
+        // VALIDASI FILE
+        if (!$this->validate([
+            'fileimport' => [
+                'rules' => 'uploaded[fileimport]|ext_in[fileimport,xls,xlsx]',
+                'errors' => [
+                    'uploaded' => 'File wajib diupload',
+                    'ext_in'   => 'File harus Excel (xls / xlsx)'
                 ]
             ]
-        );
-
-
-
-        $file = $this->request->getFile('fileimport');
-        $ext = $file->getClientExtension();
-
-        if ($ext == 'xls') {
-            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-        } else {
-            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        ])) {
+            return redirect()->back()->withInput();
         }
 
-        $spreadsheet = $render->load($file);
-        $data = $spreadsheet->getActiveSheet()->toArray();
-        $jumlaherror = 0;
-        $jumlahsukses = 0;
-        foreach ($data as $x => $row) {
-            if ($x == 0) {
+        $file = $this->request->getFile('fileimport');
+        $ext  = $file->getClientExtension();
+
+        $reader = ($ext == 'xls')
+            ? new \PhpOffice\PhpSpreadsheet\Reader\Xls()
+            : new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+
+        $spreadsheet = $reader->load($file);
+        $rows = $spreadsheet->getActiveSheet()->toArray();
+
+        $jumlahSukses = 0;
+        $jumlahError  = 0;
+
+        // TRANSAKSI (AMAN)
+        $db->transStart();
+
+        foreach ($rows as $i => $row) {
+
+            // skip header
+            if ($i == 0) continue;
+
+            // skip baris kosong
+            if (empty($row[1])) continue;
+
+            $nisn     = trim($row[1]);
+            $pai      = is_numeric($row[2]) ? $row[2] : null;
+            $pkn        = is_numeric($row[3]) ? $row[3] : null;
+            $indo           = is_numeric($row[4]) ? $row[4] : null;
+            $mtk           = is_numeric($row[5]) ? $row[5] : null;
+            $ipa            = is_numeric($row[6]) ? $row[6] : null;
+            $ips            = is_numeric($row[7]) ? $row[7] : null;
+            $inggris        = is_numeric($row[8]) ? $row[8] : null;
+            $sbk            = is_numeric($row[9]) ? $row[9] : null;
+            $pjok           = is_numeric($row[10]) ? $row[10] : null;
+            $prky           = is_numeric($row[11]) ? $row[11] : null;
+            $tik            = is_numeric($row[12]) ? $row[12] : null;
+            $tjwd           = is_numeric($row[13]) ? $row[13] : null;
+            $trjmh          = is_numeric($row[14]) ? $row[14] : null;
+            $fiqih          = is_numeric($row[15]) ? $row[15] : null;
+            $mhd            = is_numeric($row[16]) ? $row[16] : null;
+            $btq            = is_numeric($row[17]) ? $row[17] : null;
+            $sakit          = is_numeric($row[18]) ? $row[18] : null;
+            $izin           = is_numeric($row[19]) ? $row[19] : null;
+            $alfa           = is_numeric($row[20]) ? $row[20] : null;
+
+            // CEK DUPLIKAT (nisn + tahun ajaran)
+            $cek = $db->table('tbl_nilai')
+                ->where('nisn', $nisn)
+                ->where('id_ta', $ta['id_ta'])
+                ->get()
+                ->getRow();
+
+            if ($cek) {
+                $jumlahError++;
                 continue;
             }
 
+            $db->table('tbl_nilai')->insert([
+                'nisn'    => $nisn,
+                'pai'     => $pai,
+                'pkn'       => $pkn,
+                'nisn'      => $nisn,
+                'pai'       => $pai,
+                'pkn '      => $pkn,
+                'indo'      => $indo,
+                'mtk'       => $mtk,
+                'ipa'       => $ipa,
+                'ips'       => $ips,
+                'inggris'   => $inggris,
+                'sbk'       => $sbk,
+                'pjok'      => $pjok,
+                'prky'      => $prky,
+                'tik'       => $tik,
+                'tjwd'      => $tjwd,
+                'trjmh '    => $trjmh,
+                'fiqih '    => $fiqih,
+                'mhd '      => $mhd,
+                'btq '      => $btq,
+                'sakit '    => $sakit,
+                'izin '     => $izin,
+                'alfa '     => $alfa,
+                'id_ta'   => $ta['id_ta']
+            ]);
 
-            $id_nilai = $row[0];
-            $nisn           = $row[1];
-            $pai            = $row[2];
-            // $pkn            = $row[3];
-            // $indo           = $row[4];
-            // $mtk            = $row[5];
-            // $ipa            = $row[6];
-            // $ips            = $row[7];
-            $inggris        = $row[3];
-            // $sbk            = $row[9];
-            // $pjok           = $row[10];
-            // $prky           = $row[11];
-            // $tik            = $row[12];
-            // $tjwd           = $row[13];
-            // $trjmh          = $row[14];
-            // $fiqih          = $row[15];
-            // $mhd            = $row[16];
-            // $btq            = $row[17];
-            // $sakit          = $row[18];
-            // $izin           = $row[19];
-            // $alfa           = $row[20];
-
-            $db = \Config\Database::connect();
-
-            $ceknonis = $db->table('tbl_nilai')->getWhere(['id_nilai' => $id_nilai])->getResult();
-
-            if (count($ceknonis) > 0) {
-                $jumlaherror++;
-            } else {
-                $datasimpan = [
-                    'nisn'      => $nisn,
-                    'pai'       => $pai,
-                    // 'pkn '      => $pkn,
-                    // 'indo'      => $indo,
-                    // 'mtk'       => $mtk,
-                    // 'ipa'       => $ipa,
-                    // 'ips'       => $ips,
-                    'inggris'   => $inggris,
-                    // 'sbk'       => $sbk,
-                    // 'pjok'      => $pjok,
-                    // 'prky'      => $prky,
-                    // 'tik'       => $tik,
-                    // 'tjwd'      => $tjwd,
-                    // 'trjmh '    => $trjmh,
-                    // 'fiqih '    => $fiqih,
-                    // 'mhd '      => $mhd,
-                    // 'btq '      => $btq,
-                    // 'sakit '    => $sakit,
-                    // 'izin '     => $izin,
-                    // 'alfa '     => $alfa,
-                    'id_ta'     => $ta['id_ta'],
-
-                ];
-
-                $db->table('tbl_nilai')->insert($datasimpan);
-                $jumlahsukses++;
-            }
+            $jumlahSukses++;
         }
-        // $this->session->setFlashdata('pesan', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
+
+        $db->transComplete();
+
+        session()->setFlashdata('swal', [
+            'title' => 'Upload Nilai',
+            'html'  => "Berhasil: <b>$jumlahSukses</b><br>Gagal: <b>$jumlahError</b>",
+            'icon'  => ($jumlahError > 0) ? 'warning' : 'success'
+        ]);
+
         return redirect()->to('kelas/rincian_kelas/' . $kelas['id_kelas']);
-        // }
     }
 
 

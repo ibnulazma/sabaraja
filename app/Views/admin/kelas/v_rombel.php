@@ -48,7 +48,7 @@ $ta = $db->table('tbl_ta')
                             <td class="text-center"><?= $value['kelas'] ?></td>
                             <td class="text-center"><?= $value['nama_guru'] ?></td>
                             <td class="text-center"><a href="<?= base_url('kelas/rincian_kelas/' . $value['id_kelas']) ?>" class=" text-primary">Lihat Detail</td>
-                            <td class="text-center"><?= $value['tingkat'] ?></td>
+                            <td class="text-center"><?= $value['nama_tingkat'] ?></td>
 
                             <td class="text-center">
                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#edit<?= $value['id_kelas'] ?>"><i class="bx bxs-pencil"></i></button>
@@ -90,7 +90,7 @@ $ta = $db->table('tbl_ta')
                     <select name="id_tingkat" id="" class="form-control">
                         <option value="">Pilih Tingkat</option>
                         <?php foreach ($tingkat as $key => $value) { ?>
-                            <option value="<?= $value['id_tingkat'] ?>"><?= $value['tingkat'] ?></option>
+                            <option value="<?= $value['id_tingkat'] ?>"><?= $value['nama_tingkat'] ?></option>
                         <?php  } ?>
                     </select>
                 </div>
@@ -133,7 +133,7 @@ $ta = $db->table('tbl_ta')
                         <select name="id_tingkat" id="" class="form-control">
                             <option value="">Pilih Tingkat</option>
                             <?php foreach ($tingkat as $key => $value) { ?>
-                                <option value="<?= $value['id_tingkat'] ?>"><?= $value['tingkat'] ?></option>
+                                <option value="<?= $value['id_tingkat'] ?>"><?= $value['nama_tingkat'] ?></option>
                             <?php  } ?>
                         </select>
                     </div>

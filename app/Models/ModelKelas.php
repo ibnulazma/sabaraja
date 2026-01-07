@@ -7,16 +7,6 @@ use CodeIgniter\Model;
 class ModelKelas extends Model
 {
 
-
-
-
-
-
-
-
-
-
-
     public function AllData()
     {
         return $this->db->table('tbl_kelas')
@@ -78,10 +68,15 @@ class ModelKelas extends Model
     public function detail($id_kelas)
     {
         return $this->db->table('tbl_kelas')
-            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
-            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_kelas.id_ta', 'left')
+            ->select('
+           tbl_kelas.*,
+            tbl_tingkat.nama_tingkat,
+            tbl_tingkat.id_tingkat,
+            tbl_guru.nama_guru
+        ')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_kelas.id_tingkat', 'left')
-            ->where('id_kelas', $id_kelas)
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
+            ->where('tbl_kelas.id_kelas', $id_kelas)
             ->get()
             ->getRowArray();
     }
@@ -91,8 +86,7 @@ class ModelKelas extends Model
     {
         return $this->db->table('tbl_database')
             ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas_baru', 'left')
-
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
             ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
             ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
@@ -133,13 +127,13 @@ class ModelKelas extends Model
 
 
     // siswa yang belum dapet kelas
-    public function siswablmpuna($id_kelas)
+    public function siswablmpuna()
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-            ->where('status_daftar', '3')
-            ->where('tbl_siswa.id_kelas', $id_kelas)
-            ->orderBy('nama_siswa', 'ASC')
+
+
+            // ->where('jenis_kelamin', 'Laki-laki')
             ->get()
             ->getResultArray();
     }
@@ -150,11 +144,11 @@ class ModelKelas extends Model
     {
         return $this->db->table('tbl_database')
             ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_database.nisn_siswa', 'left')
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas_baru', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_database.id_ta', 'left')
             ->where('tbl_siswa.status_daftar', '3')
             ->where('tbl_ta.status', '1')
-            ->where('tbl_database.id_kelas_baru', $id_kelas)
+            ->where('tbl_database.id_kelas', $id_kelas)
             // ->where('jenis_kelamin', 'Laki-laki')
             ->countAllResults();
     }

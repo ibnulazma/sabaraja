@@ -155,7 +155,8 @@ class Peserta extends BaseController
     public function detail_siswa($id_siswa)
     {
         session();
-
+        $db     = \Config\Database::connect();
+        $hasil = $db->table('tbl_penghasilan')->get()->getResultArray();
         // $kelas = $this->ModelPeserta->kelas();
         $data = [
             'title'         => 'SIAKAD',
@@ -168,7 +169,7 @@ class Peserta extends BaseController
             'kerja'         => $this->ModelPekerjaan->AllData(),
             'pilihkelas'      => $this->ModelPeserta->kelas(),
             'didik'         => $this->ModelPendidikan->AllData(),
-            'hasil'         => $this->ModelPenghasilan->AllData(),
+            'hasil'         => $hasil,
             'siswa'         => $this->ModelPeserta->DataPeserta($id_siswa),
             'validation'    =>  \Config\Services::validation(),
             'rekamdidik'    => $this->ModelPeserta->rekamdidik($id_siswa),
