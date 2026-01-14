@@ -22,7 +22,6 @@ $ta = $db->table('tbl_ta')
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
-
         <div class="card mb-3">
             <!-- Account -->
             <div class="card-body">
@@ -49,7 +48,6 @@ $ta = $db->table('tbl_ta')
                 </div>
             </div>
             <div class="card-body pt-4">
-
                 <div class="row">
                     <div class="col-md-6">
                         <ul class="atribut" style="list-style:none">
@@ -103,28 +101,24 @@ $ta = $db->table('tbl_ta')
                                 <span class="rata_kanan">Tidak Ada</span>
                             </li>
                             <hr>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="atribut" style="list-style:none">
                             <li class="p-0">
                                 Alamat Rumah
                                 <span class="rata_kanan"><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?> Desa/Kel <?= $siswa['desa'] ?> <?= $siswa['nama_kecamatan'] ?> </span>
                             </li>
-                            <hr>
                         </ul>
-                        <div id="map" style="height:500px"></div>
+                    </div>
+                    <div class="col-md-6 float-md-right">
+                        <div id="map" style="height:300px; margin-top:30px"></div>
                     </div>
                 </div>
-                <div class="mt-6">
-                    <button type="submit" class="btn btn-primary me-3">Save changes</button>
-                    <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                </div>
-                </form>
             </div>
-            <!-- /Account -->
+
+
+            </form>
         </div>
+        <!-- /Account -->
     </div>
+
 </div>
 
 

@@ -32,6 +32,7 @@
                                     <li class="nav-item"><a class="nav-link <?= $submenu == 'profile' ? 'active' : '' ?>" href="<?= base_url('siswa/profile') ?>"><i class='bx bxs-user'></i> </i> Biodata</a></li>
                                     <li class="nav-item"><a class="nav-link <?= $submenu == 'orangtua' ? 'active' : '' ?>" href="<?= base_url('siswa/orangtua') ?>"><i class='bx bx-user-circle'></i> Data Orang Tua </a></li>
                                     <li class=" nav-item"><a class="nav-link <?= $submenu == 'dataperiodik' ? 'active' : '' ?>" href="<?= base_url('siswa/dataperiodik') ?>"><i class='bx bx-line-chart'></i> Periodik</a></li>
+                                    <li class=" nav-item"><a class="nav-link <?= $submenu == 'datanilai' ? 'active' : '' ?>" href="<?= base_url('siswa/datanilai') ?>"><i class='bx  bx-list-ol'></i> Nilai</a></li>
 
                                 </ul>
                             </div>

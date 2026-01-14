@@ -12,6 +12,7 @@ use App\Models\ModelGuru;
 use App\Models\ModelKelas;
 use App\Models\ModelSetting;
 
+
 use Ifsnop\Mysqldump\Mysqldump;
 
 class Admin extends BaseController
@@ -35,7 +36,12 @@ class Admin extends BaseController
 
     public function index()
     {
+
+        $model = new \App\Models\ModelAdmin();
         session();
+
+
+
         $data = [
             'title'             => 'SIAKADINKA',
             'subtitle'          => 'Dashboard',
@@ -47,7 +53,7 @@ class Admin extends BaseController
             'grupkelas'        => $this->ModelKelas->kelas_grup(),
             // 'siswa'            => $this->ModelPeserta->verifikasi(),
             // 'provinsi'      => $this->ModelWilayah->getProvinsi(),
-
+            'rekapkelas' => $model->jumlahSiswaPerKelas(),
             'jumlahkelas'      => $this->ModelKelas->jumlahkelas(),
 
             // 'pager'            => $this->ModelPeserta->pager,
@@ -56,7 +62,23 @@ class Admin extends BaseController
             // 'tahun'  => $this->ModelTa->tahun()
 
 
+
+
         ];
+
+        $total_laki = 0;
+        $total_perempuan = 0;
+        $total_siswa = 0;
+
+        foreach ($data['rekapkelas'] as $r) {
+            $total_laki += $r['jumlah_laki'];
+            $total_perempuan += $r['jumlah_perempuan'];
+            $total_siswa += $r['total_siswa'];
+        }
+
+        $data['total_laki'] = $total_laki;
+        $data['total_perempuan'] = $total_perempuan;
+        $data['total_siswa'] = $total_siswa;
         return view('admin/v_dashboard', $data);
     }
 

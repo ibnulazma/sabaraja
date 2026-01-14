@@ -11,6 +11,24 @@ $ta = $db->table('tbl_ta')
 
 ?>
 
+
+
+<style>
+    .table-wrapper {
+        max-height: 200px;
+        /* tinggi area scroll */
+        overflow-y: auto;
+    }
+
+    .table thead th {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        /* wajib supaya header tidak transparan */
+        z-index: 10;
+    }
+</style>
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-lg-8 mb-4 order-0">
@@ -73,55 +91,78 @@ $ta = $db->table('tbl_ta')
             <div class="card">
                 <div class="row row-bordered g-0">
                     <div class="col-md-8">
-                        <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
-                        <!-- <div id="totalRevenueChart" class="px-2"></div> -->
-                        <div id="chart">
+                        <div class=" mt-3 p-2">
+                            <i class='bx bx-sm bx-community'></i> <span style="font-size:18px; font-weight:bold;">Jumlah Peserta Didik Per Rombel</span>
                         </div>
-                        <!-- <div><canvas id="myChart"></canvas></div> -->
+                        <div class="card-body">
+                            <div class="table-wrapper">
+                                <table class="table table-striped" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Rombel</th>
+                                            <th>L</th>
+                                            <th>P</th>
+                                            <th>Jumlah</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php if (empty($rekapkelas)): ?>
+                                            <tr>
+                                                <td colspan="5" class="text-center text-muted">
+                                                    <em>Belum ada data</em>
+                                                </td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <?php
+                                            $no = 1;
+
+                                            foreach ($rekapkelas as $r): ?>
+                                                <tr>
+                                                    <td><?= $no++ ?></td>
+                                                    <td><?= $r['kelas'] ?></td>
+                                                    <td><?= $r['jumlah_laki'] ?></td>
+                                                    <td><?= $r['jumlah_perempuan'] ?></td>
+                                                    <td><strong><?= $r['total_siswa'] ?></strong></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <?php if (!empty($rekapkelas)): ?>
+                                            <tr class="bg-light font-weight-bold">
+                                                <td class="text-center" colspan="2">TOTAL</td>
+                                                <td><?= $total_laki ?></td>
+                                                <td><?= $total_perempuan ?></td>
+                                                <td><?= $total_siswa ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card-body">
-                            <div class="text-center">
-                                <div class="dropdown">
-                                    <button
-                                        class="btn btn-sm btn-outline-primary dropdown-toggle"
-                                        type="button"
-                                        id="growthReportId"
-                                        data-bs-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                        2022
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
-                                        <a class="dropdown-item" href="javascript:void(0);">2021</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">2020</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">2019</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div> <canvas height="20%" id="doughnut"></div>
-                        <div class="text-center fw-semibold pt-3 mb-2">62% Company Growth</div>
-
-                        <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-                            <div class="d-flex">
-                                <div class="me-2">
-                                    <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <small>2022</small>
-                                    <h6 class="mb-0">$32.5k</h6>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="me-2">
-                                    <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <small>2021</small>
-                                    <h6 class="mb-0">$41.2k</h6>
-                                </div>
-                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -160,76 +201,7 @@ $ta = $db->table('tbl_ta')
             </div>
         </div>
     </div>
-    <div class="card">
-        <h5 class="card-header pb-0 text-md-start text-center">Complex Headers</h5>
-        <div class="card-datatable table-responsive">
-            <table class="datatables-basic table border-top" id="example">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Date</th>
-                        <th>Salary</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>sss</td>
-                        <td>aaa</td>
-                        <td>ddd</td>
-                        <td>dd</td>
-                        <td>ff</td>
-                        <td>gg</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>sss</td>
-                        <td>aaa</td>
-                        <td>ddd</td>
-                        <td>dd</td>
-                        <td>ff</td>
-                        <td>gg</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>sss</td>
-                        <td>aaa</td>
-                        <td>ddd</td>
-                        <td>dd</td>
-                        <td>ff</td>
-                        <td>gg</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>1111</td>
-                        <td>iiii</td>
-                        <td>ddd</td>
-                        <td>dd</td>
-                        <td>ff</td>
-                        <td>gg</td>
-                    </tr>
 
-
-
-
-
-                    <tr>
-                        <td>2</td>
-                        <td>sss</td>
-                        <td>aaa</td>
-                        <td>ddd</td>
-                        <td>dd</td>
-                        <td>ff</td>
-                        <td>gg</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 </div>
 
 

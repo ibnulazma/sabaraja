@@ -4,7 +4,6 @@ $db     = \Config\Database::connect();
 $user = $db->table('tbl_user')
     ->where('id_user')
     ->get()->getRowArray();
-
 ?>
 
 <div class="app-brand demo">
@@ -159,14 +158,13 @@ $user = $db->table('tbl_user')
 
 
 
-
     <!-- SISWA -->
 
     <?php if (session()->get('level') == 3) { ?>
         <li class="menu-item <?= $menu == 'profilsiswa' ? 'active' : '' ?> <?= $menu == 'profilsiswa' ? 'open' : '' ?> ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-user"></i>
-                <div class="text-truncate" data-i18n="Account Settings">Profile Settings</div>
+                <div class="text-truncate" data-i18n="Account Settings">Profile</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item <?= $submenu == 'profile' ? 'active' : '' ?>">
@@ -184,9 +182,9 @@ $user = $db->table('tbl_user')
                         <div class="text-truncate" data-i18n="Notifications">Periodik</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
-                        <div class="text-truncate" data-i18n="Connections">Connections</div>
+                <li class="menu-item <?= $submenu == 'datanilai' ? 'active' : '' ?>">
+                    <a href="<?= base_url('siswa/datanilai') ?>" class="menu-link">
+                        <div class="text-truncate" data-i18n="Connections">Data Nilai</div>
                     </a>
                 </li>
             </ul>

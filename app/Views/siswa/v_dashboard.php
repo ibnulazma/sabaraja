@@ -24,6 +24,7 @@ $ta = $db->table('tbl_ta')
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
                         <div class="card-body">
+
                             <h5 class="card-title text-primary">Selamat Datang <?= $siswa['nama_siswa'] ?>! 🎉</h5>
 
                             <?php if ($siswa['status_daftar'] == '1') { ?>
@@ -37,11 +38,17 @@ $ta = $db->table('tbl_ta')
                                 </p>
                             <?php } else if ($siswa['status_daftar'] == '3') { ?>
                                 <p class="mb-4">
-                                    Semester Aktif: <span class="fw-bold">Ganjil</span> Tahun Ajaran <?= $ta['ta'] ?>
+                                    Semester Aktif: <span class="fw-bold"><?= $ta['semester'] ?></span> Tahun Ajaran <?= $ta['ta'] ?>
                                 </p>
+                                <?php if (!empty($datakelas['kelas'])): ?>
+                                    <a href="<?= $datakelas['link_wa'] ?>" class="btn btn-sm btn-outline-success"> <i class='bx bxl-whatsapp'></i> Gabung Grup Kelas <?= $datakelas['kelas'] ?> </a>
+                                <?php else: ?>
+                                    <b>Belum dimasukkan ke rombel</b>
+                                <?php endif; ?>
 
-                                <a href="<?= $siswa['link_wa'] ?>" class="btn btn-sm btn-outline-success"> <i class='bx bxl-whatsapp'></i> Gabung Grup Kelas <?= $siswa['kelas'] ?> </a>
+
                             <?php } ?>
+
                         </div>
                     </div>
                     <div class="col-sm-5 text-center text-sm-left">
@@ -64,6 +71,7 @@ $ta = $db->table('tbl_ta')
                             <?php } ?>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -77,7 +85,7 @@ $ta = $db->table('tbl_ta')
 
     <div class="card">
         <div class="card-body">
-            <a href="<?= base_url('siswa/portofolio') ?>" class="btn btn-success"><i class="bx bx-bullseye"></i> Rangkuman Data</a>
+            <a href="<?= base_url('siswa/profile') ?>" class="btn btn-success"><i class="bx bx-bullseye"></i> Rangkuman Data</a>
         </div>
     </div>
 </div>

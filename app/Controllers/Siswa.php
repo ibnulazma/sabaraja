@@ -45,7 +45,7 @@ class Siswa extends BaseController
             'menu'      => 'siswa',
             'submenu' => 'siswa',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
-            'datakelas'    => $this->ModelSiswa->datakelas($siswa['nisn']),
+            'datakelas'    => $this->ModelSiswa->datakelas($siswa['id_siswa']),
         ];
         return view('siswa/v_dashboard', $data);
     }
@@ -79,7 +79,7 @@ class Siswa extends BaseController
             'menu'      => 'profilsiswa',
             'submenu' => 'profile',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
-            'provinsi'  => $this->ModelWilayah->provinsi(),
+            'provinsi'  => $this->ModelWilayah->getProvinsi(),
             'tinggal'  => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'kerja'     => $this->ModelPekerjaan->AllData(),
@@ -101,7 +101,7 @@ class Siswa extends BaseController
             'menu'      => 'profilsiswa',
             'submenu' => 'orangtua',
             'siswa'     => $this->ModelSiswa->DataSiswa(),
-            'provinsi'  => $this->ModelWilayah->provinsi(),
+            'provinsi'  => $this->ModelWilayah->getProvinsi(),
             'tinggal'  => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'kerja'     => $this->ModelPekerjaan->AllData(),
@@ -135,6 +135,27 @@ class Siswa extends BaseController
 
 
 
+    public function datanilai()
+    {
+        session();
+
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Update Profile',
+            'menu'          => 'profilsiswa',
+            'submenu'       => 'datanilai',
+            'nav'           => 'datanilai',
+            'siswa'     => $this->ModelSiswa->DataSiswa(),
+            'tinggal'       => $this->ModelTinggal->AllData(),
+            'transportasi'  => $this->ModelTransportasi->AllData(),
+
+
+        ];
+        return view('siswa/nilai', $data);
+    }
+
+
+
 
 
 
@@ -151,7 +172,7 @@ class Siswa extends BaseController
             'submenu'   => 'alamat',
             'nav'       => 'alamat',
             'siswa'     => $this->ModelSiswa->SiswaEdit($id_siswa),
-            'provinsi'  => $this->ModelWilayah->provinsi(),
+            'provinsi'  => $this->ModelWilayah->getProvinsi(),
             'tinggal'  => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'validation'    =>  \Config\Services::validation(),
@@ -172,7 +193,7 @@ class Siswa extends BaseController
             'submenu'       => 'orangtua',
             'nav'           => 'orangtua',
             'siswa'         => $this->ModelSiswa->DataSiswa(),
-            'provinsi'      => $this->ModelWilayah->provinsi(),
+            'provinsi'      => $this->ModelWilayah->getProvinsi(),
             'tinggal'       => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'validation'    =>  \Config\Services::validation(),
@@ -212,7 +233,7 @@ class Siswa extends BaseController
             'submenu'       => 'registrasi',
             'nav'           => 'registrasi',
             'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
-            'provinsi'      => $this->ModelWilayah->provinsi(),
+            'provinsi'      => $this->ModelWilayah->getProvinsi(),
             'tinggal'       => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'validation'    =>  \Config\Services::validation(),
@@ -250,7 +271,7 @@ class Siswa extends BaseController
             'submenu'       => 'periodik',
             'nav'           => 'periodik',
             'siswa'         => $this->ModelSiswa->SiswaEdit($id_siswa),
-            'provinsi'      => $this->ModelWilayah->provinsi(),
+            'provinsi'      => $this->ModelWilayah->getProvinsi(),
             'tinggal'       => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'validation'    =>  \Config\Services::validation(),
