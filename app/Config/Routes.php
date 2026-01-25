@@ -45,8 +45,57 @@ $routes->post('peserta/uploadDokumen', 'Peserta::uploadDokumen');
 $routes->get('peserta/detail_siswa/(:num)', 'Peserta::detail_siswa/$1');
 $routes->post('peserta/uploadDokumen/(:num)', 'Peserta::uploadDokumen/$1');
 
-
+$routes->get('admin/toggle-maintenance', 'Admin::toggleMaintenance');
 // $routes->get('/', 'Home::index');
+
+
+// Login Siswa & Guru
+$routes->get('/auth', 'Auth::index');
+$routes->post('/auth/login', 'Auth::loginUser');
+
+// Login Admin
+$routes->get('/auth/loginadmin', 'Auth::loginAdminPage');
+$routes->post('/auth/loginadmin', 'Auth::loginAdmin');
+$routes->get('/auth/logout', 'Auth::logout');
+
+
+
+
+$routes->group('admin', ['filter' => 'role:1'], function ($routes) {
+    // Tahun
+    $routes->get('/', 'Admin::index');
+    // $routes->get('tahun/create', 'Admin\TahunController::create');
+    // $routes->get('tahun/edit/(:num)', 'Admin\TahunController::edit/$1');
+
+    // // Peserta
+    // $routes->get('peserta', 'Admin\PesertaController::index');
+    // $routes->get('peserta/create', 'Admin\PesertaController::create');
+    // $routes->get('peserta/edit/(:num)', 'Admin\PesertaController::edit/$1');
+
+    // // Rombel
+    // $routes->get('rombel', 'Admin\RombelContro::index');
+    // $routes->get('rombel/create', 'Admin\RombelController::create');
+    // $routes->get('rombel/edit/(:num)', 'Admin\RombelController::edit/$1');
+});
+
+
+
+
+// Siswa
+$routes->group('siswa', ['filter' => 'role:3'], function ($routes) {
+    $routes->get('/', 'Siswa::index');
+});
+
+$routes->group('pendidik', ['filter' => 'role:2'], function ($routes) {
+    $routes->get('/', 'Pendidik::index');
+});
+
+
+$routes->get('access-denied', function () {
+    return view('error/access_denied');
+});
+
+
 
 // $routes->get('/peserta/(:seg)', 'Peserta::detail/$1');
 

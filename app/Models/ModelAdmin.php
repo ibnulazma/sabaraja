@@ -6,7 +6,9 @@ use CodeIgniter\Model;
 
 class ModelAdmin extends Model
 {
-    protected $table = 'tbl_database';
+    protected $table = 'tbl_user';
+    protected $primaryKey = 'id_user';
+    protected $allowedFields = ['username', 'nama_user', 'password'];
 
     public function jumlahSiswaPerKelas()
     {

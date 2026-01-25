@@ -6,11 +6,22 @@ use CodeIgniter\Model;
 
 class ModelPendidik extends Model
 {
+
+
+    protected $table = 'tbl_guru';
+    protected $primaryKey = 'id_guru';
+    protected $allowedFields = ['niy', 'nama_guru', 'password'];
+
+
+
+
+
     public function DataGuru()
     {
         return $this->db->table('tbl_guru')
             ->join('tbl_kelas', 'tbl_kelas.id_guru = tbl_guru.id_guru', 'left')
-            ->where('niy', session()->get('username'))
+            ->join('tbl_kelas', 'tbl_kelas.id_guru = tbl_guru.id_guru', 'left')
+            ->where('tbl_guru.id_guru', session()->get('id_user'))
             ->get()->getRowArray();
     }
 
@@ -76,9 +87,11 @@ class ModelPendidik extends Model
 
     public function walas($id_guru)
     {
-        return $this->db->table('tbl_siswa')
+        return $this->db->table('tbl_database')
 
-            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas')
+
+            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_database.id_siswa')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
             ->where('tbl_kelas.id_guru', $id_guru)

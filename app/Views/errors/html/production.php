@@ -1,25 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="robots" content="noindex">
+	<title>Terjadi Kesalahan</title>
+	<style>
+		body {
+			font-family: Arial;
+			background: #fff3f3;
+			text-align: center;
+			padding: 60px;
+		}
 
-	<title>Whoops!</title>
+		.box {
+			background: white;
+			padding: 40px;
+			border-radius: 10px;
+			display: inline-block;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+		}
 
-	<style type="text/css">
-		<?= preg_replace('#[\r\n\t ]+#', ' ', file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'debug.css')) ?>
+		h1 {
+			color: #c0392b;
+		}
+
+		p {
+			color: #555;
+		}
+
+		a {
+			margin-top: 20px;
+			display: inline-block;
+			padding: 10px 20px;
+			background: #27ae60;
+			color: white;
+			border-radius: 5px;
+			text-decoration: none;
+		}
 	</style>
 </head>
+
 <body>
-
-	<div class="container text-center">
-
-		<h1 class="headline">Whoops!</h1>
-
-		<p class="lead">We seem to have hit a snag. Please try again later...</p>
-
+	<div class="box">
+		<h1>Terjadi Kesalahan</h1>
+		<p>Maaf, sistem sedang mengalami gangguan.<br>Silakan coba beberapa saat lagi.</p>
+		<a href="<?= base_url() ?>">Kembali ke Beranda</a>
 	</div>
-
 </body>
 
 </html>

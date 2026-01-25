@@ -1,12 +1,63 @@
 <?php
-$db     = \Config\Database::connect();
-$guru = $db->table('tbl_guru')
-    ->join('tbl_kelas', 'tbl_kelas.id_guru = tbl_guru.id_guru', 'left')
-    ->where('niy', session()->get('username'))
-    ->get()->getRowArray();
 
 
 
+$db = \Config\Database::connect();
+
+$level    = session()->get('level');
+$username = session()->get('username');
+
+// Default
+$roleLabel = 'User';
+$avatar    = base_url('foto/default.png');
+$nama     = session()->get('nama'); // fallback nama dari session
+
+// Mapping avatar berdasarkan gender
+$avatarMap = [
+    'admin' => 'foto/default.png',
+    'guru'  => [
+        'L' => 'foto/muslim.png',
+        'P' => 'foto/woman.png',
+    ],
+    'siswa' => [
+        'L' => 'foto/muslim.png',
+        'P' => 'foto/woman.png',
+    ],
+];
+
+switch ($level) {
+    case 1: // Admin
+        $roleLabel = 'Admin';
+        $avatar    = base_url($avatarMap['admin']);
+        // Nama tetap dari session
+        break;
+
+    case 2: // Guru
+        $roleLabel = 'Guru';
+        $guru = $db->table('tbl_guru')->where('niy', $username)->get()->getRowArray();
+
+        if ($guru) {
+            $nama     = $guru['nama_guru'] ?? $nama; // ambil nama guru jika ada
+            $kelamin  = strtoupper(trim($guru['kelamin'] ?? ''));
+            $avatar   = !empty($guru['foto'])
+                ? base_url('foto/' . $guru['foto'])
+                : base_url($avatarMap['guru'][$kelamin] ?? 'foto/default.png');
+        }
+        break;
+
+    case 3: // Siswa
+        $roleLabel = 'Siswa';
+        $siswa = $db->table('tbl_siswa')->where('nisn', $username)->get()->getRowArray();
+
+        if ($siswa) {
+            $nama    = $siswa['nama_siswa'] ?? $nama; // ambil nama siswa jika ada
+            $kelamin = strtoupper(trim($siswa['jenis_kelamin'] ?? ''));
+            $avatar  = !empty($siswa['foto'])
+                ? base_url('foto/' . $siswa['foto'])
+                : base_url($avatarMap['siswa'][$kelamin] ?? 'foto/default.png');
+        }
+        break;
+}
 
 
 
@@ -34,14 +85,7 @@ $guru = $db->table('tbl_guru')
     <!-- Search -->
     <div class="navbar-nav align-items-center">
         <div class="nav-item d-flex align-items-center">
-            <?php if (session()->get('level') == 1) { ?>
-                <span><?= session()->get('nama') ?></span>
-
-            <?php } elseif (session()->get('level') == 2) { ?>
-                <span><?= session()->get('nama') ?></span>
-            <?php } elseif (session()->get('level') == 3) { ?>
-                <span><?= session()->get('nama') ?></span>
-            <?php } ?>
+            <span class="fw-semibold d-block"><?= esc($nama) ?></span>
         </div>
     </div>
     <!-- /Search -->
@@ -52,45 +96,21 @@ $guru = $db->table('tbl_guru')
         <!-- User -->
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                <?php if (session()->get('level') == 1) { ?>
-                    <div class="avatar avatar-online">
-                        <img src="<?= base_url() ?>/template/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                <?php } else if (session()->get('level') == 2) { ?>
-                    <div class="avatar avatar-online">
-                        <img src="<?= base_url() ?>/template/assets/img/avatars/logo.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                <?php } else if (session()->get('level') == 3) { ?>
-                    <div class="avatar avatar-online">
-
-                        <img src="<?= base_url() ?>/template/assets/img/avatars/logo.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                <?php } ?>
+                <div class="avatar avatar-online">
+                    <img src="<?= $avatar ?>" alt class="w-px-40 h-auto rounded-circle" />
+                </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
                     <a class="dropdown-item" href="#">
                         <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
-                                <div class="avatar avatar-online">
-                                    <img src="<?= base_url() ?>/template/assets/img/avatars/logo.png" alt class="w-px-40 h-auto rounded-circle" />
-                                </div>
+                                <img src="<?= $avatar ?>" alt class="w-px-40 h-auto rounded-circle" />
+
                             </div>
                             <div class="flex-grow-1">
-                                <?php if (session()->get('level') == 1) { ?>
-                                    <span class="fw-semibold d-block"><?= session()->get('nama') ?></span>
-                                <?php } else if (session()->get('level') == 2) { ?>
-                                    <span class="fw-semibold d-block"><?= session()->get('nama') ?></span>
-                                <?php } else if (session()->get('level') == 3) { ?>
-                                    <span class="fw-semibold d-block"><?= session()->get('nama') ?></span>
-                                <?php } ?>
-                                <?php if (session()->get('level') == 1) { ?>
-                                    <small class="text-muted">Admin</small>
-                                <?php } else if (session()->get('level') == 2) { ?>
-                                    <small class="text-muted">Guru</small>
-                                <?php } else if (session()->get('level') == 3) { ?>
-                                    <small class="text-muted">Siswa</small>
-                                <?php } ?>
+                                <span class="fw-semibold d-block"><?= esc($nama) ?></span>
+                                <small class="text-muted"><?= $roleLabel ?></small>
                             </div>
                         </div>
                     </a>

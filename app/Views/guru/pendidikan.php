@@ -3,11 +3,7 @@
 
 <?php
 
-$db     = \Config\Database::connect();
 
-$datgur = $db->table('tbl_guru')
-    ->where('niy', session()->get('username'))
-    ->get()->getRowArray();
 
 ?>
 
@@ -70,7 +66,7 @@ $datgur = $db->table('tbl_guru')
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <input type="text" value="<?= $datgur['id_guru'] ?>" name="id_guru">
+
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="tempattinggal">Nama Sekolah </label>
                     <div class="col-sm-8">

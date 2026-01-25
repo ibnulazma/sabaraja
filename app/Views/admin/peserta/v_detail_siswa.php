@@ -131,11 +131,6 @@ $ta = $db->table('tbl_ta')
                             </li>
                         </ul>
                     </div>
-                    <div class="card-body border-bottom mb-4">
-
-
-
-                    </div>
                     <div class="mapii">
                         <h5> Tempat Tinggal <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#alamat"><i class='bx bxs-edit-alt'></i></button> </h5>
                         <p><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?></p>
@@ -434,17 +429,23 @@ $ta = $db->table('tbl_ta')
                                 <button onclick="document.getElementById('fileElem').click()">Pilih File</button>
                             </div>
 
+
                         <?php else : ?>
 
                             <!-- TAMPILKAN PDF -->
-                            <embed src="<?= base_url($siswa['dokumen']) ?>" type="application/pdf" width="100%" height="600px">
-
+                            <embed src="<?= base_url('dokumen/' . $siswa['dokumen']) ?>" type="application/pdf" width="100%" height="600px">
                             <hr>
-                            <div id="drop-area" style="border:2px dashed orange; padding:20px; text-align:center;">
+                            <div id="drop-area" style="border:2px dashed orange; padding:20px; width:400px; text-align:center;">
                                 <b>Ganti Dokumen (Drag & Drop PDF di sini)</b>
                                 <input type="file" id="fileElem" accept="application/pdf" hidden>
                             </div>
-
+                            <div id="progress-container" style="display:none; margin-top:10px;">
+                                <div style="width:100%; background:#eee; border-radius:6px; overflow:hidden;">
+                                    <div id="progress-bar" style="width:0%; height:18px; background:#4caf50; text-align:center; color:white; font-size:12px;">
+                                        0%
+                                    </div>
+                                </div>
+                            </div>
                         <?php endif; ?>
 
 
@@ -1051,6 +1052,100 @@ $ta = $db->table('tbl_ta')
 
 
 <!-- drop and drag -->
+<!-- <script>
+    let dropArea = document.getElementById('drop-area');
+    let fileElem = document.getElementById('fileElem');
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, e => {
+            e.preventDefault();
+            dropArea.style.background = '#eef';
+        }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, e => {
+            e.preventDefault();
+            dropArea.style.background = '';
+        }, false);
+    });
+
+    dropArea.addEventListener('drop', e => {
+        let file = e.dataTransfer.files[0];
+        uploadFile(file);
+    });
+
+    fileElem.addEventListener('change', e => {
+        let file = e.target.files[0];
+        uploadFile(file);
+    });
+
+    function uploadFile(file) {
+
+        // ❌ Bukan PDF
+        if (file.type !== "application/pdf") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: 'File harus berformat PDF'
+            });
+            return;
+        }
+
+        // ❌ Lebih dari 2MB
+        if (file.size > 2 * 1024 * 1024) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Ukuran Terlalu Besar',
+                text: 'Maksimal ukuran file adalah 2MB'
+            });
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("file", file);
+
+        Swal.fire({
+            title: 'Mengupload...',
+            text: 'Mohon tunggu sebentar',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        fetch("<?= base_url('peserta/uploadDokumen/' . $siswa['id_siswa']) ?>", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(res => {
+                Swal.close();
+
+                if (res.status) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: res.msg
+                    }).then(() => location.reload());
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: res.msg
+                    });
+                }
+            })
+            .catch(() => {
+                Swal.close();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Terjadi kesalahan saat upload'
+                });
+            });
+    }
+</script> -->
 <script>
     let dropArea = document.getElementById('drop-area');
     let fileElem = document.getElementById('fileElem');
@@ -1080,11 +1175,24 @@ $ta = $db->table('tbl_ta')
     });
 
     function uploadFile(file) {
-        if (file.type !== "application/pdf") {
+
+        if (!file) return;
+
+        const ext = file.name.split('.').pop().toLowerCase();
+        if (ext !== 'pdf') {
             Swal.fire({
                 icon: 'error',
-                title: 'Oops...',
-                text: 'File harus berupa PDF!'
+                title: 'Format Salah',
+                text: 'File harus PDF'
+            });
+            return;
+        }
+
+        if (file.size > 2 * 1024 * 1024) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Terlalu Besar',
+                text: 'Maksimal 2MB'
             });
             return;
         }
@@ -1092,33 +1200,51 @@ $ta = $db->table('tbl_ta')
         let formData = new FormData();
         formData.append("file", file);
 
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "<?= base_url('peserta/uploadDokumen/' . $siswa['id_siswa']) ?>", true);
+
+        // 🎯 SweetAlert dengan Progress Bar
         Swal.fire({
-            title: 'Mengupload...',
-            text: 'Mohon tunggu sebentar',
+            title: 'Mengupload Dokumen...',
+            html: `
+            <div style="width:100%; background:#eee; border-radius:6px; overflow:hidden; margin-top:10px;">
+                <div id="swal-progress-bar" style="width:0%; height:20px; background:#4caf50; color:white; text-align:center; line-height:20px;">
+                    0%
+                </div>
+            </div>
+        `,
             allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
+            showConfirmButton: false
         });
 
-        fetch("<?= base_url('peserta/uploadDokumen/' . $siswa['id_siswa']) ?>", {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.json())
-            .then(res => {
-                Swal.close();
+        // 🔥 Progress Realtime
+        xhr.upload.onprogress = function(e) {
+            if (e.lengthComputable) {
+                let percent = Math.round((e.loaded / e.total) * 100);
+                let bar = document.getElementById("swal-progress-bar");
+                if (bar) {
+                    bar.style.width = percent + "%";
+                    bar.innerHTML = percent + "%";
+
+                    if (percent > 70) bar.style.background = "#2196F3";
+                    if (percent > 90) bar.style.background = "#00c853";
+                }
+            }
+        };
+
+        // ✅ Sukses
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                let res = JSON.parse(xhr.responseText);
 
                 if (res.status) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Berhasil!',
+                        title: 'Berhasil',
                         text: res.msg,
                         timer: 1500,
                         showConfirmButton: false
-                    }).then(() => {
-                        location.reload();
-                    });
+                    }).then(() => location.reload());
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -1126,15 +1252,25 @@ $ta = $db->table('tbl_ta')
                         text: res.msg
                     });
                 }
-            })
-            .catch(() => {
-                Swal.close();
+            } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Server Error',
-                    text: 'Terjadi kesalahan saat upload'
+                    text: 'Upload gagal'
                 });
+            }
+        };
+
+        // ❌ Error koneksi
+        xhr.onerror = function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Koneksi ke server gagal'
             });
+        };
+
+        xhr.send(formData);
     }
 </script>
 

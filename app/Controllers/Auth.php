@@ -2,249 +2,110 @@
 
 namespace App\Controllers;
 
-use App\Models\ModelAuth;
+use App\Models\ModelSiswa;
+use App\Models\ModelPendidik;
+use App\Models\ModelAdmin;
 
 class Auth extends BaseController
 {
+    protected $ModelSiswa;
+    protected $ModelPendidik;
+    protected $ModelAdmin;
+
     public function __construct()
     {
-
+        $this->ModelSiswa = new ModelSiswa();
+        $this->ModelPendidik  = new ModelPendidik();
+        $this->ModelAdmin = new ModelAdmin();
         helper('form');
-        $this->ModelAuth = new ModelAuth();
     }
+
+    // ================= LOGIN SISWA & Pendidik =================
     public function index()
-    { {
-            $data = [
-                'title' => 'SIAKADINKA',
-                'subtitle' => 'Halaman Login',
-                'validation'    =>  \Config\Services::validation(),
-
-            ];
-
-            return view('v_login', $data);
-        }
-    }
-
-
-    public function ceklogin()
     {
-        if ($this->validate(
-            [
-                'username' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} harus diisi'
-                    ]
+        $data = [
+            'validation' => \Config\Services::validation()
+        ];
 
-                ],
-                'password' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} harus diisi'
-                    ]
-                ],
-            ]
-        )) {
-
-            $username   = $this->request->getPost('username');
-            $password   = $this->request->getPost('password');
-
-
-            $ceksiswa = $this->ModelAuth->loginsiswa($username, $password);
-            if ($ceksiswa) {
-                session()->set('username', $ceksiswa['nisn']);
-                session()->set('nama', $ceksiswa['nama_siswa']);
-                // session()->set('foto', $ceksiswa['foto_siswa']);
-                session()->set('level', '3');
-                return redirect()->to(base_url('siswa'));
-            } else {
-                session()->setFlashdata('error', 'Username or Password is Wrong');
-                return redirect()->to(base_url('auth'));
-            }
-        } else {
-            $validation = \Config\Services::validation();
-            return redirect()->to('/auth')->withInput()->with('validation', $validation);
-        }
+        return view('auth/login_user', $data);
     }
 
-
-
-    public function loginguru()
-    { {
-            $data = [
-                'title' => 'SIAKADINKA',
-                'subtitle' => 'Halaman Login',
-                'validation'    =>  \Config\Services::validation(),
-
-            ];
-
-            return view('v_loginguru', $data);
-        }
-    }
-
-    public function cekloginguru()
+    public function loginUser()
     {
-        if ($this->validate(
-            [
-                'username' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} harus diisi'
-                    ]
+        $rules = [
+            'username' => 'required',
+            'password' => 'required'
+        ];
 
-                ],
-                'password' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} harus diisi'
-                    ]
-                ],
-            ]
-        )) {
-
-            $username   = $this->request->getPost('username');
-            $password   = $this->request->getPost('password');
-
-
-            $cekguru = $this->ModelAuth->loginguru($username, $password);
-            if ($cekguru) {
-
-                session()->set('username', $cekguru['niy']);
-                session()->set('nama', $cekguru['nama_guru']);
-                // session()->set('foto', $cekguru['foto_siswa']);
-                session()->set('level', '2');
-                return redirect()->to(base_url('pendidik'));
-            } else {
-                session()->setFlashdata('error', 'Username or Password is Wrong');
-                return redirect()->to(base_url('auth/loginguru'));
-            }
-        } else {
-            $validation = \Config\Services::validation();
-            return redirect()->to('/auth/loginguru')->withInput()->with('validation', $validation);
+        if (! $this->validate($rules)) {
+            return redirect()->back()->withInput()->with('validation', $this->validator);
         }
-    }
-    public function loginadmin()
-    { {
-            $data = [
-                'title' => 'SIAKADINKA',
-                'subtitle' => 'Halaman Login',
-                'validation'    =>  \Config\Services::validation(),
 
-            ];
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
 
-            return view('v_loginadmin', $data);
+        // CEK SISWA
+        $siswa = $this->ModelSiswa->where('nisn', $username)->first();
+        if ($siswa && password_verify($password, $siswa['password'])) {
+            session()->set([
+                'id_user' => $siswa['id_siswa'],
+                'nama' => $siswa['nama_siswa'],
+                'username'  => $siswa['nisn'], // 🔥 WAJIB ADA
+                'level' => '3',
+                'logged_in' => true
+            ]);
+            return redirect()->to('/siswa');
         }
+
+        // CEK Pendidik
+        $guru = $this->ModelPendidik->where('niy', $username)->first();
+        if ($guru && password_verify($password, $guru['password'])) {
+            session()->set([
+                'id_user' => $guru['id_guru'],
+                'nama' => $guru['nama_guru'],
+                'level' => '2',
+                'logged_in' => true
+            ]);
+            return redirect()->to('/pendidik');
+        }
+
+        return redirect()->back()->withInput()->with('error', 'Username atau Password salah');
     }
 
-    public function cekloginadmin()
+
+    // ================= LOGIN ADMIN =================
+    public function loginAdminPage()
     {
-
-        if ($this->validate(
-            [
-                'username' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} harus diisi'
-                    ]
-
-                ],
-                'password' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} harus diisi'
-                    ]
-
-                ],
-            ]
-
-        )) {
-            $username   = $this->request->getPost('username');
-            $password   = $this->request->getPost('password');
-
-
-            $cekadmin = $this->ModelAuth->login($username, $password);
-            if ($cekadmin) {
-
-                session()->set('username', $cekadmin['username']);
-                session()->set('nama', $cekadmin['nama_user']);
-                session()->set('foto', $cekadmin['foto']);
-                session()->set('level', '1');
-            } else {
-                session()->setFlashdata('error', 'Username or Password is Wrong');
-                return redirect()->to(base_url('auth/loginadmin'));
-            }
-        } else {
-            $validation = \Config\Services::validation();
-            return redirect()->to('/auth/loginadmin')->withInput()->with('validation', $validation);
-            // session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
-            // return redirect()->to(base_url('auth'));
-        }
+        $data = [
+            'validation' => \Config\Services::validation()
+        ];
+        return view('auth/login_admin', $data);
     }
 
-    public function kelulusan()
+    public function loginAdmin()
     {
-        session(); {
-            $data = [
-                'title' => 'SIAKADINKA',
-                'subtitle' => 'Halaman Login',
-                'validation'    =>  \Config\Services::validation(),
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
 
-            ];
+        $admin = $this->ModelAdmin->where('username', $username)->first();
 
-            return view('v_loginkelulusan', $data);
+        if ($admin && password_verify($password, $admin['password'])) {
+            session()->set([
+                'id_user' => $admin['id_user'],
+                'nama'    => $admin['nama_user'],
+                'level'   => '1',
+                'logged_in' => true
+            ]);
+            return redirect()->to('/admin');
         }
+
+        return redirect()->back()->with('error', 'Login Admin gagal');
     }
 
-    public function ceklulus()
-    {
-
-        if ($this->validate(
-            [
-                'nisn' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Silahkan Masukkan NISN !!!'
-                    ]
-
-                ],
-
-            ]
-        )) {
-
-            $username   = $this->request->getPost('nisn');
-
-
-
-            $ceklulus = $this->ModelAuth->loginlulus($username);
-            if ($ceklulus) {
-
-                session()->set('nisn', $ceklulus['nisn']);
-                session()->set('level', '4');
-
-                return redirect()->to(base_url('kelulusan'));
-            } else {
-                session()->setFlashdata('error', 'NISN Tidak Ditemukan');
-                return redirect()->to(base_url('auth/kelulusan'));
-            }
-        } else {
-            $validation = \Config\Services::validation();
-            return redirect()->to('auth/kelulusan')->withInput()->with('validation', $validation);
-        }
-    }
-
-
-
-
-
-
+    // ================= LOGOUT =================
     public function logout()
     {
-        session()->remove('log');
-        session()->remove('username');
-        session()->remove('nama');
-        session()->remove('foto');
-        session()->remove('level');
-        session()->setFlashdata('pesan', 'Thanks, Are You Logged Out!!');
-        return redirect()->to(base_url('auth'));
+        session()->destroy();
+        return redirect()->to('/auth');
     }
 }

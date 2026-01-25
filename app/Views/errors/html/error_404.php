@@ -1,84 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>404 Page Not Found</title>
+<html>
 
+<head>
+	<title>Halaman Tidak Ditemukan</title>
 	<style>
-		div.logo {
-			height: 200px;
-			width: 155px;
-			display: inline-block;
-			opacity: 0.08;
-			position: absolute;
-			top: 2rem;
-			left: 50%;
-			margin-left: -73px;
-		}
 		body {
-			height: 100%;
-			background: #fafafa;
-			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-			color: #777;
-			font-weight: 300;
-		}
-		h1 {
-			font-weight: lighter;
-			letter-spacing: 0.8;
-			font-size: 3rem;
-			margin-top: 0;
-			margin-bottom: 0;
-			color: #222;
-		}
-		.wrap {
-			max-width: 1024px;
-			margin: 5rem auto;
-			padding: 2rem;
-			background: #fff;
+			font-family: Arial, sans-serif;
+			background: #f4f6f9;
 			text-align: center;
-			border: 1px solid #efefef;
-			border-radius: 0.5rem;
-			position: relative;
+			padding: 50px;
 		}
-		pre {
-			white-space: normal;
-			margin-top: 1.5rem;
+
+		.box {
+			background: white;
+			padding: 40px;
+			border-radius: 10px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+			display: inline-block;
 		}
-		code {
-			background: #fafafa;
-			border: 1px solid #efefef;
-			padding: 0.5rem 1rem;
-			border-radius: 5px;
-			display: block;
+
+		h1 {
+			font-size: 80px;
+			margin: 0;
+			color: #e74c3c;
 		}
+
 		p {
-			margin-top: 1.5rem;
+			font-size: 18px;
+			color: #555;
 		}
-		.footer {
-			margin-top: 2rem;
-			border-top: 1px solid #efefef;
-			padding: 1em 2em 0 2em;
-			font-size: 85%;
-			color: #999;
+
+		a {
+			display: inline-block;
+			margin-top: 20px;
+			padding: 10px 20px;
+			background: #3498db;
+			color: white;
+			text-decoration: none;
+			border-radius: 5px;
 		}
-		a:active,
-		a:link,
-		a:visited {
-			color: #dd4814;
+
+		a:hover {
+			background: #2980b9;
 		}
 	</style>
 </head>
-<body>
-	<div class="wrap">
-		<h1>404 - File Not Found</h1>
 
-		<p>
-			<?php if (! empty($message) && $message !== '(null)') : ?>
-				<?= nl2br(esc($message)) ?>
-			<?php else : ?>
-				Sorry! Cannot seem to find the page you were looking for.
-			<?php endif ?>
-		</p>
+<body>
+	<div class="box">
+		<h1>404</h1>
+		<p>Oops! Halaman yang kamu cari tidak ditemukan.</p>
+		<a href="<?= base_url() ?>">Kembali ke Beranda</a>
 	</div>
 </body>
+
 </html>

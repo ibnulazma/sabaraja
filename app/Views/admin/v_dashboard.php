@@ -43,6 +43,12 @@ $ta = $db->table('tbl_ta')
                             <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
                         </div>
                     </div>
+
+
+
+
+
+
                     <div class="col-sm-5 text-center text-sm-left">
                         <div class="card-body pb-0 px-0 px-md-4">
                             <img
@@ -53,6 +59,8 @@ $ta = $db->table('tbl_ta')
                                 data-app-light-img="illustrations/man-with-laptop-light.png" />
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -201,6 +209,29 @@ $ta = $db->table('tbl_ta')
             </div>
         </div>
     </div>
+
+    <?php $maintenance = (new \App\Models\ModelMaintenance())->getMaintenance(); ?>
+
+    <div class="card">
+        <div class="card-body text-center">
+            <h5>Status Website</h5>
+
+            <?php if ($maintenance['value'] == '1'): ?>
+                <span class="badge bg-danger">MAINTENANCE AKTIF</span>
+                <a href="<?= base_url('admin/toggle-maintenance') ?>" class="btn btn-success mt-3">
+                    Matikan Maintenance
+                </a>
+            <?php else: ?>
+                <span class="badge bg-success">WEBSITE NORMAL</span>
+                <a href="<?= base_url('admin/toggle-maintenance') ?>" class="btn btn-danger mt-3">
+                    Aktifkan Maintenance
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>
+
+
+
 
 </div>
 

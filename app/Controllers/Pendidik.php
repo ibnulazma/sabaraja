@@ -53,7 +53,7 @@ class Pendidik extends BaseController
             'submenu'       => 'profile',
             'data'          => $this->ModelPendidik->DataGuru(),
             'validation'    =>  \Config\Services::validation(),
-            'provinsi'      => $this->ModelWilayah->provinsi(),
+            'provinsi'      => $this->ModelWilayah->getProvinsi(),
         ];
         return view('guru/edit_guru', $data);
     }

@@ -10,7 +10,9 @@ use App\Models\ModelPeserta;
 use App\Models\ModelWilayah;
 use App\Models\ModelGuru;
 use App\Models\ModelKelas;
+use App\Models\ModelMaintenance;
 use App\Models\ModelSetting;
+
 
 
 use Ifsnop\Mysqldump\Mysqldump;
@@ -198,5 +200,18 @@ class Admin extends BaseController
         foreach ($data as $value) {
             echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>';
         }
+    }
+
+
+
+    public function toggleMaintenance()
+    {
+        $settingsModel = new ModelMaintenance();
+        $current = $settingsModel->getMaintenance();
+
+        $newStatus = ($current['value'] == '1') ? '0' : '1';
+        $settingsModel->setMaintenance($newStatus);
+
+        return redirect()->back()->with('success', 'Status maintenance berhasil diubah');
     }
 }

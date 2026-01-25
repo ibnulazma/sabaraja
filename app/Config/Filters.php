@@ -8,10 +8,7 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
-use App\Filters\FilterAdmin;
-use App\Filters\FilterPendidik;
-use App\Filters\FilterPeserta;
-use App\Filters\FilterLulus;
+
 
 
 class Filters extends BaseConfig
@@ -26,10 +23,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'filteradmin'   => FilterAdmin::class,
-        'filterpeserta'    => FilterPeserta::class,
-        'filterpendidik'    => FilterPendidik::class,
-        'filterlulus'    => FilterLulus::class,
+        'role' => \App\Filters\RoleFilter::class,
+        'maintenance' => \App\Filters\Maintenance::class,
     ];
 
     /**
@@ -38,73 +33,10 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
-            'filteradmin' =>
-            [
-                'except' => [
-                    'auth',
-                    'auth/*',
-                    'home',
-                    'home/*',
-                    'datasiswa',
-                    'datasiswa/*',
-                    'siswa',
-                    'siswa/*',
-                    'kelulusan/',
-                    'kelulusan/*',
-
-                    '/',
-                    // 
-                ]
-            ],
-
-            'filterpeserta' =>
-            [
-                'except' => [
-                    'auth',
-                    'auth/*',
-                    'home',
-                    'home/*',
-                    'loginsiswa',
-                    'loginsiswa/*',
-                    'datasiswa',
-                    'datasiswa/*',
-                    'kelulusan/',
-                    'kelulusan/*',
-                    '/',
 
 
-                ]
-            ],
-            'filterpendidik' =>
-            [
-                'except' => [
-                    'auth',
-                    'auth/*',
-                    'home',
-                    'home/*',
-                    'loginguru',
-                    'loginguru/*',
-                    'datasiswa',
-                    'datasiswa/*',
-                    'kelulusan/',
-                    'kelulusan/*',
-                    '/',
 
-
-                ]
-            ],
-            'filterlulus' =>
-            [
-                'except' => [
-                    'auth',
-                    'auth/*',
-                    'home',
-                    'home/*',
-                    '/',
-
-
-                ]
-            ],
+            'maintenance'
 
             // 'csrf',
             // 'filterpendidik' =>
@@ -118,81 +50,8 @@ class Filters extends BaseConfig
             // ],
         ],
         'after' => [
-            'filteradmin' =>
-            [
-                'except' => [
-
-                    'admin',
-                    'admin/*',
-                    'guru',
-                    'guru/*',
-                    'kelas',
-                    'kelas/*',
-                    'mapel',
-                    'mapel/*',
-                    'jadwal',
-                    'jadwal/*',
-                    'ta',
-                    'ta/*',
-                    'user',
-                    'user/*',
-                    'peserta',
-                    'peserta/*',
-                    'surat',
-                    'surat/*',
-                    'setting',
-                    'setting/*',
-                    'ppdb',
-                    'ppdb/*',
-                    'nilai',
-                    'nilai/*',
-                    'datatables',
-                    'datatables/*',
-                    'presensi',
-                    'presensi/*',
-                    'rekap',
-                    'rekap/*',
-                    'wilayah/',
-                    'wilayah/*',
-                ]
-            ],
-
-            'filterpeserta' =>
-            [
-                'except' => [
-                    'siswa',
-                    'siswa/*',
-                    'presensi',
-                    'presensi/*',
-                    'pelajaran',
-                    'pelajaran/*',
-                    'pengajuan',
-                    'pengajuan/*',
 
 
-                ]
-            ],
-            'filterpendidik' =>
-            [
-                'except' => [
-                    'pendidik',
-                    'pendidik/*',
-                    'nilai',
-                    'nilai/*',
-
-
-                    // '/',
-                ]
-            ],
-            'filterlulus' =>
-            [
-                'except' => [
-                    'kelulusan',
-                    'kelulusan/*',
-
-                    // '/',
-                ]
-            ],
             'toolbar',
             // 'honeypot',
             // 'secureheaders',

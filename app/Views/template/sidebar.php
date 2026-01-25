@@ -21,174 +21,146 @@ $user = $db->table('tbl_user')
 
 <div class="menu-inner-shadow"></div>
 
+<?php $level = session()->get('level'); ?>
+
 <ul class="menu-inner py-1">
-    <!-- Dashboard -->
 
-
-    <?php if (session()->get('level') == 1) { ?>
+    <!-- DASHBOARD SESUAI ROLE -->
+    <?php if ($level == '1'): ?>
         <li class="menu-item <?= $menu == 'admin' ? 'active' : '' ?>">
-
             <a href="<?= base_url('admin') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div>Dashboard</div>
             </a>
-
         </li>
-    <?php } else if (session()->get('level') == 2) { ?>
 
+    <?php elseif ($level == '2'): ?>
         <li class="menu-item <?= $menu == 'pendidik' ? 'active' : '' ?>">
-
-            <a href="<?= base_url('guru') ?>" class="menu-link">
+            <a href="<?= base_url('pendidik') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div>Dashboard</div>
             </a>
-
         </li>
-    <?php } else if (session()->get('level') == 3) { ?>
+
+    <?php elseif ($level == '3'): ?>
         <li class="menu-item <?= $menu == 'siswa' ? 'active' : '' ?>">
             <a href="<?= base_url('siswa') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div>Dashboard</div>
             </a>
         </li>
-    <?php } ?>
-    <?php if (session()->get('level') == 1) { ?>
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Setting</span>
-        </li>
+    <?php endif; ?>
+
+
+    <!-- ================= ADMIN MENU ================= -->
+    <?php if ($level == '1'): ?>
+        <li class="menu-header small text-uppercase"><span>Setting</span></li>
+
         <li class="menu-item <?= $menu == 'ta' ? 'active' : '' ?>">
             <a href="<?= base_url('ta') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar"></i>
-                <div data-i18n="Account Settings">Tahun Pelajaran</div>
+                <div>Tahun Pelajaran</div>
             </a>
         </li>
+
         <li class="menu-item <?= $menu == 'setting' ? 'active' : '' ?>">
             <a href="<?= base_url('setting') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-school"></i>
-                <div data-i18n="Account Settings">Profile Sekolah</div>
+                <div>Profil Sekolah</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-lock-alt"></i>
-                <div data-i18n="Account Settings">Akun</div>
-            </a>
-        </li>
-        <!-- Components -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Akademik</span></li>
-        <!-- Cards -->
+
+        <li class="menu-header small text-uppercase"><span>Akademik</span></li>
+
         <li class="menu-item <?= $menu == 'peserta' ? 'active' : '' ?>">
             <a href="<?= base_url('peserta') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-graduation"></i>
-                <div data-i18n="Basic">Peserta Didik</div>
+                <div>Peserta Didik</div>
             </a>
         </li>
+
         <li class="menu-item <?= $menu == 'guru' ? 'active' : '' ?>">
             <a href="<?= base_url('guru') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-user"></i>
-                <div data-i18n="Basic">PTK</div>
+                <div>PTK</div>
             </a>
         </li>
+
         <li class="menu-item <?= $menu == 'kelas' ? 'active' : '' ?>">
             <a href="<?= base_url('kelas') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-chalkboard"></i>
-                <div data-i18n="Basic">Rombel</div>
+                <div>Rombel</div>
             </a>
         </li>
+
         <li class="menu-item <?= $menu == 'rekap' ? 'active' : '' ?>">
             <a href="<?= base_url('rekap') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-folder-down-arrow"></i>
-                <div data-i18n="Basic">Pusat Unduhan</div>
+                <div>Pusat Unduhan</div>
             </a>
         </li>
-
-    <?php } ?>
-
+    <?php endif; ?>
 
 
-    <!-- Menu Untuk Guru -->
-    <?php if (session()->get('level') == 2) { ?>
-        <li class="menu-item <?= $menu == 'profile' ? 'active' : '' ?> <?= $menu == 'profile' ? 'open' : '' ?> ">
+    <!-- ================= GURU MENU ================= -->
+    <?php if ($level == '2'): ?>
+        <li class="menu-item <?= $menu == 'profile' ? 'active open' : '' ?>">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-user"></i>
-                <div class="text-truncate" data-i18n="Account Settings">Profile Settings</div>
+                <div>Profile Settings</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item <?= $submenu == 'profile' ? 'active' : '' ?>">
-                    <a href="<?= base_url('pendidik/profile') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Account">Biodata</div>
-                    </a>
+                    <a href="<?= base_url('pendidik/profile') ?>" class="menu-link">Biodata</a>
                 </li>
                 <li class="menu-item <?= $submenu == 'pendidikan' ? 'active' : '' ?>">
-                    <a href="<?= base_url('pendidik/pendidikan') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Account">Pendidikan</div>
-                    </a>
+                    <a href="<?= base_url('pendidik/pendidikan') ?>" class="menu-link">Pendidikan</a>
                 </li>
                 <li class="menu-item <?= $submenu == 'keluarga' ? 'active' : '' ?>">
-                    <a href="<?= base_url('pendidik/keluarga') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Notifications">Keluarga</div>
-                    </a>
+                    <a href="<?= base_url('pendidik/keluarga') ?>" class="menu-link">Keluarga</a>
                 </li>
             </ul>
         </li>
-        <li class="menu-item <?= $menu == 'rombel' ? 'active' : '' ?> <?= $menu == 'rombel' ? 'open' : '' ?> ">
+
+        <li class="menu-item <?= $menu == 'rombel' ? 'active open' : '' ?>">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-chalkboard"></i>
-                <div class="text-truncate" data-i18n="Account Settings">Rombel</div>
+                <div>Rombel</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item <?= $submenu == 'anggotarombel' ? 'active' : '' ?>">
-                    <a href="<?= base_url('pendidik/rombel') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Account">Anggota</div>
-                    </a>
+                    <a href="<?= base_url('pendidik/rombel') ?>" class="menu-link">Anggota</a>
                 </li>
                 <li class="menu-item <?= $submenu == 'nilai' ? 'active' : '' ?>">
-                    <a href="<?= base_url('pendidik/nilai') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Notifications">Nilai</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-account-settings-connections.html" class="menu-link">
-                        <div class="text-truncate" data-i18n="Connections">Connections</div>
-                    </a>
+                    <a href="<?= base_url('pendidik/nilai') ?>" class="menu-link">Nilai</a>
                 </li>
             </ul>
         </li>
-    <?php } ?>
+    <?php endif; ?>
 
 
-
-    <!-- SISWA -->
-
-    <?php if (session()->get('level') == 3) { ?>
-        <li class="menu-item <?= $menu == 'profilsiswa' ? 'active' : '' ?> <?= $menu == 'profilsiswa' ? 'open' : '' ?> ">
+    <!-- ================= SISWA MENU ================= -->
+    <?php if ($level == '3'): ?>
+        <li class="menu-item <?= $menu == 'profilsiswa' ? 'active open' : '' ?>">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-user"></i>
-                <div class="text-truncate" data-i18n="Account Settings">Profile</div>
+                <div>Profile</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item <?= $submenu == 'profile' ? 'active' : '' ?>">
-                    <a href="<?= base_url('siswa/profile') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Account">Biodata</div>
-                    </a>
+                    <a href="<?= base_url('siswa/profile') ?>" class="menu-link">Biodata</a>
                 </li>
                 <li class="menu-item <?= $submenu == 'orangtua' ? 'active' : '' ?>">
-                    <a href="<?= base_url('siswa/orangtua') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Account">Data Orang Tua</div>
-                    </a>
+                    <a href="<?= base_url('siswa/orangtua') ?>" class="menu-link">Data Orang Tua</a>
                 </li>
                 <li class="menu-item <?= $submenu == 'dataperiodik' ? 'active' : '' ?>">
-                    <a href="<?= base_url('siswa/dataperiodik') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Notifications">Periodik</div>
-                    </a>
+                    <a href="<?= base_url('siswa/dataperiodik') ?>" class="menu-link">Periodik</a>
                 </li>
                 <li class="menu-item <?= $submenu == 'datanilai' ? 'active' : '' ?>">
-                    <a href="<?= base_url('siswa/datanilai') ?>" class="menu-link">
-                        <div class="text-truncate" data-i18n="Connections">Data Nilai</div>
-                    </a>
+                    <a href="<?= base_url('siswa/datanilai') ?>" class="menu-link">Data Nilai</a>
                 </li>
             </ul>
         </li>
-    <?php } ?>
+    <?php endif; ?>
 
 </ul>

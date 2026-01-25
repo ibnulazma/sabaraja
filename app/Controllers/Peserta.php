@@ -988,7 +988,7 @@ class Peserta extends BaseController
         // BUAT NAMA FILE BARU
         // ===============================
         $namaBersih = preg_replace('/[^A-Za-z0-9]/', '_', $siswa->nama_siswa);
-        $namaFile   = 'berkas_' . $namaBersih . '.pdf';
+        $namaFile   = $namaBersih . '.pdf';
 
         // simpan file
         $file->move(FCPATH . 'dokumen', $namaFile, true);
