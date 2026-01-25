@@ -18,6 +18,22 @@ $ta = $db->table('tbl_ta')
     .ikon {
         float: right;
     }
+
+
+    #drop-area {
+        border: 2px dashed #999;
+        padding: 40px;
+        width: 300px;
+        text-align: center;
+        border-radius: 10px;
+        cursor: pointer;
+        justify-content: center;
+    }
+
+    #drop-area.highlight {
+        border-color: #0d6efd;
+        background: #f1f8ff;
+    }
 </style>
 
 
@@ -115,7 +131,11 @@ $ta = $db->table('tbl_ta')
                             </li>
                         </ul>
                     </div>
+                    <div class="card-body border-bottom mb-4">
 
+
+
+                    </div>
                     <div class="mapii">
                         <h5> Tempat Tinggal <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#alamat"><i class='bx bxs-edit-alt'></i></button> </h5>
                         <p><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?></p>
@@ -140,6 +160,9 @@ $ta = $db->table('tbl_ta')
                     </li>
                     <li class="nav-item">
                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-rekamdidik" aria-controls="navs-pills-top-ortu" aria-selected="false">Rekam Didik</button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-dokumen" aria-controls="navs-pills-top-dokumen" aria-selected="false">Dokumen</button>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -226,7 +249,16 @@ $ta = $db->table('tbl_ta')
                                     <hr>
                                     <li class="p-0">
                                         Telepon :
-                                        <span><a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $datasiswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $datasiswa['link_wa'] ?>"><?= $siswa['telp_ayah'] ?></a></span>
+                                        <?php if (!empty($datasiswa['kelas'])): ?>
+                                            <span>
+                                                <a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $datasiswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $datasiswa['link_wa'] ?>"><?= $siswa['telp_ayah'] ?>
+                                                </a>
+                                            </span>
+
+                                        <?php else: ?>
+                                            <b><span><?= $siswa['telp_ayah'] ?></span></b>
+                                        <?php endif; ?>
+
                                     </li>
                                     <hr>
                                 </ul>
@@ -274,7 +306,16 @@ $ta = $db->table('tbl_ta')
 
                                     <li class="p-0">
                                         Telepon :
-                                        <span><a target="_blank" href="https://wa.me/<?= $siswa['telp_ibu'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $siswa['telp_ibu'] ?>%20dengan%20klik%20link%20ini%20<?= $siswa['telp_ibu'] ?>"><?= $siswa['telp_ibu'] ?></a></span>
+                                        <?php if (!empty($datasiswa['kelas'])): ?>
+                                            <span>
+                                                <a target="_blank" href="https://wa.me/<?= $siswa['telp_ibu'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $datasiswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $datasiswa['link_wa'] ?>"><?= $siswa['telp_ibu'] ?>
+                                                </a>
+                                            </span>
+
+                                        <?php else: ?>
+                                            <b><span><?= $siswa['telp_ibu'] ?></span></b>
+                                        <?php endif; ?>
+
                                     </li>
                                     <hr>
                                 </ul>
@@ -382,6 +423,31 @@ $ta = $db->table('tbl_ta')
                             </table>
 
                         </div>
+                    </div>
+                    <div class="tab-pane fade" id="navs-pills-top-dokumen" role="tabpanel">
+                        <?php if (empty($siswa['dokumen'])) : ?>
+
+                            <!-- DROP AREA -->
+                            <div id="drop-area" style="border:2px dashed #999; padding:30px; text-align:center;">
+                                <p>Drag & Drop PDF di sini</p>
+                                <input type="file" id="fileElem" accept="application/pdf" hidden>
+                                <button onclick="document.getElementById('fileElem').click()">Pilih File</button>
+                            </div>
+
+                        <?php else : ?>
+
+                            <!-- TAMPILKAN PDF -->
+                            <embed src="<?= base_url($siswa['dokumen']) ?>" type="application/pdf" width="100%" height="600px">
+
+                            <hr>
+                            <div id="drop-area" style="border:2px dashed orange; padding:20px; text-align:center;">
+                                <b>Ganti Dokumen (Drag & Drop PDF di sini)</b>
+                                <input type="file" id="fileElem" accept="application/pdf" hidden>
+                            </div>
+
+                        <?php endif; ?>
+
+
                     </div>
 
                 </div>
@@ -984,12 +1050,105 @@ $ta = $db->table('tbl_ta')
 
 
 
+<!-- drop and drag -->
+<script>
+    let dropArea = document.getElementById('drop-area');
+    let fileElem = document.getElementById('fileElem');
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, e => {
+            e.preventDefault();
+            dropArea.style.background = '#eef';
+        }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, e => {
+            e.preventDefault();
+            dropArea.style.background = '';
+        }, false);
+    });
+
+    dropArea.addEventListener('drop', e => {
+        let file = e.dataTransfer.files[0];
+        uploadFile(file);
+    });
+
+    fileElem.addEventListener('change', e => {
+        let file = e.target.files[0];
+        uploadFile(file);
+    });
+
+    function uploadFile(file) {
+        if (file.type !== "application/pdf") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File harus berupa PDF!'
+            });
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("file", file);
+
+        Swal.fire({
+            title: 'Mengupload...',
+            text: 'Mohon tunggu sebentar',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        fetch("<?= base_url('peserta/uploadDokumen/' . $siswa['id_siswa']) ?>", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(res => {
+                Swal.close();
+
+                if (res.status) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: res.msg,
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => {
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: res.msg
+                    });
+                }
+            })
+            .catch(() => {
+                Swal.close();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Server Error',
+                    text: 'Terjadi kesalahan saat upload'
+                });
+            });
+    }
+</script>
 
 
 
 
 
 
+
+
+
+
+
+<!-- dropdownlist -->
 
 <script>
     const map = L.map('map').setView([-6.282785267302884, 106.5934756654008], 14);

@@ -7,11 +7,21 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Models\RekapModel;
 use App\Models\KelasModel;
+use App\Models\ModelPeserta;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
+
+
+
 class Rekap extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->ModelPeserta = new ModelPeserta();
+    }
+
     public function index()
     {
         $data = [
@@ -369,5 +379,65 @@ class Rekap extends BaseController
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
         exit;
+    }
+    public function formatus()
+
+    {
+        $siswa = $this->ModelPeserta->formatus();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'No Urut');
+        $sheet->setCellValue('B1', 'No  Peserta US');
+        $sheet->setCellValue('C1', 'NIPD');
+        $sheet->setCellValue('D1', 'NISN');
+        $sheet->setCellValue('E1', 'NIK');
+        $sheet->setCellValue('F1', 'KLS');
+        $sheet->setCellValue('G1', 'Nama Peserta');
+        $sheet->setCellValue('H1', 'JK');
+        $sheet->setCellValue('I1', 'Tempat Lahir');
+        $sheet->setCellValue('J1', 'Tanggal Lahir');
+        $sheet->setCellValue('K1', 'AGAMA');
+        $sheet->setCellValue('L1', 'Nama Orang Tua');
+        $sheet->setCellValue('M1', 'Pekerjaan');
+        $sheet->setCellValue('N1', 'Alamat Orang Tua');
+        $sheet->setCellValue('O1', 'No Ijazah SD/Sederajat');
+
+        $column = 2;
+
+
+
+        foreach ($siswa as   $value) {
+
+            $alamat = $value['alamat'] .
+                ' RT ' . ($value['rt'] ?? '-') .
+                ' RW ' . ($value['rw'] ?? '-') .
+                ' Desa/Kel ' . ($value['desa'] ?? '-') . ' Kecamatan ' . ($value['kecamatan'] ?? '-');
+            $sheet->setCellValue('A' . $column, ($column - 1));
+            $sheet->setCellValue('B' . $column, "ISI SENDIRI");
+            $sheet->setCellValue('C' . $column, $value['nis']);
+            $sheet->setCellValue('D' . $column, $value['nisn']);
+            $sheet->setCellValue('E' . $column, $value['nik']);
+            $sheet->setCellValue('F' . $column, $value['kelas']);
+            $sheet->setCellValue('G' . $column, $value['nama_siswa']);
+            $sheet->setCellValue('H' . $column, $value['jenis_kelamin']);
+            $sheet->setCellValue('I' . $column, $value['tempat_lahir']);
+            $sheet->setCellValue('J' . $column, $value['tanggal_lahir']);
+            $sheet->setCellValue('K' . $column, "ISLAM");
+            $sheet->setCellValue('L' . $column, $value['nama_ayah']);
+            $sheet->setCellValue('M' . $column, $value['kerja_ayah']);
+            $sheet->setCellValue('N' . $column, $alamat);
+            $sheet->setCellValue('N' . $column, $value['seri_ijazah']);
+            $column++;
+        }
+
+        $filename = "formatus";
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header("Content-Disposition: attachment:filename= . $filename.xlsx");
+        header('Cache-Control:max-age=0');
+        $writer->save('php://output');
+        exit();
     }
 }

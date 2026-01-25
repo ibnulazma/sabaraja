@@ -933,4 +933,76 @@ class Peserta extends BaseController
         ));
         exit();
     }
+
+
+
+
+    public function uploadDokumen($id_siswa)
+    {
+        $file = $this->request->getFile('file');
+
+        if (!$file->isValid()) {
+            return $this->response->setJSON([
+                'status' => false,
+                'msg' => 'File tidak valid'
+            ]);
+        }
+
+        // ✅ Validasi ekstensi
+        if ($file->getExtension() != 'pdf') {
+            return $this->response->setJSON([
+                'status' => false,
+                'msg' => 'Harus file PDF'
+            ]);
+        }
+
+        // ✅ Validasi ukuran maksimal 2MB
+        if ($file->getSize() > 2 * 1024 * 1024) {
+            return $this->response->setJSON([
+                'status' => false,
+                'msg' => 'Ukuran file maksimal 2MB'
+            ]);
+        }
+
+        $db = \Config\Database::connect();
+        $siswa = $db->table('tbl_siswa')
+            ->where('id_siswa', $id_siswa)
+            ->get()
+            ->getRow();
+
+        if (!$siswa) {
+            return $this->response->setJSON([
+                'status' => false,
+                'msg' => 'Siswa tidak ditemukan'
+            ]);
+        }
+
+        // ===============================
+        // HAPUS FILE LAMA JIKA ADA
+        // ===============================
+        if (!empty($siswa->dokumen) && file_exists(FCPATH . $siswa->dokumen)) {
+            unlink(FCPATH . $siswa->dokumen);
+        }
+
+        // ===============================
+        // BUAT NAMA FILE BARU
+        // ===============================
+        $namaBersih = preg_replace('/[^A-Za-z0-9]/', '_', $siswa->nama_siswa);
+        $namaFile   = 'berkas_' . $namaBersih . '.pdf';
+
+        // simpan file
+        $file->move(FCPATH . 'dokumen', $namaFile, true);
+
+        // simpan ke database (TANPA kata "dokumen/" jika tidak mau)
+        $db->table('tbl_siswa')
+            ->where('id_siswa', $id_siswa)
+            ->update([
+                'dokumen' => $namaFile
+            ]);
+
+        return $this->response->setJSON([
+            'status' => true,
+            'msg' => 'Dokumen berhasil diupload'
+        ]);
+    }
 }

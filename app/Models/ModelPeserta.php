@@ -1,5 +1,9 @@
 <?php
 
+
+
+
+
 namespace App\Models;
 
 use CodeIgniter\Model;
@@ -15,6 +19,23 @@ class ModelPeserta extends Model
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
             // ->where('tbl_ta.status', '1')
+            ->where('aktif', '1')
+            ->where('status_daftar', '3')
+            ->get()
+            ->getResultArray();
+    }
+
+    public function formatus()
+    {
+        return $this->db->table('tbl_siswa')
+            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
+            ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
+            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
+            ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
+            // ->where('tbl_ta.status', '1')
+            ->where('tbl_siswa.id_tingkat', '3')
+            ->orderBy('tbl_siswa.id_kelas', 'ASC')
             ->where('aktif', '1')
             ->where('status_daftar', '3')
             ->get()
@@ -63,6 +84,8 @@ class ModelPeserta extends Model
 
 
 
+
+
     public function linkwa($id_siswa)
     {
         return $this->db->table('tbl_siswa')
@@ -76,8 +99,6 @@ class ModelPeserta extends Model
             ->get()
             ->getRowArray();
     }
-
-
 
 
 

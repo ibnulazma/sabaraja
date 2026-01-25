@@ -132,7 +132,8 @@ $ta = $db->table('tbl_ta')
                                     <td><?= $value['nisn'] ?></td>
                                     <td><?= $value['nama_tingkat'] ?></td>
                                     <td><?= $value['jenis_kelamin'] ?></td>
-                                    <input type="hidden" name="id_kelas_baru[]" value="<?= $kelas['id_kelas'] ?>">
+                                    <input type="hidden" name="nisn[]" value="<?= $kelas['nisn'] ?>">
+                                    <input type="hidden" name="id_kelas[]" value="<?= $kelas['id_kelas'] ?>">
                                     <input type="hidden" name="id_ta[]" value="<?= $ta['id_ta'] ?>">
                                 </tr>
                             <?php } ?>

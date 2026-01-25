@@ -41,6 +41,10 @@ $routes->group('wilayah', function ($routes) {
     $routes->get('desa/(:num)', 'Wilayah::desa/$1');
 });
 
+$routes->post('peserta/uploadDokumen', 'Peserta::uploadDokumen');
+$routes->get('peserta/detail_siswa/(:num)', 'Peserta::detail_siswa/$1');
+$routes->post('peserta/uploadDokumen/(:num)', 'Peserta::uploadDokumen/$1');
+
 
 // $routes->get('/', 'Home::index');
 

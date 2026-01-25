@@ -131,7 +131,7 @@ class ModelKelas extends Model
     {
         return $this->db->table('tbl_siswa')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-
+            ->where('status_daftar', '3')
 
             // ->where('jenis_kelamin', 'Laki-laki')
             ->get()
