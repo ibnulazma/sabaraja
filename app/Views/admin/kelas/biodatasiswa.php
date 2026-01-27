@@ -120,7 +120,7 @@ $profile = $db->table('tbl_profile')
                     <tr>
                         <td>3. Tempat, Tanggal Lahir</td>
                         <td>:</td>
-                        <td><?= $value['tempat_lahir'] ?>, <?= formatindo(date($siswa['tanggal_lahir']))  ?> </td>
+                        <td><?= $value['tempat_lahir'] ?>, <?= formatindo(date($value['tanggal_lahir']))  ?> </td>
                     </tr>
                     <tr>
                         <td>4. Jenis Kelamin</td>

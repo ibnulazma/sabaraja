@@ -244,7 +244,7 @@ class Kelas extends BaseController
 
             // 'tingkat'       => $this->ModelKelas->SiswaTingkat(),
         ];
-        $html = view('admin/kelas/print', $data);
+        $html = view('admin/kelas/biodatasiswa', $data);
         //Atur Gambar
 
         $dompdf->loadHtml($html);
