@@ -69,6 +69,12 @@ $user = $db->table('tbl_user')
                 <div>Profil Sekolah</div>
             </a>
         </li>
+        <li class="menu-item <?= $menu == 'maintenance' ? 'maintenance' : '' ?>">
+            <a href="<?= base_url('admin/setting') ?>" class="menu-link">
+                <i class='menu-icon tf-icons bx  bx-toggle-big-right'></i>
+                <div>Setting</div>
+            </a>
+        </li>
 
         <li class="menu-header small text-uppercase"><span>Akademik</span></li>
 

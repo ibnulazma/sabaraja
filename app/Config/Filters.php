@@ -36,7 +36,7 @@ class Filters extends BaseConfig
 
 
 
-            'maintenance'
+            'maintenance',
 
             // 'csrf',
             // 'filterpendidik' =>

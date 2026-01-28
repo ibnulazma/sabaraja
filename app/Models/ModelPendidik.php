@@ -20,7 +20,7 @@ class ModelPendidik extends Model
     {
         return $this->db->table('tbl_guru')
             ->join('tbl_kelas', 'tbl_kelas.id_guru = tbl_guru.id_guru', 'left')
-            ->join('tbl_kelas', 'tbl_kelas.id_guru = tbl_guru.id_guru', 'left')
+
             ->where('tbl_guru.id_guru', session()->get('id_user'))
             ->get()->getRowArray();
     }

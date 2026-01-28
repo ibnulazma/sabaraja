@@ -210,25 +210,6 @@ $ta = $db->table('tbl_ta')
         </div>
     </div>
 
-    <?php $maintenance = (new \App\Models\ModelMaintenance())->getMaintenance(); ?>
-
-    <div class="card">
-        <div class="card-body text-center">
-            <h5>Status Website</h5>
-
-            <?php if ($maintenance['value'] == '1'): ?>
-                <span class="badge bg-danger">MAINTENANCE AKTIF</span>
-                <a href="<?= base_url('admin/toggle-maintenance') ?>" class="btn btn-success mt-3">
-                    Matikan Maintenance
-                </a>
-            <?php else: ?>
-                <span class="badge bg-success">WEBSITE NORMAL</span>
-                <a href="<?= base_url('admin/toggle-maintenance') ?>" class="btn btn-danger mt-3">
-                    Aktifkan Maintenance
-                </a>
-            <?php endif; ?>
-        </div>
-    </div>
 
 
 

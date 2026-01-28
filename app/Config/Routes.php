@@ -67,13 +67,13 @@ $routes->group('admin', ['filter' => 'role:1'], function ($routes) {
     // $routes->get('tahun/create', 'Admin\TahunController::create');
     // $routes->get('tahun/edit/(:num)', 'Admin\TahunController::edit/$1');
 
-    // // Peserta
-    // $routes->get('peserta', 'Admin\PesertaController::index');
+    // Peserta
+    $routes->get('peserta', 'Peserta::index');
     // $routes->get('peserta/create', 'Admin\PesertaController::create');
     // $routes->get('peserta/edit/(:num)', 'Admin\PesertaController::edit/$1');
 
     // // Rombel
-    // $routes->get('rombel', 'Admin\RombelContro::index');
+    $routes->get('kelas', 'Kelas::index');
     // $routes->get('rombel/create', 'Admin\RombelController::create');
     // $routes->get('rombel/edit/(:num)', 'Admin\RombelController::edit/$1');
 });
@@ -95,7 +95,9 @@ $routes->get('access-denied', function () {
     return view('error/access_denied');
 });
 
-
+$routes->post('admin/reset-password-siswa', 'Admin::resetPasswordSiswa');
+$routes->post('admin/reset-password-guru', 'Admin::resetPasswordGuru');
+$routes->post('auth/update-password-pertama', 'Auth::updatePasswordPertama');
 
 // $routes->get('/peserta/(:seg)', 'Peserta::detail/$1');
 

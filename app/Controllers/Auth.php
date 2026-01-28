@@ -52,6 +52,7 @@ class Auth extends BaseController
                 'nama' => $siswa['nama_siswa'],
                 'username'  => $siswa['nisn'], // 🔥 WAJIB ADA
                 'level' => '3',
+                'password_default' => $siswa['password_default'],
                 'logged_in' => true
             ]);
             return redirect()->to('/siswa');
@@ -64,6 +65,7 @@ class Auth extends BaseController
                 'id_user' => $guru['id_guru'],
                 'nama' => $guru['nama_guru'],
                 'level' => '2',
+                'password_default' => $guru['password_default'],
                 'logged_in' => true
             ]);
             return redirect()->to('/pendidik');
@@ -101,6 +103,71 @@ class Auth extends BaseController
 
         return redirect()->back()->with('error', 'Login Admin gagal');
     }
+
+
+    public function updatePasswordPertama()
+    {
+
+
+        $db    = \Config\Database::connect();
+        $id    = session()->get('id_user');
+        $level = session()->get('level');
+
+        $passBaru   = $this->request->getPost('password_baru');
+        $konfirmasi = $this->request->getPost('konfirmasi_password');
+
+        // Validasi dasar
+        if ($passBaru !== $konfirmasi) {
+            return redirect()->back()->with('error', 'Konfirmasi password tidak sama');
+        }
+
+        // Validasi panjang & kekuatan password
+        if (strlen($passBaru) < 8) {
+            return redirect()->back()->with('error', 'Password minimal 8 karakter');
+        }
+
+        if (
+            !preg_match('/[A-Z]/', $passBaru) ||
+            !preg_match('/[a-z]/', $passBaru) ||
+            !preg_match('/[0-9]/', $passBaru)
+        ) {
+            return redirect()->back()->with('error', 'Password harus mengandung huruf besar, huruf kecil, dan angka');
+        }
+
+        $hash = password_hash($passBaru, PASSWORD_DEFAULT);
+
+        if ($level == '3') {
+            $db->table('tbl_siswa')->where('id_siswa', $id)->update([
+                'password' => $hash,
+                'password_default' => 0
+            ]);
+        } elseif ($level == '2') {
+            $db->table('tbl_guru')->where('id_guru', $id)->update([
+                'password' => $hash,
+                'password_default' => 0
+            ]);
+        }
+
+        session()->set('password_default', 0);
+
+        return redirect()->back()->with('success', 'Password berhasil diperbarui');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // ================= LOGOUT =================
     public function logout()

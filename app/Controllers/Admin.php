@@ -84,7 +84,23 @@ class Admin extends BaseController
         return view('admin/v_dashboard', $data);
     }
 
+    public function setting()
+    {
+        session();
 
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Add Siswa',
+            'menu'              => 'maintenance',
+            'submenu'           => 'maintenance',
+            'siswa'       => $this->ModelPeserta->aktif(),
+            'guru'       => $this->ModelGuru->AllData(),
+
+
+
+        ];
+        return view('admin/setting', $data);
+    }
 
     public function daftarMurid()
     {
@@ -101,108 +117,6 @@ class Admin extends BaseController
         return view('ppdb/v_index', $data);
     }
 
-    public function cetak()
-    {
-        session();
-
-        $data = [
-            'title'         => 'SIAKADINKA',
-            'subtitle'      => 'PPDB',
-            'ppdb'          => $this->ModelPpdb->AllData(),
-            'sekolah'       => $this->ModelSekolah->AllData(),
-            'ta'            => $this->ModelTa->statusTa(),
-            'jenjang'       => $this->ModelJenjang->AllData(),
-        ];
-        return view('ppdb/v_cetak', $data);
-    }
-
-
-    public function tambahSiswa()
-    {
-        session();
-
-        $data = [
-            'title'         => 'SIAKADINKA',
-            'subtitle'      => 'Add Siswa',
-            'ppdb'          => $this->ModelPpdb->AllData(),
-            'ta'            => $this->ModelTa->tahun(),
-            'sekolah'       => $this->ModelSekolah->AllData(),
-            'jenjang'       => $this->ModelJenjang->AllData(),
-            'validation'    =>  \Config\Services::validation(),
-
-        ];
-        return view('ppdb/v_add', $data);
-    }
-
-
-    public function backup()
-    {
-        try {
-            $tglSekarang = date('dym');
-            $dump = new Mysqldump('mysql:host=localhost;dbname=db_siakad;port=3306', 'root', '');
-            $dump->start('database/databasesiakad-' . $tglSekarang . '.sql');
-
-            $pesan = "Backup berhasil";
-            session()->setFlashdata('pesan', $pesan);
-            return redirect()->to('admin');
-        } catch (\Exception $e) {
-            $pesan = "mysqldump-php error " . $e->getMessage();
-            session()->setFlashdata('pesan', $pesan);
-            return redirect()->to('admin');
-        }
-    }
-
-    public function lembaran()
-    {
-        session();
-
-        $data = [
-            'title'         => 'SIAKADINKA',
-            'subtitle'      => 'Add Siswa',
-
-
-        ];
-        return view('admin/lembaran1', $data);
-    }
-
-
-    public function bukuinduk($id_siswa)
-    {
-        $data = [
-            'title' => 'Buku Induk Siswa-SIAKAD',
-            'siswa'     => $this->ModelPeserta->DataPeserta($id_siswa)
-        ];
-        return view('admin/bukuinduk', $data);
-    }
-
-    public function dataKabupaten($id_provinsi)
-    {
-
-        $data = $this->ModelWilayah->getKabupaten($id_provinsi);
-        echo '<option>--Pilih Kabupaten--</option>';
-        foreach ($data as $value) {
-
-            echo '<option value="' . $value['id_kabupaten'] . '">' . $value['city_name'] . '</option>';
-        }
-    }
-    public function dataKecamatan($id_kabupaten)
-    {
-        $data = $this->ModelWilayah->getKecamatan($id_kabupaten);
-        echo '<option>--Pilih Kecamatan--</option>';
-        foreach ($data as $value) {
-            echo '<option value="' . $value['id_kecamatan'] . '">' . $value['nama_kecamatan'] . '</option>';
-        }
-    }
-    public function dataDesa($id_kecamatan)
-    {
-        $data = $this->ModelWilayah->getDesa($id_kecamatan);
-        echo '<option>--Pilih Desa/Kelurahan--</option>';
-        foreach ($data as $value) {
-            echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>';
-        }
-    }
-
-
 
     public function toggleMaintenance()
     {
@@ -213,5 +127,109 @@ class Admin extends BaseController
         $settingsModel->setMaintenance($newStatus);
 
         return redirect()->back()->with('success', 'Status maintenance berhasil diubah');
+    }
+
+
+
+    public function resetPasswordSiswa()
+    {
+        if (session()->get('level') != 1) {
+            return $this->response->setJSON(['status' => 'forbidden']);
+        }
+
+        $offset = (int)$this->request->getPost('offset');
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('tbl_siswa');
+
+        $total = $builder->countAll();
+
+        $steps = 20;
+
+        if ($total <= 20) {
+            $limit = 1; // biar progress tetap kelihatan jalan
+        } else {
+            $limit = ceil($total / $steps);
+        }
+
+        $data = $builder->select('id_siswa, nisn')
+            ->limit($limit, $offset)
+            ->get()->getResultArray();
+
+        $updated = 0;
+
+        foreach ($data as $row) {
+            $pass = !empty(trim($row['nisn'])) ? trim($row['nisn']) : 'Kamil123';
+
+            $builder->where('id_siswa', $row['id_siswa'])->update([
+                'password' => password_hash($pass, PASSWORD_DEFAULT),
+                'password_default' => 1
+            ]);
+
+            $updated++;
+        }
+
+        return $this->response->setJSON([
+            'status' => 'ok',
+            'updated' => $updated,
+            'next' => $offset + $limit,
+            'total' => $total,
+            'csrf' => csrf_hash()
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+    public function resetPasswordGuru()
+    {
+        if (session()->get('level') != 1) {
+            return $this->response->setJSON(['status' => 'forbidden']);
+        }
+
+        $offset = (int)$this->request->getPost('offset');
+
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('tbl_guru');
+
+        $total = $builder->countAll();
+        $steps = 20;
+
+        if ($total <= 20) {
+            $limit = 1; // biar progress tetap kelihatan jalan
+        } else {
+            $limit = ceil($total / $steps);
+        }
+
+        $data = $builder->select('id_guru, nik_guru')
+            ->limit($limit, $offset)
+            ->get()->getResultArray();
+
+        $updated = 0;
+
+        foreach ($data as $row) {
+            $pass = !empty(trim($row['nik_guru'])) ? trim($row['nik_guru']) : 'Kamil123';
+
+            $builder->where('id_guru', $row['id_guru'])->update([
+                'password' => password_hash($pass, PASSWORD_DEFAULT),
+                'password_default' => 1
+            ]);
+
+            $updated++;
+        }
+
+        return $this->response->setJSON([
+            'status' => 'ok',
+            'updated' => $updated,
+            'next' => $offset + $limit,
+            'total' => $total,
+            'csrf' => csrf_hash()
+        ]);
     }
 }
