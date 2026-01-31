@@ -1,0 +1,20 @@
+CRITICAL - 2026-01-31 10:22:47 --> You must set the database table to be used with your query.
+#0 C:\xampp\htdocs\sabaraja\system\Model.php(545): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 C:\xampp\htdocs\sabaraja\system\Model.php(719): CodeIgniter\Model->builder()
+#2 C:\xampp\htdocs\sabaraja\app\Controllers\Admin.php(52): CodeIgniter\Model->__call('jumlahAktifs', Array)
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Admin->index()
+#4 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2026-01-31 10:23:08 --> You must set the database table to be used with your query.
+#0 C:\xampp\htdocs\sabaraja\system\Model.php(545): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 C:\xampp\htdocs\sabaraja\system\Model.php(719): CodeIgniter\Model->builder()
+#2 C:\xampp\htdocs\sabaraja\app\Controllers\Admin.php(52): CodeIgniter\Model->__call('jumlahAktifs', Array)
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Admin->index()
+#4 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
