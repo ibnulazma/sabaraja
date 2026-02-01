@@ -309,12 +309,16 @@ $ta = $db->table('tbl_ta')
                         <div class="card-body demo-vertical-spacing demo-only-element">
 
                             <a href="<?= base_url('peserta/downloadtemplate') ?>" class="btn btn-outline-success btn-lg"> <i class='bx bxs-download'></i> Download Template</a>
-                            <?= form_open_multipart('peserta/upload') ?>
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="fileimport" accept=".xls,.xlsx">
-                                <button class="btn btn-outline-primary" type="submit" id="inputGroupFileAddon04">Submit</button>
-                            </div>
-                            <?= form_close() ?>
+
+
+                            <form id="formImport" enctype="multipart/form-data">
+                                <?= csrf_field(); ?>
+                                <input type="file" name="file_excel" class="form-control" accept=".xls,.xlsx" required>
+                                <button type="submit" class="btn btn-primary mt-2">Import Excel</button>
+                            </form>
+
+
+
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -364,12 +368,6 @@ $ta = $db->table('tbl_ta')
                                 <label for="" class="col-sm-4">Nama Ibu</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" name="nama_ibu">
-                                </div>
-                            </div>
-                            <div class=" row mb-3">
-                                <label for="" class="col-sm-4">Password</label>
-                                <div class="col-sm-8">
-                                    <input type="password" class="form-control" name="password">
                                 </div>
                             </div>
                             <div class=" row mb-3">
@@ -770,6 +768,163 @@ $ta = $db->table('tbl_ta')
 
 
 
+
+
+
+
+
+<!-- <script>
+    document.getElementById('formImport').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let formData = new FormData(this);
+        let progressBar = document.querySelector('.progress');
+        let progressInner = document.querySelector('.progress-bar');
+
+        progressBar.style.display = 'block';
+        progressInner.style.width = '0%';
+        progressInner.innerHTML = '0%';
+
+        fetch("<?= base_url('peserta/import') ?>", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                function read() {
+                    reader.read().then(({
+                        done,
+                        value
+                    }) => {
+                        if (done) {
+                            progressInner.style.width = '100%';
+                            progressInner.innerHTML = 'Selesai!';
+                            setTimeout(() => location.reload(), 1000);
+                            return;
+                        }
+
+                        let text = decoder.decode(value);
+                        let lines = text.trim().split("\n");
+
+                        lines.forEach(line => {
+                            try {
+                                let data = JSON.parse(line);
+                                if (data.progress) {
+                                    progressInner.style.width = data.progress + '%';
+                                    progressInner.innerHTML = data.progress + '%';
+                                }
+                            } catch (e) {}
+                        });
+
+                        read();
+                    });
+                }
+                read();
+            });
+    });
+</script> -->
+
+
+<script>
+    document.getElementById('formImport').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let formData = new FormData(this);
+        let visualProgress = 0; // progress tampilan
+        let realProgress = 0; // progress dari server
+
+        Swal.fire({
+            title: 'Mengimpor Data Siswa...',
+            html: `
+            <div style="width:100%; background:#e0e0e0; border-radius:8px;">
+                <div id="progressBar" style="
+                    width:0%;
+                    height:22px;
+                    background:#3085d6;
+                    border-radius:8px;
+                    text-align:center;
+                    color:white;
+                    font-weight:bold;
+                    line-height:22px;
+                    transition: width .3s ease;
+                ">0%</div>
+            </div>
+            <div style="margin-top:10px;font-size:14px;">Sedang memproses data...</div>
+        `,
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+
+        // Animasi progress biar tetap jalan
+        let fakeInterval = setInterval(() => {
+            if (visualProgress < realProgress) {
+                visualProgress++;
+            } else if (visualProgress < 90) {
+                visualProgress++; // naik pelan walau data sedikit
+            }
+            updateBar(visualProgress);
+        }, 120);
+
+        function updateBar(val) {
+            let bar = document.getElementById("progressBar");
+            bar.style.width = val + "%";
+            bar.innerHTML = val + "%";
+        }
+
+        fetch("<?= base_url('peserta/import') ?>", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                function read() {
+                    reader.read().then(({
+                        done,
+                        value
+                    }) => {
+                        if (done) {
+                            clearInterval(fakeInterval);
+                            updateBar(100);
+
+                            setTimeout(() => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Import Selesai',
+                                    text: 'Data siswa berhasil diproses.',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                }).then(() => location.reload());
+                            }, 500);
+                            return;
+                        }
+
+                        let text = decoder.decode(value);
+                        let lines = text.trim().split("\n");
+
+                        lines.forEach(line => {
+                            try {
+                                let data = JSON.parse(line);
+                                if (data.progress) {
+                                    realProgress = data.progress;
+                                }
+                            } catch (e) {}
+                        });
+
+                        read();
+                    });
+                }
+                read();
+            })
+            .catch(() => {
+                clearInterval(fakeInterval);
+                Swal.fire('Error', 'Terjadi kesalahan saat import.', 'error');
+            });
+    });
+</script>
 
 
 

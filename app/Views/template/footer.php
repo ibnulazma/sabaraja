@@ -72,6 +72,8 @@
 <script src="https://cdn.datatables.net/fixedcolumns/5.0.3/js/dataTables.fixedColumns.js"></script>
 <script src="https://cdn.datatables.net/fixedcolumns/5.0.3/js/fixedColumns.dataTables.js"></script>
 
+<script src="<?= base_url() ?>/assets/dist/js/formwizard.js"></script>
+
 
 
 

@@ -826,7 +826,7 @@ $ta = $db->table('tbl_ta')
                                 <select name="didik_ayah" id="didik" class="form-control">
                                     <option value="<?= $siswa['didik_ayah'] ?>"><?= $siswa['didik_ayah'] ?></option>
                                     <option value="Tidak Sekolah">Tidak Sekolah</option>
-                                    <option value="Tamat SD/Sesderajat">Tamat SD/Sesderajat</option>
+                                    <option value="Tamat SD/Sederajat">Tamat SD/Sesderajat</option>
                                     <option value="SMP">SMP/Sederajat</option>
                                     <option value="SMA">SMA/Sederajat</option>
                                     <option value="D1">D1</option>

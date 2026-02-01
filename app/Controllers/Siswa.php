@@ -1169,4 +1169,9 @@ class Siswa extends BaseController
         //     return redirect()->to('siswa/edit_profile/' . $id_siswa)->withInput()->with('validation', $validation);
         // }
     }
+
+    public function update($id_siswa)
+    {
+        dd($this->request->getPost());
+    }
 }

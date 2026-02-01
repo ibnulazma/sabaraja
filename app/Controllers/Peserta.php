@@ -46,6 +46,15 @@ class Peserta extends BaseController
     }
 
 
+
+
+
+
+
+
+
+
+
     public function index()
     {
 
@@ -70,6 +79,18 @@ class Peserta extends BaseController
         return view('admin/peserta/v_peserta', $data);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
     public function verifikasi($id_siswa)
     {
 
@@ -92,7 +113,7 @@ class Peserta extends BaseController
         $ta = $db->table('tbl_ta')
             ->where('status', '1')
             ->get()->getRowArray();
-
+        $nisn = $this->request->getPost('nisn');
 
         session();
 
@@ -112,13 +133,7 @@ class Peserta extends BaseController
 
                 ]
             ],
-            'password' => [
-                'label' => 'Password',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} Wajib Di Isi !!!!'
-                ]
-            ],
+
 
         ])) {
 
@@ -133,13 +148,15 @@ class Peserta extends BaseController
                 'nama_ibu'          => $this->request->getPost('nama_ibu'),
                 'tempat_lahir'      => $this->request->getPost('tempat_lahir'),
                 'tanggal_lahir'     => $this->request->getPost('tanggal_lahir'),
-                'tempat_lahir'      => $this->request->getPost('tempat_lahir'),
-                'nisn'              => $this->request->getPost('nisn'),
-                'password'          => $this->request->getPost('password'),
+                'nisn'          => $nisn,
+
+                // 🔐 Password otomatis dari NISN + di-hash
+                'password'      => password_hash($nisn, PASSWORD_DEFAULT),
                 'id_tingkat'        =>  $this->request->getPost('id_tingkat'),
                 'status_daftar'     =>  1,
                 'aktif'             =>  1,
                 'id_ta'             => $ta['id_ta'],
+                'password_default'  => 1,
 
             );
             $this->ModelPeserta->add($data);
@@ -245,8 +262,7 @@ class Peserta extends BaseController
         $sheet->setCellValue('F1', 'Tanggal Lahir');
         $sheet->setCellValue('G1', 'Nama Ibu');
         $sheet->setCellValue('H1', 'NIK');
-        $sheet->setCellValue('I1', 'Password');
-        $sheet->setCellValue('J1', 'Tingkat');
+        $sheet->setCellValue('I1', 'Tingkat');
 
         $sheet->getStyle('A1:J1')->getFont()->setBold(true);
         $spreadsheet->getActiveSheet()->getStyle('A1:J1')->getFill()
@@ -269,93 +285,107 @@ class Peserta extends BaseController
         exit();
     }
 
-    public function upload()
+
+    // ======= PROGRESS IMPORT
+
+
+
+
+
+    // ======IMPORT EXCEL
+
+    public function importExcel()
     {
+        $db = \Config\Database::connect();
+        $ta = $db->table('tbl_ta')->where('status', 1)->get()->getRowArray();
+        $file = $this->request->getFile('file_excel');
 
-        $db     = \Config\Database::connect();
-        $ta = $db->table('tbl_ta')
-            ->where('status', '1')
-            ->get()->getRowArray();
-
-        $validation = \Config\Services::validation();
-        $valid = $this->validate(
-            [
-                'fileimport' => [
-                    'label' => 'Input File',
-                    'rules' => 'uploaded[fileimport]|ext_in[fileimport,xls,xlsx]',
-                    'error' => [
-                        'uploaded' => '{field} wajib diisi',
-                        'ext_in' => '{field} harus ekstensi xls atau xlsx'
-                    ]
-                ]
-            ]
-        );
-
-        if (!$valid) {
-
-
-            $this->session->setFlashdata('pesan', $validation->getError('fileimport'));
-            return redirect()->to('peserta');
-        } else {
-
-            $file = $this->request->getFile('fileimport');
-            $ext = $file->getClientExtension();
-
-            if ($ext == 'xls') {
-                $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-            } else {
-                $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-
-            $spreadsheet = $render->load($file);
-            $data = $spreadsheet->getActiveSheet()->toArray();
-
-
-            $jumlaherror = 0;
-            $jumlahsukses = 0;
-            foreach ($data as $x => $row) {
-                if ($x == 0) {
-                    continue;
-                }
-                $nis            = $row[1];
-                $nama           = $row[2];
-                $jk             = $row[3];
-                $tempat_lahir   = $row[4];
-                $tanggal_lahir  = $row[5];
-                $nama_ibu       = $row[6];
-                $nik            = $row[7];
-                $password       = $row[8];
-                $tingkat        = $row[9];
-                $db = \Config\Database::connect();
-
-                $ceknonis = $db->table('tbl_siswa')->getWhere(['nisn' => $nis])->getResult();
-
-                if (count($ceknonis) > 0) {
-                    $jumlaherror++;
-                } else {
-                    $datasimpan = [
-                        'nisn'                  => $nis,
-                        'nama_siswa'            => $nama,
-                        'jenis_kelamin'         => $jk,
-                        'tempat_lahir'          => $tempat_lahir,
-                        'tanggal_lahir'         => $tanggal_lahir,
-                        'nama_ibu'              => $nama_ibu,
-                        'nik'                   => $nik,
-                        'password'              => $password,
-                        'id_tingkat'            => $tingkat,
-                        'id_ta'                 => $ta['id_ta'],
-                        'status_daftar'         => 1,
-                        'aktif'                 => 1,
-                    ];
-
-                    $db->table('tbl_siswa')->insert($datasimpan);
-                    $jumlahsukses++;
-                }
-            }
-            $this->session->setFlashdata('pesan', "$jumlaherror Data tidak bisa disimpan <br> $jumlahsukses Data bisa disimpan");
-            return redirect()->to('peserta');
+        if (!$file->isValid()) {
+            return $this->response->setJSON(['status' => 'error', 'msg' => 'File tidak valid']);
         }
+
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file->getTempName());
+        $rows = $spreadsheet->getActiveSheet()->toArray();
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('tbl_siswa');
+
+        $total = count($rows) - 1; // tanpa header
+        $inserted = 0;
+        $skipped = 0;
+
+        foreach ($rows as $i => $row) {
+            if ($i == 0) continue; // Lewati header
+
+            // =========================
+            // SKIP BARIS KOSONG
+            // =========================
+            if (
+                empty($row[1]) && empty($row[2]) && empty($row[3]) &&
+                empty($row[4]) && empty($row[5])
+            ) {
+                $skipped++;
+                continue;
+            }
+
+            $nisn = trim($row[1]);
+
+            // =========================
+            // CEK DUPLIKAT NISN
+            // =========================
+            $cek = $builder->where('nisn', $nisn)->countAllResults();
+            if ($cek > 0) {
+                $skipped++;
+                continue;
+            }
+
+            // =========================
+            // SIAPKAN DATA INSERT
+            // =========================
+            $data = [
+                'nisn'          => $nisn,
+                'nama_siswa'    => trim($row[2]),
+                'jenis_kelamin' => trim($row[3]),
+                'tempat_lahir'  => trim($row[4]),
+                'tanggal_lahir' => date('Y-m-d', strtotime($row[5])),
+                'nama_ibu'      => trim($row[6]),
+                'nik'           => trim($row[7]),
+                'id_tingkat'    => trim($row[8]),
+                'password'      => password_hash($nisn, PASSWORD_DEFAULT), // PASSWORD DARI NISN
+                'id_ta'         => $ta['id_ta'],
+                'status_daftar' => 1,
+                'password_default' => 1,
+                'aktif' => 1,
+            ];
+
+            $builder->insert($data);
+            $inserted++;
+
+            // =========================
+            // KIRIM PROGRESS REALTIME
+            // =========================
+            echo json_encode([
+                'progress' => round((($inserted + $skipped) / $total) * 100)
+            ]);
+            ob_flush();
+            flush();
+        }
+
+        echo json_encode([
+            'progress' => 100,
+            'status'   => 'done',
+            'inserted' => $inserted,
+            'skipped'  => $skipped
+        ]);
     }
+
+
+
+
+
+    // =====IMPORT SISWA EXCEL
+
+
 
 
     public function reset($id_siswa)

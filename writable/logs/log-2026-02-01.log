@@ -1,0 +1,76 @@
+CRITICAL - 2026-02-01 22:07:16 --> Too few arguments to function App\Controllers\Siswa::update(), 0 passed in C:\xampp\htdocs\sabaraja\system\CodeIgniter.php on line 802 and exactly 1 expected
+#0 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->update()
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2026-02-01 22:08:03 --> Too few arguments to function App\Controllers\Siswa::update(), 0 passed in C:\xampp\htdocs\sabaraja\system\CodeIgniter.php on line 802 and exactly 1 expected
+#0 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->update()
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2026-02-01 22:09:30 --> Too few arguments to function App\Controllers\Siswa::update(), 0 passed in C:\xampp\htdocs\sabaraja\system\CodeIgniter.php on line 802 and exactly 1 expected
+#0 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->update()
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2026-02-01 22:26:41 --> Undefined index: id_provinsi
+#0 C:\xampp\htdocs\sabaraja\app\Views\siswa\update\edit_alamat.php(204): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 204, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/update/ed...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Siswa.php(183): view('siswa/update/ed...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->edit_alamat('1151')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-01 22:26:46 --> Undefined index: id_provinsi
+#0 C:\xampp\htdocs\sabaraja\app\Views\siswa\update\edit_alamat.php(204): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 204, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/update/ed...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Siswa.php(183): view('siswa/update/ed...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->edit_alamat('1151')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-01 22:26:59 --> Too few arguments to function App\Controllers\Siswa::edit_alamat(), 0 passed in C:\xampp\htdocs\sabaraja\system\CodeIgniter.php on line 802 and exactly 1 expected
+#0 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->edit_alamat()
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2026-02-01 22:27:07 --> Undefined index: id_provinsi
+#0 C:\xampp\htdocs\sabaraja\app\Views\siswa\update\edit_alamat.php(204): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 204, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/update/ed...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Siswa.php(183): view('siswa/update/ed...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->edit_alamat('1151')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-01 22:28:00 --> Undefined index: id_kabupaten
+#0 C:\xampp\htdocs\sabaraja\app\Views\siswa\update\edit_alamat.php(205): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 205, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('siswa/update/ed...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Siswa.php(183): view('siswa/update/ed...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->edit_alamat('1151')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}

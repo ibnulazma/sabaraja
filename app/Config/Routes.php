@@ -79,6 +79,9 @@ $routes->group('admin', ['filter' => 'role:1'], function ($routes) {
 });
 
 
+$routes->group('peserta', function ($routes) {
+    $routes->post('import', 'Peserta::importExcel');
+});
 
 
 // Siswa
@@ -100,6 +103,14 @@ $routes->post('admin/reset-password-guru', 'Admin::resetPasswordGuru');
 $routes->post('auth/update-password-pertama', 'Auth::updatePasswordPertama');
 
 // $routes->get('/peserta/(:seg)', 'Peserta::detail/$1');
+
+
+
+
+$routes->post('siswa/update/(:num)', 'Siswa::update/$1');
+
+
+
 
 /*
  * --------------------------------------------------------------------
