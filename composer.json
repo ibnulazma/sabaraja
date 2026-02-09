@@ -18,7 +18,8 @@
         "dompdf/dompdf": "^2.0",
         "tecnickcom/tcpdf": "^6.6",
         "endroid/qr-code": "^4.6",
-        "setasign/fpdi": "^2.6"
+        "setasign/fpdi": "^2.6",
+        "ramsey/uuid": "^4.2"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.1",

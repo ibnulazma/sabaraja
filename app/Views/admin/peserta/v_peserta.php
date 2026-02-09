@@ -88,7 +88,7 @@ $ta = $db->table('tbl_ta')
                                         echo table-primary
                                     <?php } ?>">
 
-                                    <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' .  $value['id_siswa']) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
+                                    <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' .  encrypt_id($value['id_siswa'])) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
                                     <td class="text-center"><?= $value["nis"] ?></td>
                                     <td class="text-center"><?= $value["nisn"] ?></td>
                                     <td><?= $value["nama_siswa"] ?></td>

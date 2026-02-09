@@ -18,6 +18,7 @@ use \Dompdf\Dompdf;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use \PhpOffice\PhpSpreadsheet\Style;
+use Ramsey\Uuid\Uuid;
 
 
 class Peserta extends BaseController
@@ -30,6 +31,7 @@ class Peserta extends BaseController
         helper('formatindo');
         helper('form');
         helper('terbilang');
+        helper('secure');
 
 
 
@@ -150,6 +152,7 @@ class Peserta extends BaseController
                 'tanggal_lahir'     => $this->request->getPost('tanggal_lahir'),
                 'nisn'          => $nisn,
 
+
                 // 🔐 Password otomatis dari NISN + di-hash
                 'password'      => password_hash($nisn, PASSWORD_DEFAULT),
                 'id_tingkat'        =>  $this->request->getPost('id_tingkat'),
@@ -157,6 +160,7 @@ class Peserta extends BaseController
                 'aktif'             =>  1,
                 'id_ta'             => $ta['id_ta'],
                 'password_default'  => 1,
+                'uuid' => Uuid::uuid4()->toString(),
 
             );
             $this->ModelPeserta->add($data);
@@ -169,12 +173,19 @@ class Peserta extends BaseController
     }
 
 
-    public function detail_siswa($id_siswa)
+    public function detail_siswa($hash)
     {
-        session();
-        $db     = \Config\Database::connect();
+        helper('secure');
+
+        try {
+            $id_siswa = decrypt_id($hash); // ⬅️ hasil dekripsi dipakai
+        } catch (\Exception $e) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $db = \Config\Database::connect();
         $hasil = $db->table('tbl_penghasilan')->get()->getResultArray();
-        // $kelas = $this->ModelPeserta->kelas();
+
         $data = [
             'title'         => 'SIAKAD',
             'subtitle'      => 'Profil Siswa',
@@ -184,17 +195,26 @@ class Peserta extends BaseController
             'tinggal'       => $this->ModelTinggal->AllData(),
             'transportasi'  => $this->ModelTransportasi->AllData(),
             'kerja'         => $this->ModelPekerjaan->AllData(),
-            'pilihkelas'      => $this->ModelPeserta->kelas(),
+            'pilihkelas'    => $this->ModelPeserta->kelas(),
             'didik'         => $this->ModelPendidikan->AllData(),
             'hasil'         => $hasil,
+            'hash'  => $hash,
+
+            // 🔽 sekarang pakai ID hasil decrypt
             'siswa'         => $this->ModelPeserta->DataPeserta($id_siswa),
-            'validation'    =>  \Config\Services::validation(),
             'rekamdidik'    => $this->ModelPeserta->rekamdidik($id_siswa),
-            'datasiswa'    => $this->ModelPeserta->linkwa($id_siswa),
+            'datasiswa'     => $this->ModelPeserta->linkwa($id_siswa),
+
+            'validation'    => \Config\Services::validation(),
         ];
+
+        if (!$data['siswa']) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
         return view('admin/peserta/v_detail_siswa', $data);
-        // var_dump($data);
     }
+
 
 
 
@@ -356,6 +376,7 @@ class Peserta extends BaseController
                 'status_daftar' => 1,
                 'password_default' => 1,
                 'aktif' => 1,
+                'uuid' => Uuid::uuid4()->toString(),
             ];
 
             $builder->insert($data);
@@ -399,17 +420,23 @@ class Peserta extends BaseController
         return redirect()->to(base_url('peserta'));
     }
 
-    public function editbiodata($id_siswa)
+    public function editbiodata($hash)
     {
+
+        try {
+            $id_siswa = decrypt_id($hash);
+        } catch (\Exception $e) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
         $data = [
-            'id_siswa'      => $id_siswa,
+
             'nama_siswa'    => $this->request->getPost('nama_siswa'),
             'tempat_lahir'  => $this->request->getPost('tempat_lahir'),
             'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
             'nisn'          => $this->request->getPost('nisn'),
             'nama_ibu'   => $this->request->getPost('nama_ibu'),
         ];
-        $this->ModelPeserta->edit($data);
+        $this->ModelPeserta->edit($id_siswa, $data);
         session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');
         return redirect()->to(base_url('peserta'));
     }
@@ -459,30 +486,41 @@ class Peserta extends BaseController
         ));
     }
 
-    public function edit_identitas($id_siswa)
+    public function edit_identitas($hash)
     {
-
+        try {
+            $id_siswa = decrypt_id($hash);
+        } catch (\Exception $e) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
         $data = [
-            // 'id_siswa'               => $id_siswa,
+            'id_siswa'                 => $id_siswa,
             'nama_siswa'                => $this->request->getPost('nama_siswa'),
-            'nisn'                   => $id_siswa,
+            'nisn'                    => $this->request->getPost('nisn'),
             'nik'                    => $this->request->getPost('nik'),
             'no_kk'                    => $this->request->getPost('no_kk'),
             'tempat_lahir'           => $this->request->getPost('tempat_lahir'),
             'tanggal_lahir'          => $this->request->getPost('tanggal_lahir'),
             'jenis_kelamin'          => $this->request->getPost('jenis_kelamin'),
         ];
+
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+        return redirect()->to('peserta/detail_siswa/'  . $hash);
     }
 
 
 
 
 
-    public function edit_tinggal($id_siswa)
+    public function edit_tinggal($hash)
     {
+
+        try {
+            $id_siswa = decrypt_id($hash);
+        } catch (\Exception $e) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
         $data = [
             'id_siswa'                   => $id_siswa,
             'tinggal'               => $this->request->getPost('tinggal'),
@@ -490,13 +528,17 @@ class Peserta extends BaseController
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+        return redirect()->to('peserta/detail_siswa/' . $hash);
     }
 
 
-    public function edit_register($id_siswa)
+    public function edit_register($hash)
     {
-
+        try {
+            $id_siswa = decrypt_id($hash);
+        } catch (\Exception $e) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
         $data = [
             'id_siswa'                   => $id_siswa,
             'nis'                   => $this->request->getPost('nis'),
@@ -512,11 +554,16 @@ class Peserta extends BaseController
         ];
         $this->ModelPeserta->editregister($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+        return redirect()->to('peserta/detail_siswa/' . $hash);
     }
 
-    public function edit_ortu($id_siswa)
+    public function edit_ortu($hash)
     {
+        try {
+            $id_siswa = decrypt_id($hash);
+        } catch (\Exception $e) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
 
         $data = [
             'id_siswa'              => $id_siswa,
@@ -540,12 +587,18 @@ class Peserta extends BaseController
         ];
         $this->ModelPeserta->editortu($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+        return redirect()->to('peserta/detail_siswa/' . $hash);
     }
 
 
-    public function edit_alamat($id_siswa)
+    public function edit_alamat($hash)
     {
+        try {
+            $id_siswa = decrypt_id($hash);
+        } catch (\Exception $e) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
         $data = [
             'id_siswa'              => $id_siswa,
             'alamat'            => $this->request->getPost('alamat'),
@@ -560,7 +613,7 @@ class Peserta extends BaseController
         ];
         $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('peserta/detail_siswa/' . $id_siswa);
+        return redirect()->to('peserta/detail_siswa/' . $hash);
     }
 
 

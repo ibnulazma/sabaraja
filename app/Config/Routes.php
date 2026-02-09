@@ -21,7 +21,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -83,10 +83,14 @@ $routes->group('peserta', function ($routes) {
     $routes->post('import', 'Peserta::importExcel');
 });
 
-
+// ADMIN
+$routes->group('admin', ['filter' => 'auth,role:1'], function ($routes) {
+    $routes->get('/', 'Admin::index');
+});
 // Siswa
 $routes->group('siswa', ['filter' => 'role:3'], function ($routes) {
     $routes->get('/', 'Siswa::index');
+    $routes->get('edit_alamat/(:num)', 'Siswa::edit_alamat/$1');
 });
 
 $routes->group('pendidik', ['filter' => 'role:2'], function ($routes) {
@@ -108,6 +112,7 @@ $routes->post('auth/update-password-pertama', 'Auth::updatePasswordPertama');
 
 
 $routes->post('siswa/update/(:num)', 'Siswa::update/$1');
+
 
 
 

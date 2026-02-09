@@ -52,7 +52,7 @@ class Auth extends BaseController
                 'nama' => $siswa['nama_siswa'],
                 'username'  => $siswa['nisn'], // 🔥 WAJIB ADA
                 'level' => '3',
-                'password_default' => $siswa['password_default'],
+                'password_default' => $siswa['password_default'] ?? 0,
                 'logged_in' => true
             ]);
             return redirect()->to('/siswa');
@@ -65,7 +65,7 @@ class Auth extends BaseController
                 'id_user' => $guru['id_guru'],
                 'nama' => $guru['nama_guru'],
                 'level' => '2',
-                'password_default' => $guru['password_default'],
+                'password_default' => $guru['password_default'] ?? 0,
                 'logged_in' => true
             ]);
             return redirect()->to('/pendidik');
@@ -96,6 +96,7 @@ class Auth extends BaseController
                 'id_user' => $admin['id_user'],
                 'nama'    => $admin['nama_user'],
                 'level'   => '1',
+                'password_default' => 0,
                 'logged_in' => true
             ]);
             return redirect()->to('/admin');

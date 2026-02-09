@@ -3,7 +3,23 @@
 
 
 
+<style>
+    #map-wrapper {
+        width: 100%;
+        height: 320px;
+    }
 
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (max-width: 576px) {
+        #map-wrapper {
+            height: 260px;
+        }
+    }
+</style>
 <div class="container-xxl flex-grow-1 container-p-y">
 
     <form id="formSiswa" action="<?= base_url('siswa/update/' . $siswa['id_siswa']) ?>" method="post">
@@ -70,7 +86,34 @@
                         </div>
 
 
+
                     </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Tentukan Lokasi Rumah</label>
+
+                    <div id="map-wrapper" class="border rounded">
+                        <div id="map"></div>
+                    </div>
+
+                    <small class="text-muted">
+                        📍 Lokasi di desktop mungkin kurang akurat. Silakan geser marker jika perlu.
+                    </small>
+                </div>
+                <div class="mb-3">
+                    <label>Latitude</label>
+                    <input type="text" id="lat" class="form-control wajib-step1" name="" readonly>
+                </div>
+                <div class="mb-3">
+                    <label>Longitude</label>
+                    <input type="text" id="lng" class="form-control wajib-step1" readonly>
+                </div>
+                <div class="mb-3">
+                    <label>Jarak ke Sekolah</label>
+                    <input type="text" id="jarak" class="form-control wajib-step1" name="jarak" readonly>
                 </div>
             </div>
             <div class="card-footer text-end">
@@ -78,9 +121,9 @@
             </div>
         </div>
 
-        <!-- STEP 2 : ORANG TUA -->
+        <!-- STEP 2 : ORANG TUA (AYAH) -->
         <div class="card step d-none" id="step-2">
-            <div class="card-header  text-info">Data Orang Tua</div>
+            <div class="card-header  text-info">Data Ayah Kandung</div>
             <div class="card-body">
                 <div class="mb-3">
                     <label>Nama Ayah</label>
@@ -183,30 +226,134 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
-
-
-
-
-
-
                 <div class="mb-3">
-                    <label>Nama Ibu</label>
-                    <input type="text" name="nama_ibu" class="form-control wajib-step2">
+                    <label>Telepon Ayah</label>
+                    <input type="text"
+                        class="form-control wajib-step2 hp-field"
+                        id="no_hp_ayah"
+                        name="telp_ayah"
+                        placeholder="08xxxxxxxxxx"
+                        inputmode="numeric">
+                    <small class="text-danger d-none" id="err_no_hp_ayah">
+                        Nomor HP harus angka, tanpa spasi, tanda strip (-), atau +62
+                    </small>
+                </div>
+
+                <div class="card-body">
+
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary prev-btn" data-prev="1">Kembali</button>
+                    <button type="button" class="btn btn-primary next-btn" data-next="3" disabled>Lanjut</button>
                 </div>
             </div>
-            <div class="card-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary prev-btn" data-prev="1">Kembali</button>
-                <button type="button" class="btn btn-primary next-btn" data-next="3" disabled>Lanjut</button>
-            </div>
+
         </div>
 
-        <!-- STEP 3 : PERIODIK -->
+        <!-- STEP 3 : ORANG TUA (IBU) -->
         <div class="card step d-none" id="step-3">
-            <div class="card-header bg-warning text-dark">Data Periodik</div>
+            <div class="card-header  text-warning">Data Ibu Kandung</div>
             <div class="card-body">
                 <div class="mb-3">
-                    <label>Tinggi Badan</label>
-                    <input type="number" name="tinggi" class="form-control wajib-step3">
+                    <label>Nama Ibu</label>
+                    <input type="text" name="nama_ibu" class="form-control wajib-step3">
+                </div>
+                <div class="mb-3">
+                    <label>NIK Ibu</label>
+                    <input type="text" id="nik_ibu" name="nik_ibu"
+                        class="form-control wajib-step3 nik-field"
+                        maxlength="16" inputmode="numeric">
+                    <small class="text-danger d-none" id="err_nik_ibu">NIK harus 16 digit</small>
+                </div>
+                <div class="mb-3">
+                    <label>Tahun Lahir</label>
+                    <input type="text" name="tahun_ibu" id="tahun_ibu" class="form-control wajib-step3 tahun-field" maxlength="4" inputmode="numeric">
+                    <small class="text-danger d-none" id="err_tahun_ibu">NIK harus 4 digit</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="">Pendidikan Terakhir</label>
+                    <select class="form-select wajib-step3" name="didik_ibu">
+                        <option value="">-- Pilih Pendidikan --</option>
+
+                        <?php
+                        $pendidikan = [
+                            "Tidak Sekolah",
+                            "Tamat SD/Sederajat",
+                            "SMP/Sederajat",
+                            "SMA/Sederajat",
+                            "D1",
+                            "D2",
+                            "D3",
+                            "D4/S1",
+                            "S2",
+                            "S3"
+                        ];
+
+                        foreach ($pendidikan as $p) :
+                        ?>
+                            <option value="<?= $p ?>" <?= ($siswa['didik_ibu'] == $p) ? 'selected' : '' ?>>
+                                <?= $p ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+
+                </div>
+                <div class="mb-3">
+                    <label>Pekerjaan ibu</label>
+                    <select class="form-select wajib-step3" name="kerja_ibu" id="kerja_ibu">
+                        <option value="">-- Pilih Pekerjaan --</option>
+
+                        <?php
+                        $pekerjaan = [
+                            "Tidak Bekerja",
+                            "Buruh",
+                            "Nelayan",
+                            "Petani",
+                            "Peternak",
+                            "PNS/TNI/POLRI",
+                            "Karyawan Swasta",
+                            "Pedagang Kecil",
+                            "Pedagang Besar",
+                            "Wiraswasta",
+                            "Wirausaha",
+                            "Sudah Meninggal"
+                        ];
+
+                        foreach ($pekerjaan as $k) :
+                        ?>
+                            <option value="<?= $k ?>" <?= ($siswa['kerja_ibu'] == $k) ? 'selected' : '' ?>>
+                                <?= $k ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label>Penghasilan ibu</label>
+                    <select class="form-select wajib-step3 " name="hasil_ibu" id="hasil_ibu">
+                        <option value="">-- Pilih Penghasilan --</option>
+                        <option value="Rp. 500.000">Rp. 500.000</option>
+                        <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
+                        <option value="Rp. 1.000.000 - Rp. 1.999.999">Rp. 1.000.000 - Rp. 1.999.999</option>
+                        <option value="Rp. 2.000.000 - Rp. 4.999.999">Rp. 2.000.000 - Rp. 4.999.999</option>
+                        <option value="Rp. 5.000.000 - Rp. 20.000.000">Rp. 5.000.000 - Rp. 20.000.000</option>
+                        <option value="> Rp. 20.000.000">&gt; Rp. 20.000.000</option>
+                        <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="">No Telp Ibu</label>
+                    <input type="text"
+                        class="form-control wajib-step3 hp-field"
+                        id="no_hp_ibu"
+                        name="telp_ibu"
+                        placeholder="08xxxxxxxxxx"
+                        inputmode="numeric">
+                    <small class="text-danger d-none" id="err_no_hp_ibu">
+                        Nomor HP harus angka, tanpa spasi, tanda strip (-), atau +62
+                    </small>
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-between">
@@ -214,25 +361,51 @@
                 <button type="button" class="btn btn-primary next-btn" data-next="4" disabled>Lanjut</button>
             </div>
         </div>
+        <!-- STEP 4 : PERIODIK -->
 
-        <!-- STEP 4 : REGISTRASI -->
         <div class="card step d-none" id="step-4">
-            <div class="card-header bg-success text-white">Registrasi</div>
+            <div class="card-header  text-info">Data Periodik</div>
             <div class="card-body">
-                <div class="mb-3">
-                    <label>NIS</label>
-                    <input type="text" name="nis" class="form-control wajib-step4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="">Tinggi Badan</label>
+                            <input type="text" class="form-control wajib-step4" name="tinggi">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Berat Badan</label>
+                            <input type="text" class="form-control wajib-step4" name="berat">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Lingkar Kepala</label>
+                            <input type="text" class="form-control wajib-step4" name="tinggi">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Anak Ke</label>
+                            <input type="text" class="form-control wajib-step4" name="anak_ke">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <button type="button" class="btn btn-secondary prev-btn" data-prev="3">Kembali</button>
-                <button type="submit" class="btn btn-success" id="btnSimpan" disabled>Simpan Semua Data</button>
+                <button type="button" class="btn btn-primary next-btn" data-next="5" disabled>Lanjut</button>
             </div>
         </div>
+        <!-- STEP 4 : REGISTRASI -->
+
     </form>
 </div>
 
 <script src="<?= base_url() ?>/template/assets/vendor/libs/jquery/jquery.js"></script>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+
 
 <script>
     $(document).ready(function() {
@@ -399,10 +572,244 @@
 </script>
 
 
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        // Koordinat sekolah (WAJIB isi)
+        const sekolah = {
+            lat: -6.281806305398204,
+            lng: 106.59501812509845
 
 
 
+        };
 
+        // Init map (posisi awal kira-kira sekolah)
+        const map = L.map('map').setView([sekolah.lat, sekolah.lng], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        let marker;
+
+        // Rumus Haversine
+        function hitungJarak(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+
+            const a =
+                Math.sin(dLat / 2) ** 2 +
+                Math.cos(lat1 * Math.PI / 180) *
+                Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) ** 2;
+
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return (R * c).toFixed(2);
+        }
+
+        // Klik peta → set marker + hitung
+        map.on('click', function(e) {
+            const lat = e.latlng.lat;
+            const lng = e.latlng.lng;
+
+            if (marker) {
+                marker.setLatLng(e.latlng);
+            } else {
+                marker = L.marker(e.latlng).addTo(map);
+            }
+
+            document.getElementById("lat").value = lat.toFixed(6);
+            document.getElementById("lng").value = lng.toFixed(6);
+
+            const jarak = hitungJarak(
+                sekolah.lat,
+                sekolah.lng,
+                lat,
+                lng
+            );
+
+            document.getElementById("jarak").value = jarak + " km";
+
+            // Trigger validasi step
+            document.dispatchEvent(new Event("input"));
+        });
+
+    });
+</script> -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        /* =============================
+           RESET SAAT REFRESH
+        ============================= */
+        ["lat", "lng", "jarak"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = "";
+        });
+
+        /* =============================
+           KONFIG SEKOLAH
+        ============================= */
+        const SEKOLAH = {
+            lat: -6.281806305398204,
+            lng: 106.59501812509845
+        };
+
+        /* =============================
+           INIT MAP
+        ============================= */
+        const map = L.map("map").setView([SEKOLAH.lat, SEKOLAH.lng], 13);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; OpenStreetMap"
+        }).addTo(map);
+
+        // marker sekolah
+        L.marker([SEKOLAH.lat, SEKOLAH.lng])
+            .addTo(map)
+            .bindPopup("📍 Lokasi Sekolah");
+
+        let markerRumah = null;
+
+        setTimeout(() => map.invalidateSize(), 300);
+
+        /* =============================
+           HAVERSINE
+        ============================= */
+        function hitungJarak(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a =
+                Math.sin(dLat / 2) ** 2 +
+                Math.cos(lat1 * Math.PI / 180) *
+                Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) ** 2;
+
+            return (R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))).toFixed(2);
+        }
+
+        /* =============================
+           SET / UPDATE MARKER RUMAH
+        ============================= */
+        function updateLokasi(lat, lng) {
+
+            if (!markerRumah) {
+                markerRumah = L.marker([lat, lng], {
+                    draggable: true
+                }).addTo(map);
+
+                markerRumah.on("dragend", function(e) {
+                    const p = e.target.getLatLng();
+                    updateLokasi(p.lat, p.lng);
+                });
+            } else {
+                markerRumah.setLatLng([lat, lng]);
+            }
+
+            map.setView([lat, lng], 15);
+
+            document.getElementById("lat").value = lat.toFixed(6);
+            document.getElementById("lng").value = lng.toFixed(6);
+
+            const jarak = hitungJarak(SEKOLAH.lat, SEKOLAH.lng, lat, lng);
+            document.getElementById("jarak").value = jarak + " km";
+
+            // trigger validasi wizard
+            document.dispatchEvent(new Event("input"));
+        }
+
+        /* =============================
+           GEOLOCATION OTOMATIS
+        ============================= */
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                pos => updateLokasi(pos.coords.latitude, pos.coords.longitude),
+                err => tampilkanPesanLokasi(err), {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+            );
+        }
+
+        /* =============================
+           PESAN GPS
+        ============================= */
+        function tampilkanPesanLokasi(error) {
+            let msg = "📍 Klik peta untuk menentukan lokasi rumah.";
+
+            if (error.code === 1)
+                msg = "Izin lokasi ditolak. Silakan klik peta secara manual.";
+            else if (error.code === 2)
+                msg = "Lokasi tidak tersedia. Pastikan GPS aktif.";
+            else if (error.code === 3)
+                msg = "Permintaan lokasi timeout.";
+
+            alert(msg);
+        }
+
+        /* =============================
+           KLIK MAP (WAJIB ADA)
+        ============================= */
+        map.on("click", function(e) {
+            updateLokasi(e.latlng.lat, e.latlng.lng);
+        });
+
+    });
+</script>
+
+
+
+<!-- <script>
+    document.addEventListener('change', function(e) {
+
+        if (e.target.id === 'kerja_ibu') {
+
+            const kerja = e.target.value;
+            const hasilIbu = document.getElementById('hasil_ibu');
+
+            if (!hasilIbu) {
+                console.log('hasil_ibu tidak ditemukan');
+                return;
+            }
+
+            hasilIbu.disabled = false;
+            hasilIbu.value = '';
+
+            if (kerja === 'Tidak Bekerja' || kerja === 'Sudah Meninggal') {
+                hasilIbu.value = 'Tidak Berpenghasilan';
+                hasilIbu.disabled = true;
+            }
+        }
+
+    });
+    document.addEventListener('change', function(e) {
+
+        if (e.target.id === 'kerja_ayah') {
+
+            const kerja = e.target.value;
+            const hasilIbu = document.getElementById('hasil_ayah');
+
+            if (!hasilIbu) {
+                console.log('hasil_ayah tidak ditemukan');
+                return;
+            }
+
+            hasilIbu.disabled = false;
+            hasilIbu.value = '';
+
+            if (kerja === 'Tidak Bekerja' || kerja === 'Sudah Meninggal') {
+                hasilIbu.value = 'Tidak Berpenghasilan';
+                hasilIbu.disabled = true;
+            }
+        }
+
+    });
+</script> -->
 
 
 

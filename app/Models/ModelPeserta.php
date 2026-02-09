@@ -10,6 +10,10 @@ use CodeIgniter\Model;
 
 class ModelPeserta extends Model
 
+
+
+
+
 {
 
 

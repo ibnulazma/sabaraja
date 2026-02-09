@@ -10,24 +10,20 @@ class RoleFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        $session = session();
-        $level   = $session->get('level');
+        if (!session()->get('logged_in')) {
+            return redirect()->to('/auth');
+        }
 
-        if ($arguments) {
-            $allowed = array_map('intval', $arguments);
-            if (!in_array($level, $allowed)) {
+        $level = session()->get('level');
+        $allowedLevels = (array) $arguments;
 
-                // Ambil halaman sebelumnya
-                $previous = $_SERVER['HTTP_REFERER'] ?? base_url('/');
-
-                // Redirect ke halaman access denied, bisa juga ke previous
-                return redirect()->to(base_url('access-denied'));
-            }
+        if (!in_array($level, $allowedLevels)) {
+            return redirect()->to('/access-denied');
         }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        // tidak perlu untuk saat ini
+        //
     }
 }

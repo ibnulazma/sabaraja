@@ -118,8 +118,34 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade show active" id="navs-justified-home" role="tabpanel">
-                <p>Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps powder. Bear claw candy topping.</p>
-                <p class="mb-0">Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon jelly-o jelly-o ice cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow jujubes sweet.</p>
+                <table class="table table-bordered isi" id="example">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nama</th>
+                            <th></th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($guru as $data) { ?>
+                            <tr>
+                                <td>#</td>
+                                <td><?= $data['nama_guru'] ?></td>
+                                <td><?= $data['niy'] ?></td>
+                                <td>
+                                    <a href="" class="btn btn-danger btn-sm">🔐 Reset Password</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                <div class="mt4">
+                    <?= csrf_field(); ?>
+                    <button type="button" id="btnResetGuru" class="btn btn-primary mt-2">
+                        🔐 Reset Password Guru
+                    </button>
+                </div>
             </div>
             <div class="tab-pane fade" id="navs-justified-profile" role="tabpanel">
                 <div class="mt-4">

@@ -463,7 +463,7 @@ $ta = $db->table('tbl_ta')
 
 <div class="modal fade" id="alamat" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <?= form_open('peserta/edit_alamat/' . $siswa['id_siswa']) ?>
+        <?= form_open('peserta/edit_alamat/' . $hash) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Data Lainnya</h5>
@@ -552,7 +552,7 @@ $ta = $db->table('tbl_ta')
 <!-- ModalIdentitas -->
 <div class="modal fade" id="identitas" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <?= form_open('peserta/edit_identitas/' . $siswa['id_siswa']) ?>
+        <?= form_open('peserta/edit_identitas/' . $hash) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Identitas</h5>
@@ -562,7 +562,7 @@ $ta = $db->table('tbl_ta')
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="basic-default-company">Nama Siswa</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="basic-default-company" placeholder="<?= $siswa['nama_siswa'] ?>" name="nama_siswa" />
+                        <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['nama_siswa'] ?>" name="nama_siswa" />
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -607,7 +607,7 @@ $ta = $db->table('tbl_ta')
                 <div class="row mb-4">
                     <label class="col-sm-4 col-form-label" for="nisn">NISN</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="nisn" value="<?= $siswa['nisn'] ?>" name="nisn" />
+                        <input type="text" class="form-control" id="nisn" value="<?= $siswa['nisn'] ?>" name="nisn" readonly />
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -737,50 +737,27 @@ $ta = $db->table('tbl_ta')
                     <div class="row mb-4">
                         <label class="col-sm-4 col-form-label" for="transportasi">Pekerjaan</label>
                         <div class="col-sm-8">
-                            <select name="kerja_ibu" id="didik" class="form-control">
-                                <?php foreach ($kerja as $key => $row) { ?>
-                                    <?php if ($siswa['kerja_ibu'] == $row['pekerjaan']) {
+                            <select name="transportasi" id="didik" class="form-control">
+                                <?php foreach ($transportasi as $key => $row) { ?>
+                                    <?php if ($siswa['transportasi'] == $row['transportasi']) {
                                         $select = "selected";
                                     } else {
                                         $select = "";
                                     }
-                                    echo "<option value=" . $row['pekerjaan'] . " $select>" . $row['pekerjaan'] . "</option>";
+                                    echo "<option value=" . $row['transportasi'] . " $select>" . $row['transportasi'] . "</option>";
                                     ?>
                                 <?php } ?>
 
                             </select>
                         </div>
                     </div>
-                    <div class="row mb-4">
-                        <label class="col-sm-4 col-form-label" for="transportasi">Penghasilan</label>
-                        <div class="col-sm-8">
-                            <select name="hasil_ibu" class="form-control">
-                                <?php if (is_array($hasil)) : ?>
-                                    <?php foreach ($hasil as  $row) { ?>
-                                        <?php if ($siswa['hasil_ibu'] == $row['penghasilan']) {
-                                            $select = "selected";
-                                        } else {
-                                            $select = "";
-                                        }
-                                        echo "<option value=" . $row['penghasilan'] . " $select>" . $row['penghasilan'] . "</option>";
-                                        ?>
-                                    <?php } ?>
-                                <?php endif; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <label class="col-sm-4 col-form-label" for="basic-default-company">Telpon</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['telp_ibu'] ?>" name="telp_ibu" />
-                        </div>
-                    </div>
                 </div>
+
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>
@@ -792,7 +769,7 @@ $ta = $db->table('tbl_ta')
 <!-- ModalOrangTua -->
 <div class="modal fade" id="ortu" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <?= form_open('peserta/edit_ortu/' . $siswa['id_siswa']) ?>
+        <?= form_open('peserta/edit_ortu/' . $hash) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Orang Tua</h5>
@@ -987,7 +964,7 @@ $ta = $db->table('tbl_ta')
                 <h5 class="modal-title" id="exampleModalLabel">Pilih Kelas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <?= form_open('peserta/masukkelas/' . $siswa['id_siswa']) ?>
+            <?= form_open('peserta/masukkelas/' . $hash) ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">

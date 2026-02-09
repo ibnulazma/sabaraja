@@ -37,6 +37,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.3/css/fixedColumns.dataTables.css">
 <!-- Page CSS -->
 <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+
 <!-- Helpers -->
 <script src="<?= base_url() ?>/template/assets/vendor/js/helpers.js"></script>
 
