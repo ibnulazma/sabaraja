@@ -21,6 +21,11 @@
     }
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="progress mb-3">
+        <div id="progressBar" class="progress-bar" style="width:0%">
+            Step 1 dari 5
+        </div>
+    </div>
 
     <form id="formSiswa" action="<?= base_url('siswa/update/' . $siswa['id_siswa']) ?>" method="post">
         <?= csrf_field() ?>
@@ -123,125 +128,236 @@
 
         <!-- STEP 2 : ORANG TUA (AYAH) -->
         <div class="card step d-none" id="step-2">
-            <div class="card-header  text-info">Data Ayah Kandung</div>
+            <div class="card-header  text-primary">Step 2 - Data Orang Tua</div>
             <div class="card-body">
-                <div class="mb-3">
-                    <label>Nama Ayah</label>
-                    <input type="text" name="nama_ayah" class="form-control wajib-step2">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary mb-3">Data Ayah</h6>
+                        <div class="mb-3">
+                            <label>Nama Ayah</label>
+                            <input type="text" name="nama_ayah" class="form-control wajib-step2">
+                        </div>
+                        <div class="mb-3">
+                            <label>NIK Ayah</label>
+                            <input type="text" id="nik_ayah" name="nik_ayah"
+                                class="form-control wajib-step2 nik-field"
+                                maxlength="16" inputmode="numeric">
+                            <small class="text-danger d-none" id="err_nik_ayah">NIK harus 16 digit</small>
+                        </div>
+                        <div class="mb-3">
+                            <label>Tahun Lahir</label>
+                            <input type="text" name="tahun_ayah" id="tahun_ayah" class="form-control wajib-step2 tahun-field" maxlength="4" inputmode="numeric">
+                            <small class="text-danger d-none" id="err_tahun_ayah">NIK harus 4 digit</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="">Pendidikan Terakhir</label>
+                            <select class="form-select wajib-step2" name="didik_ayah">
+                                <option value="">-- Pilih Pendidikan --</option>
+
+                                <?php
+                                $pendidikan = [
+                                    "Tidak Sekolah",
+                                    "Tamat SD/Sederajat",
+                                    "SMP/Sederajat",
+                                    "SMA/Sederajat",
+                                    "D1",
+                                    "D2",
+                                    "D3",
+                                    "D4/S1",
+                                    "S2",
+                                    "S3"
+                                ];
+
+                                foreach ($pendidikan as $p) :
+                                ?>
+                                    <option value="<?= $p ?>" <?= ($siswa['didik_ayah'] == $p) ? 'selected' : '' ?>>
+                                        <?= $p ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+
+
+                        </div>
+                        <div class="mb-3">
+                            <label>Pekerjaan Ayah</label>
+                            <select class="form-select wajib-step2" name="kerja_ayah" id="kerja_ayah">
+                                <option value="">-- Pilih Pekerjaan --</option>
+
+                                <?php
+                                $pekerjaan = [
+                                    "Tidak Bekerja",
+                                    "Buruh",
+                                    "Nelayan",
+                                    "Petani",
+                                    "Peternak",
+                                    "PNS/TNI/POLRI",
+                                    "Karyawan Swasta",
+                                    "Pedagang Kecil",
+                                    "Pedagang Besar",
+                                    "Wiraswasta",
+                                    "Wirausaha",
+                                    "Sudah Meninggal"
+                                ];
+
+                                foreach ($pekerjaan as $k) :
+                                ?>
+                                    <option value="<?= $k ?>" <?= ($siswa['kerja_ayah'] == $k) ? 'selected' : '' ?>>
+                                        <?= $k ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Penghasilan Ayah</label>
+                            <select class="form-select wajib-step2" name="hasil_ayah" id="hasil_ayah">
+                                <option value="">-- Pilih Penghasilan --</option>
+
+                                <?php
+                                $penghasilan = [
+                                    "Rp. 500.000",
+                                    "Rp. 500.000 - Rp. 1.000.000",
+                                    "Rp. 1.000.000 - Rp. 1.999.999",
+                                    "Rp. 2.000.000 - Rp. 4.999.999",
+                                    "Rp. 5.000.000 - Rp. 20.000.000",
+                                    "> Rp. 20.000.000",
+                                    "Tidak Berpenghasilan",
+
+                                ];
+
+                                foreach ($penghasilan as $h) :
+                                ?>
+                                    <option value="<?= $h ?>" <?= ($siswa['hasil_ayah'] == $h) ? 'selected' : '' ?>>
+                                        <?= $h ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Telepon Ayah</label>
+                            <input type="text"
+                                class="form-control wajib-step2 hp-field"
+                                id="no_hp_ayah"
+                                name="telp_ayah"
+                                placeholder="08xxxxxxxxxx"
+                                inputmode="numeric">
+                            <small class="text-danger d-none" id="err_no_hp_ayah">
+                                Nomor HP harus angka, tanpa spasi, tanda strip (-), atau +62
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h6 class="text-primary mb-3">Data Ibu</h6>
+                        <div class="mb-3">
+                            <label>Nama Ibu</label>
+                            <input type="text" name="nama_ibu" class="form-control wajib-step2">
+                        </div>
+                        <div class="mb-3">
+                            <label>NIK Ibu</label>
+                            <input type="text" id="nik_ibu" name="nik_ibu"
+                                class="form-control wajib-step2 nik-field"
+                                maxlength="16" inputmode="numeric">
+                            <small class="text-danger d-none" id="err_nik_ibu">NIK harus 16 digit</small>
+                        </div>
+                        <div class="mb-3">
+                            <label>Tahun Lahir</label>
+                            <input type="text" name="tahun_ibu" id="tahun_ibu" class="form-control wajib-step2 tahun-field" maxlength="4" inputmode="numeric">
+                            <small class="text-danger d-none" id="err_tahun_ibu">NIK harus 4 digit</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="">Pendidikan Terakhir</label>
+                            <select class="form-select wajib-step2" name="didik_ibu">
+                                <option value="">-- Pilih Pendidikan --</option>
+
+                                <?php
+                                $pendidikan = [
+                                    "Tidak Sekolah",
+                                    "Tamat SD/Sederajat",
+                                    "SMP/Sederajat",
+                                    "SMA/Sederajat",
+                                    "D1",
+                                    "D2",
+                                    "D3",
+                                    "D4/S1",
+                                    "S2",
+                                    "S3"
+                                ];
+
+                                foreach ($pendidikan as $p) :
+                                ?>
+                                    <option value="<?= $p ?>" <?= ($siswa['didik_ibu'] == $p) ? 'selected' : '' ?>>
+                                        <?= $p ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+
+
+                        </div>
+                        <div class="mb-3">
+                            <label>Pekerjaan ibu</label>
+                            <select class="form-select wajib-step2" name="kerja_ibu" id="kerja_ibu">
+                                <option value="">-- Pilih Pekerjaan --</option>
+
+                                <?php
+                                $pekerjaan = [
+                                    "Tidak Bekerja",
+                                    "Buruh",
+                                    "Nelayan",
+                                    "Petani",
+                                    "Peternak",
+                                    "PNS/TNI/POLRI",
+                                    "Karyawan Swasta",
+                                    "Pedagang Kecil",
+                                    "Pedagang Besar",
+                                    "Wiraswasta",
+                                    "Wirausaha",
+                                    "Sudah Meninggal"
+                                ];
+
+                                foreach ($pekerjaan as $k) :
+                                ?>
+                                    <option value="<?= $k ?>" <?= ($siswa['kerja_ibu'] == $k) ? 'selected' : '' ?>>
+                                        <?= $k ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Penghasilan ibu</label>
+                            <select class="form-select wajib-step2 " name="hasil_ibu" id="hasil_ibu">
+                                <option value="">-- Pilih Penghasilan --</option>
+                                <option value="Rp. 500.000">Rp. 500.000</option>
+                                <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
+                                <option value="Rp. 1.000.000 - Rp. 1.999.999">Rp. 1.000.000 - Rp. 1.999.999</option>
+                                <option value="Rp. 2.000.000 - Rp. 4.999.999">Rp. 2.000.000 - Rp. 4.999.999</option>
+                                <option value="Rp. 5.000.000 - Rp. 20.000.000">Rp. 5.000.000 - Rp. 20.000.000</option>
+                                <option value="> Rp. 20.000.000">&gt; Rp. 20.000.000</option>
+                                <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="">No Telp Ibu</label>
+                            <input type="text"
+                                class="form-control wajib-step2 hp-field"
+                                id="no_hp_ibu"
+                                name="telp_ibu"
+                                placeholder="08xxxxxxxxxx"
+                                inputmode="numeric">
+                            <small class="text-danger d-none" id="err_no_hp_ibu">
+                                Nomor HP harus angka, tanpa spasi, tanda strip (-), atau +62
+                            </small>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label>NIK Ayah</label>
-                    <input type="text" id="nik_ayah" name="nik_ayah"
-                        class="form-control wajib-step2 nik-field"
-                        maxlength="16" inputmode="numeric">
-                    <small class="text-danger d-none" id="err_nik_ayah">NIK harus 16 digit</small>
-                </div>
-                <div class="mb-3">
-                    <label>Tahun Lahir</label>
-                    <input type="text" name="tahun_ayah" id="tahun_ayah" class="form-control wajib-step2 tahun-field" maxlength="4" inputmode="numeric">
-                    <small class="text-danger d-none" id="err_tahun_ayah">NIK harus 4 digit</small>
-                </div>
-
-                <div class="mb-3">
-                    <label for="">Pendidikan Terakhir</label>
-                    <select class="form-select wajib-step2" name="didik_ayah">
-                        <option value="">-- Pilih Pendidikan --</option>
-
-                        <?php
-                        $pendidikan = [
-                            "Tidak Sekolah",
-                            "Tamat SD/Sederajat",
-                            "SMP/Sederajat",
-                            "SMA/Sederajat",
-                            "D1",
-                            "D2",
-                            "D3",
-                            "D4/S1",
-                            "S2",
-                            "S3"
-                        ];
-
-                        foreach ($pendidikan as $p) :
-                        ?>
-                            <option value="<?= $p ?>" <?= ($siswa['didik_ayah'] == $p) ? 'selected' : '' ?>>
-                                <?= $p ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
 
 
-                </div>
-                <div class="mb-3">
-                    <label>Pekerjaan Ayah</label>
-                    <select class="form-select wajib-step2" name="kerja_ayah" id="kerja_ayah">
-                        <option value="">-- Pilih Pekerjaan --</option>
 
-                        <?php
-                        $pekerjaan = [
-                            "Tidak Bekerja",
-                            "Buruh",
-                            "Nelayan",
-                            "Petani",
-                            "Peternak",
-                            "PNS/TNI/POLRI",
-                            "Karyawan Swasta",
-                            "Pedagang Kecil",
-                            "Pedagang Besar",
-                            "Wiraswasta",
-                            "Wirausaha",
-                            "Sudah Meninggal"
-                        ];
 
-                        foreach ($pekerjaan as $k) :
-                        ?>
-                            <option value="<?= $k ?>" <?= ($siswa['kerja_ayah'] == $k) ? 'selected' : '' ?>>
-                                <?= $k ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
 
-                <div class="mb-3">
-                    <label>Penghasilan Ayah</label>
-                    <select class="form-select wajib-step2" name="hasil_ayah" id="hasil_ayah">
-                        <option value="">-- Pilih Penghasilan --</option>
-
-                        <?php
-                        $penghasilan = [
-                            "Rp. 500.000",
-                            "Rp. 500.000 - Rp. 1.000.000",
-                            "Rp. 1.000.000 - Rp. 1.999.999",
-                            "Rp. 2.000.000 - Rp. 4.999.999",
-                            "Rp. 5.000.000 - Rp. 20.000.000",
-                            "> Rp. 20.000.000",
-                            "Tidak Berpenghasilan",
-
-                        ];
-
-                        foreach ($penghasilan as $h) :
-                        ?>
-                            <option value="<?= $h ?>" <?= ($siswa['hasil_ayah'] == $h) ? 'selected' : '' ?>>
-                                <?= $h ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label>Telepon Ayah</label>
-                    <input type="text"
-                        class="form-control wajib-step2 hp-field"
-                        id="no_hp_ayah"
-                        name="telp_ayah"
-                        placeholder="08xxxxxxxxxx"
-                        inputmode="numeric">
-                    <small class="text-danger d-none" id="err_no_hp_ayah">
-                        Nomor HP harus angka, tanpa spasi, tanda strip (-), atau +62
-                    </small>
-                </div>
-
-                <div class="card-body">
-
-                </div>
                 <div class="card-footer d-flex justify-content-between">
                     <button type="button" class="btn btn-secondary prev-btn" data-prev="1">Kembali</button>
                     <button type="button" class="btn btn-primary next-btn" data-next="3" disabled>Lanjut</button>
@@ -252,108 +368,67 @@
 
         <!-- STEP 3 : ORANG TUA (IBU) -->
         <div class="card step d-none" id="step-3">
-            <div class="card-header  text-warning">Data Ibu Kandung</div>
+            <div class="card-header  text-warning"> Step 3 - Data Periodik & Registrasi</div>
             <div class="card-body">
-                <div class="mb-3">
-                    <label>Nama Ibu</label>
-                    <input type="text" name="nama_ibu" class="form-control wajib-step3">
-                </div>
-                <div class="mb-3">
-                    <label>NIK Ibu</label>
-                    <input type="text" id="nik_ibu" name="nik_ibu"
-                        class="form-control wajib-step3 nik-field"
-                        maxlength="16" inputmode="numeric">
-                    <small class="text-danger d-none" id="err_nik_ibu">NIK harus 16 digit</small>
-                </div>
-                <div class="mb-3">
-                    <label>Tahun Lahir</label>
-                    <input type="text" name="tahun_ibu" id="tahun_ibu" class="form-control wajib-step3 tahun-field" maxlength="4" inputmode="numeric">
-                    <small class="text-danger d-none" id="err_tahun_ibu">NIK harus 4 digit</small>
-                </div>
+                <div class="row">
 
-                <div class="mb-3">
-                    <label for="">Pendidikan Terakhir</label>
-                    <select class="form-select wajib-step3" name="didik_ibu">
-                        <option value="">-- Pilih Pendidikan --</option>
+                    <!-- KOLOM KIRI : DATA PERIODIK -->
+                    <div class="col-md-6">
+                        <h6 class="text-primary mb-3">Data Periodik</h6>
 
-                        <?php
-                        $pendidikan = [
-                            "Tidak Sekolah",
-                            "Tamat SD/Sederajat",
-                            "SMP/Sederajat",
-                            "SMA/Sederajat",
-                            "D1",
-                            "D2",
-                            "D3",
-                            "D4/S1",
-                            "S2",
-                            "S3"
-                        ];
+                        <div class="mb-3">
+                            <label>Tinggi Badan (cm)</label>
+                            <input type="number" class="form-control wajib-step3" name="tinggi">
+                        </div>
 
-                        foreach ($pendidikan as $p) :
-                        ?>
-                            <option value="<?= $p ?>" <?= ($siswa['didik_ibu'] == $p) ? 'selected' : '' ?>>
-                                <?= $p ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
+                        <div class="mb-3">
+                            <label>Berat Badan (kg)</label>
+                            <input type="number" class="form-control wajib-step3" name="berat">
+                        </div>
 
+                        <div class="mb-3">
+                            <label>Lingkar Kepala (cm)</label>
+                            <input type="number" class="form-control wajib-step3" name="lingkar_kepala">
+                        </div>
 
-                </div>
-                <div class="mb-3">
-                    <label>Pekerjaan ibu</label>
-                    <select class="form-select wajib-step3" name="kerja_ibu" id="kerja_ibu">
-                        <option value="">-- Pilih Pekerjaan --</option>
+                        <div class="mb-3">
+                            <label>Jumlah Saudara</label>
+                            <input type="number" class="form-control wajib-step3" name="anak_ke">
+                        </div>
+                    </div>
 
-                        <?php
-                        $pekerjaan = [
-                            "Tidak Bekerja",
-                            "Buruh",
-                            "Nelayan",
-                            "Petani",
-                            "Peternak",
-                            "PNS/TNI/POLRI",
-                            "Karyawan Swasta",
-                            "Pedagang Kecil",
-                            "Pedagang Besar",
-                            "Wiraswasta",
-                            "Wirausaha",
-                            "Sudah Meninggal"
-                        ];
+                    <!-- KOLOM KANAN : DATA REGISTRASI -->
+                    <div class="col-md-6">
+                        <h6 class="text-primary mb-3">Data Registrasi</h6>
 
-                        foreach ($pekerjaan as $k) :
-                        ?>
-                            <option value="<?= $k ?>" <?= ($siswa['kerja_ibu'] == $k) ? 'selected' : '' ?>>
-                                <?= $k ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+                        <div class="mb-3">
+                            <label>Hobi</label>
+                            <select name="" id="" class="form-control wajib-step3">
+                                <option value="">Pilih Hobi</option>
+                                <option value="Membaca">Membaca</option>
+                                <option value=""></option>
+                                <option value=""></option>
+                            </select>
 
-                <div class="mb-3">
-                    <label>Penghasilan ibu</label>
-                    <select class="form-select wajib-step3 " name="hasil_ibu" id="hasil_ibu">
-                        <option value="">-- Pilih Penghasilan --</option>
-                        <option value="Rp. 500.000">Rp. 500.000</option>
-                        <option value="Rp. 500.000 - Rp. 1.000.000">Rp. 500.000 - Rp. 1.000.000</option>
-                        <option value="Rp. 1.000.000 - Rp. 1.999.999">Rp. 1.000.000 - Rp. 1.999.999</option>
-                        <option value="Rp. 2.000.000 - Rp. 4.999.999">Rp. 2.000.000 - Rp. 4.999.999</option>
-                        <option value="Rp. 5.000.000 - Rp. 20.000.000">Rp. 5.000.000 - Rp. 20.000.000</option>
-                        <option value="> Rp. 20.000.000">&gt; Rp. 20.000.000</option>
-                        <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="">No Telp Ibu</label>
-                    <input type="text"
-                        class="form-control wajib-step3 hp-field"
-                        id="no_hp_ibu"
-                        name="telp_ibu"
-                        placeholder="08xxxxxxxxxx"
-                        inputmode="numeric">
-                    <small class="text-danger d-none" id="err_no_hp_ibu">
-                        Nomor HP harus angka, tanpa spasi, tanda strip (-), atau +62
-                    </small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Cita -cita</label>
+                            <select name="" id="" class="form-control wajib-step3">
+                                <option value="">Pilih Cita-cita</option>
+                                <option value="Pilot">Pilot</option>
+                                <option value="Dokter">Dokter</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>No Seri Ijazah</label>
+                            <input type="file" id="fotoIjazah" accept="image/*">
+                            <input type="text" name="no_seri_ijazah" id="noSeri" class="form-control wajib-step3">
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-between">
@@ -361,28 +436,46 @@
                 <button type="button" class="btn btn-primary next-btn" data-next="4" disabled>Lanjut</button>
             </div>
         </div>
-        <!-- STEP 4 : PERIODIK -->
+        <!-- STEP 4 : PERIODIK & REGISTRASI-->
 
         <div class="card step d-none" id="step-4">
+
+            <div class="card-header text-info">
+
+            </div>
+
+            <div class="card-body">
+
+            </div>
+
+            <div class="card-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary prev-btn" data-prev="3">Kembali</button>
+                <button type="button" class="btn btn-primary next-btn" data-next="5" disabled>Lanjut</button>
+            </div>
+
+        </div>
+
+        <!-- STEP 5 : REGISTRASI -->
+        <div class="card step d-none" id="step-5">
             <div class="card-header  text-info">Data Periodik</div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="">Tinggi Badan</label>
-                            <input type="text" class="form-control wajib-step4" name="tinggi">
+                            <label for="">Hobby</label>
+                            <input type="text" class="form-control wajib-step5" name="">
                         </div>
                         <div class="mb-3">
                             <label for="">Berat Badan</label>
-                            <input type="text" class="form-control wajib-step4" name="berat">
+                            <input type="text" class="form-control wajib-step5" name="berat">
                         </div>
                         <div class="mb-3">
                             <label for="">Lingkar Kepala</label>
-                            <input type="text" class="form-control wajib-step4" name="tinggi">
+                            <input type="text" class="form-control wajib-step5" name="tinggi">
                         </div>
                         <div class="mb-3">
                             <label for="">Anak Ke</label>
-                            <input type="text" class="form-control wajib-step4" name="anak_ke">
+                            <input type="text" class="form-control wajib-step5" name="anak_ke">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -395,8 +488,6 @@
                 <button type="button" class="btn btn-primary next-btn" data-next="5" disabled>Lanjut</button>
             </div>
         </div>
-        <!-- STEP 4 : REGISTRASI -->
-
     </form>
 </div>
 
@@ -405,6 +496,27 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 
+<script>
+    document.getElementById('fotoIjazah').addEventListener('change', function() {
+        let formData = new FormData();
+        formData.append('foto_ijazah', this.files[0]);
+
+        fetch('<?= base_url('siswa/ocr-ijazah') ?>', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    document.getElementById('noSeri').value = data.seri || '';
+                    console.log('Raw OCR:', data.raw);
+                }
+            })
+            .catch(err => console.error(err));
+    });
+</script>
 
 
 <script>
@@ -572,72 +684,7 @@
 </script>
 
 
-<!-- <script>
-    document.addEventListener("DOMContentLoaded", function() {
 
-        // Koordinat sekolah (WAJIB isi)
-        const sekolah = {
-            lat: -6.281806305398204,
-            lng: 106.59501812509845
-
-
-
-        };
-
-        // Init map (posisi awal kira-kira sekolah)
-        const map = L.map('map').setView([sekolah.lat, sekolah.lng], 13);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap'
-        }).addTo(map);
-
-        let marker;
-
-        // Rumus Haversine
-        function hitungJarak(lat1, lon1, lat2, lon2) {
-            const R = 6371;
-            const dLat = (lat2 - lat1) * Math.PI / 180;
-            const dLon = (lon2 - lon1) * Math.PI / 180;
-
-            const a =
-                Math.sin(dLat / 2) ** 2 +
-                Math.cos(lat1 * Math.PI / 180) *
-                Math.cos(lat2 * Math.PI / 180) *
-                Math.sin(dLon / 2) ** 2;
-
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            return (R * c).toFixed(2);
-        }
-
-        // Klik peta → set marker + hitung
-        map.on('click', function(e) {
-            const lat = e.latlng.lat;
-            const lng = e.latlng.lng;
-
-            if (marker) {
-                marker.setLatLng(e.latlng);
-            } else {
-                marker = L.marker(e.latlng).addTo(map);
-            }
-
-            document.getElementById("lat").value = lat.toFixed(6);
-            document.getElementById("lng").value = lng.toFixed(6);
-
-            const jarak = hitungJarak(
-                sekolah.lat,
-                sekolah.lng,
-                lat,
-                lng
-            );
-
-            document.getElementById("jarak").value = jarak + " km";
-
-            // Trigger validasi step
-            document.dispatchEvent(new Event("input"));
-        });
-
-    });
-</script> -->
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

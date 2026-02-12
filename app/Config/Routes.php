@@ -91,6 +91,7 @@ $routes->group('admin', ['filter' => 'auth,role:1'], function ($routes) {
 $routes->group('siswa', ['filter' => 'role:3'], function ($routes) {
     $routes->get('/', 'Siswa::index');
     $routes->get('edit_alamat/(:num)', 'Siswa::edit_alamat/$1');
+    $routes->post('ocr-ijazah', 'Siswa::ocrIjazah');
 });
 
 $routes->group('pendidik', ['filter' => 'role:2'], function ($routes) {

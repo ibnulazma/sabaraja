@@ -1,7 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    const TOTAL_STEP = 5;
+    const KEY_STEP = "wizard_step";
+
     /* =============================
-       VALIDASI GLOBAL (REALTIME)
+       RESTORE STEP
+    ============================= */
+    const lastStep = parseInt(sessionStorage.getItem(KEY_STEP)) || 1;
+    pindahStep(lastStep);
+
+    /* =============================
+       VALIDASI GLOBAL
     ============================= */
     document.addEventListener("input", function (e) {
 
@@ -11,12 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
         cekValidasi(4, "wajib-step4");
         cekValidasi(5, "wajib-step5");
 
-        // realtime validasi HP
-        if (e.target && e.target.classList && e.target.classList.contains("hp-field")) {
-            if (!e.target.disabled) {
-                const err = document.getElementById("err_" + e.target.id);
-                validasiNoHp(e.target, err);
-            }
+        if (e.target?.classList?.contains("hp-field") && !e.target.disabled) {
+            const err = document.getElementById("err_" + e.target.id);
+            validasiNoHp(e.target, err);
         }
     });
 
@@ -28,11 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let valid = true;
 
         inputs.forEach(input => {
-
-            // skip input disabled
             if (input.disabled) return;
-
-            // 🔥 skip input dari step lain
             if (input.closest(".step")?.classList.contains("d-none")) return;
 
             if (input.value.trim() === "") valid = false;
@@ -64,16 +66,32 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.addEventListener("click", () => pindahStep(btn.dataset.prev));
     });
 
-    function pindahStep(no) {
-        document.querySelectorAll(".step").forEach(s => s.classList.add("d-none"));
-        document.getElementById("step-" + no)?.classList.remove("d-none");
+    function pindahStep(step) {
+        step = parseInt(step);
 
-        // 🔥 paksa validasi ulang saat masuk step
+        document.querySelectorAll(".step").forEach(s => s.classList.add("d-none"));
+        document.getElementById("step-" + step)?.classList.remove("d-none");
+
+        sessionStorage.setItem(KEY_STEP, step);
+        updateProgress(step);
+
         document.dispatchEvent(new Event("input"));
     }
 
     /* =============================
-       FIELD NUMERIK
+       PROGRESS BAR
+    ============================= */
+    function updateProgress(step) {
+        const bar = document.getElementById("progressBar");
+        if (!bar) return;
+
+        const percent = Math.round((step / TOTAL_STEP) * 100);
+        bar.style.width = percent + "%";
+        bar.innerText = `Step ${step} dari ${TOTAL_STEP}`;
+    }
+
+    /* =============================
+       NUMERIC INPUT
     ============================= */
     setNumeric(".nik-field", 16);
     setNumeric(".tahun-field", 4);
@@ -83,23 +101,12 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(selector).forEach(input => {
             input.addEventListener("input", function () {
                 this.value = this.value.replace(/\D/g, "").slice(0, max);
-                toggleValid(this, this.value.length === max || max === 2);
             });
         });
     }
 
     /* =============================
-       TOGGLE VALID / INVALID
-    ============================= */
-    function toggleValid(input, valid) {
-        const err = document.getElementById("err_" + input.id);
-        input.classList.toggle("is-valid", valid);
-        input.classList.toggle("is-invalid", !valid);
-        if (err) err.classList.toggle("d-none", valid);
-    }
-
-    /* =============================
-       AYAH & IBU (SATU HANDLER)
+       AYAH / IBU
     ============================= */
     document.addEventListener("change", function (e) {
         if (e.target.id === "kerja_ayah") handleOrangTua("ayah", e.target.value);
@@ -113,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!hasil || !noHp) return;
 
-        /* === Penghasilan === */
         hasil.disabled = false;
         hasil.value = "";
 
@@ -122,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
             hasil.disabled = true;
         }
 
-        /* === No HP === */
         if (kerja === "Sudah Meninggal") {
             noHp.value = "";
             noHp.disabled = true;
@@ -133,17 +138,15 @@ document.addEventListener("DOMContentLoaded", function () {
             validasiNoHp(noHp, errHp);
         }
 
-        // refresh validasi step aktif
         document.dispatchEvent(new Event("input"));
     }
 
     /* =============================
-       VALIDASI NO HP (FINAL)
+       VALIDASI NO HP
     ============================= */
     function validasiNoHp(input, err) {
         let val = input.value;
 
-        // larang + - spasi huruf
         if (/[\+\-\sA-Za-z]/.test(val)) {
             input.classList.add("is-invalid");
             err?.classList.remove("d-none");
@@ -151,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         val = val.replace(/\D/g, "");
-
         if (val.startsWith("0")) val = "62" + val.slice(1);
         else if (val.startsWith("8")) val = "62" + val;
 
@@ -164,5 +166,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return valid;
     }
+
+
+
+
+
 
 });

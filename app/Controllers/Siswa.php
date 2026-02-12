@@ -11,6 +11,7 @@ use App\Models\ModelTinggal;
 use App\Models\ModelTransportasi;
 use App\Models\ModelPenghasilan;
 use App\Models\ModelMapel;
+use thiagoalessio\TesseractOCR\TesseractOCR;
 
 
 class Siswa extends BaseController
@@ -153,13 +154,6 @@ class Siswa extends BaseController
         ];
         return view('siswa/nilai', $data);
     }
-
-
-
-
-
-
-
 
     public function edit_alamat($id_siswa)
     {
@@ -1173,5 +1167,57 @@ class Siswa extends BaseController
     public function update($id_siswa)
     {
         dd($this->request->getPost());
+    }
+
+    public function ocrIjazah()
+    {
+        helper('filesystem'); // untuk memastikan folder ada
+
+        $file = $this->request->getFile('foto_ijazah');
+
+        if (!$file || !$file->isValid()) {
+            return $this->response->setJSON([
+                'error' => 'File tidak valid'
+            ]);
+        }
+
+        // Pastikan folder writable/uploads ada
+        $uploadPath = WRITEPATH . 'uploads/';
+        if (!is_dir($uploadPath)) {
+            mkdir($uploadPath, 0755, true);
+        }
+
+        // Simpan file sementara
+        $newName = $file->getRandomName();
+        $filePath = $uploadPath . $newName;
+
+        if (!$file->move($uploadPath, $newName)) {
+            return $this->response->setJSON([
+                'error' => 'Gagal menyimpan file'
+            ]);
+        }
+
+        try {
+            $text = (new TesseractOCR($filePath))
+                ->executable('C:\\Program Files\\Tesseract-OCR\\tesseract.exe')
+                ->lang('eng')
+                ->psm(6)
+                ->run();
+
+            // Ambil pola nomor seri: huruf, angka, spasi, dash, slash, minimal 6 karakter
+            preg_match('/[A-Z0-9\-\/\s]{6,}/i', $text, $match);
+            $seri = trim($match[0] ?? '');
+
+            unlink($filePath);
+
+            return $this->response->setJSON([
+                'seri' => $seri,
+                'raw'  => $text
+            ]);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'error' => 'OCR gagal: ' . $e->getMessage()
+            ]);
+        }
     }
 }
