@@ -1,8 +1,0 @@
-CRITICAL - 2026-01-28 14:52:38 --> Undefined index: id_siswa
-#0 C:\xampp\htdocs\sabaraja\app\Controllers\Admin.php(212): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 212, Array)
-#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Admin->resetPasswordGuru()
-#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
-#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
-#4 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
-#5 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
-#6 {main}
