@@ -112,6 +112,11 @@ $routes->group('admin', ['filter' => 'role:1'], function ($routes) {
 
     $routes->get('kelas/upload/(:any)', 'Kelas::upload/$1');
     $routes->post('kelas/upload/(:any)', 'Kelas::upload/$1');
+    $routes->get('kelas/halaman/(:any)', 'Kelas::halaman/$1');
+    $routes->get('kelas/label/(:any)', 'Kelas::label/$1');
+    $routes->get('kelas/printbiodata/(:any)', 'Kelas::printbiodata/$1');
+    $routes->get('kelas/ledger/(:any)', 'Kelas::ledger/$1');
+    $routes->get('kelas/nilai/(:any)', 'Kelas::nilai/$1');
     // $routes->get('rombel/create', 'Admin\RombelController::create');
     // $routes->get('rombel/edit/(:num)', 'Admin\RombelController::edit/$1');
 

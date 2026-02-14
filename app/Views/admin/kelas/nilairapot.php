@@ -1,3 +1,20 @@
+<?php
+$db     = \Config\Database::connect();
+$ta = $db->table('tbl_ta')
+    ->where('status', '1')
+    ->get()->getRowArray();
+
+$profile = $db->table('tbl_profile')
+    ->where('id_profile', '1')
+    ->get()->getRowArray();
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Biodata Rapot</title>
+    <title>Rapot P3MP - <?= $namaKelas ?></title>
 </head>
 
 <style>
@@ -610,7 +627,7 @@
 
                 <tr>
                     <td width="35%">(______________)</td>
-                    <td width="35%">Fadilah, S.Ag</td>
+                    <td width="35%"><?= $profile['kepsek'] ?></td>
                     <td width="30%"><?= $row['nama_guru'] ?></td>
                 </tr>
             </table>

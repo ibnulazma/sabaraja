@@ -119,7 +119,7 @@ class ModelKelas extends Model
     public function datanilai($id_kelas)
     {
         return $this->db->table('tbl_nilai')
-            ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_nilai.nisn')
+            ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_nilai.nisn')
             ->join('tbl_database', 'tbl_database.id_siswa = tbl_siswa.id_siswa')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')

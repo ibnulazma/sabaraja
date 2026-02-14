@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
-    <title>Biodata Rapot</title>
+    <title>Biodata Rapot Kelas - <?= $namaKelas ?></title>
 </head>
 
 <?php
@@ -183,7 +183,7 @@ $profile = $db->table('tbl_profile')
                     <tr class="">
                         <td>&nbsp;&nbsp;&nbsp;b. Ibu</td>
                         <td>:</td>
-                        <td><?= strtoupper($value['nama_ayah']) ?></td>
+                        <td><?= strtoupper($value['nama_ibu']) ?></td>
                     </tr>
                 </table>
 
