@@ -99,6 +99,23 @@ class ModelKelas extends Model
             ->getResultArray();
     }
 
+    public function getKelasByDatabase($id_database)
+    {
+        return $this->db->table('tbl_database')
+            ->select('id_kelas')
+            ->where('id_database', $id_database)
+            ->get()
+            ->getRowArray();
+    }
+    public function getNamaKelas($id_kelas)
+    {
+        return $this->db->table('tbl_kelas')
+            ->select('kelas')
+            ->where('id_kelas', $id_kelas)
+            ->get()
+            ->getRowArray();
+    }
+
     public function datanilai($id_kelas)
     {
         return $this->db->table('tbl_nilai')
@@ -177,11 +194,11 @@ class ModelKelas extends Model
     //         ->update($data);
     // }
 
-    public function hapus($data)
+    public function hapus($id_database)
     {
-        $this->db->table('tbl_database')
-            ->where('id_database', $data['id_database'])
-            ->delete($data);
+        return $this->db->table('tbl_database')
+            ->where('id_database', $id_database)
+            ->delete();
     }
 
     ////////JADWAL PERKELAS

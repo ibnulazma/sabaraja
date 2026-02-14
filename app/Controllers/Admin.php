@@ -180,12 +180,6 @@ class Admin extends BaseController
 
 
 
-
-
-
-
-
-
     public function resetPasswordGuru()
     {
         if (session()->get('level') != 1) {

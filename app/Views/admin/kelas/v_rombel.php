@@ -47,7 +47,7 @@ $ta = $db->table('tbl_ta')
                             <td class="text-center"><?= $no++ ?></td>
                             <td class="text-center"><?= $value['kelas'] ?></td>
                             <td class="text-center"><?= $value['nama_guru'] ?></td>
-                            <td class="text-center"><a href="<?= base_url('kelas/rincian_kelas/' . $value['id_kelas']) ?>" class=" text-primary">Lihat Detail</td>
+                            <td class="text-center"><a href="<?= base_url('admin/kelas/rincian_kelas/' . $value['id_kelas']) ?>" class=" text-primary">Lihat Detail</td>
                             <td class="text-center"><?= $value['nama_tingkat'] ?></td>
 
                             <td class="text-center">
@@ -71,7 +71,7 @@ $ta = $db->table('tbl_ta')
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <?= form_open('kelas/add') ?>
+                <?= form_open('admin/kelas/add') ?>
                 <div class="form-group">
                     <label for="">Nama Kelas</label>
                     <input type="text" class="form-control" name="kelas">
@@ -114,7 +114,7 @@ $ta = $db->table('tbl_ta')
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <?= form_open('kelas/edit/' . $value['id_kelas']); ?>
+                    <?= form_open('admin/kelas/edit/' . $value['id_kelas']); ?>
                     <div class="mb-3">
                         <label for="">Nama Kelas</label>
                         <input type="text" class="form-control" name="kelas" value="<?= $value['kelas'] ?>">
@@ -146,5 +146,25 @@ $ta = $db->table('tbl_ta')
         </div>
     </div>
 <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?= $this->endSection() ?>

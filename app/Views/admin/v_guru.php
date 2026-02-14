@@ -79,7 +79,7 @@ $ta = $db->table('tbl_ta')
 
 
             <div class="tab-pane fade" id="navs-pills-top-tambahguru" role="tabpanel">
-                <?= form_open('guru/add') ?>
+                <?= form_open('admin/guru/add') ?>
 
                 <div class="row mb-3">
                     <div class="col-sm-3">
@@ -106,14 +106,6 @@ $ta = $db->table('tbl_ta')
                     </div>
                     <div class="col-sm-7">
                         <input type="text" class="form-control" name="niy">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-sm-3">
-                        <label for="">Password</label>
-                    </div>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" name="password">
                     </div>
                 </div>
                 <div class="form-group">

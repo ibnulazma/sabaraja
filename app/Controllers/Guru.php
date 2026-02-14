@@ -51,33 +51,28 @@ class Guru extends BaseController
 
                 ]
             ],
-            'password' => [
-                'label' => 'Password',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} Wajib Di Isi !!!!'
-                ]
-            ],
+
 
         ])) {
 
-
+            $passwordDefault = 'Kamil123';
             $data = array(
                 'nama_guru' => $this->request->getPost('nama_guru'),
                 'niy'     => $this->request->getPost('niy'),
-                'password'  => $this->request->getPost('password'),
+                'password'         => password_hash($passwordDefault, PASSWORD_DEFAULT),
                 'kelamin'  => $this->request->getPost('kelamin'),
                 'status_aktif'  => 1,
+                'password_default' => 1,
 
             );
 
             // $foto->move('foto', $nama_file);
             $this->ModelGuru->add($data);
             session()->setFlashdata('pesan', 'Guru Berhasil Ditambah !!!');
-            return redirect()->to(base_url('guru'));
+            return redirect()->to(base_url('admin/guru'));
         } else {
             session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
-            return redirect()->to(base_url('guru'));
+            return redirect()->to(base_url('admin/guru'));
         }
     }
 

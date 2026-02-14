@@ -72,7 +72,7 @@
 <script src="https://cdn.datatables.net/fixedcolumns/5.0.3/js/dataTables.fixedColumns.js"></script>
 <script src="https://cdn.datatables.net/fixedcolumns/5.0.3/js/fixedColumns.dataTables.js"></script>
 
-<script src="<?= base_url() ?>/assets/dist/js/formwizard.js"></script>
+
 
 
 
@@ -146,34 +146,6 @@
     });
 </script>
 
-<script>
-    $(document).ready(function() {
-        $("#kabupaten").change(function() {
-            var id_kecamatan = $("#kabupaten").val();
-            $.ajax({
-                type: 'GET',
-                url: '<?= base_url('Siswa/dataKecamatan') ?>/' + id_kecamatan,
-                success: function(html) {
-                    $("#kecamatan").html(html);
-                }
-            });
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $("#kecamatan").change(function() {
-            var id_desa = $("#kecamatan").val();
-            $.ajax({
-                type: 'GET',
-                url: '<?= base_url('Siswa/dataDesa') ?>/' + id_desa,
-                success: function(html) {
-                    $("#desa").html(html);
-                }
-            });
-        });
-    });
-</script>
 
 
 
@@ -185,49 +157,7 @@
 
 
 
-<script>
-    $(document).ready(function() {
-        $("#prov").change(function() {
-            var id_kabupaten = $("#prov").val();
-            $.ajax({
-                type: 'GET',
-                url: '<?= base_url('Peserta/dataKabupaten') ?>/' + id_kabupaten,
-                success: function(html) {
-                    $("#kab").html(html);
-                }
-            });
-        });
-    });
-</script>
 
-<script>
-    $(document).ready(function() {
-        $("#kab").change(function() {
-            var id_kecamatan = $("#kab").val();
-            $.ajax({
-                type: 'GET',
-                url: '<?= base_url('Peserta/dataKecamatan') ?>/' + id_kecamatan,
-                success: function(html) {
-                    $("#kec").html(html);
-                }
-            });
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $("#kec").change(function() {
-            var id_desa = $("#kec").val();
-            $.ajax({
-                type: 'GET',
-                url: '<?= base_url('Peserta/dataDesa') ?>/' + id_desa,
-                success: function(html) {
-                    $("#kel").html(html);
-                }
-            });
-        });
-    });
-</script>
 
 
 </body>

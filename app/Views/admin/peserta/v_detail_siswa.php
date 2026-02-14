@@ -60,7 +60,7 @@ $ta = $db->table('tbl_ta')
                             <?php if ($siswa['status_daftar'] == 1) { ?>
                             <?php } else if ($siswa['status_daftar'] == 2) { ?>
 
-                                <?= form_open('peserta/verifikasi/' . $siswa['id_siswa']) ?>
+                                <?= form_open('admin/peserta/verifikasi/' . encrypt_id($siswa['id_siswa'])) ?>
                                 <input type="hidden" name="status_daftar" value="3">
                                 <input type="hidden" name="id_ta" value="<?= $ta['id_ta'] ?>">
 
@@ -244,16 +244,9 @@ $ta = $db->table('tbl_ta')
                                     <hr>
                                     <li class="p-0">
                                         Telepon :
-                                        <?php if (!empty($datasiswa['kelas'])): ?>
-                                            <span>
-                                                <a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $datasiswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $datasiswa['link_wa'] ?>"><?= $siswa['telp_ayah'] ?>
-                                                </a>
-                                            </span>
-
-                                        <?php else: ?>
-                                            <b><span><?= $siswa['telp_ayah'] ?></span></b>
-                                        <?php endif; ?>
-
+                                        <span>
+                                            <a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>"><?= $siswa['telp_ayah'] ?></a>
+                                        </span>
                                     </li>
                                     <hr>
                                 </ul>
@@ -301,15 +294,13 @@ $ta = $db->table('tbl_ta')
 
                                     <li class="p-0">
                                         Telepon :
-                                        <?php if (!empty($datasiswa['kelas'])): ?>
-                                            <span>
-                                                <a target="_blank" href="https://wa.me/<?= $siswa['telp_ibu'] ?>?text=Silahkan%20Bergabung%20Di%20Rombel%20<?= $datasiswa['kelas'] ?>%20dengan%20klik%20link%20ini%20<?= $datasiswa['link_wa'] ?>"><?= $siswa['telp_ibu'] ?>
-                                                </a>
-                                            </span>
 
-                                        <?php else: ?>
-                                            <b><span><?= $siswa['telp_ibu'] ?></span></b>
-                                        <?php endif; ?>
+                                        <span>
+                                            <a target="_blank" href="https://wa.me/<?= $siswa['telp_ibu'] ?>"><?= $siswa['telp_ibu'] ?>
+                                            </a>
+                                        </span>
+
+
 
                                     </li>
                                     <hr>
@@ -463,7 +454,7 @@ $ta = $db->table('tbl_ta')
 
 <div class="modal fade" id="alamat" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <?= form_open('peserta/edit_alamat/' . $hash) ?>
+        <?= form_open('admin/peserta/edit_alamat/' . $hash) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Data Lainnya</h5>
@@ -552,7 +543,7 @@ $ta = $db->table('tbl_ta')
 <!-- ModalIdentitas -->
 <div class="modal fade" id="identitas" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <?= form_open('peserta/edit_identitas/' . $hash) ?>
+        <?= form_open('admin/peserta/edit_identitas/' . $hash) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Identitas</h5>
@@ -629,7 +620,7 @@ $ta = $db->table('tbl_ta')
 <!-- DataRegister -->
 <div class="modal fade" id="register" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <?= form_open('peserta/edit_register/' . $siswa['id_siswa']) ?>
+        <?= form_open('admin/peserta/edit_register/' . $siswa['id_siswa']) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Data Lainnya</h5>
@@ -769,7 +760,7 @@ $ta = $db->table('tbl_ta')
 <!-- ModalOrangTua -->
 <div class="modal fade" id="ortu" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <?= form_open('peserta/edit_ortu/' . $hash) ?>
+        <?= form_open('admin/peserta/edit_ortu/' . $hash) ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Orang Tua</h5>
@@ -964,7 +955,7 @@ $ta = $db->table('tbl_ta')
                 <h5 class="modal-title" id="exampleModalLabel">Pilih Kelas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <?= form_open('peserta/masukkelas/' . $hash) ?>
+            <?= form_open('admin/peserta/masukkelas/' . $hash) ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -1178,7 +1169,7 @@ $ta = $db->table('tbl_ta')
         formData.append("file", file);
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "<?= base_url('peserta/uploadDokumen/' . $siswa['id_siswa']) ?>", true);
+        xhr.open("POST", "<?= base_url('admin/peserta/uploadDokumen/' . $hash) ?>", true);
 
         // 🎯 SweetAlert dengan Progress Bar
         Swal.fire({

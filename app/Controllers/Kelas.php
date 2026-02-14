@@ -136,7 +136,7 @@ class Kelas extends BaseController
             $this->ModelKelas->add_data($data);
         }
         session()->setFlashdata('pesan', 'Siswa Berhasil Di Tambahkan !!!');
-        return redirect()->to(base_url('kelas/rincian_kelas/' . $kelas['id_kelas']));
+        return redirect()->to(base_url('admin/kelas/rincian_kelas/' . $kelas['id_kelas']));
     }
 
 
@@ -147,17 +147,25 @@ class Kelas extends BaseController
 
     //HAPUS ANGGOTA KELAS
 
-    public function hapusanggota($id_siswa, $id_kelas)
+    public function hapusanggota($id_database)
     {
-        $data = [
-            'id_database' => $id_siswa,
-            'id_kelas' => $id_kelas
+        $kelas = $this->ModelKelas->getKelasByDatabase($id_database);
 
-        ];
-        $this->ModelKelas->hapus($data);
-        session()->setFlashdata('pesan', 'Siswa Berhasil Di Hapus Dari Kelas !!!');
-        return redirect()->to(base_url('kelas/rincian_kelas/' . $id_kelas));
+        if (!$kelas) {
+            session()->setFlashdata('pesan', 'Data kelas tidak ditemukan');
+            return redirect()->back();
+        }
+
+        $this->ModelKelas->hapus($id_database);
+
+        session()->setFlashdata('pesan', 'Siswa berhasil dihapus dari kelas');
+
+        return redirect()->to(
+            base_url('admin/kelas/rincian_kelas/' . $kelas['id_kelas'])
+        );
     }
+
+
 
 
     //NILAI
@@ -314,46 +322,40 @@ class Kelas extends BaseController
     public function printexcel($id_kelas)
     {
         $siswa = $this->ModelKelas->datasiswa($id_kelas);
-        $spreadsheet = new Spreadsheet();
+
+        // ambil nama kelas
+        $kelas = $this->ModelKelas->getNamaKelas($id_kelas);
+        $namaKelas = $kelas ? $kelas['kelas'] : 'kelas';
+
+        // bersihkan nama file (hindari spasi & karakter aneh)
+        $namaFile = 'Format_Nilai_Kelas_' . preg_replace('/[^A-Za-z0-9_\-]/', '.', $namaKelas) . '.xlsx';
+
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
+
         $sheet->setCellValue('A1', 'No');
         $sheet->setCellValue('B1', 'Nama');
         $sheet->setCellValue('C1', 'NISN');
-        $sheet->setCellValue('D1', 'PAI');
-        $sheet->setCellValue('E1', 'PKN');
-        $sheet->setCellValue('F1', 'B.INDO');
-        $sheet->setCellValue('G1', 'MTK');
-        $sheet->setCellValue('H1', 'IPA');
-        $sheet->setCellValue('I1', 'IPS');
-        $sheet->setCellValue('J1', 'B.INGG');
-        $sheet->setCellValue('K1', 'SBK');
-        $sheet->setCellValue('L1', 'PJOK');
-        $sheet->setCellValue('M1', 'PRKY');
-        $sheet->setCellValue('N1', 'TIK');
-        $sheet->setCellValue('O1', 'TJWD');
-        $sheet->setCellValue('P1', 'TRJMH');
-        $sheet->setCellValue('Q1', 'FIQIH');
-        $sheet->setCellValue('R1', 'MHD');
-        $sheet->setCellValue('S1', 'BTQ');
-        $sheet->setCellValue('T1', 'SAKIT');
-        $sheet->setCellValue('U1', 'IZIN');
-        $sheet->setCellValue('V1', 'ALFA');
+        // dst...
 
         $column = 2;
-        foreach ($siswa as  $key => $value) {
+        foreach ($siswa as $key => $value) {
             $sheet->setCellValue('A' . $column, ($column - 1));
             $sheet->setCellValue('B' . $column, $value['nama_siswa']);
             $sheet->setCellValue('C' . $column, $value['nisn']);
             $column++;
         }
 
-        $writer = new Xlsx($spreadsheet);
-        header('Content-Type:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment:filename=datanilai.xlsx');
-        header('Cache-Control:max-age=0');
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . $namaFile . '"');
+        header('Cache-Control: max-age=0');
+
         $writer->save('php://output');
-        exit();
+        exit;
     }
+
 
 
 

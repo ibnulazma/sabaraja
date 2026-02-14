@@ -27,9 +27,9 @@
         </div>
     </div>
 
-    <form id="formSiswa" action="<?= base_url('siswa/update/' . $siswa['id_siswa']) ?>" method="post">
+    <form id="formSiswa">
         <?= csrf_field() ?>
-
+        <input type="hidden" id="id_siswa" value="<?= $siswa['id_siswa'] ?>" name="id_siswa">
         <!-- STEP 1 : ALAMAT -->
         <div class="card step" id="step-1">
             <div class="card-header text-primary">Data Alamat</div>
@@ -46,7 +46,7 @@
                                 class="form-control wajib-step1 rt-rw-field"
                                 inputmode="numeric"
                                 maxlength="2">
-                            <small class="text-danger d-none" id="err_rt">RT harus 1–2 digit angka</small>
+                            <small class="text-danger d-none" id="err_rt">RT harus 2 digit angka</small>
                         </div>
                         <div class="col mb-3">
                             <label>RW</label>
@@ -54,7 +54,7 @@
                                 class="form-control wajib-step1 rt-rw-field"
                                 inputmode="numeric"
                                 maxlength="2">
-                            <small class="text-danger d-none" id="err_rw">RW harus 1–2 digit angka</small>
+                            <small class="text-danger d-none" id="err_rw">RW harus 2 digit angka</small>
                         </div>
                         <div class="col mb-3">
                             <label class="" for="tempattinggal">Provinsi</label>
@@ -87,7 +87,7 @@
                         </div>
                         <div class="col mb-3">
                             <label class="" for="tempattinggal">Kode Pos</label>
-                            <input type="text" name="kodepos" class="form-control wajib-step1">
+                            <input type="text" name="kodepos" class="form-control wajib-step1" value="<?= $siswa['kodepos'] ?>">
                         </div>
 
 
@@ -110,11 +110,11 @@
                 </div>
                 <div class="mb-3">
                     <label>Latitude</label>
-                    <input type="text" id="lat" class="form-control wajib-step1" name="" readonly>
+                    <input type="text" id="lat" class="form-control wajib-step1" name="lat" readonly>
                 </div>
                 <div class="mb-3">
                     <label>Longitude</label>
-                    <input type="text" id="lng" class="form-control wajib-step1" readonly>
+                    <input type="text" id="lng" class="form-control wajib-step1" name="lng" readonly>
                 </div>
                 <div class="mb-3">
                     <label>Jarak ke Sekolah</label>
@@ -146,8 +146,8 @@
                         </div>
                         <div class="mb-3">
                             <label>Tahun Lahir</label>
-                            <input type="text" name="tahun_ayah" id="tahun_ayah" class="form-control wajib-step2 tahun-field" maxlength="4" inputmode="numeric">
-                            <small class="text-danger d-none" id="err_tahun_ayah">NIK harus 4 digit</small>
+                            <input type="text" name="tahun_ayah" id="tahun_masuk" class="form-control wajib-step2 tahun-field" maxlength="4" inputmode="numeric">
+                            <small class="text-danger d-none" id="err_tahun_masuk">NIK harus 4 digit</small>
                         </div>
 
                         <div class="mb-3">
@@ -366,7 +366,7 @@
 
         </div>
 
-        <!-- STEP 3 : ORANG TUA (IBU) -->
+        <!-- STEP 3 : REGISTRASI () -->
         <div class="card step d-none" id="step-3">
             <div class="card-header  text-warning"> Step 3 - Data Periodik & Registrasi</div>
             <div class="card-body">
@@ -388,12 +388,12 @@
 
                         <div class="mb-3">
                             <label>Lingkar Kepala (cm)</label>
-                            <input type="number" class="form-control wajib-step3" name="lingkar_kepala">
+                            <input type="number" class="form-control wajib-step3" name="lingkar">
                         </div>
 
                         <div class="mb-3">
                             <label>Jumlah Saudara</label>
-                            <input type="number" class="form-control wajib-step3" name="anak_ke">
+                            <input type="number" class="form-control wajib-step3" name="jml_saudara">
                         </div>
                     </div>
 
@@ -402,19 +402,31 @@
                         <h6 class="text-primary mb-3">Data Registrasi</h6>
 
                         <div class="mb-3">
+                            <label>NIK Siswa </label>
+                            <input type="text" name="nik" id="nik_siswa" class="form-control wajib-step3 nik-field">
+                            <small class="text-danger d-none" id="err_nik_siswa">NIK harus 16 digit</small>
+                        </div>
+                        <div class="mb-3">
+                            <label>No KK </label>
+                            <input type="text" name="no_kk" id="nik" class="form-control wajib-step3 nik-field">
+
+                        </div>
+                        <div class="mb-3">
                             <label>Hobi</label>
-                            <select name="" id="" class="form-control wajib-step3">
+                            <select name="hobby" id="" class="form-control wajib-step3">
                                 <option value="">Pilih Hobi</option>
                                 <option value="Membaca">Membaca</option>
-                                <option value=""></option>
-                                <option value=""></option>
+                                <option value="Menulis">Menulis</option>
+                                <option value="Melukis">Melukis</option>
+                                <option value="Memancing">Memancing</option>
+                                <option value="Olahraga">Olahraga</option>
                             </select>
 
                         </div>
 
                         <div class="mb-3">
                             <label>Cita -cita</label>
-                            <select name="" id="" class="form-control wajib-step3">
+                            <select name="cita_cita" id="" class="form-control wajib-step3">
                                 <option value="">Pilih Cita-cita</option>
                                 <option value="Pilot">Pilot</option>
                                 <option value="Dokter">Dokter</option>
@@ -423,9 +435,23 @@
                         </div>
 
                         <div class="mb-3">
-                            <label>No Seri Ijazah</label>
-                            <input type="file" id="fotoIjazah" accept="image/*">
-                            <input type="text" name="no_seri_ijazah" id="noSeri" class="form-control wajib-step3">
+                            <div class="mb-3">
+                                <label>No Seri Ijazah</label>
+
+                                <input type="file" id="fotoIjazah" accept="image/*" class="form-control mb-2 ">
+
+                                <div style="max-width:100%; display:none;" id="previewContainer">
+                                    <img id="previewImage" style="max-width:100%;">
+                                </div>
+
+                                <button type="button" id="cropBtn" class="btn btn-sm btn-primary mt-2" style="display:none;">
+                                    Crop & Scan OCR
+                                </button>
+
+                                <input type="text" name="seri_ijazah" id="noSeri"
+                                    class="form-control wajib-step3 mt-2">
+                            </div>
+
                         </div>
                     </div>
 
@@ -491,32 +517,102 @@
     </form>
 </div>
 
+
+
+
+<script>
+    const BASE_URL = "<?= base_url() ?>";
+</script>
 <script src="<?= base_url() ?>/template/assets/vendor/libs/jquery/jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+<script src="<?= base_url() ?>/assets/dist/js/formwizard.js"></script>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 
 <script>
-    document.getElementById('fotoIjazah').addEventListener('change', function() {
-        let formData = new FormData();
-        formData.append('foto_ijazah', this.files[0]);
+    document.addEventListener("DOMContentLoaded", function() {
 
-        fetch('<?= base_url('siswa/ocr-ijazah') ?>', {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.error) {
-                    alert(data.error);
-                } else {
-                    document.getElementById('noSeri').value = data.seri || '';
-                    console.log('Raw OCR:', data.raw);
+        const inputFile = document.getElementById("fotoIjazah");
+        const previewImage = document.getElementById("previewImage");
+        const previewContainer = document.getElementById("previewContainer");
+        const cropBtn = document.getElementById("cropBtn");
+        const noSeriInput = document.getElementById("noSeri");
+
+        let cropper;
+
+        inputFile.addEventListener("change", function(e) {
+
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+
+                previewImage.src = event.target.result;
+                previewContainer.style.display = "block";
+                cropBtn.style.display = "inline-block";
+
+                if (cropper) {
+                    cropper.destroy();
                 }
-            })
-            .catch(err => console.error(err));
+
+                cropper = new Cropper(previewImage, {
+                    viewMode: 1,
+                    autoCropArea: 0.5,
+                    movable: true,
+                    zoomable: true,
+                    scalable: true,
+                    responsive: true
+                });
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        cropBtn.addEventListener("click", function() {
+
+            if (!cropper) return;
+
+            const canvas = cropper.getCroppedCanvas({
+                width: 800,
+                height: 400
+            });
+
+            canvas.toBlob(function(blob) {
+
+                const formData = new FormData();
+                formData.append("foto_ijazah", blob);
+
+                fetch("<?= base_url('siswa/ocr-ijazah') ?>", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            noSeriInput.value = data.seri || "";
+                            console.log("Raw OCR:", data.raw);
+
+                            // trigger validasi wizard kamu
+                            noSeriInput.dispatchEvent(new Event("input"));
+                        }
+
+                    })
+                    .catch(err => console.error(err));
+
+            }, "image/jpeg");
+
+        });
+
     });
 </script>
+
 
 
 <script>
@@ -811,52 +907,7 @@
 
 
 
-<!-- <script>
-    document.addEventListener('change', function(e) {
 
-        if (e.target.id === 'kerja_ibu') {
-
-            const kerja = e.target.value;
-            const hasilIbu = document.getElementById('hasil_ibu');
-
-            if (!hasilIbu) {
-                console.log('hasil_ibu tidak ditemukan');
-                return;
-            }
-
-            hasilIbu.disabled = false;
-            hasilIbu.value = '';
-
-            if (kerja === 'Tidak Bekerja' || kerja === 'Sudah Meninggal') {
-                hasilIbu.value = 'Tidak Berpenghasilan';
-                hasilIbu.disabled = true;
-            }
-        }
-
-    });
-    document.addEventListener('change', function(e) {
-
-        if (e.target.id === 'kerja_ayah') {
-
-            const kerja = e.target.value;
-            const hasilIbu = document.getElementById('hasil_ayah');
-
-            if (!hasilIbu) {
-                console.log('hasil_ayah tidak ditemukan');
-                return;
-            }
-
-            hasilIbu.disabled = false;
-            hasilIbu.value = '';
-
-            if (kerja === 'Tidak Bekerja' || kerja === 'Sudah Meninggal') {
-                hasilIbu.value = 'Tidak Berpenghasilan';
-                hasilIbu.disabled = true;
-            }
-        }
-
-    });
-</script> -->
 
 
 

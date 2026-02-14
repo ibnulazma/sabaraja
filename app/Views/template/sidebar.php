@@ -57,7 +57,7 @@ $user = $db->table('tbl_user')
         <li class="menu-header small text-uppercase"><span>Setting</span></li>
 
         <li class="menu-item <?= $menu == 'ta' ? 'active' : '' ?>">
-            <a href="<?= base_url('ta') ?>" class="menu-link">
+            <a href="<?= base_url('admin/ta') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar"></i>
                 <div>Tahun Pelajaran</div>
             </a>
@@ -79,21 +79,21 @@ $user = $db->table('tbl_user')
         <li class="menu-header small text-uppercase"><span>Akademik</span></li>
 
         <li class="menu-item <?= $menu == 'peserta' ? 'active' : '' ?>">
-            <a href="<?= base_url('peserta') ?>" class="menu-link">
+            <a href="<?= base_url('admin/peserta') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-graduation"></i>
                 <div>Peserta Didik</div>
             </a>
         </li>
 
         <li class="menu-item <?= $menu == 'guru' ? 'active' : '' ?>">
-            <a href="<?= base_url('guru') ?>" class="menu-link">
+            <a href="<?= base_url('admin/guru') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-user"></i>
                 <div>PTK</div>
             </a>
         </li>
 
         <li class="menu-item <?= $menu == 'kelas' ? 'active' : '' ?>">
-            <a href="<?= base_url('kelas') ?>" class="menu-link">
+            <a href="<?= base_url('admin/kelas') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-chalkboard"></i>
                 <div>Rombel</div>
             </a>

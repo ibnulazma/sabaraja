@@ -88,7 +88,7 @@ $ta = $db->table('tbl_ta')
                                         echo table-primary
                                     <?php } ?>">
 
-                                    <td class="text-center"><a href="<?= base_url('peserta/detail_siswa/' .  encrypt_id($value['id_siswa'])) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
+                                    <td class="text-center"><a href="<?= base_url('admin/peserta/detail_siswa/' .  encrypt_id($value['id_siswa'])) ?>"> <i class='bx bxs-user-circle bx-sm text-info '></i> </a></td>
                                     <td class="text-center"><?= $value["nis"] ?></td>
                                     <td class="text-center"><?= $value["nisn"] ?></td>
                                     <td><?= $value["nama_siswa"] ?></td>
@@ -288,10 +288,10 @@ $ta = $db->table('tbl_ta')
                                             <td><?= $value["nama_siswa"] ?></td>
                                             <td class="text-center"><?= $value["tempat_lahir"] ?>, <?= date('d M Y', strtotime($value["tanggal_lahir"])) ?></td>
                                             <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
-                                            <td class="text-center"><?= $value["tingkat"] ?></td>
+                                            <td class="text-center"><?= $value["nama_tingkat"] ?></td>
 
                                             <td class="text-center">
-                                                <a href="<?= base_url('peserta/detail_siswa/' .  $value['id_siswa']) ?>" class="btn btn-primary btn-sm"><i class='bx bx-check-square'></i> </a>
+                                                <a href="<?= base_url('admin/peserta/detail_siswa/' .  encrypt_id($value['id_siswa'])) ?>" class="btn btn-primary btn-sm"><i class='bx bx-check-square'></i> </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -324,7 +324,7 @@ $ta = $db->table('tbl_ta')
                     <div class="col-md-6">
                         <h5 class="card-header">Tambah Data Siswa</h5>
                         <div class="card-body demo-vertical-spacing demo-only-element">
-                            <?= form_open('peserta/add') ?>
+                            <?= form_open('admin/peserta/add') ?>
                             <div class=" row mb-3">
                                 <label for="nama siswa" class="col-sm-4">Nama Siswa</label>
                                 <div class="col-sm-8">

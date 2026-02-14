@@ -1220,4 +1220,38 @@ class Siswa extends BaseController
             ]);
         }
     }
+
+
+    public function simpan_step()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('tbl_siswa');
+
+        $id = $this->request->getPost('id_siswa');
+        $data = $this->request->getPost();
+
+        unset($data['id_siswa'], $data['csrf_test_name']);
+
+        // Jika hanya ID → skip update
+        if (empty($data)) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'id_siswa' => $id,
+                'masuk' => $data
+            ]);
+        }
+
+        if ($id) {
+            $builder->where('id_siswa', $id);
+            $builder->update($data);
+        } else {
+            $builder->insert($data);
+            $id = $db->insertID();
+        }
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'id_siswa' => $id
+        ]);
+    }
 }

@@ -1,0 +1,35 @@
+CRITICAL - 2026-02-12 20:29:30 --> You must use the "set" method to update an entry.
+#0 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1854): CodeIgniter\Database\BaseBuilder->validateUpdate()
+#1 C:\xampp\htdocs\sabaraja\app\Controllers\Siswa.php(1237): CodeIgniter\Database\BaseBuilder->update(Array)
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->simpan_step()
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#4 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+ERROR - 2026-02-12 21:34:09 --> Unknown column 'lingkar_kepala' in 'field list'
+CRITICAL - 2026-02-12 21:34:09 --> Unknown column 'lingkar_kepala' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('UPDATE `tbl_sis...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbl_sis...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbl_sis...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1875): CodeIgniter\Database\BaseConnection->query('UPDATE `tbl_sis...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Siswa.php(1246): CodeIgniter\Database\BaseBuilder->update(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->simpan_step()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-12 21:34:38 --> Unknown column 'lingkar_kepala' in 'field list'
+CRITICAL - 2026-02-12 21:34:38 --> Unknown column 'lingkar_kepala' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('UPDATE `tbl_sis...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbl_sis...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbl_sis...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1875): CodeIgniter\Database\BaseConnection->query('UPDATE `tbl_sis...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Siswa.php(1246): CodeIgniter\Database\BaseBuilder->update(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Siswa->simpan_step()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Siswa))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}

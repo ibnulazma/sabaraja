@@ -81,7 +81,7 @@ $ta = $db->table('tbl_ta')
                                     <a href="<?= base_url('kelas/halamansiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-success "><i class="bx bxs-file"></i> </a>
                                     <a href="<?= base_url('kelas/biodatasiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-secondary "><i class="bx bx-id-card"></i> </a>
                                     <a href="<?= base_url('kelas/labelsiswa/' .  $value['nisn']) ?>" target="_blank" class="btn btn-sm btn-dark"><i class="bx bx-purchase-tag-alt"></i> </a>
-                                    <a href="<?= base_url('kelas/hapusanggota/' . $value['id_database'] . '/' . $value['id_kelas']) ?>" class="btn btn-danger btn-sm"><i class="bx bxs-trash-alt"></i></a>
+                                    <a href="<?= base_url('admin/kelas/hapusanggota/' . $value['id_database']) ?>" class="btn btn-danger btn-sm"><i class="bx bxs-trash-alt"></i></a>
                                 </div>
                             </td>
                         </tr>
@@ -103,7 +103,7 @@ $ta = $db->table('tbl_ta')
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Siswa</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <?= form_open('kelas/tambahanggota/' . $kelas['id_kelas']) ?>
+            <?= form_open('admin/kelas/tambahanggota/' . $kelas['id_kelas']) ?>
             <div class="modal-body">
                 <table class="table table-bordered" id="tambahanggota">
                     <thead>
@@ -158,9 +158,9 @@ $ta = $db->table('tbl_ta')
             </div>
 
             <div class="modal-body">
-                <a href="<?= base_url('kelas/printexcel/' . $kelas['id_kelas']) ?>" class="btn btn-outline-success btn-lg"> <i class="fas fa-file-excel mr-2"></i> Download Template</a>
+                <a href="<?= base_url('admin/kelas/printexcel/' . $kelas['id_kelas']) ?>" class="btn btn-outline-success btn-lg"> <i class="fas fa-file-excel mr-2"></i> Download Template</a>
 
-                <?= form_open_multipart('kelas/upload/' . $kelas['id_kelas']) ?>
+                <?= form_open_multipart('admin/kelas/upload/' . $kelas['id_kelas']) ?>
                 <div class="form-group mt-4">
                     <label for="exampleInputFile">
                         <h5>Upload Nilai</h5>
