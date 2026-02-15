@@ -212,36 +212,58 @@ class Kelas extends BaseController
     public function ledger($id_kelas)
     {
 
+        $nilai = $this->ModelNilai->nilaikelas($id_kelas);
         $kelas = $this->ModelKelas->getNamaKelas($id_kelas);
+        $wali  = $this->ModelKelas->getWaliKelas($id_kelas);
+
+
         $namaKelas = $kelas ? $kelas['kelas'] : 'kelas';
-        $namaFile = 'Ledger_P3MP_' . preg_replace('/[^A-Za-z0-9_\-]/', '.', $namaKelas) . '.pdf';
+        $namatitle = 'Ledger_P3MP_' . preg_replace('/[^A-Za-z0-9_\-]/', '.', $namaKelas);
+        $sorted = $nilai;
 
-        $options = new Options();
-        $options->set('isHtml5ParserEnabled', true);
-        $options->set('isPhpEnabled', true);
+        // 2. Urutkan salinan berdasarkan total_nilai (DESC)
+        usort($sorted, function ($a, $b) {
+            return $b['total_nilai'] <=> $a['total_nilai'];
+        });
 
-        $dompdf = new Dompdf($options);
+        // 3. Hitung ranking
+        $rank = 0;
+        $lastTotal = null;
+        $rankingMap = []; // nisn => rank
 
-        $path = base_url('/foto/logo.png');
+        foreach ($sorted as $i => $row) {
+            if ($row['total_nilai'] !== $lastTotal) {
+                $rank = $i + 1;
+                $lastTotal = $row['total_nilai'];
+            }
+            $rankingMap[$row['nisn']] = $rank;
+        }
+
+        // 4. Tempelkan rank ke data asli
+        foreach ($nilai as &$row) {
+            $row['rank'] = $rankingMap[$row['nisn']] ?? null;
+        }
+        unset($row);
 
 
-        $kelas = $this->ModelKelas->detail($id_kelas);
+
+
+
+
+        $kelas = $this->ModelKelas->datanilai($id_kelas);
+
         $data = [
-            'nilai'         => $this->ModelNilai->nilaikelas($id_kelas),
-            'kelas'         => $kelas,
+            'nilai'      => $nilai,
+            'kelas'      => $this->ModelKelas->getNamaKelas($id_kelas),
             'namaKelas'  => $namaKelas,
+            'wali'  => $wali,
+            'title' => $namatitle
 
         ];
-        $html = view('admin/kelas/ledger', $data);
+        return view('admin/kelas/ledger', $data);
         //Atur Gambar
 
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('Legal', 'landscape');
-        $dompdf->render();
-        $dompdf->stream($namaFile, [
-            "Attachment" => false
-        ]);
-        exit();
+
     }
 
 
@@ -419,128 +441,6 @@ class Kelas extends BaseController
 
 
 
-    // public function upload($id_kelas)
-    // {
-    //     $db = \Config\Database::connect();
-
-    //     // Tahun aktif
-    //     $ta = $db->table('tbl_ta')
-    //         ->where('status', '1')
-    //         ->get()
-    //         ->getRowArray();
-
-    //     $kelas = $this->ModelKelas->detail($id_kelas);
-
-    //     // VALIDASI FILE
-    //     if (!$this->validate([
-    //         'fileimport' => [
-    //             'rules' => 'uploaded[fileimport]|ext_in[fileimport,xls,xlsx]',
-    //             'errors' => [
-    //                 'uploaded' => 'File wajib diupload',
-    //                 'ext_in'   => 'File harus Excel (xls / xlsx)'
-    //             ]
-    //         ]
-    //     ])) {
-    //         return redirect()->back()->withInput();
-    //     }
-
-    //     $file = $this->request->getFile('fileimport');
-    //     $ext  = $file->getClientExtension();
-
-    //     $reader = ($ext == 'xls')
-    //         ? new \PhpOffice\PhpSpreadsheet\Reader\Xls()
-    //         : new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-
-    //     $spreadsheet = $reader->load($file);
-    //     $rows = $spreadsheet->getActiveSheet()->toArray();
-
-    //     $jumlahSukses = 0;
-    //     $jumlahError  = 0;
-
-    //     // TRANSAKSI (AMAN)
-    //     $db->transStart();
-
-    //     foreach ($rows as $i => $row) {
-
-    //         // skip header
-    //         if ($i == 0) continue;
-
-    //         // skip baris kosong
-    //         if (empty($row[1])) continue;
-
-    //         $nisn     = trim($row[1]);
-    //         $pai      = is_numeric($row[2]) ? $row[2] : null;
-    //         $pkn        = is_numeric($row[3]) ? $row[3] : null;
-    //         $indo           = is_numeric($row[4]) ? $row[4] : null;
-    //         $mtk           = is_numeric($row[5]) ? $row[5] : null;
-    //         $ipa            = is_numeric($row[6]) ? $row[6] : null;
-    //         $ips            = is_numeric($row[7]) ? $row[7] : null;
-    //         $inggris        = is_numeric($row[8]) ? $row[8] : null;
-    //         $sbk            = is_numeric($row[9]) ? $row[9] : null;
-    //         $pjok           = is_numeric($row[10]) ? $row[10] : null;
-    //         $prky           = is_numeric($row[11]) ? $row[11] : null;
-    //         $tik            = is_numeric($row[12]) ? $row[12] : null;
-    //         $tjwd           = is_numeric($row[13]) ? $row[13] : null;
-    //         $trjmh          = is_numeric($row[14]) ? $row[14] : null;
-    //         $fiqih          = is_numeric($row[15]) ? $row[15] : null;
-    //         $mhd            = is_numeric($row[16]) ? $row[16] : null;
-    //         $btq            = is_numeric($row[17]) ? $row[17] : null;
-    //         $sakit          = is_numeric($row[18]) ? $row[18] : null;
-    //         $izin           = is_numeric($row[19]) ? $row[19] : null;
-    //         $alfa           = is_numeric($row[20]) ? $row[20] : null;
-
-    //         // CEK DUPLIKAT (nisn + tahun ajaran)
-    //         $cek = $db->table('tbl_nilai')
-    //             ->where('nisn', $nisn)
-    //             ->where('id_ta', $ta['id_ta'])
-    //             ->get()
-    //             ->getRow();
-
-    //         if ($cek) {
-    //             $jumlahError++;
-    //             continue;
-    //         }
-
-    //         $db->table('tbl_nilai')->insert([
-    //             'nisn'    => $nisn,
-    //             'pai'     => $pai,
-    //             'pkn'       => $pkn,
-    //             'nisn'      => $nisn,
-    //             'pai'       => $pai,
-    //             'pkn '      => $pkn,
-    //             'indo'      => $indo,
-    //             'mtk'       => $mtk,
-    //             'ipa'       => $ipa,
-    //             'ips'       => $ips,
-    //             'inggris'   => $inggris,
-    //             'sbk'       => $sbk,
-    //             'pjok'      => $pjok,
-    //             'prky'      => $prky,
-    //             'tik'       => $tik,
-    //             'tjwd'      => $tjwd,
-    //             'trjmh '    => $trjmh,
-    //             'fiqih '    => $fiqih,
-    //             'mhd '      => $mhd,
-    //             'btq '      => $btq,
-    //             'sakit '    => $sakit,
-    //             'izin '     => $izin,
-    //             'alfa '     => $alfa,
-    //             'id_ta'   => $ta['id_ta']
-    //         ]);
-
-    //         $jumlahSukses++;
-    //     }
-
-    //     $db->transComplete();
-
-    //     session()->setFlashdata('swal', [
-    //         'title' => 'Upload Nilai',
-    //         'html'  => "Berhasil: <b>$jumlahSukses</b><br>Gagal: <b>$jumlahError</b>",
-    //         'icon'  => ($jumlahError > 0) ? 'warning' : 'success'
-    //     ]);
-
-    //     return redirect()->to('admin/kelas/rincian_kelas/' . $kelas['id_kelas']);
-    // }
 
     public function upload($id_kelas)
     {

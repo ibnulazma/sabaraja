@@ -72,7 +72,8 @@ class ModelKelas extends Model
            tbl_kelas.*,
             tbl_tingkat.nama_tingkat,
             tbl_tingkat.id_tingkat,
-            tbl_guru.nama_guru
+            tbl_guru.nama_guru,
+           
         ')
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_kelas.id_tingkat', 'left')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
@@ -278,7 +279,15 @@ class ModelKelas extends Model
     }
 
 
-
+    public function getWaliKelas($id_kelas)
+    {
+        return $this->db->table('tbl_kelas')
+            ->select('tbl_guru.nama_guru, tbl_guru.niy')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
+            ->where('tbl_kelas.id_kelas', $id_kelas)
+            ->get()
+            ->getRowArray();
+    }
 
     // public function group_tahun()
     // {

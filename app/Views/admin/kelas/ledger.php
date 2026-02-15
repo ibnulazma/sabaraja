@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Biodata Rapot</title>
+    <title><?= $title ?> ?></title>
 </head>
 
 <style>
@@ -22,10 +22,21 @@
     th,
     td {
         border: 1px solid black;
+        text-align: center;
+    }
+
+    .siswa {
+        text-align: left;
     }
 
     .center {
         text-align: center;
+    }
+
+    .ttd {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
     }
 </style>
 
@@ -38,6 +49,10 @@
 
     $ta = $db->table('tbl_ta')
         ->where('status', '1')
+        ->get()->getRowArray();
+
+    $profile = $db->table('tbl_profile')
+        ->where('id_profile', '1')
         ->get()->getRowArray();
 
     ?>
@@ -69,47 +84,63 @@
                 <th>FIQIH</th>
                 <th>MHD</th>
                 <th>Jumlah</th>
+                <th>Rank</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            $no = 1;
-            foreach ($nilai as $key => $row) { ?>
+
+            <?php $no = 1;
+            foreach ($nilai as $row): ?>
                 <tr>
-                    <td class="center"><?= $no++ ?></td>
-                    <td class="center"><?= $row['nisn'] ?></td>
-                    <td><?= $row['nama_siswa'] ?></td>
-                    <td class="center"><?= $row['pai'] ?></td>
-                    <td class="center"><?= $row['pkn'] ?></td>
-                    <td class="center"><?= $row['indo'] ?></td>
-                    <td class="center"><?= $row['mtk'] ?></td>
-                    <td class="center"><?= $row['ipa'] ?></td>
-                    <td class="center"><?= $row['ips'] ?></td>
-                    <td class="center"><?= $row['inggris'] ?></td>
-                    <td class="center"><?= $row['sbk'] ?></td>
-                    <td class="center"><?= $row['prky'] ?></td>
-                    <td class="center"><?= $row['pjok'] ?></td>
-                    <td class="center"><?= $row['tik'] ?></td>
-                    <td class="center"><?= $row['btq'] ?></td>
-                    <td class="center"><?= $row['tjwd'] ?></td>
-                    <td class="center"><?= $row['trjmh'] ?></td>
-                    <td class="center"><?= $row['fiqih'] ?></td>
-                    <td class="center"><?= $row['mhd'] ?></td>
-                    <td class="center">
-                        <?php
-                        $jumlah =
-
-                            $row['pai'] + $row['pkn'] + $row['indo'] + $row['mtk'] + $row['ipa'] + $row['ips']
-                            + $row['inggris'] + $row['sbk'] + $row['prky'] + $row['tik'] + $row['btq'] + $row['trjmh'] + $row['tjwd'] + $row['mhd'] + $row['fiqih'] + $row['pjok'];
-                        ?>
-
-                        <?= $jumlah ?>
-                    </td>
+                    <td><?= $no++ ?></td>
+                    <td><?= $row['nisn'] ?></td>
+                    <td class="siswa"><?= $row['nama_siswa'] ?></td>
+                    <td><?= $row['pai'] ?></td>
+                    <td><?= $row['pkn'] ?></td>
+                    <td><?= $row['indo'] ?></td>
+                    <td><?= $row['mtk'] ?></td>
+                    <td><?= $row['ipa'] ?></td>
+                    <td><?= $row['ips'] ?></td>
+                    <td><?= $row['inggris'] ?></td>
+                    <td><?= $row['sbk'] ?></td>
+                    <td><?= $row['prky'] ?></td>
+                    <td><?= $row['pjok'] ?></td>
+                    <td><?= $row['tik'] ?></td>
+                    <td><?= $row['btq'] ?></td>
+                    <td><?= $row['tjwd'] ?></td>
+                    <td><?= $row['trjmh'] ?></td>
+                    <td><?= $row['fiqih'] ?></td>
+                    <td><?= $row['mhd'] ?></td>
+                    <td><?= $row['total_nilai'] ?></td>
+                    <td class="text-center"><?= $row['rank'] ?></td>
 
                 </tr>
-            <?php } ?>
+            <?php endforeach ?>
         </tbody>
     </table>
+
+    <div class="ttd">
+
+        <div class="kepsek">
+            <span>Mengetahui</span><br>
+            <span>Kepala Sekolah</span>
+            <br><br><br><br>
+            <span><?= $profile['kepsek'] ?></span>
+        </div>
+        <div class="guru">
+            <span>Tangerang, 23 Maret 2026</span><br>
+            <span>Wali Kelas</span>
+            <br><br><br><br>
+            <span><?= $wali['nama_guru'] ?></span>
+        </div>
+    </div>
+
+
+
+
+
+
+
 
 
 </body>
