@@ -53,6 +53,7 @@ $routes->post('/auth/login', 'Auth::loginUser');
 $routes->get('/auth/loginadmin', 'Auth::loginAdminPage');
 $routes->post('/auth/loginAdmin', 'Auth::loginAdmin');
 $routes->get('/auth/logout', 'Auth::logout');
+$routes->post('/auth/update-password-pertama', 'Auth::updatePasswordPertama');
 
 
 
@@ -68,8 +69,13 @@ $routes->group('admin', ['filter' => 'role:1'], function ($routes) {
 
     // Setting
 
-    // $routes->get('', 'TahunController::create');
-    // $routes->get('tahun/edit/(:num)', 'Admin\TahunController::edit/$1');
+    $routes->get('setting', 'Setting::profile');
+    $routes->get('setting/editprofile/(:any)', 'Setting::editprofile/$1');
+    $routes->post('setting/editprofile/(:any)', 'Setting::editprofile/$1');
+    $routes->get('setting/resetuser', 'Setting::resetuser');
+    $routes->get('setting/toggle-maintenance', 'Setting::toggleMaintenance');
+    $routes->post('setting/reset-password-siswa', 'Setting::resetPasswordSiswa');
+    $routes->post('setting/reset-password-guru', 'Setting::resetPasswordGuru');
 
     // Peserta
     $routes->get('peserta', 'Peserta::index');
@@ -130,7 +136,20 @@ $routes->group('admin', ['filter' => 'role:1'], function ($routes) {
 });
 
 
+$routes->group('pendidik', ['filter' => 'role:2'], function ($routes) {
 
+    $routes->get('/', 'Pendidik::index');
+    $routes->get('rombel', 'Pendidik::rombel');
+    $routes->get('nilai', 'Pendidik::nilai');
+
+
+    // ======NILAI
+
+    $routes->get('printexcel/(:any)', 'Pendidik::printexcel/$1');
+    $routes->post('upload-nilai/(:num)', 'Pendidik::upload/$1');
+    $routes->post('kirim-nilai/(:num)', 'Pendidik::kirimNilai/$1');
+    $routes->post('finalkan-nilai', 'Pendidik::finalkanNilai');
+});
 
 // ADMIN
 

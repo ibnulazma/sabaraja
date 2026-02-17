@@ -21,6 +21,12 @@ class Pendidik extends BaseController
         helper('gantiformat');
         helper('nomorhp');
         helper('form');
+        helper('secure');
+
+
+
+
+
         $this->ModelPendidik = new ModelPendidik();
         $this->ModelJadwal = new ModelJadwal();
         $this->ModelWilayah = new ModelWilayah();
@@ -31,14 +37,42 @@ class Pendidik extends BaseController
 
     public function index()
     {
+        $kelasModel       = new \App\Models\KelasModel();
+        $konfirmasiModel = new \App\Models\KonfirmasiModel();
+
+        // contoh: id guru dari session
+        $idGuru = session()->get('id_user');
+
+        // daftar kelas yang diampu guru
+        $kelas = $kelasModel->getKelasGuru($idGuru);
+
+        // ambil semua id_kelas yang sudah FINAL
+        $kelasFinal = $konfirmasiModel
+            ->select('id_kelas')
+            ->where('keterangan', 'final')
+            ->findColumn('id_kelas');
+
+
+
+
+
         $guru = $this->ModelPendidik->DataGuru();
+
+        $nilai = $this->ModelPendidik->nilaikelas($guru['id_guru']);
+
         $data = [
             'title' => 'SIAKAD',
             'subtitle' => 'Pendidik',
             'menu'          => 'pendidik',
             'submenu'       => 'pendidik',
             'guru'          => $this->ModelPendidik->DataGuru(),
-            'walas'         => $this->ModelPendidik->walas($guru['id_guru'])
+            'rombel'        => $this->ModelPendidik->rombelWalas($guru['id_guru']),
+            'nilai'         => $this->ModelPendidik->nilaikelas($guru['id_guru']),
+            'walas'         => $this->ModelPendidik->rombelWalas($guru['id_guru']),
+            'id_kelas'       =>  $nilai[0]['id_kelas'] ?? null,
+            'kelas'      => $kelas,
+            'kelasFinal' => $kelasFinal ?? []
+
         ];
         return view('guru/v_dashboard', $data);
     }
@@ -282,7 +316,7 @@ class Pendidik extends BaseController
     //     ];
     //     return view('guru/jadwal', $data);
     // }
-    public function walas() {}
+
 
     public function presensiKelas()
     {
@@ -521,32 +555,22 @@ class Pendidik extends BaseController
 
     public function rombel()
     {
-        $guru = $this->ModelPendidik->DataGuru();
+        $id_guru = session()->get('id_user');
+        $level   = session()->get('level');
+
+        // Guard keamanan
+        if ($level != 2) {
+            return redirect()->to('/login');
+        }
+
         $data = [
-            'title'         => 'SIAKAD',
-            'subtitle'      => 'Rombongan Belajar',
-            'menu'          => 'rombel',
-            'submenu'       => 'anggotarombel',
-            'walas'         => $this->ModelPendidik->walas($guru['id_guru'])
-        ];
-        return view('guru/rombel/anggota', $data);
-    }
-
-
-    public function nilai()
-    {
-
-        $guru = $this->ModelPendidik->DataGuru();
-        $data = [
-            'title' => 'SIAKAD',
-            'subtitle' => 'Penilaian',
+            'title'  => 'Rombel Wali Kelas',
             'menu' => 'rombel',
-            'submenu' => 'nilai',
-            'subtitle' => 'Penilaian ',
-            'nilai' => $this->ModelPendidik->nilaikelas($guru['id_guru']),
-            'walas'         => $this->ModelPendidik->walas($guru['id_guru'])
+            'submenu' => 'anggotarombel',
+            'rombel' => $this->ModelPendidik->rombelWalas($id_guru)
         ];
-        return view('guru/nilai/nilai', $data);
+
+        return view('guru/rombel/anggota', $data);
     }
 
     public function tambahanggota()
@@ -568,18 +592,214 @@ class Pendidik extends BaseController
         return redirect()->to(base_url('pendidik/nilai'));
     }
 
-    public function simpanNilai($id_nilai)
+
+
+
+
+
+
+
+
+
+
+    // =========KHUSUS NILAI============
+
+
+
+
+
+
+
+
+
+    public function printexcel($id_kelas)
     {
-        $nilai = $this->ModelPendidik->nilaikelas($id_nilai);
-        foreach ($nilai as $key => $value) {
-            $data = [
-                'id_nilai' => $this->request->getPost($value['id_nilai'] . 'id_nilai'),
-                'id_ta' => $this->request->getPost($value['id_ta'] . 'id_ta'),
-                'pai' => $this->request->getPost($value['pai'] . 'pai')
-            ];
-            $this->ModelPendidik->editnilai($data);
-            session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-            return redirect()->to('siswa/periodik/' . $id_siswa);
+        $siswa = $this->ModelKelas->datasiswa($id_kelas);
+
+        // ambil nama kelas
+        $kelas = $this->ModelKelas->getNamaKelas($id_kelas);
+        $namaKelas = $kelas ? $kelas['kelas'] : 'kelas';
+
+        // bersihkan nama file (hindari spasi & karakter aneh)
+        $namaFile = 'Format_Nilai_Kelas_' . preg_replace('/[^A-Za-z0-9_\-]/', '.', $namaKelas) . '.xlsx';
+
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Nama');
+        $sheet->setCellValue('C1', 'NISN');
+        $sheet->setCellValue('D1', 'PAI');
+        $sheet->setCellValue('E1', 'PKN');
+        $sheet->setCellValue('F1', 'B.INDO');
+        $sheet->setCellValue('G1', 'MTK');
+        $sheet->setCellValue('H1', 'IPA');
+        $sheet->setCellValue('I1', 'IPS');
+        $sheet->setCellValue('J1', 'B.INGG');
+        $sheet->setCellValue('K1', 'SBK');
+        $sheet->setCellValue('L1', 'PJOK');
+        $sheet->setCellValue('M1', 'PRKY');
+        $sheet->setCellValue('N1', 'TIK');
+        $sheet->setCellValue('O1', 'TJWD');
+        $sheet->setCellValue('P1', 'TRJMH');
+        $sheet->setCellValue('Q1', 'FIQIH');
+        $sheet->setCellValue('R1', 'MHD');
+        $sheet->setCellValue('S1', 'BTQ');
+        $sheet->setCellValue('T1', 'SAKIT');
+        $sheet->setCellValue('U1', 'IZIN');
+        $sheet->setCellValue('V1', 'ALFA');
+        // dst...
+
+        $column = 2;
+        foreach ($siswa as $key => $value) {
+            $sheet->setCellValue('A' . $column, ($column - 1));
+            $sheet->setCellValue('B' . $column, $value['nama_siswa']);
+            $sheet->setCellValue('C' . $column, $value['nisn']);
+            $column++;
+        }
+
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . $namaFile . '"');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+        exit;
+    }
+
+
+    public function upload($id_kelas)
+    {
+        $db = \Config\Database::connect();
+
+        $ta = $db->table('tbl_ta')
+            ->where('status', '1')
+            ->get()
+            ->getRowArray();
+
+        if (!$this->validate([
+            'fileimport' => [
+                'rules' => 'uploaded[fileimport]|ext_in[fileimport,xls,xlsx]',
+            ]
+        ])) {
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => 'File tidak valid'
+            ]);
+        }
+
+        $file = $this->request->getFile('fileimport');
+        $ext  = $file->getClientExtension();
+
+        $reader = ($ext == 'xls')
+            ? new \PhpOffice\PhpSpreadsheet\Reader\Xls()
+            : new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+
+        $spreadsheet = $reader->load($file);
+        $rows = $spreadsheet->getActiveSheet()->toArray();
+
+        $sukses = 0;
+        $gagal  = 0;
+
+        $db->transStart();
+
+        foreach ($rows as $i => $row) {
+            if ($i == 0 || empty($row[2])) continue;
+
+            $nisn = trim($row[2]);
+
+            $cek = $db->table('tbl_nilai')
+                ->where('nisn', $nisn)
+                ->where('id_ta', $ta['id_ta'])
+                ->get()
+                ->getRow();
+
+            if ($cek) {
+                $gagal++;
+                continue;
+            }
+
+            $db->table('tbl_nilai')->insert([
+                'nisn'   => $nisn,
+                'pai'    => is_numeric($row[3]) ? $row[3] : null,
+                'pkn'    => is_numeric($row[4]) ? $row[4] : null,
+                'indo'   => is_numeric($row[5]) ? $row[5] : null,
+                'mtk'    => is_numeric($row[6]) ? $row[6] : null,
+                'ipa'    => is_numeric($row[7]) ? $row[7] : null,
+                'ips'    => is_numeric($row[8]) ? $row[8] : null,
+                'inggris' => is_numeric($row[9]) ? $row[9] : null,
+                'sbk'    => is_numeric($row[10]) ? $row[10] : null,
+                'pjok'   => is_numeric($row[11]) ? $row[11] : null,
+                'prky'   => is_numeric($row[12]) ? $row[12] : null,
+                'tik'    => is_numeric($row[13]) ? $row[13] : null,
+                'tjwd'   => is_numeric($row[14]) ? $row[14] : null,
+                'trjmh'  => is_numeric($row[15]) ? $row[15] : null,
+                'fiqih'  => is_numeric($row[16]) ? $row[16] : null,
+                'mhd'    => is_numeric($row[17]) ? $row[17] : null,
+                'btq'    => is_numeric($row[18]) ? $row[18] : null,
+                'sakit'  => is_numeric($row[19]) ? $row[19] : null,
+                'izin'   => is_numeric($row[20]) ? $row[20] : null,
+                'alfa'   => is_numeric($row[21]) ? $row[21] : null,
+                'id_ta'  => $ta['id_ta'],
+            ]);
+
+            $sukses++;
+        }
+
+        $db->transComplete();
+
+        return $this->response->setJSON([
+            'status' => true,
+            'sukses' => $sukses,
+            'gagal'  => $gagal
+        ]);
+    }
+
+
+    public function nilai()
+    {
+
+
+        return view('guru/dashboard', []);
+    }
+
+    public function finalkanNilai()
+    {
+        try {
+
+            if (!$this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Bukan AJAX'
+                ]);
+            }
+
+            $idKelas = $this->request->getPost('id_kelas');
+
+            $konfirmasiModel = new \App\Models\KonfirmasiModel();
+
+            if ($konfirmasiModel->isFinal($idKelas)) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Sudah final'
+                ]);
+            }
+
+            $konfirmasiModel->insert([
+                'id_kelas'   => $idKelas,
+                'keterangan' => 'final'
+            ]);
+
+            return $this->response->setJSON([
+                'status' => 'success'
+            ]);
+        } catch (\Throwable $e) {
+
+            return $this->response->setJSON([
+                'status'  => 'error',
+                'message' => $e->getMessage()
+            ]);
         }
     }
 }

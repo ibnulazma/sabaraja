@@ -85,32 +85,22 @@ class ModelPendidik extends Model
     }
 
 
-    public function walas($id_guru)
+    public function rombelWalas($id_guru)
     {
         return $this->db->table('tbl_database')
-
-
             ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_database.id_siswa')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta')
             ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
             ->where('tbl_kelas.id_guru', $id_guru)
             ->where('tbl_ta.status', '1')
-
-            ->get()->getResultArray();
+            ->orderBy('tbl_siswa.nama_siswa', 'ASC')
+            ->get()
+            ->getResultArray();
     }
 
-    // public function mutasi($id_guru)
-    // {
-    //     return $this->db->table('tbl_mutasi')
-    //         ->join('tbl_siswa', 'tbl_siswa.id_siswa = tbl_mutasi.id_siswa')
-    //         ->join('tbl_database', 'tbl_database.nisn = tbl_siswa.nisn')
-    //         ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas')
-    //         ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
-    //         ->where('tbl_mutasi.status_mutasi', '1')
-    //         ->where('tbl_kelas.id_guru', $id_guru)
-    //         ->get()->getResultArray();
-    // }
+
+
 
 
     public function Mapel($id_guru)
@@ -147,19 +137,34 @@ class ModelPendidik extends Model
     public function nilaikelas($id_guru)
     {
         return $this->db->table('tbl_nilai')
+            ->select('
+            tbl_nilai.*,
+            tbl_siswa.nisn,
+            tbl_siswa.nama_siswa,
+            tbl_kelas.id_kelas,
+            tbl_kelas.kelas
+        ')
             ->join('tbl_siswa', 'tbl_siswa.nisn = tbl_nilai.nisn', 'left')
+            ->join('tbl_database', 'tbl_database.id_siswa = tbl_siswa.id_siswa', 'left')
             ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_database.id_kelas', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_nilai.id_ta', 'left')
             // ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             // // ->where('tbl_siswa.status_daftar', '3')
-            // ->where('tbl_ta.status', '1')
+            ->where('tbl_ta.status', '1')
             ->where('tbl_kelas.id_guru', $id_guru)
+            ->orderBy('tbl_siswa.nama_siswa', 'ASC')
             ->get()->getResultArray();
     }
 
     public function tambahanggota($data)
     {
         $this->db->table('tbl_nilai')
+
+            ->insert($data);
+    }
+    public function addkonfirmasi($data)
+    {
+        $this->db->table('tbl_konfirmasi')
 
             ->insert($data);
     }

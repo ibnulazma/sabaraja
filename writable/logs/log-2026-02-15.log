@@ -363,3 +363,35 @@ CRITICAL - 2026-02-15 13:30:54 --> Undefined variable: walas
 #8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
 #10 {main}
+CRITICAL - 2026-02-15 20:15:24 --> Undefined variable: profile
+#0 C:\xampp\htdocs\sabaraja\app\Views\admin\setting\profile.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 23, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/setting/p...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Setting.php(32): view('admin/setting/p...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Setting->index()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-15 20:15:57 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\sabaraja\app\Controllers\Setting.php(29): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'C:\\xampp\\htdocs...', 29, Array)
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Setting->index()
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2026-02-15 20:40:55 --> Undefined index: nama_user
+#0 C:\xampp\htdocs\sabaraja\app\Views\admin\setting\resetuser.php(133): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 133, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/setting/r...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Setting.php(243): view('admin/setting/r...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Setting->resetuser()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Setting))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}

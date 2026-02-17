@@ -108,51 +108,78 @@ class Auth extends BaseController
 
     public function updatePasswordPertama()
     {
+        $db = \Config\Database::connect();
 
-
-        $db    = \Config\Database::connect();
         $id    = session()->get('id_user');
         $level = session()->get('level');
+
+        if (!$id || !$level) {
+            return redirect()->to('/login')->with('error', 'Session habis');
+        }
 
         $passBaru   = $this->request->getPost('password_baru');
         $konfirmasi = $this->request->getPost('konfirmasi_password');
 
-        // Validasi dasar
+        // Konfirmasi
         if ($passBaru !== $konfirmasi) {
             return redirect()->back()->with('error', 'Konfirmasi password tidak sama');
         }
 
-        // Validasi panjang & kekuatan password
+        // Panjang
         if (strlen($passBaru) < 8) {
             return redirect()->back()->with('error', 'Password minimal 8 karakter');
         }
 
+        // Strength
         if (
             !preg_match('/[A-Z]/', $passBaru) ||
             !preg_match('/[a-z]/', $passBaru) ||
             !preg_match('/[0-9]/', $passBaru)
         ) {
-            return redirect()->back()->with('error', 'Password harus mengandung huruf besar, huruf kecil, dan angka');
+            return redirect()->back()->with(
+                'error',
+                'Password harus mengandung huruf besar, huruf kecil, dan angka'
+            );
         }
 
         $hash = password_hash($passBaru, PASSWORD_DEFAULT);
 
-        if ($level == '3') {
-            $db->table('tbl_siswa')->where('id_siswa', $id)->update([
-                'password' => $hash,
-                'password_default' => 0
-            ]);
-        } elseif ($level == '2') {
-            $db->table('tbl_guru')->where('id_guru', $id)->update([
-                'password' => $hash,
-                'password_default' => 0
-            ]);
+        $db->transStart();
+
+        switch ($level) {
+            case '3': // siswa
+                $db->table('tbl_siswa')
+                    ->where('id_siswa', $id)
+                    ->update([
+                        'password' => $hash,
+                        'password_default' => 0
+                    ]);
+                break;
+
+            case '2': // guru
+                $db->table('tbl_guru')
+                    ->where('id_guru', $id)
+                    ->update([
+                        'password' => $hash,
+                        'password_default' => 0
+                    ]);
+                break;
+
+            default:
+                return redirect()->back()->with('error', 'Level tidak valid');
+        }
+
+        $db->transComplete();
+
+        if ($db->transStatus() === false) {
+            return redirect()->back()->with('error', 'Gagal memperbarui password');
         }
 
         session()->set('password_default', 0);
 
         return redirect()->back()->with('success', 'Password berhasil diperbarui');
     }
+
 
 
 

@@ -3,6 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\ModelSetting;
+use App\Models\ModelMaintenance;
+use App\Models\ModelPeserta;
+use App\Models\ModelGuru;
+use App\Models\ModelUser;
 
 
 
@@ -15,6 +19,10 @@ class Setting extends BaseController
     {
         helper('form');
         $this->ModelSetting = new ModelSetting();
+        $this->ModelMaintenance = new ModelMaintenance();
+        $this->ModelPeserta = new ModelPeserta();
+        $this->ModelGuru = new ModelGuru();
+        $this->ModelUser = new ModelUser();
     }
 
 
@@ -31,27 +39,21 @@ class Setting extends BaseController
 
         return view('admin/setting/profile', $data);
     }
-    public function user()
+    public function profile()
     {
-
-        $alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        // $arr = array();
-        $lenght = strlen($alphanumeric) - 2;
-        for ($i = 0; $i < 5; $i++) {
-            $x = rand(0, $lenght);
-            $arr[] = $alphanumeric[$x];
-        }
+        $profile = $this->ModelSetting->Profile();
         $data = [
             'title'     => 'SIAKADINKA',
-            'subtitle'  => 'User',
+            'subtitle'  => 'Profile Sekolah',
             'menu'      => 'setting',
-            'submenu'   => 'user',
-            'user' => $this->ModelSetting->user(),
-            'randompass' => $arr
+            'submenu'   => 'profil',
+            // 'profil' => $this->ModelSetting->Profile($profile['id_profile']),
         ];
 
-        return view('admin/setting/user', $data);
+        return view('admin/setting/profile', $data);
     }
+
+
 
 
     public function add()
@@ -201,10 +203,10 @@ class Setting extends BaseController
         return redirect()->to(base_url('user'));
     }
 
-    public function editprofile()
+    public function editprofile($id_profil)
     {
         $data = [
-            'id_profile'      => $this->request->getPost('id_profile'),
+            'id_profile'      => $id_profil,
             'nama_sekolah'    => $this->request->getPost('nama_sekolah'),
             'alamat'          => $this->request->getPost('alamat'),
             'npsn'            => $this->request->getPost('npsn'),
@@ -214,6 +216,135 @@ class Setting extends BaseController
         ];
         $this->ModelSetting->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Di Update !!!');
-        return redirect()->to(base_url('setting'));
+        return redirect()->to(base_url('admin/setting'));
+    }
+
+    //=============SettingProfile
+
+
+    // MAINTENANCE, RESET PASSWORD
+
+    public function resetuser()
+    {
+        session();
+
+        $data = [
+            'title'         => 'SIAKADINKA',
+            'subtitle'      => 'Add Siswa',
+            'menu'              => 'maintenance',
+            'submenu'           => 'maintenance',
+            'siswa'       => $this->ModelPeserta->aktif(),
+            'guru'       => $this->ModelGuru->AllData(),
+            'user'      => $this->ModelUser->AllData()
+
+
+
+        ];
+        return view('admin/setting/resetuser', $data);
+    }
+
+    public function toggleMaintenance()
+    {
+        $settingsModel = new ModelMaintenance();
+        $current = $settingsModel->getMaintenance();
+
+        $newStatus = ($current['value'] == '1') ? '0' : '1';
+        $settingsModel->setMaintenance($newStatus);
+
+        return redirect()->back()->with('success', 'Status maintenance berhasil diubah');
+    }
+
+
+
+    public function resetPasswordSiswa()
+    {
+        if (session()->get('level') != 1) {
+            return $this->response->setJSON(['status' => 'forbidden']);
+        }
+
+        $offset = (int)$this->request->getPost('offset');
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('tbl_siswa');
+
+        $total = $builder->countAll();
+
+        $steps = 20;
+
+        if ($total <= 20) {
+            $limit = 1; // biar progress tetap kelihatan jalan
+        } else {
+            $limit = ceil($total / $steps);
+        }
+
+        $data = $builder->select('id_siswa, nisn')
+            ->limit($limit, $offset)
+            ->get()->getResultArray();
+
+        $updated = 0;
+
+        foreach ($data as $row) {
+            $pass = !empty(trim($row['nisn'])) ? trim($row['nisn']) : 'Kamil123';
+
+            $builder->where('id_siswa', $row['id_siswa'])->update([
+                'password' => password_hash($pass, PASSWORD_DEFAULT),
+                'password_default' => 1
+            ]);
+
+            $updated++;
+        }
+
+        return $this->response->setJSON([
+            'status' => 'ok',
+            'updated' => $updated,
+            'next' => $offset + $limit,
+            'total' => $total,
+            'csrf' => csrf_hash()
+        ]);
+    }
+
+
+
+    public function resetPasswordGuru()
+    {
+        if (session()->get('level') != 1) {
+            return $this->response->setJSON(['status' => 'forbidden']);
+        }
+
+        $offset = (int) $this->request->getPost('offset');
+        $db = \Config\Database::connect();
+
+        // Builder khusus hitung total
+        $total = $db->table('tbl_guru')->countAllResults();
+
+        $steps = 20;
+        $limit = ($total <= $steps) ? 1 : ceil($total / $steps);
+
+        // Builder khusus ambil data
+        $data = $db->table('tbl_guru')
+            ->select('id_guru, nik_guru')
+            ->orderBy('id_guru', 'ASC') // WAJIB biar batch konsisten
+            ->limit($limit, $offset)
+            ->get()
+            ->getResultArray();
+
+        foreach ($data as $row) {
+            $pass = trim($row['nik_guru']) ?: 'Kamil123';
+
+            // Builder BARU untuk update (jangan pakai builder select!)
+            $db->table('tbl_guru')
+                ->where('id_guru', $row['id_guru'])
+                ->update([
+                    'password' => password_hash($pass, PASSWORD_DEFAULT),
+                    'password_default' => 1
+                ]);
+        }
+
+        return $this->response->setJSON([
+            'status' => 'ok',
+            'next'   => $offset + $limit,
+            'total'  => $total,
+            'csrf'   => csrf_hash()
+        ]);
     }
 }

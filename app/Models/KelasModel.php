@@ -8,6 +8,17 @@ class KelasModel extends Model
 {
     protected $table = 'tbl_kelas';
     protected $primaryKey = 'id_kelas';
+    protected $returnType = 'array';
+
+    protected $allowedFields = [
+        'kelas',
+        'id_guru'
+    ];
+
+
+
+
+
 
     public function getKelas()
     {
@@ -18,5 +29,19 @@ class KelasModel extends Model
             ->orderBy('kelas', 'ASC')
             ->get()
             ->getResultArray();
+    }
+
+
+
+
+    /**
+     * Ambil kelas yang diampu oleh guru (wali kelas)
+     */
+    public function getKelasGuru($idGuru)
+    {
+        return $this->select('tbl_kelas.*')
+            ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru')
+            ->where('tbl_guru.id_guru', $idGuru)
+            ->findAll();
     }
 }

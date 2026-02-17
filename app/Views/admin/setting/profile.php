@@ -20,7 +20,7 @@ $profil = $db->table('tbl_profile')
                 </div>
             </div>
             <h5><b>Informasi Tentang Sekolah</b></h5>
-            <?= form_open('setting/editprofile/') ?>
+            <?= form_open('admin/setting/editprofile/' . $profil['id_profile']) ?>
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label" for="basic-default-name">Nama Sekolah</label>
                 <div class="col-sm-10">

@@ -53,6 +53,18 @@
 <!-- Vendors JS -->
 <script src="<?= base_url() ?>/template/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
+
+<script src="<?= base_url() ?>/template/assets/vendor/libs/jquery/jquery.js"></script>
+
+<!-- Select2 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="<?= base_url() ?>/template/assets/vendor/js/bootstrap.js"></script>
+
+
+
+
 <!-- Main JS -->
 <script src="<?= base_url() ?>/template/assets/js/main.js"></script>
 <!-- <script src="<?= base_url() ?>/template/assets/js/tables-datatables-basic.js"></script>
@@ -79,6 +91,15 @@
 
 
 
+<script>
+    $(document).ready(function() {
+        if ($.fn.select2) {
+            $('.select2').select2({
+                width: '100%'
+            });
+        }
+    });
+</script>
 
 
 
@@ -97,6 +118,9 @@
     new DataTable('#akanlulus');
     new DataTable('#tambahanggota');
     new DataTable('#blmaktif');
+    new DataTable('#tbluser');
+    new DataTable('#tbluserguru');
+    new DataTable('#tblresetsiswa');
 
     // new DataTable('#tblnilai', {
 

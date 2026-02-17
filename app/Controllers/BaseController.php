@@ -51,6 +51,16 @@ class BaseController extends Controller
 
         $this->session = \Config\Services::session();
         $this->db      = \Config\Database::connect();
+
+
         // $this->SuratModel = new\App\Models\SuratModel();
+    }
+
+    protected function taAktif()
+    {
+        return $this->db->table('tbl_ta')
+            ->where('status', 1)
+            ->get()
+            ->getRow('id_ta');
     }
 }

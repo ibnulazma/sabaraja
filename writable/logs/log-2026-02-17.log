@@ -1,0 +1,474 @@
+CRITICAL - 2026-02-17 09:44:29 --> Undefined index: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(103): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 103, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(575): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-17 09:49:40 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`kelas`
+FROM `tbl_nilai`
+LEFT JOIN `tbl_siswa` ON `tbl_siswa`.`nisn` = `tbl_...' at line 1
+CRITICAL - 2026-02-17 09:49:40 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.`kelas`
+FROM `tbl_nilai`
+LEFT JOIN `tbl_siswa` ON `tbl_siswa`.`nisn` = `tbl_...' at line 1
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `tbl_nil...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_nil...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_nil...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_nil...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelPendidik.php(155): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(572): App\Models\ModelPendidik->nilaikelas('17')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2026-02-17 09:50:10 --> Undefined index: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(103): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 103, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(575): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 09:52:59 --> syntax error, unexpected ';', expecting ']'
+#0 C:\xampp\htdocs\sabaraja\system\Autoloader\Autoloader.php(241): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\sabaraja\system\Autoloader\Autoloader.php(219): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#3 [internal function]: spl_autoload_call('App\\Controllers...')
+#4 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(767): class_exists('\\App\\Controller...', true)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(386): CodeIgniter\CodeIgniter->startController()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2026-02-17 09:53:17 --> Undefined index: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(103): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 103, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(578): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 10:52:26 --> Undefined index: status
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(132): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 132, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(578): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-17 10:52:45 --> Unknown column 'id_kelas' in 'where clause'
+CRITICAL - 2026-02-17 10:52:45 --> Unknown column 'id_kelas' in 'where clause'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('UPDATE `tbl_nil...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbl_nil...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbl_nil...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1875): CodeIgniter\Database\BaseConnection->query('UPDATE `tbl_nil...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(735): CodeIgniter\Database\BaseBuilder->update(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->kirimNilai('31')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 10:57:10 --> Undefined offset: 0
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(132): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 132, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(578): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-17 11:29:28 --> Unknown column 'id_kelas' in 'where clause'
+CRITICAL - 2026-02-17 11:29:28 --> Unknown column 'id_kelas' in 'where clause'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('UPDATE `tbl_nil...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbl_nil...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbl_nil...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1875): CodeIgniter\Database\BaseConnection->query('UPDATE `tbl_nil...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(737): CodeIgniter\Database\BaseBuilder->update(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->kirimNilai('31')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 11:45:01 --> Cannot redeclare App\Controllers\Pendidik::konfirmasi()
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2026-02-17 11:47:14 --> Undefined offset: 0
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(134): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 134, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(588): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 11:48:43 --> syntax error, unexpected 'elseif' (T_ELSEIF), expecting end of file
+#0 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#1 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#2 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(588): view('guru/nilai/nila...', Array)
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#4 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2026-02-17 11:50:13 --> Undefined index: status
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(134): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 134, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(588): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 11:51:48 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(134): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'C:\\xampp\\htdocs...', 134, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(588): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 11:59:09 --> Undefined index: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(586): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 586, Array)
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2026-02-17 11:59:52 --> Array to string conversion
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(116): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string...', 'C:\\xampp\\htdocs...', 116, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(588): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 12:00:07 --> Undefined index: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(586): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 586, Array)
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2026-02-17 12:01:52 --> Undefined index: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(116): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 116, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(588): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 12:02:28 --> Undefined variable: nilai
+#0 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(584): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 584, Array)
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2026-02-17 12:02:53 --> Undefined index: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(116): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 116, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(588): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 12:04:10 --> Undefined index: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(116): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 116, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(588): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 12:05:40 --> Undefined offset: 0
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\nilai\nilai.php(132): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 132, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/nilai/nila...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(588): view('guru/nilai/nila...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->nilai()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-17 20:18:07 --> Error connecting to the database: No connection could be made because the target machine actively refused it.
+
+CRITICAL - 2026-02-17 20:18:07 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+#0 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(570): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\sabaraja\system\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+#3 C:\xampp\htdocs\sabaraja\system\BaseModel.php(622): CodeIgniter\Model->doFirst()
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelMaintenance.php(15): CodeIgniter\BaseModel->first()
+#5 C:\xampp\htdocs\sabaraja\app\Filters\Maintenance.php(15): App\Models\ModelMaintenance->getMaintenance()
+#6 C:\xampp\htdocs\sabaraja\system\Filters\Filters.php(169): App\Filters\Maintenance->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(374): CodeIgniter\Filters\Filters->run('auth', 'before')
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2026-02-17 20:22:19 --> Undefined variable: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\v_dashboard.php(220): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 220, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/v_dashboar...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(48): view('guru/v_dashboar...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 20:23:08 --> Undefined variable: id_kelas
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\v_dashboard.php(503): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 503, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/v_dashboar...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(48): view('guru/v_dashboar...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 20:25:23 --> Too few arguments to function App\Controllers\Pendidik::printexcel(), 0 passed in C:\xampp\htdocs\sabaraja\system\CodeIgniter.php on line 802 and exactly 1 expected
+#0 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->printexcel()
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2026-02-17 20:28:30 --> Undefined variable: guru
+#0 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(35): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 35, Array)
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2026-02-17 20:28:32 --> Undefined variable: guru
+#0 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(35): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 35, Array)
+#1 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#2 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#3 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2026-02-17 21:45:17 --> Undefined variable: kelas
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\v_dashboard.php(453): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 453, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/v_dashboar...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(57): view('guru/v_dashboar...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-17 22:12:40 --> Unknown column 'id_nilai' in 'field list'
+CRITICAL - 2026-02-17 22:12:40 --> Unknown column 'id_nilai' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(782): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->kirimNilai('31')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-17 22:13:09 --> Unknown column 'id_nilai' in 'field list'
+CRITICAL - 2026-02-17 22:13:09 --> Unknown column 'id_nilai' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(782): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->kirimNilai('31')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-17 22:13:20 --> Unknown column 'id_nilai' in 'field list'
+CRITICAL - 2026-02-17 22:13:20 --> Unknown column 'id_nilai' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(782): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->kirimNilai('31')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-17 22:16:39 --> Unknown column 'id_nilai' in 'field list'
+CRITICAL - 2026-02-17 22:16:39 --> Unknown column 'id_nilai' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(782): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->kirimNilai('31')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-17 22:53:26 --> Unknown column 'updated_at' in 'field list'
+CRITICAL - 2026-02-17 22:53:26 --> Unknown column 'updated_at' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\system\Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\sabaraja\system\BaseModel.php(738): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\sabaraja\system\Model.php(620): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(767): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->finalkanNilai()
+#9 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#10 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+ERROR - 2026-02-17 22:58:00 --> Unknown column 'updated_at' in 'field list'
+CRITICAL - 2026-02-17 22:58:00 --> Unknown column 'updated_at' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\system\Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\sabaraja\system\BaseModel.php(738): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\sabaraja\system\Model.php(620): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(767): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->finalkanNilai()
+#9 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#10 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+ERROR - 2026-02-17 23:02:10 --> Unknown column 'updated_at' in 'field list'
+CRITICAL - 2026-02-17 23:02:10 --> Unknown column 'updated_at' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('INSERT INTO `tb...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\system\Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\sabaraja\system\BaseModel.php(738): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\sabaraja\system\Model.php(620): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(766): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->finalkanNilai()
+#9 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#10 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+ERROR - 2026-02-17 23:03:10 --> Unknown column 'updated_at' in 'field list'
+ERROR - 2026-02-17 23:03:52 --> Unknown column 'updated_at' in 'field list'
+CRITICAL - 2026-02-17 23:17:11 --> Undefined variable: k
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\v_dashboard.php(225): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 225, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/v_dashboar...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(57): view('guru/v_dashboar...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 23:17:33 --> Undefined variable: kelasFinal
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\v_dashboard.php(225): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 225, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/v_dashboar...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(57): view('guru/v_dashboar...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 23:19:19 --> Undefined variable: kelasFinal
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\v_dashboard.php(225): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 225, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/v_dashboar...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(57): view('guru/v_dashboar...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-17 23:27:44 --> Undefined variable: isFinal
+#0 C:\xampp\htdocs\sabaraja\app\Views\guru\v_dashboard.php(221): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 221, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('guru/v_dashboar...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Pendidik.php(77): view('guru/v_dashboar...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Pendidik->index()
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendidik))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}

@@ -15,9 +15,7 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
-            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-                <?= $this->include('template/sidebar') ?>
-            </aside>
+
             <div class="layout-page">
                 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
                     id="layout-navbar">
@@ -25,21 +23,12 @@
                 </nav>
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="nav-align-top">
-                                <ul class="nav nav-pills flex-column flex-md-row mb-4">
-                                    <li class="nav-item"><a class="nav-link <?= $submenu == 'profile' ? 'active' : '' ?>" href="<?= base_url('pendidik/profile') ?>"><i class='bx bxs-user'></i> </i> Biodata</a></li>
-                                    <li class="nav-item"><a class="nav-link <?= $submenu == 'pendidikan' ? 'active' : '' ?>" href="<?= base_url('pendidik/pendidikan') ?>"><i class='bx bx-user-circle'></i> Riwayat Pendidikan </a></li>
-                                    <li class="nav-item"><a class="nav-link <?= $submenu == 'keluarga' ? 'active' : '' ?>" href="<?= base_url('pendidik/keluarga') ?>"><i class='bx bx-user-circle'></i> Data Keluarga </a></li>
 
-                                </ul>
-                            </div>
-                        </div>
 
-                        <?= $this->renderSection('content') ?>
 
-                    </div>
+                    <?= $this->renderSection('content') ?>
+
+
                 </div>
                 <footer class=" content-footer footer bg-footer-theme">
                     <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">

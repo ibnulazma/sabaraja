@@ -64,13 +64,13 @@ $user = $db->table('tbl_user')
         </li>
 
         <li class="menu-item <?= $menu == 'setting' ? 'active' : '' ?>">
-            <a href="<?= base_url('setting') ?>" class="menu-link">
+            <a href="<?= base_url('admin/setting/profile') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-school"></i>
                 <div>Profil Sekolah</div>
             </a>
         </li>
         <li class="menu-item <?= $menu == 'maintenance' ? 'maintenance' : '' ?>">
-            <a href="<?= base_url('admin/setting') ?>" class="menu-link">
+            <a href="<?= base_url('admin/setting/resetuser') ?>" class="menu-link">
                 <i class='menu-icon tf-icons bx  bx-toggle-big-right'></i>
                 <div>Setting</div>
             </a>

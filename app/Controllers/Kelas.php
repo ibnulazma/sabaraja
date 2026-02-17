@@ -67,7 +67,7 @@ class Kelas extends BaseController
         ];
         $this->ModelKelas->add($data);
         session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!!');
-        return redirect()->to(base_url('kelas'));
+        return redirect()->to(base_url('admin/kelas'));
     }
 
     public function edit($id_kelas)
@@ -272,7 +272,7 @@ class Kelas extends BaseController
     {
         $kelas = $this->ModelKelas->getNamaKelas($id_kelas);
         $namaKelas = $kelas ? $kelas['kelas'] : 'kelas';
-        $namaFile = 'Biodata_P3MP_' . preg_replace('/[^A-Za-z0-9_\-]/', '.', $namaKelas) . '.pdf';
+        $namaFile = 'Biodata_Siswa_' . preg_replace('/[^A-Za-z0-9_\-]/', '.', $namaKelas) . '.pdf';
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
