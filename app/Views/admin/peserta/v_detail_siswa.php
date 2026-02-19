@@ -34,6 +34,14 @@ $ta = $db->table('tbl_ta')
         border-color: #0d6efd;
         background: #f1f8ff;
     }
+
+    #map {
+        width: 100%;
+        height: 420px;
+        border-radius: 10px;
+        position: relative;
+        z-index: 1;
+    }
 </style>
 
 
@@ -131,13 +139,7 @@ $ta = $db->table('tbl_ta')
                             </li>
                         </ul>
                     </div>
-                    <div class="mapii">
-                        <h5> Tempat Tinggal <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#alamat"><i class='bx bxs-edit-alt'></i></button> </h5>
-                        <p><?= $siswa['alamat'] ?> RT <?= $siswa['rt'] ?> RW <?= $siswa['rw'] ?></p>
-                        <p>Desa/Kel <?= $siswa['desa'] ?> Kec. <?= $siswa['nama_kecamatan'] ?> Kab. <?= $siswa['city_name'] ?></p>
-                        <p>Titik Koordinat : <?= $siswa['lokasi'] ?></p>
-                        <div id="map" style="height:500px"></div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -145,7 +147,10 @@ $ta = $db->table('tbl_ta')
             <div class="nav-align-top mb-6">
                 <ul class="nav nav-pills mb-4" role="tablist">
                     <li class="nav-item">
-                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home" aria-selected="true">Data Atribut</button>
+                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-alamat" aria-controls="navs-pills-top-dokumen" aria-selected="false">Alamat</button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link " role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home" aria-selected="true">Data Atribut</button>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-ortu" aria-controls="navs-pills-top-ortu" aria-selected="false">Orang Tua</button>
@@ -159,168 +164,162 @@ $ta = $db->table('tbl_ta')
                     <li class="nav-item">
                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-dokumen" aria-controls="navs-pills-top-dokumen" aria-selected="false">Dokumen</button>
                     </li>
+
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
-                        <div class="row">
-                            <div class="atas">
-                                <h5>Identitas <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#identitas"><i class='bx bxs-edit-alt'></i></button> </h5>
-                                <ul class="atribut" style="list-style:none">
-                                    <li class="p-0">
-                                        NIK :
-                                        <span><?= $siswa['nik'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Nomor KK :
-                                        <span><?= $siswa['no_kk'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Agama :
-                                        <span>Islam</span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Kewarganegaraan :
-                                        <span>Indonesia</span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Kebutuhan Khusus :
-                                        <span>Tidak Ada</span>
-                                    </li>
-                                    <hr>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
+                    <div class="tab-pane fade " id="navs-pills-top-home" role="tabpanel">
+
+                        <form action="<?= base_url('admin/peserta/identitas' . ($hash)) ?>" method="post">
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label for="tempattinggal">Nama Siswa</label>
+                                        <input type="text" name="nama_siswa" class="form-control" value="<?= $siswa['nama_siswa'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Jenis Kelamin</label>
+                                        <input type="text" name="jenis_kelamin" class="form-control" value="<?= $siswa['jenis_kelamin'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Tempat Lahir</label>
+                                        <input type="text" name="tempat_lahir" class="form-control" value="<?= $siswa['tempat_lahir'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Tanggal Lahir</label>
+                                        <input type="text" class="form-control" value="<?= $siswa['tanggal_lahir'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">NISN</label>
+                                        <input type="text" class="form-control" name="nisn" value="<?= $siswa['nisn'] ?>">
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label for="tempattinggal">NIK</label>
+                                        <input type="text" name="nik" class="form-control" value="<?= $siswa['nik'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">No Kartu Keluarga</label>
+                                        <input type="text" name="no_kk" class="form-control" value="<?= $siswa['no_kk'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Registrasi Akte</label>
+                                        <input type="text" name="registrasi_akte" class="form-control" value="<?= $siswa['registrasi_akte'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Agama</label>
+                                        <input type="text" class="form-control" value="<?= $siswa['agama'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Berkebutuhan Khusus</label>
+                                        <input type="text" class="form-control" name="kbthn_khusus" value="<?= $siswa['kbthn_khusus'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                    </div>
+
+                                </div>
+
                             </div>
 
-                        </div>
+                            <!-- BUTTON -->
+                            <div class="text-end mt-4">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="bx bx-save"></i> Simpan Data Atribut
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="navs-pills-top-ortu" role="tabpanel">
-                        <div class="row">
-                            <h5> Identitas Orang Tua <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#ortu"><i class='bx bxs-edit-alt'></i></button> </h5>
-                            <div class="col-lg-6">
-                                <ul class="atribut" style="list-style:none">
-                                    <li class="p-0">
-                                        Nama Ayah :
-                                        <span><?= $siswa['nama_ayah'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Tahun Lahir :
-                                        <span><?= $siswa['tahun_ayah'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        NIK :
-                                        <span><?= $siswa['nik_ayah'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Pendidikan :
-                                        <span><?= $siswa['didik_ayah'] ?></span>
+                        <form action="<?= base_url('admin/peserta/identitas' . ($hash)) ?>" method="post">
 
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Pekerjaan :
-                                        <?php
-                                        $hasilayah = $siswa['kerja_ayah'];
-                                        $sisap = str_replace('-', ' ', $hasilayah)
-                                        ?>
-                                        <span><?= $sisap ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Penghasilan :
-                                        <?php
-                                        $hasilayah = $siswa['hasil_ayah'];
-                                        $hasilna = str_replace('-', ' ', $hasilayah)
-                                        ?>
-                                        <span><?= $hasilna ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Telepon :
-                                        <span>
-                                            <a target="_blank" href="https://wa.me/<?= $siswa['telp_ayah'] ?>"><?= $siswa['telp_ayah'] ?></a>
-                                        </span>
-                                    </li>
-                                    <hr>
-                                </ul>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label for="tempattinggal">Ayah</label>
+                                        <input type="text" name="nama_ayah" class="form-control" value="<?= $siswa['nama_ayah'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Tahun Lahir Ayah</label>
+                                        <input type="text" name="tahun_ayah" class="form-control" value="<?= $siswa['tahun_ayah'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">NIK Ayah</label>
+                                        <input type="text" name="nik_ayah" class="form-control" value="<?= $siswa['nik_ayah'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Pendidikan Ayah</label>
+                                        <input type="text" class="form-control" name="didik_ayah" value="<?= $siswa['didik_ayah'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Pekerjaan Ayah</label>
+                                        <input type="text" class="form-control" name="kerja_ayah" value="<?= $siswa['kerja_ayah'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Penghasilan</label>
+                                        <input type="text" class="form-control" name="hasil_ayah" value="<?= $siswa['hasil_ayah'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Telp</label>
+                                        <input type="text" class="form-control" name="telp_ayah" value="<?= $siswa['telp_ayah'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="mb-4">
+                                        <label for="tempattinggal">Ibu</label>
+                                        <input type="text" name="nama_ibu" class="form-control" value="<?= $siswa['nama_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Tahun Lahir ibu</label>
+                                        <input type="text" name="tahun_ibu" class="form-control" value="<?= $siswa['tahun_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">NIK ibu</label>
+                                        <input type="text" name="nik_ibu" class="form-control" value="<?= $siswa['nik_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Pendidikan ibu</label>
+                                        <input type="text" class="form-control" name="didik_ibu" value="<?= $siswa['didik_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Pekerjaan ibu</label>
+                                        <input type="text" class="form-control" name="kerja_ibu" value="<?= $siswa['kerja_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Penghasilan</label>
+                                        <input type="text" class="form-control" name="hasil_ibu" value="<?= $siswa['hasil_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Telp</label>
+                                        <input type="text" class="form-control" name="telp_ibu" value="<?= $siswa['telp_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+
+                                </div>
+
                             </div>
-                            <div class="col-lg-6">
-                                <ul class="atribut" style="list-style:none">
-                                    <li class="p-0">
-                                        Nama Ibu :
-                                        <span><?= $siswa['nama_ibu'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Tahun Lahir :
-                                        <span><?= $siswa['tahun_ibu'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        NIK :
-                                        <span><?= $siswa['nik_ibu'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Pendidikan :
-                                        <span><?= $siswa['didik_ibu'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Pekerjaan :
-                                        <?php
-                                        $kerjaibu = $siswa['kerja_ibu'];
-                                        $ibukerja = str_replace('-', ' ', $kerjaibu)
-                                        ?>
-                                        <span><?= $ibukerja ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Penghasilan :
-                                        <?php
-                                        $hasilibu = $siswa['hasil_ibu'];
-                                        $ibuhasil = str_replace('-', ' ', $hasilibu)
-                                        ?>
-                                        <span><?= $ibuhasil ?></span>
-                                    </li>
-                                    <hr>
 
-                                    <li class="p-0">
-                                        Telepon :
-
-                                        <span>
-                                            <a target="_blank" href="https://wa.me/<?= $siswa['telp_ibu'] ?>"><?= $siswa['telp_ibu'] ?>
-                                            </a>
-                                        </span>
-
-
-
-                                    </li>
-                                    <hr>
-                                </ul>
+                            <!-- BUTTON -->
+                            <div class="text-end mt-4">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="bx bx-save"></i> Simpan Data Orang Tua
+                                </button>
                             </div>
-                        </div>
-                        <div class="row">
-                            <h5> Transportasi dan Tinggal Peserta Didik <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#tinggal"><i class='bx bxs-edit-alt'></i></button> </h5>
-                            <ul class="atribut" style="list-style:none">
-                                <li class="p-0">
-                                    Tinggal Bersama :
-                                    <span><?= $siswa['tinggal'] ?></span>
-                                </li>
-                                <hr>
-                                <li class="p-0">
-                                    Transportasi :
-                                    <span><?= $siswa['transportasi'] ?></span>
-                                </li>
-                            </ul>
-                        </div>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="navs-pills-top-register" role="tabpanel">
                         <div class="row">
@@ -439,542 +438,118 @@ $ta = $db->table('tbl_ta')
                             </div>
                         <?php endif; ?>
 
-
                     </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    <div class="tab-pane fade show active" id="navs-pills-top-alamat" role="tabpanel">
+                        <form action="<?= base_url('admin/peserta/' . encrypt_id($hash)) ?>" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label for="tempattinggal">Alamat</label>
+                                        <input type="text" name="alamat" class="form-control" value="<?= $siswa['alamat'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">RT/RW</label>
+                                        <input type="text" name="rt" class="form-control" value="<?= $siswa['rt'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">RW</label>
+                                        <input type="text" name="rw" class="form-control" value="<?= $siswa['rw'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Provinsi</label>
+                                        <select id="prov" class="form-control" name="provinsi" <?= form_disabled($bolehEdit) ?>>
+                                            <option value="">-- Pilih Provinsi --</option>
+                                        </select>
+                                        <?= form_hidden_if_disabled('provinsi', $siswa['provinsi'], $bolehEdit) ?>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Kabupaten</label>
+                                        <select id="kab" class="form-control" name="kabupaten">
+                                            <option value="">-- Pilih Kabupaten --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
 
 
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Kecamatan</label>
+                                        <select id="kec" class="form-control" name="kecamatan">
+                                            <option value="">-- Pilih Kecamatan --</option>
+                                        </select>
+                                    </div>
+                                    <div class=" mb-4">
+                                        <label class="" for="tempattinggal">Desa</label>
+                                        <select id="kel" class="form-control" name="desa">
+                                            <option value="">-- Pilih Desa/Kelurahan --</option>
+                                        </select>
+                                    </div>
 
+                                    <div class="mb-4">
+                                        <label class="" for="tempattinggal">Kode Pos</label>
+                                        <input type="text" class="form-control" name="kodepos" value="<?= $siswa['kodepos'] ?>" <?= form_disabled($bolehEdit) ?>>
+                                    </div>
 
-
-<div class="modal fade" id="alamat" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <?= form_open('admin/peserta/edit_alamat/' . $hash) ?>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Data Lainnya</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Alamat</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="alamat" class="form-control" value="<?= $siswa['alamat'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">RT/RW</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="rt" class="form-control" value="<?= $siswa['rt'] ?>">
-
-                    </div>
-                    <div class="col-sm-4">
-                        <input type="text" name="rw" class="form-control" value="<?= $siswa['rw'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Provinsi</label>
-                    <div class="col-sm-8">
-                        <select id="prov" class="form-control" name="provinsi">
-                            <option value="">-- Pilih Provinsi --</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Kabupaten</label>
-                    <div class="col-sm-8">
-                        <select id="kab" class="form-control" name="kabupaten">
-                            <option value="">-- Pilih Kabupaten --</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Kecamatan</label>
-                    <div class="col-sm-8">
-                        <select id="kec" class="form-control" name="kecamatan">
-                            <option value="">-- Pilih Kecamatan --</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Desa</label>
-                    <div class="col-sm-8">
-                        <select id="kel" class="form-control" name="desa">
-                            <option value="">-- Pilih Desa/Kelurahan --</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Kode Pos</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="kodepos" value="<?= $siswa['kodepos'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Titik Lokasi</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="lokasi" value="<?= $siswa['lokasi'] ?>">
-                    </div>
-                </div>
-
-
-
-
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        <?= form_close() ?>
-    </div>
-</div>
-
-
-<!-- ModalIdentitas -->
-<div class="modal fade" id="identitas" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <?= form_open('admin/peserta/edit_identitas/' . $hash) ?>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Identitas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="basic-default-company">Nama Siswa</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['nama_siswa'] ?>" name="nama_siswa" />
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="basic-default-company">Jenis Kelamin</label>
-                    <div class="col-sm-8">
-                        <select name="jenis_kelamin" id="" class="form-select">
-
-                            <?php if ($siswa['jenis_kelamin'] == 'L') {
-                                echo  "<option value='L' selected>Laki-laki</option>";
-                            } else {
-                                echo  "<option value='L'>Laki-laki</option>";
-                            }
-
-                            if ($siswa['jenis_kelamin'] == 'P') {
-                                echo  "<option value='P' selected>Perempuan</option>";
-                            } else {
-                                echo  "<option value='P'>Perempuan</option>";
-                            }
-                            ?>
-
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempat">Tempat Lahir</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="tempat" value="<?= $siswa['tempat_lahir'] ?>" name="tempat_lahir" />
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="date">Tanggal Lahir</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="date" value="<?= $siswa['tanggal_lahir'] ?>" name="tanggal_lahir" />
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="nik">NIK</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="nik" value="<?= $siswa['nik'] ?>" name="nik" />
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="nisn">NISN</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="nisn" value="<?= $siswa['nisn'] ?>" name="nisn" readonly />
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="no_kk">No KK</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="no_kk" value="<?= $siswa['no_kk'] ?>" name="no_kk" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        <?= form_close() ?>
-    </div>
-</div>
-
-<!-- DataRegister -->
-<div class="modal fade" id="register" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <?= form_open('admin/peserta/edit_register/' . $siswa['id_siswa']) ?>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Data Lainnya</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">NIPD</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="nis" class="form-control" value="<?= $siswa['nis'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Tinggi badan</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="tinggi" class="form-control" value="<?= $siswa['tinggi'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Berat Badan</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="berat" id="" class="form-control" value="<?= $siswa['berat'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Lingkar Kepala</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="lingkar" id="" class="form-control" value="<?= $siswa['lingkar'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Anak Ke</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="anak_ke" id="" class="form-control" value="<?= $siswa['anak_ke'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Jumlah Saudara</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="jml_saudara" id="" class="form-control" value="<?= $siswa['jml_saudara'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Hobi</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="hobi" id="" class="form-control" value="<?= $siswa['hobi'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="tempattinggal">Cita-cita</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="cita_cita" id="" class="form-control" value="<?= $siswa['cita_cita'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="transportasi">Seri Ijazah</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="seri_ijazah" class="form-control" id="" value="<?= $siswa['seri_ijazah'] ?>">
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <label class="col-sm-4 col-form-label" for="transportasi">Telp Anak</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="telp_anak" class="form-control" id="" value="<?= $siswa['telp_anak'] ?>">
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        <?= form_close() ?>
-    </div>
-</div>
-
-<!-- Tinggal -->
-<div class="modal fade" id="tinggal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Orang Tua</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="row mb-4">
-                        <label class="col-sm-4 col-form-label" for="transportasi">Tinggal</label>
-                        <div class="col-sm-8">
-                            <select name="tinggal" id="didik" class="form-control">
-                                <?php foreach ($tinggal as $key => $row) { ?>
-                                    <?php if ($siswa['tinggal'] == $row['tinggal']) {
-                                        $select = "selected";
-                                    } else {
-                                        $select = "";
-                                    }
-                                    echo "<option value=" . $row['tinggal'] . " $select>" . $row['tinggal'] . "</option>";
-                                    ?>
-                                <?php } ?>
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <label class="col-sm-4 col-form-label" for="transportasi">Pekerjaan</label>
-                        <div class="col-sm-8">
-                            <select name="transportasi" id="didik" class="form-control">
-                                <?php foreach ($transportasi as $key => $row) { ?>
-                                    <?php if ($siswa['transportasi'] == $row['transportasi']) {
-                                        $select = "selected";
-                                    } else {
-                                        $select = "";
-                                    }
-                                    echo "<option value=" . $row['transportasi'] . " $select>" . $row['transportasi'] . "</option>";
-                                    ?>
-                                <?php } ?>
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<!-- ModalOrangTua -->
-<div class="modal fade" id="ortu" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <?= form_open('admin/peserta/edit_ortu/' . $hash) ?>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Orang Tua</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="basic-default-company">Nama Ayah</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['nama_ayah'] ?>" name="nama_ayah" />
+                                    <div class="mb-4">
+                                        <label for="">Tempat Tinggal</label>
+                                        <select id="" class="form-select">
+                                            <option value="">Bersama Orang Tua/Wali</option>
+                                            <option value="">Kos</option>
+                                            <option value="">Asrama/Pondok</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="">Moda Transportasi</label>
+                                        <select id="mode" class="form-select">
+                                            <option value="Jalan Kaki">Jalan Kaki</option>
+                                            <option value="Sepeda">Sepeda</option>
+                                            <option value="Motor">Motor</option>
+                                            <option value="Mobil">Mobil Pribadi</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="basic-default-company">Tahun Lahir</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['tahun_ayah'] ?>" name="tahun_ayah" />
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="basic-default-company">NIK Ayah</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['nik_ayah'] ?>" name="nik_ayah" />
-                            </div>
-                        </div>
 
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="transportasi">Pendidikan</label>
-                            <div class="col-sm-8">
-                                <select name="didik_ayah" id="didik" class="form-control">
-                                    <option value="<?= $siswa['didik_ayah'] ?>"><?= $siswa['didik_ayah'] ?></option>
-                                    <option value="Tidak Sekolah">Tidak Sekolah</option>
-                                    <option value="Tamat SD/Sederajat">Tamat SD/Sesderajat</option>
-                                    <option value="SMP">SMP/Sederajat</option>
-                                    <option value="SMA">SMA/Sederajat</option>
-                                    <option value="D1">D1</option>
-                                    <option value="D2">D2</option>
-                                    <option value="D3">D3</option>
-                                    <option value="D4/S1">D4/S1</option>
-                                    <option value="S2">S2</option>
-                                    <option value="S3">S3</option>
+                            <!-- MAP -->
+                            <div id="map" class="mb-4"></div>
 
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="transportasi">Pekerjaan</label>
-                            <div class="col-sm-8">
-                                <select name="kerja_ayah" id="didik" class="form-control">
-                                    <option value="<?= $siswa['kerja_ayah'] ?>"><?= $siswa['kerja_ayah'] ?></option>
-                                    <option value="Tidak Bekerja">Tidak Bekerja</option>
-                                    <option value="Nelayan">Nelayan</option>
-                                    <option value="Petani">Petani</option>
-                                    <option value="Peternak">Peternak</option>
-                                    <option value="PNS/TNI/POLRI">PNS/TNI/POLRI</option>
-                                    <option value="Karyawan Swasta">Karyawan Swasta</option>
-                                    <option value="Pedagang Kecil">Pedagang Kecil</option>
-                                    <option value="Pedagang Besar">Pedagang Besar</option>
-                                    <option value="Wiraswasta">Wiraswasta</option>
-                                    <option value="Wirausaha">Wirausaha</option>
-                                    <option value="Sudah Meninggal">Sudah Meninggal</option>
+                            <!-- INFO LOKASI -->
 
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="">Penghasilan</label>
-                            <div class="col-sm-8">
-                                <select name="hasil_ayah" class="form-control">
-                                    <option value="<?= $siswa['hasil_ayah'] ?>"><?= $siswa['hasil_ayah'] ?></option>
-                                    <option value="Rp. 500.000-Rp. 1.000.000">Rp. 500.000-Rp. 1.000.000</option>
-                                    <option value="Rp. 1.000.000-Rp.1.999.999">Rp. 1.000.000-Rp.1.999.999</option>
-                                    <option value="Rp. 2.000.000-Rp. 4.999.999">Rp. 2.000.000-Rp. 4.999.999</option>
-                                    <option value="Rp. 5.000.000-Rp. 20.000.000">Rp. 5.000.000-Rp. 20.000.000</option>
-                                    <option value="> Rp. 20.000.000">> Rp. 20.000.000</option>
-                                    <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <label class="form-label">Latitude</label>
+                                    <input type="text" id="lat" name="latitude" class="form-control" readonly>
+                                </div>
 
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="basic-default-company">Telpon Ayah</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['telp_ayah'] ?>" name="telp_ayah" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="basic-default-company">Nama Ibu</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['nama_ibu'] ?>" name="nama_ibu" />
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="basic-default-company">Tahun Lahir</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['tahun_ibu'] ?>" name="tahun_ibu" />
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="basic-default-company">NIK</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['nik_ibu'] ?>" name="nik_ibu" />
-                            </div>
-                        </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Longitude</label>
+                                    <input type="text" id="lng" name="longitude" class="form-control" readonly>
+                                </div>
 
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="transportasi">Pendidikan</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="didik_ibu">
-                                    <option value="<?= $siswa['didik_ibu'] ?>"><?= $siswa['didik_ibu'] ?></option>
-                                    <option value="Tidak Sekolah">Tidak Sekolah</option>
-                                    <option value="Tamat SD/Sederajat">Tamat SD/Sesderajat</option>
-                                    <option value="SMP">SMP/Sederajat</option>
-                                    <option value="SMA">SMA/Sederajat</option>
-                                    <option value="D1">D1</option>
-                                    <option value="D2">D2</option>
-                                    <option value="D3">D3</option>
-                                    <option value="D4/S1">D4/S1</option>
-                                    <option value="S2">S2</option>
-                                    <option value="S3">S3</option>
+                                <div class="col-md-4">
+                                    <label class="form-label">Jarak ke Sekolah (KM)</label>
+                                    <input type="text" id="jarak" name="jarak" class="form-control" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Waktu ke Sekolah (KM)</label>
+                                    <input type="text" id="waktu" name="waktu" class="form-control" readonly>
+                                </div>
 
-                                </select>
                             </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="transportasi">Pekerjaan</label>
-                            <div class="col-sm-8">
-                                <select name="kerja_ibu" class="form-control">
-                                    <option value="<?= $siswa['kerja_ibu'] ?>"><?= $siswa['kerja_ibu'] ?></option>
-                                    <option value="Tidak Bekerja">Tidak Bekerja</option>
-                                    <option value="Nelayan">Nelayan</option>
-                                    <option value="Petani">Petani</option>
-                                    <option value="Peternak">Peternak</option>
-                                    <option value="PNS/TNI/POLRI">PNS/TNI/POLRI</option>
-                                    <option value="Karyawan Swasta">Karyawan Swasta</option>
-                                    <option value="Pedagang Kecil">Pedagang Kecil</option>
-                                    <option value="Pedagang Besar">Pedagang Besar</option>
-                                    <option value="Wiraswasta">Wiraswasta</option>
-                                    <option value="Wirausaha">Wirausaha</option>
-                                    <option value="Sudah Meninggal">Sudah Meninggal</option>
 
-                                </select>
+                            <!-- BUTTON -->
+                            <div class="text-end mt-4">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="bx bx-save"></i> Simpan Alamat
+                                </button>
                             </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="transportasi">Penghasilan</label>
-                            <div class="col-sm-8">
-                                <select name="hasil_ibu" class="form-control">
-
-                                    <option value="<?= $siswa['hasil_ibu'] ?>"><?= $siswa['hasil_ibu'] ?></option>
-                                    <option value="< Rp.500.000">
-                                        < Rp.500.000 </option>
-                                    <option value="Rp. 500.000-Rp. 1.000.000">Rp. 500.000-Rp. 1.000.000</option>
-                                    <option value="Rp. 1.000.000-Rp.1.999.999">Rp. 1.000.000-Rp.1.999.999</option>
-                                    <option value="Rp. 2.000.000-Rp. 4.999.999">Rp. 2.000.000-Rp. 4.999.999</option>
-                                    <option value="Rp. 5.000.000-Rp. 20.000.000">Rp. 5.000.000-Rp. 20.000.000</option>
-                                    <option value="> Rp. 20.000.000">> Rp. 20.000.000</option>
-                                    <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
-
-
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <label class="col-sm-4 col-form-label" for="basic-default-company">Telpon</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="basic-default-company" value="<?= $siswa['telp_ibu'] ?>" name="telp_ibu" />
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        <?= form_close() ?>
-    </div>
-</div>
-
-
-<!-- MODALPILIHKELAS -->
-<div class="modal fade" id="pilihkelas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Pilih Kelas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <?= form_open('admin/peserta/masukkelas/' . $hash) ?>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <select name="id_kelas" class="form-control">
-                                <option value="">Pilih Kelas</option>
-                                <?php foreach ($pilihkelas as $k) : ?>
-                                    <option value="<?= $k['id_kelas'] ?>"><?= $k['kelas'] ?> | <?= $k['nama_guru'] ?> </option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary"><i class="fas fa-floppy-disk"></i> Submit</button>
-            </div>
-            <?= form_close() ?>
         </div>
     </div>
 </div>
@@ -992,15 +567,23 @@ $ta = $db->table('tbl_ta')
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
+
+
+
+
+
 
 
 <script src="<?= base_url() ?>/template/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
+
+
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+
 
 
 
@@ -1018,9 +601,102 @@ $ta = $db->table('tbl_ta')
 
 
 
+<!-- MAPP -->
 
-<!-- drop and drag -->
-<!-- <script>
+<script>
+    /* =========================================================
+     * KONFIGURASI
+     * =======================================================*/
+    const sekolahLatLng = [-6.281883791403306, 106.59463505339842];
+    const bolehEdit = <?= js_bool($bolehEdit) ?>;
+    const kecepatanModa = {
+        "Jalan Kaki": 4,
+        "Sepeda": 12,
+        "Motor": 30,
+        "Mobil": 25
+    };
+
+    const siswaLatLng = [
+        <?= $siswa['latitude'] ?? '-6.281883791403306' ?>,
+        <?= $siswa['longitude'] ?? '106.59463505339842' ?>
+    ];
+
+    /* =========================================================
+     * INIT MAP
+     * =======================================================*/
+    const map = L.map('map').setView(siswaLatLng, 14);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; SMPINKA'
+    }).addTo(map);
+
+    /* =========================================================
+     * MARKER
+     * =======================================================*/
+    L.marker(sekolahLatLng).addTo(map).bindPopup('<b>Sekolah</b>');
+
+    const markerSiswa = L.marker(siswaLatLng, {
+        draggable: bolehEdit
+    }).addTo(map);
+
+    const line = L.polyline([sekolahLatLng, siswaLatLng], {
+        color: 'blue'
+    }).addTo(map);
+
+    /* =========================================================
+     * HITUNG JARAK & WAKTU (DINAMIS)
+     * =======================================================*/
+    function hitungJarakDanWaktu(latlng) {
+        const jarakMeter = map.distance(sekolahLatLng, latlng);
+        const jarakKm = jarakMeter / 1000;
+
+        // ambil kecepatan dari select
+        const kecepatan = kecepatanModa[mode] ?? 4;
+
+        const waktuJam = jarakKm / kecepatan;
+        const jam = Math.floor(waktuJam);
+        const menit = Math.round((waktuJam - jam) * 60);
+
+        document.getElementById('lat').value = latlng.lat.toFixed(6);
+        document.getElementById('lng').value = latlng.lng.toFixed(6);
+        document.getElementById('jarak').value = jarakKm.toFixed(2);
+        document.getElementById('waktu').value =
+            jam > 0 ? `${jam} jam ${menit} menit` : `${menit} menit`;
+    }
+
+    // nilai awal
+    hitungJarakDanWaktu(markerSiswa.getLatLng());
+
+    /* =========================================================
+     * EVENT
+     * =======================================================*/
+    // geser marker
+    if (bolehEdit) {
+        markerSiswa.on('dragend', function(e) {
+            const pos = e.target.getLatLng();
+            line.setLatLngs([sekolahLatLng, pos]);
+            hitungJarakDanWaktu(pos);
+        });
+    }
+
+    // ganti moda transportasi
+    document.getElementById('mode').addEventListener('change', function() {
+        hitungJarakDanWaktu(markerSiswa.getLatLng());
+    });
+</script>
+
+
+
+
+
+<!-- =====MAPS -->
+
+
+
+
+<!-- =======DROP $ DRAG -->
+
+<script>
     let dropArea = document.getElementById('drop-area');
     let fileElem = document.getElementById('fileElem');
 
@@ -1082,7 +758,7 @@ $ta = $db->table('tbl_ta')
             }
         });
 
-        fetch("<?= base_url('peserta/uploadDokumen/' . $siswa['id_siswa']) ?>", {
+        fetch("<?= base_url('admin/peserta/uploadDokumen/' . $hash) ?>", {
                 method: "POST",
                 body: formData
             })
@@ -1113,133 +789,6 @@ $ta = $db->table('tbl_ta')
                 });
             });
     }
-</script> -->
-<script>
-    let dropArea = document.getElementById('drop-area');
-    let fileElem = document.getElementById('fileElem');
-
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropArea.addEventListener(eventName, e => {
-            e.preventDefault();
-            dropArea.style.background = '#eef';
-        }, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropArea.addEventListener(eventName, e => {
-            e.preventDefault();
-            dropArea.style.background = '';
-        }, false);
-    });
-
-    dropArea.addEventListener('drop', e => {
-        let file = e.dataTransfer.files[0];
-        uploadFile(file);
-    });
-
-    fileElem.addEventListener('change', e => {
-        let file = e.target.files[0];
-        uploadFile(file);
-    });
-
-    function uploadFile(file) {
-
-        if (!file) return;
-
-        const ext = file.name.split('.').pop().toLowerCase();
-        if (ext !== 'pdf') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Format Salah',
-                text: 'File harus PDF'
-            });
-            return;
-        }
-
-        if (file.size > 2 * 1024 * 1024) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Terlalu Besar',
-                text: 'Maksimal 2MB'
-            });
-            return;
-        }
-
-        let formData = new FormData();
-        formData.append("file", file);
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "<?= base_url('admin/peserta/uploadDokumen/' . $hash) ?>", true);
-
-        // 🎯 SweetAlert dengan Progress Bar
-        Swal.fire({
-            title: 'Mengupload Dokumen...',
-            html: `
-            <div style="width:100%; background:#eee; border-radius:6px; overflow:hidden; margin-top:10px;">
-                <div id="swal-progress-bar" style="width:0%; height:20px; background:#4caf50; color:white; text-align:center; line-height:20px;">
-                    0%
-                </div>
-            </div>
-        `,
-            allowOutsideClick: false,
-            showConfirmButton: false
-        });
-
-        // 🔥 Progress Realtime
-        xhr.upload.onprogress = function(e) {
-            if (e.lengthComputable) {
-                let percent = Math.round((e.loaded / e.total) * 100);
-                let bar = document.getElementById("swal-progress-bar");
-                if (bar) {
-                    bar.style.width = percent + "%";
-                    bar.innerHTML = percent + "%";
-
-                    if (percent > 70) bar.style.background = "#2196F3";
-                    if (percent > 90) bar.style.background = "#00c853";
-                }
-            }
-        };
-
-        // ✅ Sukses
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                let res = JSON.parse(xhr.responseText);
-
-                if (res.status) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil',
-                        text: res.msg,
-                        timer: 1500,
-                        showConfirmButton: false
-                    }).then(() => location.reload());
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal',
-                        text: res.msg
-                    });
-                }
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Server Error',
-                    text: 'Upload gagal'
-                });
-            }
-        };
-
-        // ❌ Error koneksi
-        xhr.onerror = function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Koneksi ke server gagal'
-            });
-        };
-
-        xhr.send(formData);
-    }
 </script>
 
 
@@ -1249,26 +798,7 @@ $ta = $db->table('tbl_ta')
 
 
 
-
-
-
-<!-- dropdownlist -->
-
-<script>
-    const map = L.map('map').setView([-6.282785267302884, 106.5934756654008], 14);
-
-    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-
-        attribution: '&copy; SMPINKA'
-    }).addTo(map);
-
-    L.marker([<?= $siswa['lokasi'] ?>])
-        .bindPopup("<b><?= $siswa['nama_siswa'] ?></b>").addTo(map)
-        .openPopup();
-</script>
-
-
-
+<!-- dropdownlistProvinsi -->
 
 <script>
     $(document).ready(function() {

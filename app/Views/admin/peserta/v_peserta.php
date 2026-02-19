@@ -61,7 +61,7 @@ $ta = $db->table('tbl_ta')
         <div class="tab-content">
             <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
                 <div class="table-responsive">
-                    <table class="table table-bordered isi" id="example">
+                    <table class="table table-striped isi" id="example">
                         <thead class="">
                             <tr>
                                 <th class="text-center">#</th>
@@ -114,47 +114,47 @@ $ta = $db->table('tbl_ta')
                 <button class="btn btn-primary mr-3 mt-2" data-bs-toggle="modal" data-bs-target="#naik">Proses Naik Tingkat</button>
             </div>
             <div class="tab-pane fade" id="navs-pills-top-blmaktif" role="tabpanel">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="blmaktif">
-                            <thead>
+
+                <div class="table-responsive">
+                    <table class="table table-striped" id="blmaktif">
+                        <thead>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">NISN</th>
+                                <th class="text-center">Nama Siswa</th>
+                                <th class="text-center">L/P</th>
+                                <th class="text-center">Nama Ibu</th>
+                                <th class="text-center">Ket</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+
+                            $no = 1;
+
+                            foreach ($blmaktif as $key => $value) { ?>
                                 <tr>
-                                    <th class="text-center">No</th>
-                                    <th class="text-center">NISN</th>
-                                    <th class="text-center">Nama Siswa</th>
-                                    <th class="text-center">L/P</th>
-                                    <th class="text-center">Nama Ibu</th>
-                                    <th class="text-center">Ket</th>
+                                    <td><?= $no++; ?></td>
+                                    <td class="text-center"><?= $value["nisn"] ?></td>
+                                    <td><?= $value["nama_siswa"] ?></td>
+                                    <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
+                                    <td class="text-center"><?= $value["nama_ibu"] ?></td>
+                                    <td class="text-center"><button class="btn btn-danger">Belum Aktif</button></td>
+
 
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-
-                                $no = 1;
-
-                                foreach ($blmaktif as $key => $value) { ?>
-                                    <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td class="text-center"><?= $value["nisn"] ?></td>
-                                        <td><?= $value["nama_siswa"] ?></td>
-                                        <td class="text-center"><?= $value["jenis_kelamin"] ?></td>
-                                        <td class="text-center"><?= $value["nama_ibu"] ?></td>
-                                        <td class="text-center"><button class="btn btn-danger">Belum Aktif</button></td>
-
-
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
-
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
+
+
             </div>
             <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="example1">
+                        <table class="table table-striped" id="example1">
                             <thead>
                                 <tr>
                                     <th class="text-center">No</th>
@@ -219,7 +219,7 @@ $ta = $db->table('tbl_ta')
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="akanlulus">
+                        <table class="table table-striped" id="akanlulus">
                             <thead class="">
                                 <tr>
                                     <th class="text-center">#</th>
@@ -262,7 +262,7 @@ $ta = $db->table('tbl_ta')
                 <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="verifikasi">
+                            <table class="table table-striped" id="verifikasi">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
@@ -316,9 +316,6 @@ $ta = $db->table('tbl_ta')
                                 <input type="file" name="file_excel" class="form-control" accept=".xls,.xlsx" required>
                                 <button type="submit" class="btn btn-primary mt-2">Import Excel</button>
                             </form>
-
-
-
                         </div>
                     </div>
                     <div class="col-md-6">

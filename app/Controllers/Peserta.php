@@ -32,6 +32,7 @@ class Peserta extends BaseController
         helper('form');
         helper('terbilang');
         helper('secure');
+        helper('form_lock');
 
 
 
@@ -176,6 +177,8 @@ class Peserta extends BaseController
     {
         helper('secure');
 
+
+
         try {
             $id_siswa = decrypt_id($hash); // ⬅️ hasil dekripsi dipakai
         } catch (\Exception $e) {
@@ -203,6 +206,11 @@ class Peserta extends BaseController
             'siswa'         => $this->ModelPeserta->DataPeserta($id_siswa),
             'rekamdidik'    => $this->ModelPeserta->rekamdidik($id_siswa),
             'datasiswa'     => $this->ModelPeserta->linkwa($id_siswa),
+
+            $siswa = $this->ModelPeserta->DataPeserta($id_siswa),
+            'bolehEdit' => ($siswa['reset_biodata'] == 1),
+
+
 
             'validation'    => \Config\Services::validation(),
         ];
@@ -551,7 +559,7 @@ class Peserta extends BaseController
             'lingkar'               => $this->request->getPost('lingkar'),
             'seri_ijazah'           => $this->request->getPost('seri_ijazah'),
         ];
-        $this->ModelPeserta->editregister($data);
+        $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
         return redirect()->to('admin/peserta/detail_siswa/' . $hash);
     }
@@ -584,7 +592,7 @@ class Peserta extends BaseController
 
 
         ];
-        $this->ModelPeserta->editortu($data);
+        $this->ModelPeserta->edit($data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
         return redirect()->to('admin/peserta/detail_siswa/' . $hash);
     }
@@ -620,32 +628,6 @@ class Peserta extends BaseController
 
 
 
-    public function dataKabupaten($id_provinsi)
-    {
-
-        $data = $this->ModelPeserta->getKabupaten($id_provinsi);
-        echo '<option>--Pilih Kabupaten--</option>';
-        foreach ($data as $value) {
-
-            echo '<option value="' . $value['id_kabupaten'] . '">' . $value['city_name'] . '</option>';
-        }
-    }
-    public function dataKecamatan($id_kabupaten)
-    {
-        $data = $this->ModelPeserta->getKecamatan($id_kabupaten);
-        echo '<option>--Pilih Kecamatan--</option>';
-        foreach ($data as $value) {
-            echo '<option value="' . $value['id_kecamatan'] . '">' . $value['nama_kecamatan'] . '</option>';
-        }
-    }
-    public function dataDesa($id_kecamatan)
-    {
-        $data = $this->ModelPeserta->getDesa($id_kecamatan);
-        echo '<option>--Pilih Desa/Kelurahan--</option>';
-        foreach ($data as $value) {
-            echo '<option value="' . $value['id_desa'] . '">' . $value['desa'] . '</option>';
-        }
-    }
 
     public function editfoto($id_siswa)
     {

@@ -12,8 +12,6 @@ class ModelPeserta extends Model
 
 
 
-
-
 {
 
 
@@ -168,30 +166,8 @@ class ModelPeserta extends Model
             ->where('id_siswa', $data['id_siswa'])
             ->update($data);
     }
-    public function editortu($data)
-    {
-        $this->db->table('tbl_siswa')
-            ->where('id_siswa', $data['id_siswa'])
-            ->update($data);
-    }
-    public function editalamat($data)
-    {
-        $this->db->table('tbl_siswa')
-            ->where('id_siswa', $data['id_siswa'])
-            ->update($data);
-    }
-    public function editorangtua($data)
-    {
-        $this->db->table('tbl_siswa')
-            ->where('id_siswa', $data['id_siswa'])
-            ->update($data);
-    }
-    public function editregister($data)
-    {
-        $this->db->table('tbl_siswa')
-            ->where('id_siswa', $data['id_siswa'])
-            ->update($data);
-    }
+
+
 
     public function upload($data)
     {
