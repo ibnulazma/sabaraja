@@ -18,7 +18,9 @@ class ModelSiswa extends Model
     {
         return $this->db->table('tbl_siswa')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
-            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
+            ->join('desa', 'desa.id_desa = tbl_siswa.nama_desa', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->where('id_siswa', session()->get('id_user'))
             ->get()->getRowArray();
     }

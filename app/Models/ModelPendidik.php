@@ -20,7 +20,10 @@ class ModelPendidik extends Model
     {
         return $this->db->table('tbl_guru')
             ->join('tbl_kelas', 'tbl_kelas.id_guru = tbl_guru.id_guru', 'left')
-
+            ->join('provinsi', 'provinsi.id_provinsi = tbl_guru.prov_guru', 'left')
+            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_guru.kab_guru', 'left')
+            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_guru.kec_guru', 'left')
+            ->join('desa', 'desa.id_desa = tbl_guru.desa_guru', 'left')
             ->where('tbl_guru.id_guru', session()->get('id_user'))
             ->get()->getRowArray();
     }
@@ -52,7 +55,7 @@ class ModelPendidik extends Model
     public function edit($data)
     {
         $this->db->table('tbl_guru')
-            ->where('niy', $data['niy'])
+            ->where('id_guru', $data['id_guru'])
             ->update($data);
     }
 

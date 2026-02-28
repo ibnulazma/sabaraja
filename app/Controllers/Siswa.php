@@ -23,6 +23,12 @@ class Siswa extends BaseController
         helper('formatindo');
         helper('terbilang');
         helper('form');
+        helper('secure');
+
+
+
+
+
         $this->ModelSiswa = new ModelSiswa();
         $this->ModelKelas = new ModelKelas();
         $this->ModelWilayah = new ModelWilayah();
@@ -1232,18 +1238,19 @@ class Siswa extends BaseController
 
         unset($data['id_siswa'], $data['csrf_test_name']);
 
-        // Jika hanya ID → skip update
-        if (empty($data)) {
+        if (array_key_exists('status_daftar', $data)) {
+            $data['status_daftar'] = 2;
+        }
+        // jika tidak ada data selain ID
+        if (!$data) {
             return $this->response->setJSON([
                 'status' => 'success',
-                'id_siswa' => $id,
-                'masuk' => $data
+                'id_siswa' => $id
             ]);
         }
 
         if ($id) {
-            $builder->where('id_siswa', $id);
-            $builder->update($data);
+            $builder->update($data, ['id_siswa' => $id]);
         } else {
             $builder->insert($data);
             $id = $db->insertID();
@@ -1251,7 +1258,7 @@ class Siswa extends BaseController
 
         return $this->response->setJSON([
             'status' => 'success',
-            'id_siswa' => $id
+            'id_siswa' => $id,
         ]);
     }
 }

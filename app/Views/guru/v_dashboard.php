@@ -1,4 +1,4 @@
-<?= $this->extend('template/template-backend') ?>
+<?= $this->extend('template/template-user') ?>
 <?= $this->section('content') ?>
 
 
@@ -98,441 +98,475 @@ $isFinal = in_array($guru['id_kelas'], $kelasFinal);
 
 
 ?>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-lg-12 mb-3 order-0">
+            <div class="card">
+                <div class="d-flex align-items-end row">
+                    <div class="col-sm-8">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Selamat Datang <?= $guru['nama_guru'] ?></strong>! 🎉</h5>
 
-<div class="row">
-    <div class="col-lg-12 mb-3 order-0">
-        <div class="card">
-            <div class="d-flex align-items-end row">
-                <div class="col-sm-8">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary">Selamat Datang <?= $guru['nama_guru'] ?></strong>! 🎉</h5>
-
-                        <p class="mb-4">
-                            Semester Aktif: <span class="fw-bold">Ganjil</span> Tahun Ajaran <?= $ta['ta'] ?>
-                        </p>
+                            <p class="mb-4">
+                                Semester Aktif: <span class="fw-bold">Ganjil</span> Tahun Ajaran <?= $ta['ta'] ?>
+                            </p>
 
 
 
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-4 text-center text-sm-left">
-                    <div class="card-body pb-0 px-0 px-md-4">
+                    <div class="col-sm-4 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-4">
 
-                        <?php if ($guru['kelamin'] == 'L') { ?>
-                            <img
-                                src="<?= base_url() ?>/template/assets/img/illustrations/gurulaki.png"
-                                height="140"
-                                alt="View Badge User"
-                                data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                                data-app-light-img="illustrations/man-with-laptop-light.png" />
-                        <?php  } else { ?>
-                            <img
-                                src="<?= base_url() ?>/template/assets/img/illustrations/gurucewek.png"
-                                height="150"
-                                alt="View Badge User"
-                                data-app-dark-img="illustrations/girls.png"
-                                data-app-light-img="illustrations/girls.png" />
-                        <?php } ?>
+                            <?php if ($guru['kelamin'] == 'L') { ?>
+                                <img
+                                    src="<?= base_url() ?>/template/assets/img/illustrations/gurulaki.png"
+                                    height="140"
+                                    alt="View Badge User"
+                                    data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                    data-app-light-img="illustrations/man-with-laptop-light.png" />
+                            <?php  } else { ?>
+                                <img
+                                    src="<?= base_url() ?>/template/assets/img/illustrations/gurucewek.png"
+                                    height="150"
+                                    alt="View Badge User"
+                                    data-app-dark-img="illustrations/girls.png"
+                                    data-app-light-img="illustrations/girls.png" />
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
-
-
     </div>
-</div>
 
 
 
-<div class="row g-6">
-    <div class="col-xl-12">
-        <div class="nav-align-top">
-            <ul class="nav nav-pills mb-4" role="tablist">
-                <?php if ($guru['walas'] == 1) : ?>
+    <div class="row g-6">
+        <div class="col-xl-12">
+            <div class="nav-align-top">
+                <ul class="nav nav-pills mb-4" role="tablist">
+                    <?php if ($guru['walas'] == 1) : ?>
+                        <li class="nav-item">
+                            <button type="button" class="nav-link active" role="tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#navs-pills-top-home"
+                                aria-controls="navs-pills-top-home"
+                                aria-selected="true">Rombel</button>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="nav-item">
-                        <button type="button" class="nav-link active" role="tab"
+                        <button type="button" class="nav-link <?= ($guru['walas'] == 0) ? 'active' : '' ?>" role="tab"
                             data-bs-toggle="tab"
-                            data-bs-target="#navs-pills-top-home"
-                            aria-controls="navs-pills-top-home"
-                            aria-selected="true">Rombel</button>
+                            data-bs-target="#navs-pills-top-nilai"
+                            aria-controls="navs-pills-top-nilai"
+                            aria-selected="<?= ($guru['walas'] == 0) ? 'true' : 'false' ?>">Nilai</button>
                     </li>
-                <?php endif; ?>
 
-                <li class="nav-item">
-                    <button type="button" class="nav-link <?= ($guru['walas'] == 0) ? 'active' : '' ?>" role="tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#navs-pills-top-nilai"
-                        aria-controls="navs-pills-top-nilai"
-                        aria-selected="<?= ($guru['walas'] == 0) ? 'true' : 'false' ?>">Nilai</button>
-                </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#navs-pills-top-messages"
+                            aria-controls="navs-pills-top-messages"
+                            aria-selected="false">Profile</button>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <?php if ($guru['walas'] == 1) : ?>
+                        <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-striped" id="example">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nama Peserta Didik</th>
+                                                <th class="text-center">Nama Ibu</th>
+                                                <th class="text-center">Telp Ibu</th>
+                                                <th class="text-center">Alamat</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($rombel as $key => $data) { ?>
+                                                <tr>
+                                                    <td><i class="bx bxs-user"></i></td>
+                                                    <td><?= $data['nama_siswa'] ?></td>
+                                                    <td class="text-center"><?= $data['nama_ibu'] ?></td>
+                                                    <td class="text-center"><a href="https://wa.me/<?= nomorhp($data['telp_ibu']) ?>"><?= nomorhp($data['telp_ibu']) ?></a></td>
+                                                    <td class="text-center">
+                                                        <a href="https://www.google.com/maps/dir/?api=1&destination=<?= $data['latitude'] ?>,<?= $data['longitude'] ?>"
+                                                            target="_blank"
+                                                            class="btn btn-sm btn-success">
+                                                            <i class="bx bx-map"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
-                <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#navs-pills-top-messages"
-                        aria-controls="navs-pills-top-messages"
-                        aria-selected="false">Profile</button>
-                </li>
-            </ul>
+                    <div class="tab-pane fade <?= ($guru['walas'] == 0) ? 'show active' : '' ?>" id="navs-pills-top-nilai" role="tabpanel">
 
 
-            <div class="tab-content">
-                <?php if ($guru['walas'] == 1) : ?>
-                    <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
-                        <div class="card">
-                            <div class="card-datatable">
-                                <table class="table table-striped" id="example">
+                        <?php if (empty($nilai)) : ?>
+
+                        <?php else : ?>
+                            <h5 class="text-center">Leger Nilai P3MP Kelas <?= esc($nilai[0]['kelas'] ?? '-') ?></h5>
+                        <?php endif; ?>
+
+                        <a href="<?= base_url('pendidik/printexcel/' . $guru['id_kelas']) ?>" class="btn btn-success btn-sm"><i class="bx bx-archive-arrow-down"></i> Download Template </a>
+                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalUpload" <?= $isFinal ? 'disabled' : '' ?>><i class="bx bx-archive-arrow-up"></i> Upload </button>
+
+
+
+
+                        <!-- =============TOMBOL KIRIM DATA NILAI KE ADMIN -->
+
+
+
+                        <button
+                            class=" btn btn-sm <?= $isFinal ? 'btn-secondary' : 'btn-warning' ?> btn-final"
+                            data-idkelas="<?= $guru['id_kelas'] ?>"
+                            <?= $isFinal ? 'disabled' : '' ?>> <i class="bx bx-paper-plane"></i>
+                            <?= $isFinal ? 'Sudah Final' : 'Kirim Nilai' ?>
+                        </button>
+
+
+                        <!-- ==========AKHIR RUMUS TOMBOL KE ADMIN -->
+                        <button class="btn btn-primary btn-sm"><i class="bx bx-printer"></i> Cetak </button>
+
+                        <?php if (empty($nilai)) : ?>
+
+                            <div class="bg-danger text-white mt-3 rounded-1 p-3 text-center">
+                                <i class="bx bx-info-circle"></i><br>
+                                <strong>Data nilai belum tersedia</strong><br>
+                                Silakan download template lalu upload nilai.
+                            </div>
+
+                        <?php else : ?>
+
+
+                            <div class="table-freeze">
+                                <table>
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Nama Peserta Didik</th>
-                                            <th>Nama Ibu</th>
-                                            <th>Telp Ibu</th>
-                                            <th>Alamat</th>
+                                            <th class="tp">Nama Siswa</th>
+                                            <th>NISN</th>
+                                            <th>PAI</th>
+                                            <th>PKN</th>
+                                            <th>B.IND</th>
+                                            <th>MTK</th>
+                                            <th>IPA</th>
+                                            <th>IPS</th>
+                                            <th>B.INGG</th>
+                                            <th>SBK</th>
+                                            <th>PJOK</th>
+                                            <th>PRKY</th>
+                                            <th>TIK</th>
+                                            <th>MHD</th>
+                                            <th>TJWD</th>
+                                            <th>TRJM</th>
+                                            <th>FQIH</th>
+                                            <th>BTQ</th>
+                                            <th>Sakit</th>
+                                            <th>Izin</th>
+                                            <th>Alfa</th>
+                                            <th>Jumlah</th>
+                                            <th>Rank</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($rombel as $key => $data) { ?>
+                                        <?php
+                                        foreach ($nilai as $key => $value) { ?>
                                             <tr>
-                                                <td><i class="bx bxs-user"></i></td>
-                                                <td><?= $data['nama_siswa'] ?></td>
-                                                <td><?= $data['nama_ibu'] ?></td>
-                                                <td><a href="https://wa.me/<?= nomorhp($data['telp_ibu']) ?>"><?= nomorhp($data['telp_ibu']) ?></a></td>
+
+                                                <th scope="row"><?= $value['nama_siswa'] ?></th>
                                                 <td class="text-center">
-                                                    <a href="https://www.google.com/maps/dir/?api=1&destination=<?= $data['latitude'] ?>,<?= $data['longitude'] ?>"
-                                                        target="_blank"
-                                                        class="btn btn-sm btn-success">
-                                                        <i class="bx bx-map"></i>
-                                                    </a>
+                                                    <?= $value['nisn'] ?>
                                                 </td>
+                                                <td class="text-center">
+                                                    <?= $value['pai'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['pkn'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['indo'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['mtk'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['ipa'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['ips'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['inggris'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['sbk'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['pjok'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['prky'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['tik'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['mhd'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['tjwd'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['trjmh'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['fiqih'] ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?= $value['btq'] ?>
+                                                </td>
+
+                                                <?php
+                                                $jumlah =
+
+                                                    $value['pai'] + $value['pkn'] + $value['indo'] + $value['mtk'] + $value['ipa'] + $value['ips']
+                                                    + $value['inggris'] + $value['sbk'] + $value['prky'] + $value['tik'] + $value['btq'] + $value['trjmh'] + $value['tjwd'] + $value['mhd'] + $value['fiqih'] + $value['pjok'];
+                                                ?>
+
+
+
+
+                                                <td class="text-center"><?= $value['sakit'] ?></td>
+                                                <td class="text-center"><?= $value['izin'] ?></td>
+                                                <td class="text-center"><?= $value['alfa'] ?></td>
+                                                <td class="text-center jumlah"><?= $jumlah ?></td>
+                                                <td class="text-center rank">-</td>
+
+
                                             </tr>
                                         <?php } ?>
+
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif; ?>
 
-                <div class="tab-pane fade <?= ($guru['walas'] == 0) ? 'show active' : '' ?>" id="navs-pills-top-nilai" role="tabpanel">
+                                <script>
+                                    function hitungRank() {
+                                        let rows = document.querySelectorAll("tbody tr");
+                                        let data = [];
 
+                                        rows.forEach((row, index) => {
+                                            let jumlahCell = row.querySelector(".jumlah");
+                                            if (!jumlahCell) return;
 
-                    <?php if (empty($nilai)) : ?>
+                                            let jumlah = parseInt(jumlahCell.innerText) || 0;
 
-                    <?php else : ?>
-                        <h5 class="text-center">Leger Nilai P3MP Kelas <?= esc($nilai[0]['kelas'] ?? '-') ?></h5>
-                    <?php endif; ?>
-
-                    <a href="<?= base_url('pendidik/printexcel/' . $guru['id_kelas']) ?>" class="btn btn-success btn-sm"><i class="bx bx-archive-arrow-down"></i> Download Template </a>
-                    <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalUpload" <?= $isFinal ? 'disabled' : '' ?>><i class="bx bx-archive-arrow-up"></i> Upload </button>
-
-
-
-
-                    <!-- =============TOMBOL KIRIM DATA NILAI KE ADMIN -->
-
-
-
-                    <button
-                        class=" btn btn-sm <?= $isFinal ? 'btn-secondary' : 'btn-warning' ?> btn-final"
-                        data-idkelas="<?= $guru['id_kelas'] ?>"
-                        <?= $isFinal ? 'disabled' : '' ?>> <i class="bx bx-paper-plane"></i>
-                        <?= $isFinal ? 'Sudah Final' : 'Kirim Nilai' ?>
-                    </button>
-
-
-                    <!-- ==========AKHIR RUMUS TOMBOL KE ADMIN -->
-                    <button class="btn btn-primary btn-sm"><i class="bx bx-printer"></i> Cetak </button>
-
-                    <?php if (empty($nilai)) : ?>
-
-                        <div class="bg-danger text-white mt-3 rounded-1 p-3 text-center">
-                            <i class="bx bx-info-circle"></i><br>
-                            <strong>Data nilai belum tersedia</strong><br>
-                            Silakan download template lalu upload nilai.
-                        </div>
-
-                    <?php else : ?>
-
-
-                        <div class="table-freeze">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="tp">Nama Siswa</th>
-                                        <th>NISN</th>
-                                        <th>PAI</th>
-                                        <th>PKN</th>
-                                        <th>B.IND</th>
-                                        <th>MTK</th>
-                                        <th>IPA</th>
-                                        <th>IPS</th>
-                                        <th>B.INGG</th>
-                                        <th>SBK</th>
-                                        <th>PJOK</th>
-                                        <th>PRKY</th>
-                                        <th>TIK</th>
-                                        <th>MHD</th>
-                                        <th>TJWD</th>
-                                        <th>TRJM</th>
-                                        <th>FQIH</th>
-                                        <th>BTQ</th>
-                                        <th>Sakit</th>
-                                        <th>Izin</th>
-                                        <th>Alfa</th>
-                                        <th>Jumlah</th>
-                                        <th>Rank</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    foreach ($nilai as $key => $value) { ?>
-                                        <tr>
-
-                                            <th scope="row"><?= $value['nama_siswa'] ?></th>
-                                            <td class="text-center">
-                                                <?= $value['nisn'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['pai'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['pkn'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['indo'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['mtk'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['ipa'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['ips'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['inggris'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['sbk'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['pjok'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['prky'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['tik'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['mhd'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['tjwd'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['trjmh'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['fiqih'] ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?= $value['btq'] ?>
-                                            </td>
-
-                                            <?php
-                                            $jumlah =
-
-                                                $value['pai'] + $value['pkn'] + $value['indo'] + $value['mtk'] + $value['ipa'] + $value['ips']
-                                                + $value['inggris'] + $value['sbk'] + $value['prky'] + $value['tik'] + $value['btq'] + $value['trjmh'] + $value['tjwd'] + $value['mhd'] + $value['fiqih'] + $value['pjok'];
-                                            ?>
-
-
-
-
-                                            <td class="text-center"><?= $value['sakit'] ?></td>
-                                            <td class="text-center"><?= $value['izin'] ?></td>
-                                            <td class="text-center"><?= $value['alfa'] ?></td>
-                                            <td class="text-center jumlah"><?= $jumlah ?></td>
-                                            <td class="text-center rank">-</td>
-
-
-                                        </tr>
-                                    <?php } ?>
-
-                                </tbody>
-                            </table>
-
-                            <script>
-                                function hitungRank() {
-                                    let rows = document.querySelectorAll("tbody tr");
-                                    let data = [];
-
-                                    rows.forEach((row, index) => {
-                                        let jumlahCell = row.querySelector(".jumlah");
-                                        if (!jumlahCell) return;
-
-                                        let jumlah = parseInt(jumlahCell.innerText) || 0;
-
-                                        data.push({
-                                            index: index,
-                                            jumlah: jumlah
+                                            data.push({
+                                                index: index,
+                                                jumlah: jumlah
+                                            });
                                         });
-                                    });
 
-                                    data.sort((a, b) => b.jumlah - a.jumlah);
+                                        data.sort((a, b) => b.jumlah - a.jumlah);
 
-                                    let rank = 1;
-                                    let lastJumlah = null;
+                                        let rank = 1;
+                                        let lastJumlah = null;
 
-                                    data.forEach((item, i) => {
-                                        if (lastJumlah !== null && item.jumlah < lastJumlah) {
-                                            rank = i + 1;
-                                        }
+                                        data.forEach((item, i) => {
+                                            if (lastJumlah !== null && item.jumlah < lastJumlah) {
+                                                rank = i + 1;
+                                            }
 
-                                        rows[item.index].querySelector(".rank").innerText = rank;
-                                        lastJumlah = item.jumlah;
-                                    });
-                                }
+                                            rows[item.index].querySelector(".rank").innerText = rank;
+                                            lastJumlah = item.jumlah;
+                                        });
+                                    }
 
-                                document.addEventListener("DOMContentLoaded", hitungRank);
-                            </script>
+                                    document.addEventListener("DOMContentLoaded", hitungRank);
+                                </script>
 
-                        </div>
-                    <?php endif; ?>
-                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
 
-
-
-
-                <div class="tab-pane fade" id="navs-pills-top-messages" role="tabpanel">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label" for="basic-default-name">Nama Lengkap</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="basic-default-name" value="<?= $guru['nama_guru'] ?>" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label">Jenis Kelamin</label>
-                                    <div class="col-sm-8">
-                                        <div class="form-check form-check-inline">
-                                            <input
-                                                class="form-check-input"
-                                                type="radio"
-                                                name="kelamin"
-                                                id="jk_l"
-                                                value="L"
-                                                <?= ($guru['kelamin'] == 'L') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="jk_l">Laki-laki</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input
-                                                class="form-check-input"
-                                                type="radio"
-                                                name="kelamin"
-                                                id="jk_p"
-                                                value="P"
-                                                <?= ($guru['kelamin'] == 'P') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="jk_p">Perempuan</label>
+                    <div class="tab-pane fade" id="navs-pills-top-messages" role="tabpanel">
+                        <form action="<?= base_url('pendidik/update_guru/' . $guru['id_guru']) ?>" method="post">
+                            <?= csrf_field(); ?>
+                            <input type="hidden" value="<?= $guru['id_guru'] ?>">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-name">Nama Lengkap</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="nama_guru" value="<?= $guru['nama_guru'] ?>" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label" for="basic-default-email">Tempat Lahir</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group input-group-merge">
-                                            <input type="date" class="form-control" value="<?= $guru['tmpt_lahir'] ?>" aria-label="john.doe" id="tgl_lahir" />
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label">Jenis Kelamin</label>
+                                        <div class="col-sm-8">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="kelamin" id="jk_l" value="L"
+                                                    <?= ($guru['kelamin'] == 'L') ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="jk_l">Laki-laki</label>
+                                            </div>
 
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="kelamin" id="jk_p" value="P"
+                                                    <?= ($guru['kelamin'] == 'P') ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="jk_p">Perempuan</label>
+                                            </div>
                                         </div>
-                                        <div class="form-text">You can use letters, numbers & periods</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-email">Tempat Lahir</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-merge">
+                                                <input type="text" class="form-control" value="<?= $guru['tmpt_lahir'] ?>" name="tmpt_lahir" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-email">Tanggal Lahir</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-merge">
+                                                <input type="text" class="form-control" value="<?= $guru['tgl_lahir'] ?>" name="tgl_lahir" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-phone">No Telp</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="basic-default-phone" class="form-control phone-mask" name="telp_guru" value="<?= nomorhp($guru['telp_guru']) ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-phone">Alamat Domisili</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="basic-default-phone" class="form-control phone-mask" name="alamat_guru" value="<?= $guru['alamat_guru'] ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-phone">RT</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="basic-default-phone" class="form-control phone-mask" name="rt_guru" value="<?= $guru['rt_guru'] ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-phone">RW</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="basic-default-phone" class="form-control phone-mask" name="rw_guru" value="<?= $guru['rw_guru'] ?>" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="tempattinggal">Provinsi</label>
+                                        <div class="col-sm-8">
+                                            <select id="prov" class="form-control" name="prov_guru">
+                                                <option value="">-- Pilih Provinsi --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class=" row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="tempattinggal">Kabupaten</label>
+                                        <div class="col-sm-8">
+                                            <select id="kab" class="form-control" name="kab_guru">
+                                                <option value="">-- Pilih Kabupaten --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class=" row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="tempattinggal">Kecamatan</label>
+                                        <div class="col-sm-8">
+                                            <select id="kec" class="form-control" name="kec_guru">
+                                                <option value="">-- Pilih Kecamatan --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class=" row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="tempattinggal">Desa/Kel</label>
+                                        <div class="col-sm-8">
+                                            <select id="kel" class="form-control" name="desa_guru">
+                                                <option value="">-- Pilih Desa --</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label" for="basic-default-phone">Phone No</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" id="basic-default-phone" class="form-control phone-mask" placeholder="658 799 8941" aria-label="658 799 8941" aria-describedby="basic-default-phone" />
+                                <div class="col-md-6">
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-name">NIY</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="basic-default-name" name="niy" value="<?= $guru['niy'] ?>" readonly />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label" for="basic-default-message">Message</label>
-                                    <div class="col-sm-8">
-                                        <textarea id="basic-default-message" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-name">NIK</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="basic-default-name" name="nik_guru" value="<?= $guru['nik_guru'] ?>" />
+                                        </div>
                                     </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-email">No KK</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-merge">
+                                                <input type="text" class="form-control" value="<?= $guru['kk_guru'] ?>" name="kk_guru" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-email">NUPTK</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-merge">
+                                                <input type="text" class="form-control" value="<?= $guru['nuptk'] ?>" name="nuptk" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-phone">NPWP</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="basic-default-phone" class="form-control phone-mask" name="npwp" value="<?= $guru['npwp'] ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-phone">Email</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="basic-default-phone" class="form-control phone-mask" name="email" value="<?= $guru['email'] ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label" for="basic-default-phone">Link Group WA</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="basic-default-phone" class="form-control phone-mask" name="link_wa" value="<?= $guru['link_wa'] ?>" />
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label" for="basic-default-name">Nama Lengkap</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="basic-default-name" value="<?= $guru['nama_guru'] ?>" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label">Jenis Kelamin</label>
-                                    <div class="col-sm-8">
-                                        <div class="form-check form-check-inline">
-                                            <input
-                                                class="form-check-input"
-                                                type="radio"
-                                                name="kelamin"
-                                                id="jk_l"
-                                                value="L"
-                                                <?= ($guru['kelamin'] == 'L') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="jk_l">Laki-laki</label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <input
-                                                class="form-check-input"
-                                                type="radio"
-                                                name="kelamin"
-                                                id="jk_p"
-                                                value="P"
-                                                <?= ($guru['kelamin'] == 'P') ? 'checked' : '' ?>>
-                                            <label class="form-check-label" for="jk_p">Perempuan</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label" for="basic-default-email">Email</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group input-group-merge">
-                                            <input type="text" id="basic-default-email" class="form-control" placeholder="john.doe" aria-label="john.doe" aria-describedby="basic-default-email2" />
-                                            <span class="input-group-text" id="basic-default-email2">@example.com</span>
-                                        </div>
-                                        <div class="form-text">You can use letters, numbers & periods</div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label" for="basic-default-phone">Phone No</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" id="basic-default-phone" class="form-control phone-mask" placeholder="658 799 8941" aria-label="658 799 8941" aria-describedby="basic-default-phone" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-4 col-form-label" for="basic-default-message">Message</label>
-                                    <div class="col-sm-8">
-                                        <textarea id="basic-default-message" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="col-sm-10">
+                            <div class="float-end">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 
@@ -579,7 +613,29 @@ $isFinal = in_array($guru['id_kelas'], $kelasFinal);
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
 
+        <?php if (session()->getFlashdata('success')) : ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '<?= session()->getFlashdata('success'); ?>',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')) : ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '<?= session()->getFlashdata('error'); ?>',
+            });
+        <?php endif; ?>
+
+    });
+</script>
 
 
 
@@ -689,7 +745,169 @@ $isFinal = in_array($guru['id_kelas'], $kelasFinal);
 </script>
 
 
+<script>
+    $(document).ready(function() {
 
+        // =========================
+        // DATA EDIT (KOSONGKAN JIKA TAMBAH)
+        // =========================
+        const siswa = {
+            prov: "<?= $guru['id_provinsi'] ?>",
+            kab: "<?= $guru['id_kabupaten'] ?>",
+            kec: "<?= $guru['id_kecamatan'] ?>",
+            des: "<?= $guru['id_desa'] ?>"
+        };
+
+        // =========================
+        // HELPER
+        // =========================
+        function setLoading(el, text = 'Loading...') {
+            $(el)
+                .prop('disabled', true)
+                .html(`<option value="">${text}</option>`);
+        }
+
+        function setDefault(el, text) {
+            $(el)
+                .prop('disabled', false)
+                .html(`<option value="">${text}</option>`);
+        }
+
+        // =========================
+        // LOAD SELECT (DENGAN CALLBACK)
+        // =========================
+        function loadSelect(url, el, valueKey, textKey, selected = '', done = null) {
+            setLoading(el);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(res) {
+                    let opt = `<option value="">-- Pilih --</option>`;
+
+                    if (res && res.length) {
+                        res.forEach(item => {
+                            const sel = selected == item[valueKey] ? 'selected' : '';
+                            opt += `<option value="${item[valueKey]}" ${sel}>${item[textKey]}</option>`;
+                        });
+                    }
+
+                    $(el)
+                        .prop('disabled', false)
+                        .html(opt);
+
+                    if (typeof done === 'function') done();
+                },
+                error: function() {
+                    setDefault(el, 'Gagal load data');
+                }
+            });
+        }
+
+        // =========================
+        // LOAD AWAL (EDIT DATA)
+        // =========================
+        loadSelect(
+            "<?= base_url('wilayah/provinsi') ?>",
+            '#prov',
+            'id_provinsi',
+            'prov_name',
+            siswa.prov,
+            function() {
+
+                if (!siswa.prov) return;
+
+                loadSelect(
+                    "<?= base_url('wilayah/kabupaten') ?>/" + siswa.prov,
+                    '#kab',
+                    'id_kabupaten',
+                    'city_name',
+                    siswa.kab,
+                    function() {
+
+                        if (!siswa.kab) return;
+
+                        loadSelect(
+                            "<?= base_url('wilayah/kecamatan') ?>/" + siswa.kab,
+                            '#kec',
+                            'id_kecamatan',
+                            'nama_kecamatan',
+                            siswa.kec,
+                            function() {
+
+                                if (!siswa.kec) return;
+
+                                loadSelect(
+                                    "<?= base_url('wilayah/desa') ?>/" + siswa.kec,
+                                    '#kel',
+                                    'id_desa',
+                                    'nama_desa',
+                                    siswa.des
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+        // =========================
+        // EVENT USER GANTI MANUAL
+        // =========================
+        $('#prov').on('change', function() {
+            const id = this.value;
+
+            setDefault('#kab', '-- Pilih Kabupaten --');
+            setDefault('#kec', '-- Pilih Kecamatan --');
+            setDefault('#kel', '-- Pilih Desa --');
+
+            if (id) {
+                loadSelect(
+                    "<?= base_url('wilayah/kabupaten') ?>/" + id,
+                    '#kab',
+                    'id_kabupaten',
+                    'city_name'
+                );
+            }
+        });
+
+        $('#kab').on('change', function() {
+            const id = this.value;
+
+            setDefault('#kec', '-- Pilih Kecamatan --');
+            setDefault('#kel', '-- Pilih Desa --');
+
+            if (id) {
+                loadSelect(
+                    "<?= base_url('wilayah/kecamatan') ?>/" + id,
+                    '#kec',
+                    'id_kecamatan',
+                    'nama_kecamatan'
+                );
+            }
+        });
+
+        $('#kec').on('change', function() {
+            const id = this.value;
+
+            setDefault('#kel', '-- Pilih Desa --');
+
+            if (id) {
+                loadSelect(
+                    "<?= base_url('wilayah/desa') ?>/" + id,
+                    '#kel',
+                    'id_desa',
+                    'nama_desa'
+                );
+            }
+        });
+
+    });
+</script>
 
 
 

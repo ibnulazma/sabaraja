@@ -323,7 +323,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const TOTAL_STEP = 5;
+    const TOTAL_STEP = 4;
     const KEY_STEP = "wizard_step";
 
     /* =============================
@@ -507,6 +507,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
+    if (input.type === "checkbox") {
+            if (!input.checked) {
+                valid = false;
+            }
+            return;
+        }
+
     });
 
     if (nextBtn) {
@@ -652,7 +659,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        fetch("/siswa/simpan_step", {
+        fetch(APP.baseUrl + "/siswa/simpan_step", {
             method: "POST",
             body: formData
         })

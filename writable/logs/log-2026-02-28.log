@@ -1,0 +1,178 @@
+CRITICAL - 2026-02-28 17:52:09 --> Undefined index: hobby
+#0 C:\xampp\htdocs\sabaraja\app\Views\admin\peserta\v_detail_siswa.php(336): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 336, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/peserta/v...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Peserta.php(222): view('admin/peserta/v...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Peserta->detail_siswa('159e23dd9c7ba63...')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peserta))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2026-02-28 17:53:09 --> Undefined index: hobby
+#0 C:\xampp\htdocs\sabaraja\app\Views\admin\peserta\v_detail_siswa.php(336): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 336, Array)
+#1 C:\xampp\htdocs\sabaraja\system\View\View.php(214): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\sabaraja\system\View\View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\sabaraja\system\Common.php(1092): CodeIgniter\View\View->render('admin/peserta/v...', Array, true)
+#4 C:\xampp\htdocs\sabaraja\app\Controllers\Peserta.php(222): view('admin/peserta/v...', Array)
+#5 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Peserta->detail_siswa('159e23dd9c7ba63...')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Peserta))
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+ERROR - 2026-02-28 18:07:28 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:07:28 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103050')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103050')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:07:35 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:07:35 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103020')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103020')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:08:32 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:08:32 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103050')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103050')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:10:43 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:10:43 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103020')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103020')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:13:59 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:13:59 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103050')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103050')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:14:01 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:14:01 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103020')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103020')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:14:58 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:14:58 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103050')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103050')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:16:59 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:16:59 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103050')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103050')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:17:07 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:17:07 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('1801064')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('1801064')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:18:52 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:18:52 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103050')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103050')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+ERROR - 2026-02-28 18:19:56 --> Unknown column 'desa' in 'field list'
+CRITICAL - 2026-02-28 18:19:56 --> Unknown column 'desa' in 'field list'
+#0 C:\xampp\htdocs\sabaraja\system\Database\MySQLi\Connection.php(280): mysqli->query('SELECT `id_desa...')
+#1 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id_desa...')
+#2 C:\xampp\htdocs\sabaraja\system\Database\BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id_desa...')
+#3 C:\xampp\htdocs\sabaraja\system\Database\BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT `id_desa...', Array, false)
+#4 C:\xampp\htdocs\sabaraja\app\Models\ModelWilayah.php(56): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\sabaraja\app\Controllers\Wilayah.php(34): App\Models\ModelWilayah->getDesa('5103050')
+#6 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(802): App\Controllers\Wilayah->desa('5103050')
+#7 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Wilayah))
+#8 C:\xampp\htdocs\sabaraja\system\CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\sabaraja\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\sabaraja\system\Commands\Server\rewrite.php(43): require_once('C:\\xampp\\htdocs...')
+#11 {main}

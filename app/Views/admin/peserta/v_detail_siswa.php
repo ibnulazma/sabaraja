@@ -48,7 +48,6 @@ $ta = $db->table('tbl_ta')
 
 
 <div class="container-xxl flex-grow-1 container-p-y">
-
     <div class="row">
         <div class="col-lg-4">
             <div class="card mb-4">
@@ -170,8 +169,6 @@ $ta = $db->table('tbl_ta')
                     <div class="tab-pane fade " id="navs-pills-top-home" role="tabpanel">
 
                         <form action="<?= base_url('admin/peserta/identitas' . ($hash)) ?>" method="post">
-
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
@@ -221,11 +218,8 @@ $ta = $db->table('tbl_ta')
                                     <div class=" mb-4">
                                         <label class="" for="tempattinggal">Berkebutuhan Khusus</label>
                                         <input type="text" class="form-control" name="kbthn_khusus" value="<?= $siswa['kbthn_khusus'] ?>" <?= form_readonly($bolehEdit) ?>>
-
                                     </div>
-
                                 </div>
-
                             </div>
 
                             <!-- BUTTON -->
@@ -237,9 +231,7 @@ $ta = $db->table('tbl_ta')
                         </form>
                     </div>
                     <div class="tab-pane fade" id="navs-pills-top-ortu" role="tabpanel">
-                        <form action="<?= base_url('admin/peserta/identitas' . ($hash)) ?>" method="post">
-
-
+                        <form action="<?= base_url('admin/peserta/edit_identitas' . ($hash)) ?>" method="post">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
@@ -276,12 +268,10 @@ $ta = $db->table('tbl_ta')
 
                                 </div>
                                 <div class="col-md-6">
-
                                     <div class="mb-4">
                                         <label for="tempattinggal">Ibu</label>
                                         <input type="text" name="nama_ibu" class="form-control" value="<?= $siswa['nama_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
                                     </div>
-
                                     <div class=" mb-4">
                                         <label class="" for="tempattinggal">Tahun Lahir ibu</label>
                                         <input type="text" name="tahun_ibu" class="form-control" value="<?= $siswa['tahun_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
@@ -293,12 +283,10 @@ $ta = $db->table('tbl_ta')
                                     <div class=" mb-4">
                                         <label class="" for="tempattinggal">Pendidikan ibu</label>
                                         <input type="text" class="form-control" name="didik_ibu" value="<?= $siswa['didik_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
-
                                     </div>
                                     <div class=" mb-4">
                                         <label class="" for="tempattinggal">Pekerjaan ibu</label>
                                         <input type="text" class="form-control" name="kerja_ibu" value="<?= $siswa['kerja_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
-
                                     </div>
                                     <div class=" mb-4">
                                         <label class="" for="tempattinggal">Penghasilan</label>
@@ -308,9 +296,7 @@ $ta = $db->table('tbl_ta')
                                         <label class="" for="tempattinggal">Telp</label>
                                         <input type="text" class="form-control" name="telp_ibu" value="<?= $siswa['telp_ibu'] ?>" <?= form_readonly($bolehEdit) ?>>
                                     </div>
-
                                 </div>
-
                             </div>
 
                             <!-- BUTTON -->
@@ -324,66 +310,61 @@ $ta = $db->table('tbl_ta')
                     <div class="tab-pane fade" id="navs-pills-top-register" role="tabpanel">
                         <div class="row">
 
-                            <div class="col-lg-6">
-                                <h5>Registrasi</h5>
-                                <ul class="atribut" style="list-style:none">
-                                    <li class="p-0">
-                                        NIPD :
-                                        <span><?= $siswa['nis'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Nomor Seri Ijazah :
-                                        <span><?= $siswa['seri_ijazah'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Hobi :
-                                        <span><?= $siswa['hobi'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Cita-cita :
-                                        <span><?= $siswa['cita_cita'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Telp / WA :
-                                        <span><?= $siswa['telp_anak'] ?></span>
-                                    </li>
-                                </ul>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="tempattinggal">NIPD</label>
+                                    <input type="text" name="nis" class="form-control" value="<?= $siswa['nis'] ?>">
+                                </div>
+
+                                <div class=" mb-4">
+                                    <label class="" for="tempattinggal">No Seri Ijazah</label>
+                                    <input type="text" name="tahun_ayah" class="form-control" value="<?= $siswa['seri_ijazah'] ?>">
+                                </div>
+                                <div class=" mb-4">
+                                    <label class="" for="tempattinggal">Hobi</label>
+                                    <input type="text" name="hobi" class="form-control" value="<?= $siswa['hobi'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                </div>
+                                <div class=" mb-4">
+                                    <label class="" for="tempattinggal">Cita-cita</label>
+                                    <input type="text" class="form-control" name="cita_cita" value="<?= $siswa['cita_cita'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                </div>
+                                <div class=" mb-4">
+                                    <label class="" for="tempattinggal"> Telp Wa</label>
+                                    <input type="text" class="form-control" name="kerja_ayah" value="<?= $siswa['kerja_ayah'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                <h5>Periodik <button class="ikon btn-primary btn btn-sm" data-bs-toggle="modal" data-bs-target="#register"><i class='bx bxs-edit-alt'></i></button></h5>
-                                <ul class="atribut" style="list-style:none">
-                                    <li class="p-0">
-                                        Tinggi Badan :
-                                        <span><?= $siswa['tinggi'] ?> cm</span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Berat Badan :
-                                        <span><?= $siswa['berat'] ?> cm</span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Lingkar Kepala :
-                                        <span><?= $siswa['lingkar'] ?> cm</span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Anak Ke :
-                                        <span><?= $siswa['anak_ke'] ?></span>
-                                    </li>
-                                    <hr>
-                                    <li class="p-0">
-                                        Jumlah Saudara :
-                                        <span><?= $siswa['jml_saudara'] ?></span>
-                                    </li>
-                                    <hr>
-                                </ul>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label for="tempattinggal">Tinggi Badan</label>
+                                    <input type="text" name="tinggi" class="form-control" value="<?= $siswa['tinggi'] ?>">
+                                </div>
+
+                                <div class=" mb-4">
+                                    <label class="" for="tempattinggal">Berat Badan</label>
+                                    <input type="text" name="berat" class="form-control" value="<?= $siswa['berat'] ?>">
+                                </div>
+                                <div class=" mb-4">
+                                    <label class="" for="tempattinggal">Lingkar Kepala</label>
+                                    <input type="text" name="lingkar" class="form-control" value="<?= $siswa['lingkar'] ?>">
+                                </div>
+                                <div class=" mb-4">
+                                    <label class="" for="tempattinggal">Cita-cita</label>
+                                    <input type="text" class="form-control" name="cita_cita" value="<?= $siswa['cita_cita'] ?>" <?= form_readonly($bolehEdit) ?>>
+
+                                </div>
+                                <div class=" mb-4">
+                                    <label class="" for="tempattinggal"> Telp Wa</label>
+                                    <input type="text" class="form-control" name="telp_anak" value="<?= $siswa['telp_anak'] ?>" <?= form_readonly($bolehEdit) ?>>
+                                </div>
                             </div>
                         </div>
+                        <div class="text-end mt-4">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="bx bx-save"></i> Simpan Data Registrasi
+                            </button>
+                        </div>
+
                     </div>
                     <div class="tab-pane fade" id="navs-pills-top-rekamdidik" role="tabpanel">
                         <div class="row">
@@ -577,10 +558,6 @@ $ta = $db->table('tbl_ta')
 <script src="<?= base_url() ?>/template/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
 
-
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
@@ -603,87 +580,7 @@ $ta = $db->table('tbl_ta')
 
 <!-- MAPP -->
 
-<script>
-    /* =========================================================
-     * KONFIGURASI
-     * =======================================================*/
-    const sekolahLatLng = [-6.281883791403306, 106.59463505339842];
-    const bolehEdit = <?= js_bool($bolehEdit) ?>;
-    const kecepatanModa = {
-        "Jalan Kaki": 4,
-        "Sepeda": 12,
-        "Motor": 30,
-        "Mobil": 25
-    };
 
-    const siswaLatLng = [
-        <?= $siswa['latitude'] ?? '-6.281883791403306' ?>,
-        <?= $siswa['longitude'] ?? '106.59463505339842' ?>
-    ];
-
-    /* =========================================================
-     * INIT MAP
-     * =======================================================*/
-    const map = L.map('map').setView(siswaLatLng, 14);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; SMPINKA'
-    }).addTo(map);
-
-    /* =========================================================
-     * MARKER
-     * =======================================================*/
-    L.marker(sekolahLatLng).addTo(map).bindPopup('<b>Sekolah</b>');
-
-    const markerSiswa = L.marker(siswaLatLng, {
-        draggable: bolehEdit
-    }).addTo(map);
-
-    const line = L.polyline([sekolahLatLng, siswaLatLng], {
-        color: 'blue'
-    }).addTo(map);
-
-    /* =========================================================
-     * HITUNG JARAK & WAKTU (DINAMIS)
-     * =======================================================*/
-    function hitungJarakDanWaktu(latlng) {
-        const jarakMeter = map.distance(sekolahLatLng, latlng);
-        const jarakKm = jarakMeter / 1000;
-
-        // ambil kecepatan dari select
-        const kecepatan = kecepatanModa[mode] ?? 4;
-
-        const waktuJam = jarakKm / kecepatan;
-        const jam = Math.floor(waktuJam);
-        const menit = Math.round((waktuJam - jam) * 60);
-
-        document.getElementById('lat').value = latlng.lat.toFixed(6);
-        document.getElementById('lng').value = latlng.lng.toFixed(6);
-        document.getElementById('jarak').value = jarakKm.toFixed(2);
-        document.getElementById('waktu').value =
-            jam > 0 ? `${jam} jam ${menit} menit` : `${menit} menit`;
-    }
-
-    // nilai awal
-    hitungJarakDanWaktu(markerSiswa.getLatLng());
-
-    /* =========================================================
-     * EVENT
-     * =======================================================*/
-    // geser marker
-    if (bolehEdit) {
-        markerSiswa.on('dragend', function(e) {
-            const pos = e.target.getLatLng();
-            line.setLatLngs([sekolahLatLng, pos]);
-            hitungJarakDanWaktu(pos);
-        });
-    }
-
-    // ganti moda transportasi
-    document.getElementById('mode').addEventListener('change', function() {
-        hitungJarakDanWaktu(markerSiswa.getLatLng());
-    });
-</script>
 
 
 
@@ -897,7 +794,7 @@ $ta = $db->table('tbl_ta')
                                     "<?= base_url('wilayah/desa') ?>/" + siswa.kec,
                                     '#kel',
                                     'id_desa',
-                                    'desa',
+                                    'nama_desa',
                                     siswa.des
                                 );
 
@@ -956,7 +853,7 @@ $ta = $db->table('tbl_ta')
                     "<?= base_url('wilayah/desa') ?>/" + id,
                     '#kel',
                     'id_desa',
-                    'desa'
+                    'nama_desa'
                 );
             }
         });

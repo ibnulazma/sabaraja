@@ -72,10 +72,6 @@ class ModelPeserta extends Model
 
             ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
             ->join('tbl_ta', 'tbl_ta.id_ta = tbl_siswa.id_ta', 'left')
-
-            // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
-            // ->join('tbl_kelas', 'tbl_kelas.id_kelas = tbl_siswa.id_kelas', 'left')
-            // ->join('tbl_guru', 'tbl_guru.id_guru = tbl_kelas.id_guru', 'left')
             ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
             ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
             ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
@@ -328,26 +324,13 @@ class ModelPeserta extends Model
             ->getResultArray();
     }
 
-    public function permohonan($nisn)
-    {
-        return $this->db->table('tbl_siswa')
 
-            ->join('tbl_tingkat', 'tbl_tingkat.id_tingkat = tbl_siswa.id_tingkat', 'left')
-            ->join('provinsi', 'provinsi.id_provinsi = tbl_siswa.provinsi', 'left')
-            ->join('kabupaten', 'kabupaten.id_kabupaten = tbl_siswa.kabupaten', 'left')
-            ->join('kecamatan', 'kecamatan.id_kecamatan = tbl_siswa.kecamatan', 'left')
-            ->join('desa', 'desa.id_desa = tbl_siswa.desa', 'left')
-            ->where('tbl_siswa.nisn', $nisn)
-            ->get()->getRowArray();
-    }
     public function koreksi()
     {
         return $this->db->table('tbl_siswa')
             ->where('status_daftar', '2')
             ->countAllResults();
     }
-
-
 
 
     public function provinsi()

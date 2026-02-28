@@ -93,151 +93,63 @@ class Pendidik extends BaseController
     }
 
 
-    public function update_guru($niy)
+    public function update_guru($id_guru)
     {
-        if ($this->validate([
-            'nama_guru' => [
-                'label' => 'Nama',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'kelamin' => [
-                'label' => 'Jenis Kelamin',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus dipilih',
+        $validation = \Config\Services::validation();
 
-                ]
-            ],
+        $rules = [
+            'nama_guru' => 'required',
+            'kelamin' => 'required',
+            'tmpt_lahir' => 'required',
+            'tgl_lahir' => 'required',
+            'email' => 'required|valid_email',
+            'telp_guru' => 'required',
+            'alamat_guru' => 'required',
+            'rt_guru' => 'required',
+            'rw_guru' => 'required',
+            'prov_guru' => 'required',
+            'kab_guru' => 'required',
+            'kec_guru' => 'required',
+            'desa_guru' => 'required',
+            'nik_guru' => 'required',
+            'nuptk' => 'required',
+        ];
 
-            'tmpt_lahir' => [
-                'label' => 'Tempat Lahir',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi',
+        if (!$this->validate($rules)) {
 
-                ]
-            ],
-            'tgl_lahir' => [
-                'label' => 'Tanggal Lahir',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'email' => [
-                'label' => 'Email',
-                'rules' => 'required|valid_email',
-                'errors' => [
-                    'required' => '{field} harus diisi',
-                    'valid_email' => 'harus sesuai format email'
-                ]
-            ],
-            'telp_guru' => [
-                'label' => 'Telp Guru',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'alamat_guru' => [
-                'label' => 'Alamat',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'rt_guru' => [
-                'label' => 'RT',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'rw_guru' => [
-                'label' => 'RW',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'desa_guru' => [
-                'label' => 'Desa/Kel',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-
-            'kec_guru' => [
-                'label' => 'Kecamatan',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'ibu_guru' => [
-                'label' => 'Nama Ibu ',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'nik_guru' => [
-                'label' => 'NIK ',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'nuptk' => [
-                'label' => 'NUPTK ',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'status_pernikahan' => [
-                'label' => 'Status Pernikahan ',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus dipilih'
-                ]
-            ],
-
-
-        ])) {
-            $data = [
-                'niy'               => $niy,
-                'nama_guru'        => $this->request->getPost('nama_guru'),
-                'kelamin'          => $this->request->getPost('kelamin'),
-                'tmpt_lahir'       => $this->request->getPost('tmpt_lahir'),
-                'tgl_lahir'        => $this->request->getPost('tgl_lahir'),
-                'email'            => $this->request->getPost('email'),
-                'telp_guru'        => $this->request->getPost('telp_guru'),
-                'alamat_guru'      => $this->request->getPost('alamat_guru'),
-                'rt_guru'          => $this->request->getPost('rt_guru'),
-                'rw_guru'          => $this->request->getPost('rw_guru'),
-                'kec_guru'         => $this->request->getPost('kec_guru'),
-                'desa_guru'        => $this->request->getPost('desa_guru'),
-                'nik_guru'         => $this->request->getPost('nik_guru'),
-                'ibu_guru'         => $this->request->getPost('ibu_guru'),
-                'nuptk'           => $this->request->getPost('nuptk'),
-                'npwp'           => $this->request->getPost('npwp'),
-                'status_pernikahan'           => $this->request->getPost('status_pernikahan'),
-                'link_wa'           => $this->request->getPost('link_wa'),
-
-            ];
-            $this->ModelPendidik->edit($data);
-            session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-            return redirect()->to('pendidik/profile');
-        } else {
-            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
-            $validation =  \Config\Services::validation();
-            return redirect()->to('pendidik/profile')->withInput()->with('validation', $validation);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Silakan lengkapi data dengan benar');
         }
+
+        $data = [
+            'nama_guru'   => $this->request->getPost('nama_guru'),
+            'kelamin'     => $this->request->getPost('kelamin'),
+            'tmpt_lahir'  => $this->request->getPost('tmpt_lahir'),
+            'tgl_lahir'   => $this->request->getPost('tgl_lahir'),
+            'telp_guru'   => $this->request->getPost('telp_guru'),
+            'alamat_guru' => $this->request->getPost('alamat_guru'),
+            'rt_guru'     => $this->request->getPost('rt_guru'),
+            'rw_guru'     => $this->request->getPost('rw_guru'),
+            'prov_guru'   => $this->request->getPost('prov_guru'),
+            'kab_guru'    => $this->request->getPost('kab_guru'),
+            'kec_guru'    => $this->request->getPost('kec_guru'),
+            'desa_guru'   => $this->request->getPost('desa_guru'),
+            'niy'         => $this->request->getPost('niy'),
+            'nik_guru'    => $this->request->getPost('nik_guru'),
+            'kk_guru'     => $this->request->getPost('kk_guru'),
+            'nuptk'       => $this->request->getPost('nuptk'),
+            'npwp'        => $this->request->getPost('npwp'),
+            'email'       => $this->request->getPost('email'),
+            'link_wa'     => $this->request->getPost('link_wa'),
+        ];
+
+        $this->db->table('tbl_guru')
+            ->where('id_guru', $id_guru)
+            ->update($data);
+
+        return redirect()->to(base_url('pendidik'))
+            ->with('success', 'Data berhasil diperbarui');
     }
 
 

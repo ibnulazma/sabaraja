@@ -50,9 +50,9 @@ class ModelWilayah extends Model
     public function getDesa($id_kecamatan)
     {
         return $this->db->table('desa')
-            ->select('id_desa, desa')
+            ->select('id_desa, nama_desa')
             ->where('id_kecamatan', $id_kecamatan)
-            ->orderBy('desa', 'ASC')
+            ->orderBy('nama_desa', 'ASC')
             ->get()
             ->getResultArray();
     }

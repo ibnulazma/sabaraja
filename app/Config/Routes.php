@@ -139,6 +139,7 @@ $routes->group('admin', ['filter' => 'role:1'], function ($routes) {
 $routes->group('pendidik', ['filter' => 'role:2'], function ($routes) {
 
     $routes->get('/', 'Pendidik::index');
+    $routes->get('profile', 'Pendidik::profile');
     $routes->get('rombel', 'Pendidik::rombel');
     $routes->get('nilai', 'Pendidik::nilai');
 
@@ -149,6 +150,16 @@ $routes->group('pendidik', ['filter' => 'role:2'], function ($routes) {
     $routes->post('upload-nilai/(:num)', 'Pendidik::upload/$1');
     $routes->post('kirim-nilai/(:num)', 'Pendidik::kirimNilai/$1');
     $routes->post('finalkan-nilai', 'Pendidik::finalkanNilai');
+
+
+    // $routes->get('update_guru/(:num)', 'Pendidik::update_guru/$1');
+    $routes->post('update_guru/(:num)', 'Pendidik::update_guru/$1');
+});
+
+
+$routes->group('siswa', ['filter' => 'role:3'], function ($routes) {
+
+    $routes->get('/', 'Siswa::index');
 });
 
 // ADMIN
@@ -157,7 +168,7 @@ $routes->group('pendidik', ['filter' => 'role:2'], function ($routes) {
 // $routes->get('/peserta/(:seg)', 'Peserta::detail/$1');
 
 
-
+$routes->post('siswa/simpan_step', 'Siswa::simpan_step');
 $routes->get('dokumen/(:any)', 'Dokumen::view/$1');
 $routes->post('siswa/update/(:num)', 'Siswa::update/$1');
 
